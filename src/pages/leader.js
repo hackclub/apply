@@ -75,7 +75,7 @@ const Content = ({ status, formFields, id }) => {
             </span>
           </Heading.h4>
           <Container align="center" mt={4} mb={5}>
-            <LargeButton.link to="/apply" chevronLeft>
+            <LargeButton.link to="/" chevronLeft>
               Back
             </LargeButton.link>
           </Container>
