@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
 const Flag = styled(Link)`
-  background: url(https://hackclub.com/orpheus_flag.svg) no-repeat;
+  background: url(/orpheus_flag.svg) no-repeat;
   background-position: top center;
   flex-shrink: 0;
   width: 112px;
