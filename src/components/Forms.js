@@ -239,7 +239,7 @@ export const Form = styled(Container.withComponent('form')).attrs({
 })`
   display: grid;
   grid-gap: 1rem;
-  ${theme.mediaQueries[1]} {
+  ${theme.mediaQueries.md} {
     grid-template-columns: repeat(1, 1fr);
     h2,
     .textarea {
@@ -259,7 +259,7 @@ export const Subheading = styled(Heading.h2).attrs({
 `
 
 const HeadingBox = styled(Box).attrs({
-  mr: 3
+  mr: [4, 5]
 })`
   text-align: left;
   order: 1;
@@ -267,7 +267,7 @@ const HeadingBox = styled(Box).attrs({
   flex-shrink: 0;
   flex-basis: auto;
   ${theme.mediaQueries.md} {
-    flex-basis: 7rem;
+    flex-basis: 10rem;
     text-align: right;
   }
 `
