@@ -55,7 +55,7 @@ const InnerForm = ({
           label="Type of school"
           type="select"
         >
-          <option disabled value="select">
+          <option disabled value="">
             Select One
           </option>
           <option value="public_school">Public school</option>
@@ -75,7 +75,7 @@ const InnerForm = ({
           label="President / equivalent position"
           type="select"
         >
-          <option disabled value="select">
+          <option disabled value="">
             Select One
           </option>
           {values.leader_profiles.map(profile => (

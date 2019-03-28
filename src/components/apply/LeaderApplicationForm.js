@@ -31,7 +31,7 @@ const InnerForm = ({
           label="Year in school"
           type="select"
         >
-          <option value="select" disabled>
+          <option value="" disabled>
             Select One
           </option>
           <option value="freshman">Freshman</option>
@@ -57,17 +57,8 @@ const InnerForm = ({
           Demographic stats are collected to share in aggregate with donors and
           will not be used as part of application review.
         </Text>
-        <Field
-          name="leader_gender"
-          label="Gender"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.leader_gender || 'select'}
-          error={touched.leader_gender && errors.leader_gender}
-          disabled={values.submitted_at !== null}
-          type="select"
-        >
-          <option value="select" disabled>
+        <Field {...field('leader_gender')} label="Gender" type="select">
+          <option value="" disabled>
             Select One
           </option>
           <option value="male">Male</option>
@@ -77,7 +68,7 @@ const InnerForm = ({
           <option value="other_gender">Other</option>
         </Field>
         <Field {...field('leader_ethnicity')} label="Ethnicity" type="select">
-          <option value="select" disabled>
+          <option value="" disabled>
             Select One
           </option>
           <option value="hispanic_or_latino">Hispanic or Latino</option>
@@ -158,7 +149,7 @@ const InnerForm = ({
           label="Are you technical? (You are a programmer who can teach without outside assistance)"
           type="select"
         >
-          <option value="select" disabled>
+          <option value="" disabled>
             Select One
           </option>
           <option value="true">Yes</option>
