@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'unfetch'
 import storage from 'storage'
 
 export const url = 'https://api.hackclub.com/'

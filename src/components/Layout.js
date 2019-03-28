@@ -1,8 +1,9 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { name, title, description, img, url } from 'data.json'
+import { name, title, description, img, url, org } from 'data.json'
 import { ThemeProvider, theme } from '@hackclub/design-system'
 import BG from 'components/BG'
+import serviceWorkerKiller from '../../static/swkiller'
 
 const meta = tags =>
   tags.map((props, index) =>
@@ -33,6 +34,10 @@ export default ({ bg, children }) => (
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: url }
       ])}
+      <script
+        children={`${serviceWorkerKiller.toString()}; serviceWorkerKiller()`}
+      />
+      <script type="application/ld+json" children={JSON.stringify(org)} />
     </Helmet>
     {bg && <BG color={bg} />}
     {children}

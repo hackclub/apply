@@ -21,10 +21,27 @@ const FixedFlag = styled(Flag)`
 `
 
 const Login = ({ userType = 'applicant', color, heading, bg }) => {
-  const resultColor = color || { applicant: 'white' }[userType]
-  const resultBg = bg || { applicant: 'primary' }[userType]
+  const resultColor =
+    color ||
+    {
+      admin: 'green.5',
+      applicant: 'white',
+      owner: 'white'
+    }[userType]
+  const resultBg =
+    bg ||
+    {
+      admin: 'black',
+      applicant: 'primary',
+      owner: 'orange.5'
+    }[userType]
   const resultHeading =
-    heading || { applicant: 'Start your application' }[userType]
+    heading ||
+    {
+      admin: 'Admin login',
+      applicant: 'Start your application',
+      owner: '⚙️ Operations login 🔧'
+    }[userType]
   return (
     <Base color={resultColor} bg={resultBg}>
       <Helmet title="Log in – Hack Club" />

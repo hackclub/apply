@@ -129,7 +129,6 @@ export const Hint = styled(Text.span).attrs({
   line-height: 1.375;
 `
 
-// currently unused
 export class ConfirmClose extends Component {
   componentDidMount() {
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
@@ -175,6 +174,7 @@ export class Field extends Component {
       type,
       name = 'name',
       label,
+      p,
       children,
       error,
       hint,
@@ -198,6 +198,7 @@ export class Field extends Component {
           name={name}
           type={type}
           rows={type === 'textarea' ? 5 : null}
+          placeholder={p}
           children={children}
           {...props}
           value={value}

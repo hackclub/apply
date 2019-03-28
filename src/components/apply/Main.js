@@ -134,8 +134,7 @@ const Help = () => (
       </Text>
       <Text>
         Send any questions about the application process to{' '}
-        <A href="mailto:applications@hackclub.com">applications@hackclub.com</A>
-        .
+        <A href="mailto:applications@hackclub.com">applications@hackclub.com</A>.
       </Text>
     </Box>
   </HelpSheet>
@@ -151,8 +150,8 @@ const profileStatus = profile =>
   profile.completed_at !== null
     ? 'complete'
     : profile.created_at === profile.updated_at
-    ? 'unopened'
-    : 'incomplete'
+      ? 'unopened'
+      : 'incomplete'
 
 const Main = props => {
   const { id, leader_profiles, updated_at, created_at } = props.app
@@ -181,8 +180,8 @@ const Main = props => {
     completeApplication
       ? 'complete'
       : created_at === updated_at
-      ? 'unopened'
-      : 'incomplete'
+        ? 'unopened'
+        : 'incomplete'
 
   const submitStatusProps = {
     unopened: { color: 'primary', children: 'ready for you!' },

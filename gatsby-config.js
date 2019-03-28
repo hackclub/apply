@@ -6,7 +6,15 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-resolve-src',
+    'gatsby-plugin-sitemap',
     'gatsby-plugin-styled-components',
+    'gatsby-transformer-json',
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://hackclub.com'
+      }
+    },
     {
       resolve: 'gatsby-plugin-favicon',
       options: {
@@ -37,9 +45,37 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        headers: {
+          '/banners/*': ['Access-Control-Allow-Origin: *'],
+          '/fonts/**': ['Access-Control-Allow-Origin: *']
+        }
+      }
+    },
+    {
       resolve: 'gatsby-plugin-segment',
       options: {
         writeKey: '35oTlU4UqlhIN8VGYmBxAzyDdfzhcscw'
+      }
+    },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          'gatsby-remark-autolink-headers',
+          'gatsby-remark-copy-linked-files',
+          'gatsby-remark-images',
+          'gatsby-remark-prismjs',
+          'gatsby-remark-smartypants',
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'noreferrer noopener'
+            }
+          }
+        ]
       }
     }
   ]
