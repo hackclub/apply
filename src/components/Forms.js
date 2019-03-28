@@ -228,10 +228,6 @@ Submit.lg = styled(LargeButton.withComponent('input')).attrs({
   text-transform: uppercase;
 `
 
-export const FormWrapper = styled(Flex.withComponent(Container))`
-  flex-direction: column;
-`
-
 export const Form = styled(Container.withComponent('form')).attrs({
   py: 4,
   px: 3,
