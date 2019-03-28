@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'gatsby'
 import { Text, Flex, Box, Link as A } from '@hackclub/design-system'
 import Flag from 'components/Flag'
@@ -24,28 +24,30 @@ class Breadcrumb extends Component {
     const { path } = this.state
     const runningPath = ['']
     return (
-      <Fragment>
+      <>
+        <Crumb to="/" color="slate" fontSize={3}>
+          Apply
+        </Crumb>
+        {path.length > 0 && (
+          <Text.span mx={2} color="muted" regular children="›" />
+        )}
         {path.map((section, index) => {
           runningPath.push(section)
           const isLast = path.length - index - 1 === 0
           const humanizedSection = startCase(toLower(section))
           return (
-            <Fragment key={index}>
-              <Crumb
-                to={runningPath.join('/')}
-                color={isLast ? 'black' : 'slate'}
-                fontSize={3}
-                isLast={isLast}
-              >
-                {humanizedSection}
-              </Crumb>
-              {!isLast ? (
-                <Text.span mx={2} color="muted" regular children="›" />
-              ) : null}
-            </Fragment>
+            <Crumb
+              to={runningPath.join('/')}
+              color={isLast ? 'black' : 'slate'}
+              fontSize={3}
+              isLast
+              key={index}
+            >
+              {humanizedSection}
+            </Crumb>
           )
         })}
-      </Fragment>
+      </>
     )
   }
 }
