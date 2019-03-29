@@ -102,8 +102,12 @@ export class AutoSaver extends Component {
 
   render() {
     const { unsavedChanges } = this.state
-    // {unsavedChanges && <ConfirmClose />}
-    return <SaveStatus saved={!unsavedChanges} />
+    return (
+      <>
+        <SaveStatus saved={!unsavedChanges} />
+        {unsavedChanges && <ConfirmClose />}
+      </>
+    )
   }
 }
 
