@@ -208,7 +208,7 @@ const Main = props => {
           </li>
           <li>
             Diverse skillsets on leadership team—the best Hack Clubs are led by
-            both CEO and CTO types.
+            both charismatic and technical people.
           </li>
           <li>
             Traction. Indicators of progress to date, especially formal shows of
