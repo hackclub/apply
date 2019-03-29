@@ -211,9 +211,8 @@ const Main = props => {
             both charismatic and technical people.
           </li>
           <li>
-            Traction. Indicators of progress to date, especially formal shows of
-            support from your school (like securing a teacher sponsor), are very
-            meaningful.
+            Traction. Indicators of progress to date, especially student sign
+            up lists with contact info, are very meaningful.
           </li>
         </ul>
         <Help />
