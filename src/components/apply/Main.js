@@ -125,22 +125,6 @@ const HelpSheet = styled(Container).attrs({
   }
 `
 
-const Help = () => (
-  <HelpSheet>
-    <Icon glyph="support" size={36} mr={[2, 3]} color="info" />
-    <Box color="info" fontSize={2} align="left">
-      <Text>
-        Have any questions? <strong>We’re here to help out.</strong>
-      </Text>
-      <Text>
-        Send any questions about the application process to{' '}
-        <A href="mailto:applications@hackclub.com">applications@hackclub.com</A>
-        .
-      </Text>
-    </Box>
-  </HelpSheet>
-)
-
 const SubmitStatus = styled(Text.withComponent('mark'))`
   background: transparent url(/underline.svg) bottom left no-repeat;
   background-size: 100% 0.75rem;
@@ -215,7 +199,6 @@ const Main = props => {
             up lists with contact info, are very meaningful.
           </li>
         </ul>
-        <Help />
       </Sheet>
       <Sheet p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>
