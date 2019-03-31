@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Box, Container, Flex, IconButton, Text, theme } from '@hackclub/design-system'
+import { Box, Container, Flex, Link, IconButton, Text, theme } from '@hackclub/design-system'
 import I from '@hackclub/icons'
 import styled from 'styled-components'
 import LeaderInviteForm from 'components/apply/LeaderInviteForm'
@@ -24,7 +24,7 @@ const SectionIcon = styled(IconButton).attrs({
   }
 `
 
-const HelpSheet = styled(Container).attrs({
+const InfoBase = styled(Container).attrs({
   my: [3, 4],
   px: [3, 4],
   py: 3,
@@ -37,14 +37,17 @@ const HelpSheet = styled(Container).attrs({
   }
 `
 
-const TeacherInviteWarning = () => (
-  <HelpSheet>
+const InfoSheet = () => (
+  <InfoBase>
     <Icon glyph="leader" size={36} mr={[2, 3]} color="info" />
     <Box color="info" fontSize={2} align="left">
-      <Text>Invited co-leaders should be fellow students.</Text>
       <Text>Your teacher sponsor does not need to fill out a profile.</Text>
+      <Text>
+        You can read our guide for selecting your team{' '}
+        <Link href="https://hackclub.com/workshops/leadership_team"><strong>here</strong></Link>.
+      </Text>
     </Box>
-  </HelpSheet>
+  </InfoBase>
 )
 
 class LeaderInvite extends Component {
@@ -62,7 +65,7 @@ class LeaderInvite extends Component {
           </Text>
           <SectionIcon open={open} onClick={this.toggle} />
         </Flex>
-        {open && <TeacherInviteWarning />}
+        {open && <InfoSheet />}
         {open && <LeaderInviteForm {...this.props} />}
       </Fragment>
     )
