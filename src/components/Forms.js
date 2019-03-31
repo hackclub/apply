@@ -195,6 +195,7 @@ export class Field extends Component {
       hint,
       min,
       max,
+      rows,
       optional,
       value,
       bg,
@@ -214,7 +215,7 @@ export class Field extends Component {
         <Tag
           name={name}
           type={type}
-          rows={type === 'textarea' ? 5 : null}
+          rows={rows || (type === 'textarea' ? 5 : null)}
           children={children}
           {...props}
           value={value}
