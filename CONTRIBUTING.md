@@ -8,7 +8,7 @@ First, thank you for contributing! Here’s some basics about our codebase.
 
 ````sh
 git clone https://github.com/hackclub/apply.git
-cd site
+cd apply
 ```sh
 2. Install packages & run
 ```sh

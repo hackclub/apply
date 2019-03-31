@@ -9,8 +9,8 @@ Apply to [Hack Club](https://hackclub.com/), built with [React](https://reactjs.
 1. Clone the repository and enter it
 
 ```
-git clone https://github.com/hackclub/site.git
-cd site
+git clone https://github.com/hackclub/apply.git
+cd apply
 ```
 
 2. Install packages & run
