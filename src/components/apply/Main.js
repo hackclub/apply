@@ -111,20 +111,6 @@ class Section extends Component {
   }
 }
 
-const HelpSheet = styled(Container).attrs({
-  mt: [3, 4],
-  mb: [3, 0],
-  px: [3, 4],
-  py: 3,
-  bg: 'blue.0'
-})`
-  border-radius: ${theme.radii[2]};
-  display: flex;
-  ${theme.mediaQueries.md} {
-    align-items: center;
-  }
-`
-
 const SubmitStatus = styled(Text.withComponent('mark'))`
   background: transparent url(/underline.svg) bottom left no-repeat;
   background-size: 100% 0.75rem;
