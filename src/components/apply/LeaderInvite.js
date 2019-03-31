@@ -1,5 +1,13 @@
 import React, { Component, Fragment } from 'react'
-import { Box, Container, Flex, Link, IconButton, Text, theme } from '@hackclub/design-system'
+import {
+  Box,
+  Container,
+  Flex,
+  Link,
+  IconButton,
+  Text,
+  theme
+} from '@hackclub/design-system'
 import I from '@hackclub/icons'
 import styled from 'styled-components'
 import LeaderInviteForm from 'components/apply/LeaderInviteForm'
@@ -44,7 +52,10 @@ const InfoSheet = () => (
       <Text>Your teacher sponsor does not need to fill out a profile.</Text>
       <Text>
         You can read our guide for selecting your team{' '}
-        <Link href="https://hackclub.com/workshops/leadership_team"><strong>here</strong></Link>.
+        <Link href="https://hackclub.com/workshops/leadership_team">
+          <strong>here</strong>
+        </Link>
+        .
       </Text>
     </Box>
   </InfoBase>
