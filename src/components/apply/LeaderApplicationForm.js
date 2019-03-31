@@ -138,11 +138,15 @@ const InnerForm = ({
             </>
           }
           type="textarea"
+          min="450"
+          max="1200"
         />
         <Field
           {...field('skills_impressive_achievement')}
           label="Please tell us in one or two sentences about the most impressive thing you have built or achieved. Include links (and links to images) if possible."
           type="textarea"
+          min="100"
+          max="250"
         />
         <Field
           {...field('skills_is_technical')}

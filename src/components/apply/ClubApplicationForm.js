@@ -88,6 +88,8 @@ const InnerForm = ({
           {...field('leaders_team_origin_story')}
           label="How long have you known your other club leaders and how did you meet?"
           type="textarea"
+          min="350"
+          max="600"
         />
       </Fieldset>
       <Fieldset section="progress">
@@ -112,22 +114,30 @@ const InnerForm = ({
           {...field('idea_why')}
           label="Why did you decide to start a Hack Club? Have you run anything like a Hack Club before? Why do you think the club is going to work?"
           type="textarea"
+          min="350"
+          max="600"
         />
         <Field
           {...field('idea_other_coding_clubs')}
           label="Has your school had coding clubs before? What’s going to be new about your Hack Club?"
           type="textarea"
+          min="350"
+          max="600"
         />
         <Field
           {...field('idea_other_general_clubs')}
           label="What successful clubs exist at your school? What makes them successful? Why will you be just as successful, if not more, than them?"
           type="textarea"
+          min="350"
+          max="600"
         />
       </Fieldset>
       <Fieldset section="formation">
         <Field
           {...field('formation_registered')}
           label="Have you already registered your club with your school?"
+          min="50"
+          max="200"
         />
         <Field
           {...field('formation_misc')}
@@ -142,6 +152,8 @@ const InnerForm = ({
           label="What is something surprising or amusing you discovered?"
           hint="Doesn’t have to be about Hack Club or coding."
           type="textarea"
+          min="50"
+          max="400"
         />
       </Fieldset>
       <Fieldset section="curious">
