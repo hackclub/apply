@@ -118,7 +118,7 @@ export default class extends Component {
               <Text fontSize={4} mt={2} mb={3}>
                 We can’t wait to see your application.
                 <br />
-                Let’s get started!
+                Let’s get you signed in!
               </Text>
               <LoginForm
                 bg="black"

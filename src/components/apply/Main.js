@@ -111,36 +111,6 @@ class Section extends Component {
   }
 }
 
-const HelpSheet = styled(Container).attrs({
-  mt: [3, 4],
-  mb: [3, 0],
-  px: [3, 4],
-  py: 3,
-  bg: 'blue.0'
-})`
-  border-radius: ${theme.radii[2]};
-  display: flex;
-  ${theme.mediaQueries.md} {
-    align-items: center;
-  }
-`
-
-const Help = () => (
-  <HelpSheet>
-    <Icon glyph="support" size={36} mr={[2, 3]} color="info" />
-    <Box color="info" fontSize={2} align="left">
-      <Text>
-        Have any questions? <strong>We’re here to help out.</strong>
-      </Text>
-      <Text>
-        Send any questions about the application process to{' '}
-        <A href="mailto:applications@hackclub.com">applications@hackclub.com</A>
-        .
-      </Text>
-    </Box>
-  </HelpSheet>
-)
-
 const SubmitStatus = styled(Text.withComponent('mark'))`
   background: transparent url(/underline.svg) bottom left no-repeat;
   background-size: 100% 0.75rem;
@@ -211,11 +181,10 @@ const Main = props => {
             both charismatic and technical people.
           </li>
           <li>
-            Traction. Indicators of progress to date, especially student sign
-            up lists with contact info, are very meaningful.
+            Traction. Indicators of progress to date, especially student sign up
+            lists with contact info, are very meaningful.
           </li>
         </ul>
-        <Help />
       </Sheet>
       <Sheet p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>

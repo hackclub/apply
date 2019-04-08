@@ -50,6 +50,7 @@ const InnerForm = ({
           label="Your full address (where we can ship you stickers)"
           hint="Please include city, state / province, country, and postal code."
           type="textarea"
+          rows="3"
         />
       </Fieldset>
       <Fieldset section="stats">

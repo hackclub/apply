@@ -1,5 +1,5 @@
 const stubbedStorage = {}
-'get set remove keys'
+'get set remove keys getItem setItem'
   .split(' ')
   .forEach(method => (stubbedStorage[method] = () => null))
 

@@ -162,13 +162,14 @@ export const Optional = () => (
   />
 )
 
-export const LengthHint = ({min, max, actual}) => (
+export const LengthHint = ({ min, max, actual }) => (
   <Text.span
     className="length-hint"
     color="muted"
     children={
-      actual == 0 ? `(Aim for between ${min} and ${max} characters)` :
-      `${actual} characters (aim for ${min} to ${max})`
+      actual == 0
+        ? `(Aim for between ${min} and ${max} characters)`
+        : `${actual} characters (aim for ${min} to ${max})`
     }
   />
 )
@@ -195,6 +196,7 @@ export class Field extends Component {
       hint,
       min,
       max,
+      rows,
       optional,
       value,
       bg,
@@ -214,13 +216,13 @@ export class Field extends Component {
         <Tag
           name={name}
           type={type}
-          rows={type === 'textarea' ? 5 : null}
+          rows={rows || (type === 'textarea' ? 5 : null)}
           children={children}
           {...props}
           value={value}
           bg={bg}
         />
-        {(min && max) && <LengthHint min={min} max={max} actual={value.length} />}
+        {min && max && <LengthHint min={min} max={max} actual={value.length} />}
         {hint && <Hint children={hint} />}
       </Label>
     )

@@ -67,6 +67,7 @@ const InnerForm = ({
           label="High school’s full address"
           hint="Please include city, state / province, country, and postal code."
           type="textarea"
+          rows="3"
         />
       </Fieldset>
       <Fieldset section="leaders">

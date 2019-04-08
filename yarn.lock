@@ -785,6 +785,13 @@
   dependencies:
     react "^16.4.2"
 
+"@hackclub/icons@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@hackclub/icons/-/icons-0.0.2.tgz#fcd34db70b08c8be11da752b080a53f31de08fc0"
+  integrity sha512-Y6uhVLRCwavHry6py/lm/u8nl1/1PolMyvsz2Dgf2rB6rrk3kZsE8PQaJ8/DPR5FSYcz7F6D5sZlaCp+r2/R/Q==
+  dependencies:
+    react "^16.8.3"
+
 "@jimp/bmp@^0.5.4":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@jimp/bmp/-/bmp-0.5.4.tgz#b7b375aa774f26154912569864d5466e71333ef1"
@@ -8585,7 +8592,7 @@ react@15:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-react@>=16.0.0, react@^16.4.2, react@^16.5.1, react@^16.8.4:
+react@>=16.0.0, react@^16.4.2, react@^16.5.1, react@^16.8.3, react@^16.8.4:
   version "16.8.6"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha512-pC0uMkhLaHm11ZSJULfOBqV4tIZkx87ZLvbbQYunNixAAvjnC+snJCg0XQXn9VIsttVsbZP/H/ewzgsd5fxKXw==
