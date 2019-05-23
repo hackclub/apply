@@ -53,7 +53,7 @@ class SubmitButton extends Component {
         disabled={status !== 'complete' || loading}
         children={
           status === 'submitted'
-            ? 'We’ve recieved your application'
+            ? 'We’ve received your application'
             : 'Submit your application'
         }
       />
