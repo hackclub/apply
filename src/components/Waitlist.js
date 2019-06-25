@@ -67,7 +67,8 @@ class Waitlist extends Component {
           table: 'Waitlist',
           record: {
             Email: storage.get('userEmail'),
-            'API ID': currentUser.id.toString()
+            'API ID': currentUser.id.toString(),
+            'Send Confirmation': true
           }
         })
       }
