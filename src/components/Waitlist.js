@@ -39,8 +39,11 @@ const transitionToSuccess = keyframes`
   } 
 `
 
-const LoadingBarSuccess = styled(LoadingBar)`
-  animation: 3s ${transitionToSuccess} infinite;
+const LoadingBarSuccess = styled(LoadingBar).attrs({
+  color: 'unset',
+})`
+  animation: 2s ${transitionToSuccess};
+  animation-fill-mode: forwards;
 `
 
 class Waitlist extends Component {
@@ -68,7 +71,7 @@ class Waitlist extends Component {
           }
         })
       }
-      api
+      return api
         .post('https://hooks.zapier.com/hooks/catch/507705/7n18ca', data, {
           noAuth: true
         })
