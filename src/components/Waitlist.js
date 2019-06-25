@@ -19,7 +19,7 @@ const SuccessMessage = () => (
           <strong>You’re on the list!</strong>
           <Icon glyph="checkmark" size={42} color={theme.colors.success} />
         </HeadingRow>
-        <Text>We just emailed you a link to our guide for club leaders.</Text>
+        <Text>We emailed you a link to our guide for club leaders.</Text>
         <Text>We’ll be in touch once our applications open in the fall.</Text>
         <Text mt={[1, 2]}>
           If you have any questions, or didn’t get our email, please let us know
