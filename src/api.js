@@ -23,7 +23,8 @@ const generateMethod = method => (path, options = {}, fetchOptions = {}) => {
         } else {
           filteredOptions.body = JSON.stringify(value)
           filteredOptions.headers = filteredOptions.headers || {}
-          filteredOptions.headers['Content-Type'] = filteredOptions.headers['Content-Type'] || 'application/json'
+          filteredOptions.headers['Content-Type'] =
+            filteredOptions.headers['Content-Type'] || 'application/json'
         }
         break
       default:

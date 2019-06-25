@@ -121,19 +121,20 @@ export default class extends Component {
                     Welcome!
                   </Heading.h1>
                   <Text fontSize={3} mt={2} mb={3}>
-                    We’ll send you a guide for planning your club this summer and a notification once applications open in the fall.
+                    We’ll send you a guide for planning your club this summer
+                    and a notification once applications open in the fall.
                   </Text>
                 </>
               ) : (
                 <>
-                <Heading.h1 fontSize={6} style={{ lineHeight: '1.125' }}>
-                  Welcome!
-                </Heading.h1>
-                <Text fontSize={4} mt={2} mb={3}>
-                  We can’t wait to see your application.
-                  <br />
-                  Let’s get you signed in!
-                </Text>
+                  <Heading.h1 fontSize={6} style={{ lineHeight: '1.125' }}>
+                    Welcome!
+                  </Heading.h1>
+                  <Text fontSize={4} mt={2} mb={3}>
+                    We can’t wait to see your application.
+                    <br />
+                    Let’s get you signed in!
+                  </Text>
                 </>
               )}
               <LoginForm
