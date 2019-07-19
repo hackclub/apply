@@ -10,12 +10,9 @@ import { Link } from 'gatsby'
 import Layout from 'components/Layout'
 import ApplyNav from 'components/apply/ApplyNav'
 import Sheet from 'components/Sheet'
-import Waitlist from 'components/Waitlist'
 import Main from 'components/apply/Main'
 import LoginForm from 'components/auth/LoginForm'
 import LoadingBar from 'components/LoadingBar'
-
-const waitList = true
 
 LargeButton.link = LargeButton.withComponent(Link)
 
@@ -115,28 +112,14 @@ export default class extends Component {
               align="left"
               style={{ mixBlendMode: 'multiply' }}
             >
-              {waitList ? (
-                <>
-                  <Heading.h1 fontSize={6} style={{ lineHeight: '1.125' }}>
-                    Welcome!
-                  </Heading.h1>
-                  <Text fontSize={3} mt={2} mb={3}>
-                    We’ll send you a guide for planning your club this summer
-                    and a notification once applications open in the fall.
-                  </Text>
-                </>
-              ) : (
-                <>
-                  <Heading.h1 fontSize={6} style={{ lineHeight: '1.125' }}>
-                    Welcome!
-                  </Heading.h1>
-                  <Text fontSize={4} mt={2} mb={3}>
-                    We can’t wait to see your application.
-                    <br />
-                    Let’s get you signed in!
-                  </Text>
-                </>
-              )}
+              <Heading.h1 fontSize={6} style={{ lineHeight: '1.125' }}>
+                Welcome!
+              </Heading.h1>
+              <Text fontSize={4} mt={2} mb={3}>
+                We can’t wait to see your application.
+                <br />
+                Let’s get you signed in!
+              </Text>
               <LoginForm
                 bg="black"
                 color="white"
@@ -148,22 +131,18 @@ export default class extends Component {
       case 'loading':
         return <LoadingBar fill />
       case 'finished':
-        if (waitList) {
-          return <Waitlist />
-        } else {
-          return (
-            <>
-              <ApplyNav breadcrumb={false} />
-              <Pulse />
-              <Main
-                app={app}
-                userId={userId}
-                callback={this.populateApplications}
-                resetCallback={this.resetApplication}
-              />
-            </>
-          )
-        }
+        return (
+          <Fragment>
+            <ApplyNav breadcrumb={false} />
+            <Pulse />
+            <Main
+              app={app}
+              userId={userId}
+              callback={this.populateApplications}
+              resetCallback={this.resetApplication}
+            />
+          </Fragment>
+        )
       default:
         return (
           <Text color="error" py={4}>
