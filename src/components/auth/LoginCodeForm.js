@@ -104,8 +104,8 @@ class InnerForm extends Component {
           />
         )}
         <Submit
-          mt={3}
-          value="Submit"
+          my={3}
+          value="Go to application"
           color={color}
           bg={bg}
           mx={inputProps.mx || '0'}
@@ -113,6 +113,7 @@ class InnerForm extends Component {
           onClick={handleSubmit}
           inverted
         />
+        <Text>The application deadline is August 19th</Text>
       </form>
     )
   }

@@ -68,8 +68,8 @@ const InnerForm = ({
       />
     )}
     <Submit
-      mt={3}
-      value="Get login code"
+      my={3}
+      value="Continue"
       color={color}
       bg={bg}
       mx={inputProps.mx || '0'}
@@ -77,6 +77,7 @@ const InnerForm = ({
       onClick={handleSubmit}
       inverted
     />
+    <Text>The application deadline is August 19th</Text>
   </form>
 )
 
