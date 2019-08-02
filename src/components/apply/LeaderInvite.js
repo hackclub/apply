@@ -52,7 +52,10 @@ const InfoSheet = () => (
       <Text>Your teacher sponsor does not need to fill out a profile.</Text>
       <Text>
         You can read our guide for selecting your team{' '}
-        <Link href="https://hackclub.com/workshops/leadership_team">
+        <Link
+          href="https://hackclub.com/workshops/leadership_team"
+          target="_blank"
+        >
           <strong>here</strong>
         </Link>
         .

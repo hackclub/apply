@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import api from 'api'
 import styled from 'styled-components'
-import { LargeButton, theme } from '@hackclub/design-system'
+import { LargeButton, Text, theme } from '@hackclub/design-system'
 
 const Root = styled(LargeButton).attrs({
   py: 4,
@@ -25,8 +25,8 @@ class SubmitButton extends Component {
 
   handleSubmit = () => {
     const { status, applicationId, callback } = this.props
-    this.setState({ loading: true })
     if (status !== 'complete') return null
+    this.setState({ loading: true })
     // NOTE(@maxwofford): Give it 3 seconds of waiting to build up anticipation
     setTimeout(() => {
       api
@@ -47,16 +47,26 @@ class SubmitButton extends Component {
     const { status } = this.props
     const { loading } = this.state
     return (
-      <Root
-        onClick={this.handleSubmit}
-        bg={loading ? 'black' : status === 'submitted' ? 'success' : 'primary'}
-        disabled={status !== 'complete' || loading}
-        children={
-          status === 'submitted'
-            ? 'We’ve received your application'
-            : 'Submit your application'
-        }
-      />
+      <>
+        {status !== 'incomplete' && (
+          <Text align="center" mb={2}>
+            Once you submit your application you'll recieve a confirmation email
+            from us with the next steps
+          </Text>
+        )}
+        <Root
+          onClick={this.handleSubmit}
+          bg={
+            loading ? 'black' : status === 'submitted' ? 'success' : 'primary'
+          }
+          disabled={status === 'incomplete' || loading}
+          children={
+            status === 'submitted'
+              ? 'We’ve received your application'
+              : 'Submit your application'
+          }
+        />
+      </>
     )
   }
 }

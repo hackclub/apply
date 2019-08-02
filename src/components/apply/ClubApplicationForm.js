@@ -113,7 +113,7 @@ const InnerForm = ({
       <Fieldset section="idea">
         <Field
           {...field('idea_why')}
-          label="Why did you decide to start a Hack Club? Have you run anything like a Hack Club before? Why do you think the club is going to work?"
+          label="Why are you planning to start a Hack Club? Have you run anything like a Hack Club before? Why do you think the club is going to work?"
           type="textarea"
           min="350"
           max="600"
@@ -137,8 +137,6 @@ const InnerForm = ({
         <Field
           {...field('formation_registered')}
           label="Have you already registered your club with your school?"
-          min="50"
-          max="200"
         />
         <Field
           {...field('formation_misc')}
@@ -150,7 +148,7 @@ const InnerForm = ({
       <Fieldset section="other">
         <Field
           {...field('other_surprising_or_amusing_discovery')}
-          label="What is something surprising or amusing you discovered?"
+          label="What is something surprising or amusing you learned recently?"
           hint="Doesn’t have to be about Hack Club or coding."
           type="textarea"
           min="50"
@@ -160,13 +158,13 @@ const InnerForm = ({
       <Fieldset section="curious">
         <Field
           {...field('curious_what_convinced')}
-          label="What convinced you to start a Hack Club?"
+          label="What do you hope to get out of Hack Club?"
           type="textarea"
           optional
         />
         <Field
           {...field('curious_how_did_hear')}
-          label="How did you hear about Hack Club? If you heard about us at an event, mention it here."
+          label="How did you hear about Hack Club? If you heard about us at an event or on a website, mention it here."
           type="textarea"
           optional
         />
