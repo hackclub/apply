@@ -68,7 +68,7 @@ const InnerForm = ({
       />
     )}
     <Submit
-      mt={3}
+      my={3}
       value="Continue"
       color={color}
       bg={bg}
@@ -77,6 +77,7 @@ const InnerForm = ({
       onClick={handleSubmit}
       inverted
     />
+    <Text>The application deadline is August 19th</Text>
   </form>
 )
 
