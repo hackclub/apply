@@ -7,7 +7,7 @@ const methods = ['GET', 'PUT', 'POST', 'PATCH', 'DELETE']
 const generateMethod = method => (path, options = {}, fetchOptions = {}) => {
   let filteredOptions = {}
   const authToken = storage.get('authToken')
-  if (authToken && !fetchOptions.noAuth) {
+  if (authToken) {
     options.authToken = authToken
   }
 
@@ -23,8 +23,7 @@ const generateMethod = method => (path, options = {}, fetchOptions = {}) => {
         } else {
           filteredOptions.body = JSON.stringify(value)
           filteredOptions.headers = filteredOptions.headers || {}
-          filteredOptions.headers['Content-Type'] =
-            filteredOptions.headers['Content-Type'] || 'application/json'
+          filteredOptions.headers['Content-Type'] = 'application/json'
         }
         break
       default:

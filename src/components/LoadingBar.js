@@ -13,13 +13,12 @@ const Base = styled(Box)`
 
 const LoadingBar = props => (
   <Base py={5} {...props}>
-    <Loading color={ props.color } />
+    <Loading />
   </Base>
 )
 
 LoadingBar.propTypes = {
-  fill: PropTypes.bool,
-  color: PropTypes.string
+  fill: PropTypes.bool
 }
 
 export default LoadingBar
