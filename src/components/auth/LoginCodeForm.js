@@ -105,7 +105,7 @@ class InnerForm extends Component {
         )}
         <Submit
           mt={3}
-          value="Submit"
+          value="Go to application"
           color={color}
           bg={bg}
           mx={inputProps.mx || '0'}
