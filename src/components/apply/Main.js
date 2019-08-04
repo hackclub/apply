@@ -66,8 +66,8 @@ const ContactInfo = () => (
           <strong>applications@hackclub.com</strong>
         </a>{' '}
         and over text / phone at{' '}
-        <a href="tel:1-855-625-HACK">
-          <strong>1-855-625-HACK</strong>
+        <a href="tel:1-415-612-2388">
+          <strong>1-415-612-2388</strong>
         </a>
         .
       </Text>
