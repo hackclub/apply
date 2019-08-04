@@ -239,11 +239,10 @@ const Main = props => {
         {coLeaderProfiles.map(profile => (
           <SectionBase sm key={profile.id}>
             <SectionHeading sm>
-              <Text.span
-                children={profile.user.name || profile.user.email}
-                mr={[2, 3]}
-              />
-              <Status type={profileStatus(profile)} />
+              <Box>
+                <Status type={profileStatus(profile)} actionable={false} />
+                <Text>{profile.user.name || profile.user.email}</Text>
+              </Box>
             </SectionHeading>
             <SectionIcon
               glyph="member-remove"
@@ -273,23 +272,19 @@ const Main = props => {
         <Section
           to={`/club?id=${id}`}
           name={
-            <Fragment>
-              <Text.span bold mr={3}>
-                {app.high_school_name || 'Club application'}
-              </Text.span>
+            <Box>
               <Status type={applicationStatus()} />
-            </Fragment>
+              <Text>{app.high_school_name || 'Club application'}</Text>
+            </Box>
           }
         />
         <Section
           to={`/leader?id=${leaderProfile.id}`}
           name={
-            <Fragment>
-              <Text.span bold mr={3}>
-                My personal profile
-              </Text.span>
+            <Box>
               <Status type={profileStatus(leaderProfile)} />
-            </Fragment>
+              <Text>My personal profile</Text>
+            </Box>
           }
         />
         <Box mt={4}>
