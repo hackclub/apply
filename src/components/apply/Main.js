@@ -209,7 +209,9 @@ const Main = props => {
           </li>
           <li>
             Diverse skillsets on leadership team—the best Hack Clubs are led by
-            both charismatic and technical people.
+            both charismatic and technical people. We don't care if those
+            skills are shared across the team or each leader has separate
+            strengths.
           </li>
           <li>
             Traction. Indicators of progress to date, especially student sign up
