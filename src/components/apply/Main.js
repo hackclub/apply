@@ -227,7 +227,9 @@ const Main = props => {
           </Text.span>
           <SubmitStatus {...submitStatusProps} />{' '}
         </Headline>
-        <Text bold fontSize={[3, 4]}>Applications close on August 19th</Text>
+        <Text bold fontSize={[3, 4]}>
+          Applications due by August 19th
+        </Text>
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
           <Text py={3} color="muted" align="center" fontSize={3}>
