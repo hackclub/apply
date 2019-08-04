@@ -69,7 +69,7 @@ const InnerForm = ({
     )}
     <Submit
       my={3}
-      value="Continue"
+      value="Continue »"
       color={color}
       bg={bg}
       mx={inputProps.mx || '0'}
