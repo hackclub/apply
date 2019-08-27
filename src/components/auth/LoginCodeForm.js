@@ -113,7 +113,7 @@ class InnerForm extends Component {
           onClick={handleSubmit}
           inverted
         />
-        <Text>Early applications due by August 19th</Text>
+        <Text>Applications due by September 1st</Text>
       </form>
     )
   }
