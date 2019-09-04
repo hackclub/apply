@@ -228,7 +228,7 @@ const Main = props => {
           <SubmitStatus {...submitStatusProps} />{' '}
         </Headline>
         <Text bold fontSize={[3, 4]}>
-          Applications due by September 1st
+          Fall 2019 applications due September 13th
         </Text>
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
