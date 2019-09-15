@@ -77,7 +77,7 @@ const InnerForm = ({
       onClick={handleSubmit}
       inverted
     />
-    <Text>Fall 2019 applications due September 13th</Text>
+    <Text>Late Fall 2019 applications accepted on a rolling basis</Text>
   </form>
 )
 
