@@ -79,11 +79,13 @@ const InnerForm = ({
           <option disabled value="">
             Select One
           </option>
-          {values.leader_profiles.map(profile => (
-            <option value={profile.user.id} key={profile.user.id}>
-              {profile.user.email}
-            </option>
-          ))}
+          {values.leader_profiles
+            .filter(profile => profile.user != null)
+            .map(profile => (
+              <option value={profile.user.id} key={profile.user.id}>
+                {profile.user.email}
+              </option>
+            ))}
         </Field>
         <Field
           {...field('leaders_team_origin_story')}
