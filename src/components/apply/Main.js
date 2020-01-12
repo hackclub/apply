@@ -10,6 +10,7 @@ import {
   Icon,
   theme
 } from '@hackclub/design-system'
+import getSeason from '@hackclub/season'
 import LeaderInvite from 'components/apply/LeaderInvite'
 import { clubApplicationSchema } from 'components/apply/ClubApplicationForm'
 import { Headline } from 'components/Content'
@@ -153,18 +154,18 @@ const profileStatus = profile =>
   profile.completed_at !== null
     ? 'complete'
     : profile.created_at === profile.updated_at
-      ? 'unopened'
-      : 'incomplete'
+    ? 'unopened'
+    : 'incomplete'
 
 const Main = props => {
   const { id, leader_profiles, updated_at, created_at } = props.app
   const { callback, app, resetCallback } = props
 
   const leaderProfile = leader_profiles.find(
-    profile => (profile.user && profile.user.id === props.userId)
+    profile => profile.user && profile.user.id === props.userId
   )
   const coLeaderProfiles = leader_profiles.filter(
-    profile => (profile.user && profile.user.id !== props.userId)
+    profile => profile.user && profile.user.id !== props.userId
   )
 
   const completeProfiles = leader_profiles.every(
@@ -183,8 +184,8 @@ const Main = props => {
     completeApplication
       ? 'complete'
       : created_at === updated_at
-        ? 'unopened'
-        : 'incomplete'
+      ? 'unopened'
+      : 'incomplete'
 
   const submitStatusProps = {
     unopened: { color: 'primary', children: 'ready for you!' },
@@ -209,9 +210,8 @@ const Main = props => {
           </li>
           <li>
             Diverse skillsets on leadership team—the best Hack Clubs are led by
-            both charismatic and technical people. We don't care if those
-            skills are shared across the team or each leader has separate
-            strengths.
+            both charismatic and technical people. We don't care if those skills
+            are shared across the team or each leader has separate strengths.
           </li>
           <li>
             Traction. Indicators of progress to date, especially student sign up
@@ -228,7 +228,7 @@ const Main = props => {
           <SubmitStatus {...submitStatusProps} />{' '}
         </Headline>
         <Text bold fontSize={[3, 4]}>
-          Spring 2020 applications accepted on a rolling basis
+          {getSeason()} applications accepted on a rolling basis
         </Text>
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
@@ -252,9 +252,7 @@ const Main = props => {
                 if (
                   // eslint-disable-next-line
                   confirm(
-                    `Are you sure you want to remove ${
-                    profile.user.email
-                    } as a team member?`
+                    `Are you sure you want to remove ${profile.user.email} as a team member?`
                   )
                 ) {
                   api
@@ -293,12 +291,12 @@ const Main = props => {
           {app.rejected_at ? (
             <Rejected resetCallback={resetCallback} />
           ) : (
-              <SubmitButton
-                applicationId={app.id}
-                status={submitButtonStatus}
-                callback={callback}
-              />
-            )}
+            <SubmitButton
+              applicationId={app.id}
+              status={submitButtonStatus}
+              callback={callback}
+            />
+          )}
         </Box>
       </Sheet>
     </Container>
