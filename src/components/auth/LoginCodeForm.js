@@ -113,7 +113,7 @@ class InnerForm extends Component {
           onClick={handleSubmit}
           inverted
         />
-        <Text>Winter 2019 applications accepted on a rolling basis</Text>
+        <Text>Spring 2020 applications accepted on a rolling basis</Text>
       </form>
     )
   }

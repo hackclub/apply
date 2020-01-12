@@ -37,49 +37,49 @@ const InnerForm = ({
   inputProps = {},
   textProps = {}
 }) => (
-  <form onSubmit={handleSubmit}>
-    <Label className="email" id="email" mb={0} {...textProps}>
-      <Text mb={2} color={color}>
-        Enter your email
+    <form onSubmit={handleSubmit}>
+      <Label className="email" id="email" mb={0} {...textProps}>
+        <Text mb={2} color={color}>
+          Enter your email
       </Text>
-      <StyledInput
-        name="email"
-        placeholder="Email address"
+        <StyledInput
+          name="email"
+          placeholder="Email address"
+          color={color}
+          bg={bg}
+          value={values.email}
+          onChange={e => {
+            e.target.value = e.target.value.trim()
+            handleChange(e)
+          }}
+          onBlur={handleBlur}
+          disabled={isSubmitting}
+          autoComplete="off"
+          autoFocus
+          {...inputProps}
+        />
+      </Label>
+      {errors.email && (
+        <Text
+          fontSize={1}
+          mt={2}
+          align={textProps.align || 'center'}
+          children={errors.email || ''}
+        />
+      )}
+      <Submit
+        my={3}
+        value="Continue »"
         color={color}
         bg={bg}
-        value={values.email}
-        onChange={e => {
-          e.target.value = e.target.value.trim()
-          handleChange(e)
-        }}
-        onBlur={handleBlur}
-        disabled={isSubmitting}
-        autoComplete="off"
-        autoFocus
-        {...inputProps}
+        mx={inputProps.mx || '0'}
+        style={{ display: 'block' }}
+        onClick={handleSubmit}
+        inverted
       />
-    </Label>
-    {errors.email && (
-      <Text
-        fontSize={1}
-        mt={2}
-        align={textProps.align || 'center'}
-        children={errors.email || ''}
-      />
-    )}
-    <Submit
-      my={3}
-      value="Continue »"
-      color={color}
-      bg={bg}
-      mx={inputProps.mx || '0'}
-      style={{ display: 'block' }}
-      onClick={handleSubmit}
-      inverted
-    />
-    <Text>Winter 2019 applications accepted on a rolling basis</Text>
-  </form>
-)
+      <Text>Spring 2020 applications accepted on a rolling basis</Text>
+    </form>
+  )
 
 const EmailLoginForm = withFormik({
   mapPropsToValues: ({ email }) => ({ email: email || '' }),

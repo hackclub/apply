@@ -153,8 +153,8 @@ const profileStatus = profile =>
   profile.completed_at !== null
     ? 'complete'
     : profile.created_at === profile.updated_at
-    ? 'unopened'
-    : 'incomplete'
+      ? 'unopened'
+      : 'incomplete'
 
 const Main = props => {
   const { id, leader_profiles, updated_at, created_at } = props.app
@@ -183,8 +183,8 @@ const Main = props => {
     completeApplication
       ? 'complete'
       : created_at === updated_at
-      ? 'unopened'
-      : 'incomplete'
+        ? 'unopened'
+        : 'incomplete'
 
   const submitStatusProps = {
     unopened: { color: 'primary', children: 'ready for you!' },
@@ -228,7 +228,7 @@ const Main = props => {
           <SubmitStatus {...submitStatusProps} />{' '}
         </Headline>
         <Text bold fontSize={[3, 4]}>
-          Late Fall 2019 applications accepted on a rolling basis
+          Spring 2020 applications accepted on a rolling basis
         </Text>
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
@@ -253,7 +253,7 @@ const Main = props => {
                   // eslint-disable-next-line
                   confirm(
                     `Are you sure you want to remove ${
-                      profile.user.email
+                    profile.user.email
                     } as a team member?`
                   )
                 ) {
@@ -293,12 +293,12 @@ const Main = props => {
           {app.rejected_at ? (
             <Rejected resetCallback={resetCallback} />
           ) : (
-            <SubmitButton
-              applicationId={app.id}
-              status={submitButtonStatus}
-              callback={callback}
-            />
-          )}
+              <SubmitButton
+                applicationId={app.id}
+                status={submitButtonStatus}
+                callback={callback}
+              />
+            )}
         </Box>
       </Sheet>
     </Container>
