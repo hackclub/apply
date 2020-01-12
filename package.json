@@ -13,7 +13,7 @@
   "dependencies": {
     "@hackclub/design-system": "^0.0.1-14",
     "@hackclub/icons": "^0.0.2",
-    "@hackclub/season": "0.0.1",
+    "@hackclub/season": "^0.0.1",
     "babel-plugin-styled-components": "^1.10.0",
     "formik": "^1.5.1",
     "gatsby": "^2.1.32",
