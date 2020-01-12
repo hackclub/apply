@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import React, { Component } from 'react'
 import api from 'api'
+import getSeason from '@hackclub/season'
 import { Label, Input, Text, cx } from '@hackclub/design-system'
 import { Submit } from 'components/Forms'
 import { withFormik } from 'formik'
@@ -113,7 +114,7 @@ class InnerForm extends Component {
           onClick={handleSubmit}
           inverted
         />
-        <Text>Spring 2020 applications accepted on a rolling basis</Text>
+        <Text>{getSeason()} applications accepted on a rolling basis</Text>
       </form>
     )
   }
