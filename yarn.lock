@@ -704,9 +704,9 @@
   dependencies:
     react "^16.8.3"
 
-"@hackclub/season@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@hackclub/season/-/season-0.0.1.tgz#93e05c256b9c780dc3b7ff62bbbdde3f306064c4"
+"@hackclub/season@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@hackclub/season/-/season-0.0.2.tgz#009830c325d3eb58c0b006ad9c8fe85ff89ed573"
 
 "@jimp/bmp@^0.5.4":
   version "0.5.4"
