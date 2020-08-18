@@ -13,6 +13,7 @@ import Sheet from 'components/Sheet'
 import Main from 'components/apply/Main'
 import LoginForm from 'components/auth/LoginForm'
 import LoadingBar from 'components/LoadingBar'
+import Waitlist from 'components/Waitlist'
 
 LargeButton.link = LargeButton.withComponent(Link)
 
@@ -112,18 +113,35 @@ export default class extends Component {
               align="left"
               style={{ mixBlendMode: 'multiply' }}
             >
-              <Heading.h1 fontSize={6} style={{ lineHeight: '1.125' }}>
-                Welcome!
+              <Heading.h1 fontSize={6} style={{ lineHeight: '1' }}>
+                The 2020-21 Clubs program starts soon.
               </Heading.h1>
-              <Text fontSize={4} mt={2} mb={3}>
-                We can’t wait to see your application.
-                <br />
-                Let’s get you signed in!
+              <Text fontSize={3} my={2}>
+                If you’re looking to start a club, join the waitlist:
+              </Text>
+              <Waitlist bg="black" color="white" />
+            </Sheet>
+            <Sheet
+              maxWidth={36}
+              bg="muted"
+              color="white"
+              align="left"
+              mt={4}
+              style={{ mixBlendMode: 'multiply' }}
+            >
+              <Text fontSize={3} bold>
+                If you’ve been here before…
+              </Text>
+              <Text fontSize={2} mt={1} mb={2}>
+                This is our old application form from previous years, which
+                we’ve left online in case folks need to access their
+                applications. We are not accepting new club applications here
+                anymore.
               </Text>
               <LoginForm
-                bg="black"
+                bg="muted"
                 color="white"
-                textProps={{ color: 'black', align: 'left', fontSize: 3 }}
+                textProps={{ color: 'muted', align: 'left', fontSize: 2 }}
               />
             </Sheet>
           </Full>

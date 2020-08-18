@@ -10,13 +10,14 @@ import {
   Icon,
   theme
 } from '@hackclub/design-system'
-import getSeason from '@hackclub/season'
+// import getSeason from '@hackclub/season'
 import LeaderInvite from 'components/apply/LeaderInvite'
 import { clubApplicationSchema } from 'components/apply/ClubApplicationForm'
 import { Headline } from 'components/Content'
 import Sheet from 'components/Sheet'
-import SubmitButton from 'components/apply/SubmitButton'
+// import SubmitButton from 'components/apply/SubmitButton'
 import Status from 'components/apply/Status'
+import Waitlist from 'components/Waitlist'
 import Link from 'gatsby-link'
 import api from 'api'
 import storage from 'storage'
@@ -43,6 +44,8 @@ const Rejected = ({ resetCallback }) => (
     </P>
   </Box>
 )
+
+/*
 const ContactBase = styled(Container).attrs({
   mt: [3, 4],
   px: [3, 4],
@@ -61,7 +64,7 @@ const ContactInfo = () => (
     <Icon glyph="announcement" size={36} mr={[2, 3]} color="info" />
     <Box color="info" fontSize={2} align="left">
       <Text>
-        Please don't hesitate to reach out to us with any questions. We're
+        Please don’t hesitate to reach out to us with any questions. We’re
         available to email at{' '}
         <a href="mailto:applications@hackclub.com">
           <strong>applications@hackclub.com</strong>
@@ -75,6 +78,7 @@ const ContactInfo = () => (
     </Box>
   </ContactBase>
 )
+*/
 
 const SectionBase = styled(Flex).attrs({
   py: 4,
@@ -196,6 +200,7 @@ const Main = props => {
 
   return (
     <Container maxWidth={52} my={4}>
+      {/*
       <Sheet p={[3, 4, 5]}>
         <Heading.h3 fontSize={[4, 5]} mb={2}>
           How to get into Hack Club
@@ -220,6 +225,26 @@ const Main = props => {
         </ul>
         <ContactInfo />
       </Sheet>
+      */}
+      <Sheet
+        p={[3, 4, 5]}
+        bg="black"
+        color="white"
+        style={{ mixBlendMode: 'multiply' }}
+      >
+        <Heading.h3 fontSize={[4, 5]} mb={2}>
+          If you’re looking to start a new club—
+        </Heading.h3>
+        <P fontSize={3}>
+          This is our old application form from previous years, which we’ve left
+          online in case you need to access your old application. We are not
+          accepting new club applications here anymore.
+        </P>
+        <Text fontSize={3} my={2} bold>
+          The 2020-21 Clubs program starts soon. Join the waitlist:
+        </Text>
+        <Waitlist bg="black" color="white" />
+      </Sheet>
       <Sheet p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>
           <Text.span style={{ display: 'block' }}>
@@ -227,9 +252,11 @@ const Main = props => {
           </Text.span>
           <SubmitStatus {...submitStatusProps} />{' '}
         </Headline>
+        {/*
         <Text bold fontSize={[3, 4]}>
           {getSeason()} applications accepted on a rolling basis
         </Text>
+        */}
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
           <Text py={3} color="muted" align="center" fontSize={3}>
@@ -252,7 +279,9 @@ const Main = props => {
                 if (
                   // eslint-disable-next-line
                   confirm(
-                    `Are you sure you want to remove ${profile.user.email} as a team member?`
+                    `Are you sure you want to remove ${
+                      profile.user.email
+                    } as a team member?`
                   )
                 ) {
                   api
@@ -288,15 +317,14 @@ const Main = props => {
           }
         />
         <Box mt={4}>
-          {app.rejected_at ? (
-            <Rejected resetCallback={resetCallback} />
-          ) : (
+          {app.rejected_at && <Rejected resetCallback={resetCallback} />}
+          {/*
             <SubmitButton
               applicationId={app.id}
               status={submitButtonStatus}
               callback={callback}
             />
-          )}
+            */}
         </Box>
       </Sheet>
     </Container>

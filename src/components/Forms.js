@@ -167,7 +167,7 @@ export const LengthHint = ({ min, max, actual }) => (
     className="length-hint"
     color="muted"
     children={
-      actual == 0
+      actual === 0
         ? `(Aim for between ${min} and ${max} characters)`
         : `${actual} characters (aim for ${min} to ${max})`
     }
