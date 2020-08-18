@@ -8,24 +8,6 @@ module.exports = {
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-styled-components',
     {
-      resolve: 'gatsby-plugin-favicon',
-      options: {
-        logo: './static/favicon.png',
-        injectHTML: true,
-        icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
-          coast: false,
-          favicons: true,
-          firefox: true,
-          twitter: false,
-          yandex: false,
-          windows: false
-        }
-      }
-    },
-    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Hack Club',
