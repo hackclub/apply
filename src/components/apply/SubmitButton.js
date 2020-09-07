@@ -49,9 +49,9 @@ class SubmitButton extends Component {
     return (
       <>
         {status !== 'incomplete' && (
-          <Text align="center" mb={2}>
-            Once you submit your application you'll recieve a confirmation email
-            from us with the next steps
+          <Text color="muted" align="center" mb={2}>
+            Once you submit, you’ll recieve a confirmation email from us with
+            the next steps.
           </Text>
         )}
         <Root

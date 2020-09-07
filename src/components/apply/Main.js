@@ -189,12 +189,12 @@ const Main = props => {
   const submitStatusProps = {
     unopened: { color: 'primary', children: 'ready for you!' },
     incomplete: { color: 'warning', children: 'in progress.' },
-    complete: { bg: 'info', children: 'completed!' },
-    submitted: { bg: 'success', children: 'submitted!' }
+    complete: { color: 'info', children: 'ready to submit!' },
+    submitted: { color: 'success', children: 'submitted!' }
   }[submitButtonStatus]
 
   return (
-    <Container maxWidth={52} py={[4, 5]}>
+    <Container maxWidth={52} py={4}>
       <ContactInfo />
       <Sheet mt={4} p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>
@@ -208,6 +208,24 @@ const Main = props => {
           {getSeason()} applications accepted on a rolling basis
         </Text>
         */}
+        <Section
+          to={`/club?id=${id}`}
+          name={
+            <Box>
+              <Status type={applicationStatus()} />
+              <Text>{app.high_school_name || 'Club application'}</Text>
+            </Box>
+          }
+        />
+        <Section
+          to={`/leader?id=${leaderProfile.id}`}
+          name={
+            <Box>
+              <Status type={profileStatus(leaderProfile)} />
+              <Text>My personal profile</Text>
+            </Box>
+          }
+        />
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
           <Text py={4} color="muted" align="center" fontSize={3}>
@@ -247,24 +265,6 @@ const Main = props => {
             />
           </SectionBase>
         ))}
-        <Section
-          to={`/club?id=${id}`}
-          name={
-            <Box>
-              <Status type={applicationStatus()} />
-              <Text>{app.high_school_name || 'Club application'}</Text>
-            </Box>
-          }
-        />
-        <Section
-          to={`/leader?id=${leaderProfile.id}`}
-          name={
-            <Box>
-              <Status type={profileStatus(leaderProfile)} />
-              <Text>My personal profile</Text>
-            </Box>
-          }
-        />
         <Box mt={4}>
           {app.rejected_at ? (
             <Rejected resetCallback={resetCallback} />

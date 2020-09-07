@@ -12,9 +12,6 @@ export const clubApplicationSchema = yup.object().shape({
     .required(),
   high_school_address: yup.string().required(),
   leaders_team_origin_story: yup.string().required(),
-  progress_general: yup.string().required(),
-  progress_student_interest: yup.string().required(),
-  progress_meeting_yet: yup.string().required(),
   idea_why: yup.string().required(),
   idea_other_coding_clubs: yup.string().required(),
   idea_other_general_clubs: yup.string().required(),
@@ -93,23 +90,6 @@ const InnerForm = ({
           type="textarea"
           min="350"
           max="600"
-        />
-      </Fieldset>
-      <Fieldset section="progress">
-        <Field
-          {...field('progress_general')}
-          label="How far along are you in starting your club?"
-          type="textarea"
-        />
-        <Field
-          {...field('progress_student_interest')}
-          label="Have you already polled for interest at your school? Are students interested? If you’ve already had meetings, how many people came?"
-          type="textarea"
-        />
-        <Field
-          {...field('progress_meeting_yet')}
-          label="Have you begun meeting yet?"
-          type="textarea"
         />
       </Fieldset>
       <Fieldset section="idea">
