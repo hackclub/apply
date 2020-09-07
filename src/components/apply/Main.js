@@ -10,7 +10,7 @@ import {
   Icon,
   theme
 } from '@hackclub/design-system'
-import getSeason from '@hackclub/season'
+// import getSeason from '@hackclub/season'
 import LeaderInvite from 'components/apply/LeaderInvite'
 import { clubApplicationSchema } from 'components/apply/ClubApplicationForm'
 import { Headline } from 'components/Content'
@@ -43,11 +43,10 @@ const Rejected = ({ resetCallback }) => (
     </P>
   </Box>
 )
-const ContactBase = styled(Container).attrs({
+const ContactBase = styled(Sheet).attrs({
   mt: [3, 4],
   px: [3, 4],
-  py: 3,
-  bg: 'blue.0'
+  py: 3
 })`
   border-radius: ${theme.radii[2]};
   display: flex;
@@ -58,10 +57,10 @@ const ContactBase = styled(Container).attrs({
 
 const ContactInfo = () => (
   <ContactBase>
-    <Icon glyph="announcement" size={36} mr={[2, 3]} color="info" />
+    <Icon glyph="support" size={36} mr={[2, 3]} color="info" />
     <Box color="info" fontSize={2} align="left">
       <Text>
-        Please don't hesitate to reach out to us with any questions. We're
+        Please don’t hesitate to reach out to us with any questions. We’re
         available to email at{' '}
         <a href="mailto:applications@hackclub.com">
           <strong>applications@hackclub.com</strong>
@@ -195,47 +194,24 @@ const Main = props => {
   }[submitButtonStatus]
 
   return (
-    <Container maxWidth={52} my={4}>
-      <Sheet p={[3, 4, 5]}>
-        <Heading.h3 fontSize={[4, 5]} mb={2}>
-          How to get into Hack Club
-        </Heading.h3>
-        <P fontSize={3}>
-          Our admissions process is very competitive. Here’s what we look for:
-        </P>
-        <ul>
-          <li>
-            Strong founding teams with 2-3 members. We love to see a group that
-            can get stuff done together.
-          </li>
-          <li>
-            Diverse skillsets on leadership team—the best Hack Clubs are led by
-            both charismatic and technical people. We don't care if those skills
-            are shared across the team or each leader has separate strengths.
-          </li>
-          <li>
-            Traction. Indicators of progress to date, especially student sign up
-            lists with contact info —although not required— are a big bonus.
-          </li>
-        </ul>
-        <ContactInfo />
-      </Sheet>
-      <Sheet p={[3, 4, 5]}>
+    <Container maxWidth={52} py={[4, 5]}>
+      <ContactInfo />
+      <Sheet mt={4} p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>
           <Text.span style={{ display: 'block' }}>
             Your application to Hack Club is
           </Text.span>
           <SubmitStatus {...submitStatusProps} />{' '}
         </Headline>
+        {/*
         <Text bold fontSize={[3, 4]}>
           {getSeason()} applications accepted on a rolling basis
         </Text>
+        */}
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
-          <Text py={3} color="muted" align="center" fontSize={3}>
+          <Text py={4} color="muted" align="center" fontSize={3}>
             <Text.span bold>No co-leaders yet!</Text.span>
-            <br />
-            Tap the green button to add them.
           </Text>
         )}
         {coLeaderProfiles.map(profile => (
@@ -252,7 +228,9 @@ const Main = props => {
                 if (
                   // eslint-disable-next-line
                   confirm(
-                    `Are you sure you want to remove ${profile.user.email} as a team member?`
+                    `Are you sure you want to remove ${
+                      profile.user.email
+                    } as a team member?`
                   )
                 ) {
                   api

@@ -3,16 +3,19 @@ import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
 const Flag = styled(Link)`
-  background: url(/orpheus_flag.svg) no-repeat;
-  background-position: top center;
+  background-image: url(https://assets.hackclub.com/flag-orpheus-top.svg);
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: contain;
+  cursor: pointer;
   flex-shrink: 0;
   width: 112px;
   height: 48px;
   transition: ${theme.transition} transform;
   transform-origin: top left;
   ${theme.mediaQueries.md} {
-    width: 144px;
-    height: 72px;
+    width: 172px;
+    height: 64px;
   }
   ${props =>
     props.scrolled &&

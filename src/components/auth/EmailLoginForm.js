@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 import api from 'api'
-import getSeason from '@hackclub/season'
+// import getSeason from '@hackclub/season'
 import { Label, Input, Text, cx } from '@hackclub/design-system'
 import { Submit } from 'components/Forms'
 import { withFormik } from 'formik'
@@ -69,7 +69,7 @@ const InnerForm = ({
       />
     )}
     <Submit
-      my={3}
+      mt={3}
       value="Continue »"
       color={color}
       bg={bg}
@@ -78,7 +78,9 @@ const InnerForm = ({
       onClick={handleSubmit}
       inverted
     />
+    {/*
     <Text>{getSeason()} applications accepted on a rolling basis</Text>
+    */}
   </form>
 )
 
