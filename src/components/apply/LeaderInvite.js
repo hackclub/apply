@@ -32,34 +32,39 @@ const SectionIcon = styled(IconButton).attrs({
   }
 `
 
-const InfoBase = styled(Container).attrs({
-  my: [3, 4],
-  px: [3, 4],
-  py: 3,
-  bg: 'blue.0'
-})`
-  border-radius: ${theme.radii[2]};
-  display: flex;
+const InfoBase = styled(Box)`
+  display: grid;
+  grid-gap: ${theme.space[3]}px;
+  padding-bottom: ${theme.space[3]}px;
   ${theme.mediaQueries.md} {
     align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  div {
+    background-color: ${theme.colors.blue[0]};
+    border-radius: ${theme.radii[2]};
   }
 `
 
 const InfoSheet = () => (
   <InfoBase>
-    <Icon glyph="leader" size={36} mr={[2, 3]} color="info" />
-    <Box color="info" fontSize={2} align="left">
-      <Text>Your teacher sponsor does not need to fill out a profile.</Text>
+    <Box p={3} color="info" fontSize={2} align="left">
+      <Icon glyph="welcome" size={36} mr={[2, 3]} color="info" />
       <Text>
-        You can read our guide for selecting your team{' '}
+        You can read our{' '}
         <Link
           href="https://hackclub.com/workshops/leadership_team"
           target="_blank"
+          bold
         >
-          <strong>here</strong>
+          guide for selecting your team here
         </Link>
         .
       </Text>
+    </Box>
+    <Box p={3} color="info" fontSize={2} align="left">
+      <Icon glyph="leader" size={36} mr={[2, 3]} color="info" />
+      <Text>Your teacher sponsor does not need to fill out a profile.</Text>
     </Box>
   </InfoBase>
 )
@@ -79,8 +84,8 @@ class LeaderInvite extends Component {
           </Text>
           <SectionIcon open={open} onClick={this.toggle} />
         </Flex>
-        {open && <InfoSheet />}
         {open && <LeaderInviteForm {...this.props} />}
+        {open && <InfoSheet />}
       </Fragment>
     )
   }

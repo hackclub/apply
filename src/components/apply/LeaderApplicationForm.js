@@ -100,20 +100,6 @@ const InnerForm = ({
           optional
         />
         <Field
-          {...field('presence_linkedin_url')}
-          label="LinkedIn link"
-          placeholder="https://"
-          type="url"
-          optional
-        />
-        <Field
-          {...field('presence_facebook_url')}
-          label="Facebook link"
-          placeholder="https://"
-          type="url"
-          optional
-        />
-        <Field
           {...field('presence_twitter_url')}
           label="Twitter link"
           placeholder="https://"
