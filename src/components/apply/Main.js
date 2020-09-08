@@ -60,14 +60,9 @@ const ContactInfo = () => (
     <Icon glyph="support" size={36} mr={[2, 3]} color="info" />
     <Box color="info" fontSize={2} align="left">
       <Text>
-        Please don’t hesitate to reach out to us with any questions. We’re
-        available to email at{' '}
+        Please don’t hesitate to reach out. We’re available to email at{' '}
         <a href="mailto:applications@hackclub.com">
           <strong>applications@hackclub.com</strong>
-        </a>{' '}
-        and over text / phone at{' '}
-        <a href="tel:1-415-612-2388">
-          <strong>1-415-612-2388</strong>
         </a>
         .
       </Text>
