@@ -131,7 +131,7 @@ const InnerForm = ({
         <Field
           {...field('other_surprising_or_amusing_discovery')}
           label="What is something surprising or amusing you learned recently?"
-          hint="Doesn’t have to be about Hack Club or coding."
+          hint="Don't make it about Hack Club! Doesn't have to be about coding."
           type="textarea"
           min="50"
           max="400"
