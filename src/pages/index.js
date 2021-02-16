@@ -30,7 +30,8 @@ export default class extends Component {
   state = {
     status: 'loading',
     app: undefined,
-    userId: undefined
+    userId: undefined,
+    country: null
   }
 
   createNewApplication = (firstTime = false) => {
@@ -86,8 +87,18 @@ export default class extends Component {
     }
   }
 
+  getCountry = async () => {
+    const ipResponse = await fetch('https://api.ipify.org?format=json')
+    const ipJson = await ipResponse.json()
+    const countryResponse = await fetch(`http://ip-api.com/json/${ipJson.ip}`)
+    const countryJson = await countryResponse.json()
+    const country = countryJson.country;
+    return country;
+  }
+
   componentDidMount() {
     const userId = storage.get('userId')
+    this.getCountry().then(response => this.setState({ country: response }))
     this.setState({ userId })
     const needsToAuth = userId === null
 
@@ -99,7 +110,7 @@ export default class extends Component {
   }
 
   content() {
-    const { app, status, userId } = this.state
+    const { app, status, userId, country } = this.state
     switch (status) {
       case 'needsToAuth':
         return (
@@ -140,6 +151,7 @@ export default class extends Component {
               userId={userId}
               callback={this.populateApplications}
               resetCallback={this.resetApplication}
+              country={country}
             />
           </Fragment>
         )
