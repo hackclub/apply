@@ -55,6 +55,12 @@ const ContactBase = styled(Sheet).attrs({
   }
 `
 
+const ApplicationInPortugueseBase = styled(Sheet).attrs({
+  mt: [3, 4],
+  px: [3, 4],
+  py: 3,
+})``
+
 const ContactInfo = () => (
   <ContactBase>
     <Icon glyph="support" size={36} mr={[2, 3]} color="info" />
@@ -68,6 +74,22 @@ const ContactInfo = () => (
       </Text>
     </Box>
   </ContactBase>
+)
+
+const ApplicationInPortuguese = ({ country }) => (
+  <Box>
+    {country == 'Brazil' || country == 'Brasil' || country == 'BR' ? (
+      <ApplicationInPortugueseBase>
+        <Box color="#009c3b	" fontSize="120%" align="left">
+          <Text>
+            Você está se inscrevendo do <strong>Brasil</strong>? Se sim,
+            sinta-se à vontade de preencher a inscrição em{' '}
+            <strong>Inglês</strong> ou <strong>Português</strong>.
+          </Text>
+        </Box>
+      </ApplicationInPortugueseBase>
+    ) : null}
+  </Box>
 )
 
 const SectionBase = styled(Flex).attrs({
@@ -153,7 +175,7 @@ const profileStatus = profile =>
 
 const Main = props => {
   const { id, leader_profiles, updated_at, created_at } = props.app
-  const { callback, app, resetCallback } = props
+  const { callback, app, resetCallback, country } = props
 
   const leaderProfile = leader_profiles.find(
     profile => profile.user && profile.user.id === props.userId
@@ -191,6 +213,7 @@ const Main = props => {
   return (
     <Container maxWidth={52} py={4}>
       <ContactInfo />
+      <ApplicationInPortuguese country={country} />
       <Sheet mt={4} p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>
           <Text.span style={{ display: 'block' }}>
