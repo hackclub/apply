@@ -90,7 +90,7 @@ export default class extends Component {
   getCountry = async () => {
     const ipResponse = await fetch('https://api.ipify.org?format=json')
     const ipJson = await ipResponse.json()
-    const countryResponse = await fetch(`http://ip-api.com/json/${ipJson.ip}`)
+    const countryResponse = await fetch(`https://www.iplocate.io/api/lookup/${ipJson.ip}`)
     const countryJson = await countryResponse.json()
     const country = countryJson.country;
     return country;
