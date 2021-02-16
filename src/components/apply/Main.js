@@ -78,7 +78,7 @@ const ContactInfo = () => (
 
 const ApplicationInPortuguese = ({ country }) => (
   <Box>
-    {country == 'Brazil' || country == 'Brasil' || country == 'BR' ? (
+    {country === 'Brazil' || country === 'Brasil' || country === 'BR' ? (
       <ApplicationInPortugueseBase>
         <Box color="#009c3b	" fontSize="120%" align="left">
           <Text>
