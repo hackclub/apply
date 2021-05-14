@@ -137,14 +137,14 @@ class Section extends Component {
   state = { open: false }
 
   toggle = () =>
-    this.setState(({ open }) => ({ open: this.props.to ? open : !open }))
+    this.setState(({ open }) => ({ open: this.props.href ? open : !open }))
 
   render() {
     const { open } = this.state
-    const { name, openContent, to, sm, ...props } = this.props
-    const Element = to ? Link : Fragment
+    const { name, openContent, href, sm, ...props } = this.props
+    const Element = href ? Link : Fragment
     return (
-      <Element href={to}>
+      <Element href={href}>
         <SectionBase
           {...props}
           onClick={this.toggle}
@@ -152,7 +152,7 @@ class Section extends Component {
           aria-expanded={open}
         >
           <SectionHeading sm={sm} children={name} />
-          <SectionIcon open={open} glyph={to ? 'view-forward' : 'options'} />
+          <SectionIcon open={open} glyph={href ? 'view-forward' : 'options'} />
         </SectionBase>
       </Element>
     )

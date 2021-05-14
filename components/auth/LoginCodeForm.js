@@ -135,10 +135,6 @@ const LoginCodeForm = withFormik({
       .then(json => {
         storage.set('authToken', json.auth_token)
         setSubmitting(false)
-        // associate current session with authenticated user and update email
-        // stored in analytics
-        // eslint-disable-next-line
-        analytics.identify(props.userId, { email: props.email })
 
         if (loginCallback) loginCallback()
         else window.location.reload()
