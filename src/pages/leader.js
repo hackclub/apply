@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import search from 'search'
-import api from 'api'
-import { Container, Heading, LargeButton } from '@hackclub/design-system'
+import search from '../search'
+import api from '../api'
+import { Container, Heading, LargeButton, Link } from '@hackclub/design-system'
 
-import { Link } from 'gatsby'
-import Layout from 'components/Layout'
-import Login from 'components/auth/Login'
-import Sheet from 'components/Sheet'
-import ApplyNav from 'components/apply/ApplyNav'
-import LoadingBar from 'components/LoadingBar'
-import LeaderApplicationForm from 'components/apply/LeaderApplicationForm'
+import Layout from '../components/Layout'
+import Login from '../components/auth/Login'
+import Sheet from '../components/Sheet'
+import ApplyNav from '../components/apply/ApplyNav'
+import LoadingBar from '../components/LoadingBar'
+import LeaderApplicationForm from '../components/apply/LeaderApplicationForm'
 
 LargeButton.link = LargeButton.withComponent(Link)
 
@@ -75,7 +74,7 @@ const Content = ({ status, formFields, id }) => {
             </span>
           </Heading.h4>
           <Container align="center" mt={4} mb={5}>
-            <LargeButton.link to="/" chevronLeft>
+            <LargeButton.link href="/" chevronLeft>
               Back
             </LargeButton.link>
           </Container>

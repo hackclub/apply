@@ -1,8 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { name, title, description, img, url } from 'data.json'
+import { name, title, description, img, url } from '../data.json'
 import { ThemeProvider, theme } from '@hackclub/design-system'
-import BG from 'components/BG'
+import BG from '../components/BG'
 
 const meta = tags =>
   tags.map((props, index) =>

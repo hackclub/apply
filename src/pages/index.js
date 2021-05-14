@@ -1,18 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import Helmet from 'react-helmet'
-import api from 'api'
-import storage from 'storage'
-import { Flex, Heading, LargeButton, Text } from '@hackclub/design-system'
+import api from '../api'
+import storage from '../storage'
+import { Flex, Heading, LargeButton, Text, Link } from '@hackclub/design-system'
 import styled from 'styled-components'
 
-import Pulse from 'pulse'
-import { Link } from 'gatsby'
-import Layout from 'components/Layout'
-import ApplyNav from 'components/apply/ApplyNav'
-import Sheet from 'components/Sheet'
-import Main from 'components/apply/Main'
-import LoginForm from 'components/auth/LoginForm'
-import LoadingBar from 'components/LoadingBar'
+import Pulse from '../pulse'
+import Layout from '../components/Layout'
+import ApplyNav from '../components/apply/ApplyNav'
+import Sheet from '../components/Sheet'
+import Main from '../components/apply/Main'
+import LoginForm from '../components/auth/LoginForm'
+import LoadingBar from '../components/LoadingBar'
 
 LargeButton.link = LargeButton.withComponent(Link)
 

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import {
   Box,
-  Container,
   Flex,
   Link,
   IconButton,
@@ -10,7 +9,7 @@ import {
 } from '@hackclub/design-system'
 import I from '@hackclub/icons'
 import styled from 'styled-components'
-import LeaderInviteForm from 'components/apply/LeaderInviteForm'
+import LeaderInviteForm from './LeaderInviteForm'
 
 const Icon = Box.withComponent(I)
 

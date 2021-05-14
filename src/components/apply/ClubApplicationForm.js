@@ -1,8 +1,8 @@
 import React from 'react'
-import { AutoSaver, Fieldset, Field, Form } from 'components/Forms'
+import { AutoSaver, Fieldset, Field, Form } from '../Forms'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
-import api from 'api'
+import api from '../../api'
 
 export const clubApplicationSchema = yup.object().shape({
   high_school_name: yup.string().required(),

@@ -5,27 +5,26 @@ import {
   Container,
   Flex,
   Heading,
-  Link as DSLink,
+  Link,
   Text,
   Icon,
   theme
 } from '@hackclub/design-system'
 // import getSeason from '@hackclub/season'
-import LeaderInvite from 'components/apply/LeaderInvite'
-import { clubApplicationSchema } from 'components/apply/ClubApplicationForm'
-import { Headline } from 'components/Content'
-import Sheet from 'components/Sheet'
-import SubmitButton from 'components/apply/SubmitButton'
-import Status from 'components/apply/Status'
-import Link from 'gatsby-link'
-import api from 'api'
-import storage from 'storage'
+import LeaderInvite from './LeaderInvite'
+import { clubApplicationSchema } from './ClubApplicationForm'
+import { Headline } from '../Content'
+import Sheet from '../Sheet'
+import SubmitButton from './SubmitButton'
+import Status from './Status'
+import api from '../../api'
+import storage from '../../storage'
 
 const authToken = storage.get('authToken')
 
 const P = props => <Text my={3} {...props} />
 
-const A = styled(DSLink)`
+const A = styled(Link)`
   cursor: pointer;
   &:hover {
     text-decoration: underline;
@@ -145,7 +144,7 @@ class Section extends Component {
     const { name, openContent, to, sm, ...props } = this.props
     const Element = to ? Link : Fragment
     return (
-      <Element to={to}>
+      <Element href={to}>
         <SectionBase
           {...props}
           onClick={this.toggle}
@@ -227,7 +226,7 @@ const Main = props => {
         </Text>
         */}
         <Section
-          to={`/club?id=${id}`}
+          href={`/club?id=${id}`}
           name={
             <Box>
               <Status type={applicationStatus()} />
@@ -236,7 +235,7 @@ const Main = props => {
           }
         />
         <Section
-          to={`/leader?id=${leaderProfile.id}`}
+          href={`/leader?id=${leaderProfile.id}`}
           name={
             <Box>
               <Status type={profileStatus(leaderProfile)} />

@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import React from 'react'
-import api from 'api'
+import api from '../../api'
 // import getSeason from '@hackclub/season'
 import { Label, Input, Text, cx } from '@hackclub/design-system'
-import { Submit } from 'components/Forms'
+import { Submit } from '../Forms'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
-import storage from 'storage'
+import storage from '../../storage'
 
 const StyledInput = styled(Input)`
   text-align: inherit;

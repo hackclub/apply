@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field } from '@hackclub/design-system'
 import { SendForm, SendButton } from '../SendForm'
-import api from 'api'
+import api from '../../api'
 import * as yup from 'yup'
 
 class LeaderInviteForm extends Component {

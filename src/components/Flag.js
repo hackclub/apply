@@ -1,6 +1,5 @@
-import { theme } from '@hackclub/design-system'
+import { theme, Link } from '@hackclub/design-system'
 import styled, { css } from 'styled-components'
-import { Link } from 'gatsby'
 
 const Flag = styled(Link)`
   background-image: url(https://assets.hackclub.com/flag-orpheus-top.svg);

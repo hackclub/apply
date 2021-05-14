@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Flex, Heading, Text } from '@hackclub/design-system'
-import Sheet from 'components/Sheet'
-import LoginForm from 'components/auth/LoginForm'
-import storage from 'storage'
-import api from 'api'
+import Sheet from '../Sheet'
+import LoginForm from './LoginForm'
+import storage from '../storage'
+import api from '../api'
 
 class Auth extends Component {
   state = { authed: false, authData: {} }
