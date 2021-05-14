@@ -5,13 +5,13 @@ import PropTypes from 'prop-types'
 
 const Base = styled(Box)`
   position: relative;
-  ${props => props.fill && { height: '100vh' }};
+  ${(props) => props.fill && { height: '100vh' }};
   div {
     border-radius: 50%;
   }
 `
 
-const LoadingBar = props => (
+const LoadingBar = (props) => (
   <Base py={5} {...props}>
     <Loading />
   </Base>

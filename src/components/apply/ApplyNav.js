@@ -15,7 +15,7 @@ class Breadcrumb extends Component {
   componentDidMount() {
     const path = window.location.pathname
       .split('/')
-      .filter(chunk => chunk !== '')
+      .filter((chunk) => chunk !== '')
     this.setState({ path })
   }
 

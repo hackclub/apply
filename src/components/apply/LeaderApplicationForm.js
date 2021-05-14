@@ -13,7 +13,7 @@ const InnerForm = ({
   handleSubmit,
   isSubmitting
 }) => {
-  const field = name => ({
+  const field = (name) => ({
     name,
     value: values[name] === null ? '' : values[name],
     onChange: handleChange,
@@ -157,14 +157,14 @@ const InnerForm = ({
 }
 
 const LeaderApplicationForm = withFormik({
-  mapPropsToValues: props => props.params,
+  mapPropsToValues: (props) => props.params,
   handleSubmit: (data, { setSubmitting, props }) => {
     api
       .patch(`v1/leader_profiles/${props.id}`, { data })
-      .then(json => {
+      .then((json) => {
         setSubmitting(false)
       })
-      .catch(e => {
+      .catch((e) => {
         console.error(e)
         alert(e)
         setSubmitting(false)

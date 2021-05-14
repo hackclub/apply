@@ -25,17 +25,17 @@ export default class extends Component {
     this.setState({ id })
     api
       .get(`v1/leader_profiles/${id}`)
-      .then(json =>
+      .then((json) =>
         api
           .get(`v1/new_club_applications/${json.new_club_application_id}`)
-          .then(newClubApp => {
+          .then((newClubApp) => {
             this.setState({
               status: 'loaded',
               formFields: { ...json, submitted_at: newClubApp.submitted_at }
             })
           })
       )
-      .catch(e => {
+      .catch((e) => {
         if (e.status === 401) {
           const status = 'needsToAuth'
           this.setState({ status })

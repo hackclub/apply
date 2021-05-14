@@ -9,15 +9,15 @@ import storage from '../../storage'
 
 const StyledInput = styled(Input)`
   text-align: inherit;
-  background: ${props => cx(props.color)};
-  color: ${props => cx(props.bg)};
+  background: ${(props) => cx(props.color)};
+  color: ${(props) => cx(props.bg)};
   border: none;
   :focus {
     box-shadow: none !important;
   }
   ::placeholder {
     text-align: inherit;
-    color: ${props => cx(props.bg)};
+    color: ${(props) => cx(props.bg)};
     opacity: 0.5;
   }
 `
@@ -80,7 +80,7 @@ class InnerForm extends Component {
             bg={bg}
             placeholder="Login Code"
             value={values.loginCode}
-            onChange={e => {
+            onChange={(e) => {
               e.target.value = this.formatAsLoginCode(e, e.target.value)
               handleChange(e)
             }}
@@ -132,14 +132,14 @@ const LoginCodeForm = withFormik({
     const data = { login_code: strippedLoginCode }
     api
       .post(`v1/users/${props.userId}/exchange_login_code`, { data })
-      .then(json => {
+      .then((json) => {
         storage.set('authToken', json.auth_token)
         setSubmitting(false)
 
         if (loginCallback) loginCallback()
         else window.location.reload()
       })
-      .catch(e => {
+      .catch((e) => {
         console.error(e)
         setErrors({ loginCode: 'That doesn’t look like the code we sent.' })
         setSubmitting(false)

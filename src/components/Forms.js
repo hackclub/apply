@@ -26,7 +26,7 @@ const SaveBaseIcon = styled(Icon)`
   position: fixed;
   bottom: 0;
   left: 0;
-  ${props => !props.saved && { animation: `4s ${spin} infinite` }}
+  ${(props) => !props.saved && { animation: `4s ${spin} infinite` }}
 `
 
 const SaveStatusIcon = ({ saved }) => (
@@ -48,13 +48,13 @@ const SaveStatusLine = styled(Box)`
   border-style: solid;
   border-width: 0;
   border-top-width: 1px;
-  opacity: ${props => (props.saved ? 2 / 3 : 1)};
+  opacity: ${(props) => (props.saved ? 2 / 3 : 1)};
   transition-duration: 1s;
-  color: ${props => theme.colors[props.saved ? 'slate' : 'primary']};
-  box-shadow: 0 0 4px ${props => (props.saved ? '0px' : '2px')};
+  color: ${(props) => theme.colors[props.saved ? 'slate' : 'primary']};
+  box-shadow: 0 0 4px ${(props) => (props.saved ? '0px' : '2px')};
 `
 
-const SaveStatus = props => (
+const SaveStatus = (props) => (
   <>
     <SaveStatusIcon {...props} />
     <SaveStatusLine {...props} />
@@ -297,7 +297,7 @@ const FieldsBox = styled(Box).attrs({})`
   }
 `
 
-export const Fieldset = props => (
+export const Fieldset = (props) => (
   <Flex flexDirection={['column', 'row']}>
     <HeadingBox>
       <Subheading id={props.section}>{props.section}</Subheading>
@@ -306,4 +306,4 @@ export const Fieldset = props => (
   </Flex>
 )
 
-export const Aside = props => <Box bg="snow" {...props} />
+export const Aside = (props) => <Box bg="snow" {...props} />

@@ -16,7 +16,7 @@ const Flag = styled(Link)`
     width: 172px;
     height: 64px;
   }
-  ${props =>
+  ${(props) =>
     props.scrolled &&
     css`
       transform: scale(0.75);
