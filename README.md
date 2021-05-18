@@ -1,6 +1,6 @@
 # Hack Club Applications
 
-Apply to [Hack Club](https://hackclub.com/), built with [React](https://reactjs.org/) and [Gatsby](https://www.gatsbyjs.org/).
+Apply to [Hack Club](https://hackclub.com/), built with [React](https://reactjs.org/) and [Next.js](https://nextjs.org).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/041eb582-67a5-4ecf-bdf7-fecaf6017fb6/deploy-status)](https://app.netlify.com/sites/apply-hackclub/deploys)
 
