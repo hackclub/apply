@@ -1,8 +1,8 @@
 import React from 'react'
-import { AutoSaver, Fieldset, Field, Form } from 'components/Forms'
+import { AutoSaver, Fieldset, Field, Form } from '../Forms'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
-import api from 'api'
+import api from '../../api'
 
 export const clubApplicationSchema = yup.object().shape({
   high_school_name: yup.string().required(),
@@ -29,7 +29,7 @@ const InnerForm = ({
   handleSubmit,
   isSubmitting
 }) => {
-  const field = name => ({
+  const field = (name) => ({
     name,
     value: values[name] === null ? '' : values[name],
     onChange: handleChange,
@@ -77,8 +77,8 @@ const InnerForm = ({
             Select One
           </option>
           {values.leader_profiles
-            .filter(profile => profile.user != null)
-            .map(profile => (
+            .filter((profile) => profile.user != null)
+            .map((profile) => (
               <option value={profile.user.id} key={profile.user.id}>
                 {profile.user.email}
               </option>
@@ -169,7 +169,7 @@ const ClubApplicationForm = withFormik({
       .then(() => {
         setSubmitting(false)
       })
-      .catch(e => {
+      .catch((e) => {
         console.error(e)
         setSubmitting(false)
       })

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'gatsby'
-import { Text, Flex, Box, Link as A } from '@hackclub/design-system'
-import Flag from 'components/Flag'
-import LogoutButton from 'components/auth/LogoutButton'
+import { Text, Flex, Box, Link } from '@hackclub/design-system'
+import Flag from '../Flag'
+import LogoutButton from '../auth/LogoutButton'
 import { startCase, toLower } from 'lodash'
 
 const Crumb = ({ isLast, ...props }) => {
-  const Tag = isLast ? Text.span : A.withComponent(Link)
+  const Tag = isLast ? Text.span : Link
   return <Tag {...props} />
 }
 
@@ -16,7 +15,7 @@ class Breadcrumb extends Component {
   componentDidMount() {
     const path = window.location.pathname
       .split('/')
-      .filter(chunk => chunk !== '')
+      .filter((chunk) => chunk !== '')
     this.setState({ path })
   }
 
@@ -25,7 +24,7 @@ class Breadcrumb extends Component {
     const runningPath = ['']
     return (
       <>
-        <Crumb to="/" color="slate" fontSize={3}>
+        <Crumb href="/" color="slate" fontSize={3}>
           Apply
         </Crumb>
         {path.length > 0 && (
@@ -37,7 +36,7 @@ class Breadcrumb extends Component {
           const humanizedSection = startCase(toLower(section))
           return (
             <Crumb
-              to={runningPath.join('/')}
+              href={runningPath.join('/')}
               color={isLast ? 'black' : 'slate'}
               fontSize={3}
               isLast

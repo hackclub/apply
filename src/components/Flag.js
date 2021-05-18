@@ -1,6 +1,5 @@
-import { theme } from '@hackclub/design-system'
+import { theme, Link } from '@hackclub/design-system'
 import styled, { css } from 'styled-components'
-import { Link } from 'gatsby'
 
 const Flag = styled(Link)`
   background-image: url(https://assets.hackclub.com/flag-orpheus-top.svg);
@@ -17,7 +16,7 @@ const Flag = styled(Link)`
     width: 172px;
     height: 64px;
   }
-  ${props =>
+  ${(props) =>
     props.scrolled &&
     css`
       transform: scale(0.75);

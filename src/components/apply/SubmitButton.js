@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import api from 'api'
+import api from '../../api'
 import styled from 'styled-components'
 import { LargeButton, Text, theme } from '@hackclub/design-system'
 
@@ -31,13 +31,13 @@ class SubmitButton extends Component {
     setTimeout(() => {
       api
         .post(`v1/new_club_applications/${applicationId}/submit`)
-        .then(json => {
+        .then((json) => {
           callback(json)
         })
-        .catch(e => {
+        .catch((e) => {
           alert(e.statusText)
         })
-        .finally(_ => {
+        .finally((_) => {
           this.setState({ loading: false })
         })
     }, 3000)

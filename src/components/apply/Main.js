@@ -5,27 +5,26 @@ import {
   Container,
   Flex,
   Heading,
-  Link as DSLink,
+  Link,
   Text,
   Icon,
   theme
 } from '@hackclub/design-system'
 // import getSeason from '@hackclub/season'
-import LeaderInvite from 'components/apply/LeaderInvite'
-import { clubApplicationSchema } from 'components/apply/ClubApplicationForm'
-import { Headline } from 'components/Content'
-import Sheet from 'components/Sheet'
-import SubmitButton from 'components/apply/SubmitButton'
-import Status from 'components/apply/Status'
-import Link from 'gatsby-link'
-import api from 'api'
-import storage from 'storage'
+import LeaderInvite from './LeaderInvite'
+import { clubApplicationSchema } from './ClubApplicationForm'
+import { Headline } from '../Content'
+import Sheet from '../Sheet'
+import SubmitButton from './SubmitButton'
+import Status from './Status'
+import api from '../../api'
+import storage from '../../storage'
 
 const authToken = storage.get('authToken')
 
-const P = props => <Text my={3} {...props} />
+const P = (props) => <Text my={3} {...props} />
 
-const A = styled(DSLink)`
+const A = styled(Link)`
   cursor: pointer;
   &:hover {
     text-decoration: underline;
@@ -58,7 +57,7 @@ const ContactBase = styled(Sheet).attrs({
 const ApplicationInPortugueseBase = styled(Sheet).attrs({
   mt: [3, 4],
   px: [3, 4],
-  py: 3,
+  py: 3
 })``
 
 const ContactInfo = () => (
@@ -99,10 +98,10 @@ const SectionBase = styled(Flex).attrs({
   align: 'center'
 })`
   border-top: 1px solid ${theme.colors.smoke};
-  min-height: ${props => (props.sm ? 6 : 10)}rem;
+  min-height: ${(props) => (props.sm ? 6 : 10)}rem;
 `
 const SectionHeading = styled(Heading.h2).attrs({
-  fontSize: props => (props.sm ? [3, 4] : [4, 5]),
+  fontSize: (props) => (props.sm ? [3, 4] : [4, 5]),
   regular: true,
   align: 'left'
 })`
@@ -116,15 +115,15 @@ const SectionHeading = styled(Heading.h2).attrs({
   word-break: break-word;
 `
 const SectionIcon = styled(Icon).attrs({
-  color: props => (props.open ? 'gray.5' : 'gray.4'),
+  color: (props) => (props.open ? 'gray.5' : 'gray.4'),
   size: 32,
   mr: 1,
   ml: 'auto'
 })`
   transition: ${theme.transition} all;
-  transform: rotate(${props => (props.open ? 90 : 0)}deg);
+  transform: rotate(${(props) => (props.open ? 90 : 0)}deg);
   user-select: none;
-  ${props =>
+  ${(props) =>
     props.glyph === 'member-remove' &&
     css`
       cursor: pointer;
@@ -138,14 +137,14 @@ class Section extends Component {
   state = { open: false }
 
   toggle = () =>
-    this.setState(({ open }) => ({ open: this.props.to ? open : !open }))
+    this.setState(({ open }) => ({ open: this.props.href ? open : !open }))
 
   render() {
     const { open } = this.state
-    const { name, openContent, to, sm, ...props } = this.props
-    const Element = to ? Link : Fragment
+    const { name, openContent, href, sm, ...props } = this.props
+    const Element = href ? Link : Fragment
     return (
-      <Element to={to}>
+      <Element href={href}>
         <SectionBase
           {...props}
           onClick={this.toggle}
@@ -153,7 +152,7 @@ class Section extends Component {
           aria-expanded={open}
         >
           <SectionHeading sm={sm} children={name} />
-          <SectionIcon open={open} glyph={to ? 'view-forward' : 'options'} />
+          <SectionIcon open={open} glyph={href ? 'view-forward' : 'options'} />
         </SectionBase>
       </Element>
     )
@@ -166,26 +165,26 @@ const SubmitStatus = styled(Text.withComponent('mark'))`
   padding-bottom: 0.125rem;
 `
 
-const profileStatus = profile =>
+const profileStatus = (profile) =>
   profile.completed_at !== null
     ? 'complete'
     : profile.created_at === profile.updated_at
     ? 'unopened'
     : 'incomplete'
 
-const Main = props => {
+const Main = (props) => {
   const { id, leader_profiles, updated_at, created_at } = props.app
   const { callback, app, resetCallback, country } = props
 
   const leaderProfile = leader_profiles.find(
-    profile => profile.user && profile.user.id === props.userId
+    (profile) => profile.user && profile.user.id === props.userId
   )
   const coLeaderProfiles = leader_profiles.filter(
-    profile => profile.user && profile.user.id !== props.userId
+    (profile) => profile.user && profile.user.id !== props.userId
   )
 
   const completeProfiles = leader_profiles.every(
-    profile => profile.completed_at
+    (profile) => profile.completed_at
   )
   const completeApplication = clubApplicationSchema.isValidSync(app)
   let submitButtonStatus
@@ -196,7 +195,7 @@ const Main = props => {
   } else {
     submitButtonStatus = 'incomplete'
   }
-  const applicationStatus = profile =>
+  const applicationStatus = (profile) =>
     completeApplication
       ? 'complete'
       : created_at === updated_at
@@ -227,7 +226,7 @@ const Main = props => {
         </Text>
         */}
         <Section
-          to={`/club?id=${id}`}
+          href={`/club?id=${id}`}
           name={
             <Box>
               <Status type={applicationStatus()} />
@@ -236,7 +235,7 @@ const Main = props => {
           }
         />
         <Section
-          to={`/leader?id=${leaderProfile.id}`}
+          href={`/leader?id=${leaderProfile.id}`}
           name={
             <Box>
               <Status type={profileStatus(leaderProfile)} />
@@ -250,7 +249,7 @@ const Main = props => {
             <Text.span bold>No co-leaders yet!</Text.span>
           </Text>
         )}
-        {coLeaderProfiles.map(profile => (
+        {coLeaderProfiles.map((profile) => (
           <SectionBase sm key={profile.id}>
             <SectionHeading sm>
               <Box>
@@ -260,13 +259,11 @@ const Main = props => {
             </SectionHeading>
             <SectionIcon
               glyph="member-remove"
-              onClick={e => {
+              onClick={(e) => {
                 if (
                   // eslint-disable-next-line
                   confirm(
-                    `Are you sure you want to remove ${
-                      profile.user.email
-                    } as a team member?`
+                    `Are you sure you want to remove ${profile.user.email} as a team member?`
                   )
                 ) {
                   api
@@ -274,7 +271,7 @@ const Main = props => {
                       authToken,
                       data: { user_id: profile.user.id }
                     })
-                    .then(json => {
+                    .then((json) => {
                       callback()
                     })
                 }

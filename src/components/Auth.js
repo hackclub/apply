@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Button, Flex, Heading, Text } from '@hackclub/design-system'
-import Sheet from 'components/Sheet'
-import LoginForm from 'components/auth/LoginForm'
-import storage from 'storage'
-import api from 'api'
+import Sheet from '../Sheet'
+import LoginForm from './LoginForm'
+import storage from '../storage'
+import api from '../api'
 
 class Auth extends Component {
   state = { authed: false, authData: {} }
@@ -14,20 +14,20 @@ class Auth extends Component {
     if (!preAuthData) {
       api
         .get(`v1/users/current`)
-        .then(authData => {
+        .then((authData) => {
           console.log(
             `User is authorized! Auth data: ${JSON.stringify(authData)}`
           )
           this.setState({ authed: true, authData })
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(`User is not authorized! Error: ${error.toString()}`)
           this.setState({ authed: false, authData: {} })
         })
     }
   }
 
-  signOut = e => {
+  signOut = (e) => {
     const { signOutCallback } = this.props
 
     try {

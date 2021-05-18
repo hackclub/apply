@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import {
   Box,
-  Container,
   Flex,
   Link,
   IconButton,
@@ -10,20 +9,20 @@ import {
 } from '@hackclub/design-system'
 import I from '@hackclub/icons'
 import styled from 'styled-components'
-import LeaderInviteForm from 'components/apply/LeaderInviteForm'
+import LeaderInviteForm from './LeaderInviteForm'
 
 const Icon = Box.withComponent(I)
 
 const SectionIcon = styled(IconButton).attrs({
-  glyph: props => (props.open ? 'view-close' : 'member-add'),
-  bg: props => (props.open ? 'gray.5' : 'success'),
+  glyph: (props) => (props.open ? 'view-close' : 'member-add'),
+  bg: (props) => (props.open ? 'gray.5' : 'success'),
   size: 32,
   p: 1,
   ml: 'auto',
   circle: true
 })`
   transition: ${theme.transition} all;
-  transform: rotate(${props => (props.open ? 90 : 0)}deg);
+  transform: rotate(${(props) => (props.open ? 90 : 0)}deg);
   user-select: none;
   box-shadow: ${theme.boxShadows[0]} !important;
   &:hover,
@@ -72,7 +71,7 @@ const InfoSheet = () => (
 class LeaderInvite extends Component {
   state = { open: false }
 
-  toggle = e => this.setState(({ open }) => ({ open: !open }))
+  toggle = (e) => this.setState(({ open }) => ({ open: !open }))
 
   render() {
     const { open } = this.state

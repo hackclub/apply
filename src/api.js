@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import storage from 'storage'
+import storage from './storage'
 
 export const url = 'https://api.hackclub.com/'
 const methods = ['GET', 'PUT', 'POST', 'PATCH', 'DELETE']

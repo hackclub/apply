@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import EmailLoginForm from 'components/auth/EmailLoginForm'
-import LoginCodeForm from 'components/auth/LoginCodeForm'
-import search from 'search'
+import EmailLoginForm from './EmailLoginForm'
+import LoginCodeForm from './LoginCodeForm'
+import search from '../../search'
 
 class Login extends Component {
   state = { emailSent: false }
@@ -10,7 +10,7 @@ class Login extends Component {
     this.setState({ email: search.get('email') })
   }
 
-  submitCallback = data => {
+  submitCallback = (data) => {
     this.setState({
       ...data,
       emailSent: true

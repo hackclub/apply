@@ -1,18 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import Helmet from 'react-helmet'
-import api from 'api'
-import storage from 'storage'
-import { Flex, Heading, LargeButton, Text } from '@hackclub/design-system'
+import api from '../api'
+import storage from '../storage'
+import { Flex, Heading, LargeButton, Text, Link } from '@hackclub/design-system'
 import styled from 'styled-components'
 
-import Pulse from 'pulse'
-import { Link } from 'gatsby'
-import Layout from 'components/Layout'
-import ApplyNav from 'components/apply/ApplyNav'
-import Sheet from 'components/Sheet'
-import Main from 'components/apply/Main'
-import LoginForm from 'components/auth/LoginForm'
-import LoadingBar from 'components/LoadingBar'
+import Pulse from '../pulse'
+import Layout from '../components/Layout'
+import ApplyNav from '../components/apply/ApplyNav'
+import Sheet from '../components/Sheet'
+import Main from '../components/apply/Main'
+import LoginForm from '../components/auth/LoginForm'
+import LoadingBar from '../components/LoadingBar'
 
 LargeButton.link = LargeButton.withComponent(Link)
 
@@ -43,11 +42,11 @@ export default class extends Component {
     }
     return api
       .post(`v1/users/${storage.get('userId')}/new_club_applications`)
-      .then(app => app)
+      .then((app) => app)
   }
 
   resetApplication = () => {
-    this.createNewApplication().then(app => {
+    this.createNewApplication().then((app) => {
       const newState = { status: 'finished' }
       if (app !== null) {
         newState.app = app
@@ -65,7 +64,7 @@ export default class extends Component {
     } else {
       api
         .get(`v1/users/${storage.get('userId')}/new_club_applications`)
-        .then(json => {
+        .then((json) => {
           if (json.length === 0) {
             return this.createNewApplication(true)
           }
@@ -73,13 +72,13 @@ export default class extends Component {
             return new Date(b.created_at) - new Date(a.created_at)
           })[0]
         })
-        .then(app => {
+        .then((app) => {
           this.setState({
             status: 'finished',
             app: app
           })
         })
-        .catch(e => {
+        .catch((e) => {
           if (e.status === 401) {
             this.setState({ status: 'needsToAuth' })
           }
@@ -90,15 +89,17 @@ export default class extends Component {
   getCountry = async () => {
     const ipResponse = await fetch('https://api.ipify.org?format=json')
     const ipJson = await ipResponse.json()
-    const countryResponse = await fetch(`https://www.iplocate.io/api/lookup/${ipJson.ip}`)
+    const countryResponse = await fetch(
+      `https://www.iplocate.io/api/lookup/${ipJson.ip}`
+    )
     const countryJson = await countryResponse.json()
-    const country = countryJson.country;
-    return country;
+    const country = countryJson.country
+    return country
   }
 
   componentDidMount() {
     const userId = storage.get('userId')
-    this.getCountry().then(response => this.setState({ country: response }))
+    this.getCountry().then((response) => this.setState({ country: response }))
     this.setState({ userId })
     const needsToAuth = userId === null
 

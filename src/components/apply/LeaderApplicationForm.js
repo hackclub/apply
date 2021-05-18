@@ -1,8 +1,8 @@
 import React from 'react'
 import { Text } from '@hackclub/design-system'
-import { AutoSaver, Field, Fieldset, Form } from 'components/Forms'
+import { AutoSaver, Field, Fieldset, Form } from '../Forms'
 import { withFormik } from 'formik'
-import api from 'api'
+import api from '../../api'
 
 const InnerForm = ({
   values,
@@ -13,7 +13,7 @@ const InnerForm = ({
   handleSubmit,
   isSubmitting
 }) => {
-  const field = name => ({
+  const field = (name) => ({
     name,
     value: values[name] === null ? '' : values[name],
     onChange: handleChange,
@@ -157,23 +157,14 @@ const InnerForm = ({
 }
 
 const LeaderApplicationForm = withFormik({
-  mapPropsToValues: props => props.params,
+  mapPropsToValues: (props) => props.params,
   handleSubmit: (data, { setSubmitting, props }) => {
     api
       .patch(`v1/leader_profiles/${props.id}`, { data })
-      .then(json => {
+      .then((json) => {
         setSubmitting(false)
-        // update name stored in analytics w/ latest value if it's changed
-        // eslint-disable-next-line
-        analytics.ready(() => {
-          // eslint-disable-next-line
-          if (analytics.user().traits().email != json.leader_name) {
-            // eslint-disable-next-line
-            analytics.identify({ name: json.leader_name })
-          }
-        })
       })
-      .catch(e => {
+      .catch((e) => {
         console.error(e)
         alert(e)
         setSubmitting(false)
