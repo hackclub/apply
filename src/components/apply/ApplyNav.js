@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, Flex, Box, Link } from '@hackclub/design-system'
 import Flag from '../Flag'
-import LogoutButton from '../Auth/LogoutButton'
+import LogoutButton from '../auth/LogoutButton'
 import { startCase, toLower } from 'lodash'
 
 const Crumb = ({ isLast, ...props }) => {
