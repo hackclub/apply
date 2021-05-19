@@ -28,7 +28,7 @@ const InnerForm = ({
         <Field {...field('leader_birthday')} label="Birthday" type="date" />
         <Field
           {...field('leader_graduation_date')}
-          label="Year in school"
+          label="Graduation date"
           type="integer"
         />
         <Field
