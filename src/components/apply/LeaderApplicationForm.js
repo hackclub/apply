@@ -27,19 +27,10 @@ const InnerForm = ({
         <Field {...field('leader_name')} label="Full Name" />
         <Field {...field('leader_birthday')} label="Birthday" type="date" />
         <Field
-          {...field('leader_year_in_school')}
+          {...field('leader_graduation_date')}
           label="Year in school"
-          type="select"
-        >
-          <option value="" disabled>
-            Select One
-          </option>
-          <option value="freshman">Freshman</option>
-          <option value="sophomore">Sophomore</option>
-          <option value="junior">Junior</option>
-          <option value="senior">Senior</option>
-          <option value="other_year">Other year</option>
-        </Field>
+          type="integer"
+        />
         <Field
           {...field('leader_phone_number')}
           label="Phone number (include country code if not in the United States)"
