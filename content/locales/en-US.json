@@ -1,0 +1,498 @@
+{
+  "REPLACE_CURRENT_APPLICATION_WARNING": {
+    "defaultMessage": "If you start a new application you won’t be able to access this one. Continue?",
+    "description": ""
+  },
+  "WELCOME_TITLE": {
+    "defaultMessage": "Welcome",
+    "description": ""
+  },
+  "WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE": {
+    "defaultMessage": "We can’t wait to see your application.",
+    "description": ""
+  },
+  "WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE": {
+    "defaultMessage": "Let’s get you signed in!",
+    "description": ""
+  },
+  "SOMETHING_TERRIBLE_HAPPENED": {
+    "defaultMessage": "Something terrible has happened.",
+    "description": ""
+  },
+  "INITIAL_PAGE_TITLE": {
+    "defaultMessage": "Apply – Hack Club",
+    "description": ""
+  },
+  "REJECTED_TITLE": {
+    "defaultMessage": "Unfortunately, you’ve been rejected",
+    "description": ""
+  },
+  "REJECTED_MESSAGE": {
+    "defaultMessage": "You can start a new application by clicking ",
+    "description": ""
+  },
+  "HERE": {
+    "defaultMessage": "here",
+    "description": ""
+  },
+  "CONTACT_MESSAGE": {
+    "defaultMessage": "Please don’t hesitate to reach out. We’re available to email at ",
+    "description": ""
+  },
+  "READY_FOR_YOU": {
+    "defaultMessage": "ready for you!",
+    "description": ""
+  },
+  "IN_PROGRESS_WITH_PERIOD": {
+    "defaultMessage": "in progress.",
+    "description": ""
+  },
+  "READY_TO_SUBMIT": {
+    "defaultMessage": "ready to submit!",
+    "description": ""
+  },
+  "SUBMITTED_WITH_EXCLAMATION_MARK": {
+    "defaultMessage": "submitted!",
+    "description": ""
+  },
+  "APPLICATION_STATUS_MESSAGE": {
+    "defaultMessage": "Your application to Hack Club is ",
+    "description": ""
+  },
+  "CLUB_APPLICATION": {
+    "defaultMessage": "Club application",
+    "description": ""
+  },
+  "MY_PERSONAL_PROFILE": {
+    "defaultMessage": "My personal profile",
+    "description": ""
+  },
+  "NO_COLEADERS_YET": {
+    "defaultMessage": "No co-leaders yet!",
+    "description": ""
+  },
+  "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER": {
+    "defaultMessage": "Are you sure you want to remove {team_member} as a team member?",
+    "description": ""
+  },
+  "REMOVE_TEAM_MEMBER": {
+    "defaultMessage": "Remove team member",
+    "description": ""
+  },
+  "HIGH_SCHOOL_NAME_LABEL": {
+    "defaultMessage": "Name of high school",
+    "description": ""
+  },
+  "HIGH_SCHOOL_LINK_LABEL": {
+    "defaultMessage": "Link to your high school’s website, if any",
+    "description": ""
+  },
+  "HIGH_SCHOOL_TYPE_LABEL": {
+    "defaultMessage": "Type of school",
+    "description": ""
+  },
+  "SELECT_ONE": {
+    "defaultMessage": "Select One",
+    "description": ""
+  },
+  "PUBLIC_SCHOOL": {
+    "defaultMessage": "Public school",
+    "description": ""
+  },
+  "PRIVATE_SCHOOL": {
+    "defaultMessage": "Private school",
+    "description": ""
+  },
+  "CHARTER_SCHOOL": {
+    "defaultMessage": "Charter school",
+    "description": ""
+  },
+  "HIGH_SCHOOL_ADDRESS_LABEL": {
+    "defaultMessage": "High school’s full address",
+    "description": ""
+  },
+  "ADDRESS_HINT": {
+    "defaultMessage": "Please include city, state / province, country, and postal code.",
+    "description": ""
+  },
+  "PRESIDENT_OR_EQUIVALENT_LABEL": {
+    "defaultMessage": "President / equivalent position",
+    "description": ""
+  },
+  "TEAM_ORIGIN_STORY_LABEL": {
+    "defaultMessage": "How long have you known your other club leaders and how did you meet?",
+    "description": ""
+  },
+  "WHY_PLANNING_TO_START_CLUB_LABEL": {
+    "defaultMessage": "Why are you planning to start a Hack Club? Have you run anything like a Hack Club before? Why do you think the club is going to work?",
+    "description": ""
+  },
+  "OTHER_CODING_CLUBS_LABEL": {
+    "defaultMessage": "Has your school had coding clubs before? What’s going to be new about your Hack Club?",
+    "description": ""
+  },
+  "OTHER_GENERAL_CLUBS_LABEL": {
+    "defaultMessage": "What successful clubs exist at your school? What makes them successful? Why will you be just as successful, if not more, than them?",
+    "description": ""
+  },
+  "CLUB_ALREADY_REGISTERED_LABEL": {
+    "defaultMessage": "Have you already registered your club with your school?",
+    "description": ""
+  },
+  "OTHER_RELEVANT_INFO_ABOUT_SCHOOL_RELATIONSHIP_LABEL": {
+    "defaultMessage": "Please provide any other relevant information about your relationship with the school. For example, do you already have a teacher sponsor?",
+    "description": ""
+  },
+  "SOMETHING_SURPRISING_YOU_LEARNED_LABEL": {
+    "defaultMessage": "What is something surprising or amusing you learned recently?",
+    "description": ""
+  },
+  "SOMETHING_SURPRISING_YOU_LEARNED_HINT": {
+    "defaultMessage": "Don't make it about Hack Club! Doesn't have to be about coding.",
+    "description": ""
+  },
+  "WHAT_DO_YOU_EXPECT_LABEL": {
+    "defaultMessage": "What do you hope to get out of Hack Club?",
+    "description": ""
+  },
+  "HOW_DID_YOU_HEAR_LABEL": {
+    "defaultMessage": "How did you hear about Hack Club? If you heard about us at an event or on a website, mention it here.",
+    "description": ""
+  },
+  "LEADER_FULL_NAME_LABEL": {
+    "defaultMessage": "Full Name",
+    "description": ""
+  },
+  "LEADER_BIRTHDAY_LABEL": {
+    "defaultMessage": "Birthday",
+    "description": ""
+  },
+  "LEADER_YEAR_IN_SCHOOL_LABEL": {
+    "defaultMessage": "Year in school",
+    "description": ""
+  },
+  "FRESHMAN": {
+    "defaultMessage": "Freshman",
+    "description": ""
+  },
+  "SOPHOMORE": {
+    "defaultMessage": "Sophomore",
+    "description": ""
+  },
+  "JUNIOR": {
+    "defaultMessage": "Junior",
+    "description": ""
+  },
+  "SENIOR": {
+    "defaultMessage": "Senior",
+    "description": ""
+  },
+  "OTHER_YEAR": {
+    "defaultMessage": "Other year",
+    "description": ""
+  },
+  "LEADER_PHONE_NUMBER_LABEL": {
+    "defaultMessage": "Phone number (include country code if not in the United States)",
+    "description": ""
+  },
+  "LEADER_ADDRESS_LABEL": {
+    "defaultMessage": "Your full address (where we can ship you stickers)",
+    "description": ""
+  },
+  "DEMOGRAPHIC_STATS_DISCLAIMER": {
+    "defaultMessage": "Demographic stats are collected to share in aggregate with donors and will not be used as part of application review.",
+    "description": ""
+  },
+  "GENDER": {
+    "defaultMessage": "Gender",
+    "description": ""
+  },
+  "MALE": {
+    "defaultMessage": "Male",
+    "description": ""
+  },
+  "FEMALE": {
+    "defaultMessage": "Female",
+    "description": ""
+  },
+  "GENDERQUEER": {
+    "defaultMessage": "Non-binary/genderqueer",
+    "description": ""
+  },
+  "AGENDER": {
+    "defaultMessage": "Agender",
+    "description": ""
+  },
+  "OTHER": {
+    "defaultMessage": "Other",
+    "description": ""
+  },
+  "ETHNICITY": {
+    "defaultMessage": "Ethnicity",
+    "description": ""
+  },
+  "HISPANIC_OR_LATINO": {
+    "defaultMessage": "Hispanic or Latino",
+    "description": ""
+  },
+  "WHITE": {
+    "defaultMessage": "White",
+    "description": ""
+  },
+  "BLACK": {
+    "defaultMessage": "Black",
+    "description": ""
+  },
+  "NATIVE_AMERICAN_OR_INDIAN": {
+    "defaultMessage": "Native American or American Indian",
+    "description": ""
+  },
+  "ASIAN_OR_PACIFIC": {
+    "defaultMessage": "Asian or Pacific Islander",
+    "description": ""
+  },
+  "OTHER_ETHNICITY": {
+    "defaultMessage": "Other ethnicity",
+    "description": ""
+  },
+  "PERSONAL_WEBSITE_LINK": {
+    "defaultMessage": "Personal website link",
+    "description": ""
+  },
+  "GITHUB_LINK": {
+    "defaultMessage": "GitHub link",
+    "description": ""
+  },
+  "TWITTER_LINK": {
+    "defaultMessage": "Twitter link",
+    "description": ""
+  },
+  "SKILLS_SYSTEM_LABEL": {
+    "defaultMessage": "Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.",
+    "description": ""
+  },
+  "HERE_ARE_EXAMPLES": {
+    "defaultMessage": "Here are examples",
+    "description": ""
+  },
+  "OF_WHAT_WE_ARE_LOOKING": {
+    "defaultMessage": "of what we’re looking for.",
+    "description": ""
+  },
+  "SKILLS_IMPRESSIVE_ACHIEVEMENT_LABEL": {
+    "defaultMessage": "Please tell us in one or two sentences about the most impressive thing you have built or achieved. Include links (and links to images) if possible.",
+    "description": ""
+  },
+  "SKILLS_IS_TECHNICAL_LABEL": {
+    "defaultMessage": "Are you technical? (You are a programmer who can teach without outside assistance)",
+    "description": ""
+  },
+  "YES": {
+    "defaultMessage": "Yes",
+    "description": ""
+  },
+  "NO": {
+    "defaultMessage": "No",
+    "description": ""
+  },
+  "YOU_CAN_READ_OUR": {
+    "defaultMessage": "You can read our ",
+    "description": ""
+  },
+  "GUIDE_FOR_SELECTING_TEAM": {
+    "defaultMessage": "guide for selecting your team here",
+    "description": ""
+  },
+  "TEACHER_SPONSOR_DOESNT_NEED_TO_FILL_PROFILE": {
+    "defaultMessage": "Your teacher sponsor does not need to fill out a profile.",
+    "description": ""
+  },
+  "CO_LEADERS": {
+    "defaultMessage": "Co-leaders",
+    "description": ""
+  },
+  "INVALID_EMAIL_ADDRESS": {
+    "defaultMessage": "Invalid email address",
+    "description": ""
+  },
+  "SOMETHING_WENT_TERRIBLY_WRONG": {
+    "defaultMessage": "Something went terribly wrong",
+    "description": ""
+  },
+  "NEW_CO_LEADER_EMAIL": {
+    "defaultMessage": "New co-leader’s email",
+    "description": ""
+  },
+  "FRIEND_GMAIL_COM": {
+    "defaultMessage": "friend@gmail.com",
+    "description": ""
+  },
+  "SEND_THIS_INVITATION": {
+    "defaultMessage": "Send this invitation",
+    "description": ""
+  },
+  "NOT_STARTED": {
+    "defaultMessage": "not started",
+    "description": ""
+  },
+  "IN_PROGRESS": {
+    "defaultMessage": "in progress",
+    "description": ""
+  },
+  "COMPLETE": {
+    "defaultMessage": "complete",
+    "description": ""
+  },
+  "SUBMITTED": {
+    "defaultMessage": "submitted",
+    "description": ""
+  },
+  "ONCE_YOU_SUBMIT_WILL_RECEIVE_CONFIRMATION": {
+    "defaultMessage": "Once you submit, you’ll recieve a confirmation email from us with the next steps.",
+    "description": ""
+  },
+  "WE_HAVE_RECEIVED_YOUR_APPLICATION": {
+    "defaultMessage": "We’ve received your application",
+    "description": ""
+  },
+  "SUBMIT_YOUR_APPLICATION": {
+    "defaultMessage": "Submit your application",
+    "description": ""
+  },
+  "ENTER_YOUR_EMAIL_LABEL": {
+    "defaultMessage": "Enter your email",
+    "description": ""
+  },
+  "ENTER_YOUR_EMAIL_PLACEHOLDER": {
+    "defaultMessage": "Email address",
+    "description": ""
+  },
+  "CONTINUE": {
+    "defaultMessage": "Continue »",
+    "description": ""
+  },
+  "THAT_DOESNT_LOOK_LIKE_VALID_EMAIL": {
+    "defaultMessage": "That doesn’t look like a valid email.",
+    "description": ""
+  },
+  "START_YOUR_APPLICATION": {
+    "defaultMessage": "Start your application",
+    "description": ""
+  },
+  "LOG_IN_HACK_CLUB": {
+    "defaultMessage": "Log in - Hack Club",
+    "description": ""
+  },
+  "WE_JUST_SENT_A_LOGIN_CODE": {
+    "defaultMessage": "We just sent a login code to ",
+    "description": ""
+  },
+  "LOGIN_CODE": {
+    "defaultMessage": "Login Code",
+    "description": ""
+  },
+  "MAKE_SURE_TO_CHECK_SPAM": {
+    "defaultMessage": "Make sure to check your spam folder",
+    "description": ""
+  },
+  "GO_TO_APPLICATION": {
+    "defaultMessage": "Go to application »",
+    "description": ""
+  },
+  "WRONG_CODE_MESSAGE": {
+    "defaultMessage": "That doesn’t look like the code we sent.",
+    "description": ""
+  },
+  "LOGOUT": {
+    "defaultMessage": "Logout",
+    "description": ""
+  },
+  "BEFORE_YOU_SUBMIT": {
+    "defaultMessage": "Before you submit…",
+    "description": ""
+  },
+  "SAVED": {
+    "defaultMessage": "Saved!",
+    "description": ""
+  },
+  "SAVING": {
+    "defaultMessage": "Saving, gimme a sec...",
+    "description": ""
+  },
+  "BEFORE_LEAVING_WARNING": {
+    "defaultMessage": "Hold on, you’re about to lose unsaved changes! Sure you want to leave?",
+    "description": ""
+  },
+  "OPTIONAL": {
+    "defaultMessage": "optional",
+    "description": ""
+  },
+  "AIM_FOR_BETWEEN": {
+    "defaultMessage": "(Aim for between {min} and {max} characters)",
+    "description": ""
+  },
+  "AIM_FOR_BETWEEN_WITH_ACTUAL": {
+    "defaultMessage": "{actual} characters (aim for {min} to {max})",
+    "description": ""
+  },
+  "YOUR_FORM_IS_AUTOMATICALLY_SAVED": {
+    "defaultMessage": "Your form is automatically saved",
+    "description": ""
+  },
+  "BACK": {
+    "defaultMessage": "Back",
+    "description": ""
+  },
+  "EDIT_LEADER_APPLICATION": {
+    "defaultMessage": "Edit Leader Application – Hack Club",
+    "description": ""
+  },
+  "EDIT_CLUB_APPLICATION": {
+    "defaultMessage": "Edit Club Application – Hack Club"
+  },
+  "APPLY": {
+    "defaultMessage": "Apply"
+  },
+  "CLUB_ROUTE": {
+    "defaultMessage": "club"
+  },
+  "LEADER_ROUTE": {
+    "defaultMessage": "leader"
+  },
+  "STATS": {
+    "defaultMessage": "stats",
+    "description": ""
+  },
+  "PRESENCE": {
+    "defaultMessage": "presence",
+    "description": ""
+  },
+  "SKILLS": {
+    "defaultMessage": "skills",
+    "description": ""
+  },
+  "SCHOOL": {
+    "defaultMessage": "school",
+    "description": ""
+  },
+  "LEADERS": {
+    "defaultMessage": "leaders",
+    "description": ""
+  },
+  "IDEA": {
+    "defaultMessage": "idea",
+    "description": ""
+  },
+  "FORMATION": {
+    "defaultMessage": "formation",
+    "description": ""
+  },
+  "OTHER_SECTION": {
+    "defaultMessage": "other",
+    "description": ""
+  },
+  "CURIOUS": {
+    "defaultMessage": "curious",
+    "description": ""
+  }
+}

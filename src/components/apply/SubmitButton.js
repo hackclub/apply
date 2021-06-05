@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import api from '../../api'
 import styled from 'styled-components'
 import { LargeButton, Text, theme } from '@hackclub/design-system'
+import { injectIntl } from 'react-intl'
 
 const Root = styled(LargeButton).attrs({
   py: 4,
@@ -50,8 +51,9 @@ class SubmitButton extends Component {
       <>
         {status !== 'incomplete' && (
           <Text color="muted" align="center" mb={2}>
-            Once you submit, you’ll recieve a confirmation email from us with
-            the next steps.
+            {this.props.intl.formatMessage({
+              id: 'ONCE_YOU_SUBMIT_WILL_RECEIVE_CONFIRMATION'
+            })}
           </Text>
         )}
         <Root
@@ -62,8 +64,10 @@ class SubmitButton extends Component {
           disabled={status === 'incomplete' || loading}
           children={
             status === 'submitted'
-              ? 'We’ve received your application'
-              : 'Submit your application'
+              ? this.props.intl.formatMessage({
+                  id: 'WE_HAVE_RECEIVED_YOUR_APPLICATION'
+                })
+              : this.props.intl.formatMessage({ id: 'SUBMIT_YOUR_APPLICATION' })
           }
         />
       </>
@@ -71,4 +75,6 @@ class SubmitButton extends Component {
   }
 }
 
-export default SubmitButton
+const SubmitButtonWithIntl = injectIntl(SubmitButton)
+
+export default SubmitButtonWithIntl

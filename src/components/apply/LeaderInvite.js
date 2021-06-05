@@ -10,6 +10,7 @@ import {
 import I from '@hackclub/icons'
 import styled from 'styled-components'
 import LeaderInviteForm from './LeaderInviteForm'
+import { injectIntl, useIntl } from 'react-intl'
 
 const Icon = Box.withComponent(I)
 
@@ -45,28 +46,36 @@ const InfoBase = styled(Box)`
   }
 `
 
-const InfoSheet = () => (
-  <InfoBase>
-    <Box p={3} color="info" fontSize={2} align="left">
-      <Icon glyph="welcome" size={36} mr={[2, 3]} color="info" />
-      <Text>
-        You can read our{' '}
-        <Link
-          href="https://hackclub.com/workshops/leadership_team"
-          target="_blank"
-          bold
-        >
-          guide for selecting your team here
-        </Link>
-        .
-      </Text>
-    </Box>
-    <Box p={3} color="info" fontSize={2} align="left">
-      <Icon glyph="leader" size={36} mr={[2, 3]} color="info" />
-      <Text>Your teacher sponsor does not need to fill out a profile.</Text>
-    </Box>
-  </InfoBase>
-)
+const InfoSheet = () => {
+  const intl = useIntl()
+
+  return (
+    <InfoBase>
+      <Box p={3} color="info" fontSize={2} align="left">
+        <Icon glyph="welcome" size={36} mr={[2, 3]} color="info" />
+        <Text>
+          {intl.formatMessage({ id: 'YOU_CAN_READ_OUR' })}{' '}
+          <Link
+            href="https://hackclub.com/workshops/leadership_team"
+            target="_blank"
+            bold
+          >
+            {intl.formatMessage({ id: 'GUIDE_FOR_SELECTING_TEAM' })}
+          </Link>
+          .
+        </Text>
+      </Box>
+      <Box p={3} color="info" fontSize={2} align="left">
+        <Icon glyph="leader" size={36} mr={[2, 3]} color="info" />
+        <Text>
+          {intl.formatMessage({
+            id: 'TEACHER_SPONSOR_DOESNT_NEED_TO_FILL_PROFILE'
+          })}
+        </Text>
+      </Box>
+    </InfoBase>
+  )
+}
 
 class LeaderInvite extends Component {
   state = { open: false }
@@ -79,7 +88,7 @@ class LeaderInvite extends Component {
       <Fragment>
         <Flex align="center" aria-expanded={open} mt={[4, 5]} mb={2}>
           <Text fontSize={4} color="muted" bold caps>
-            Co-leaders
+            {this.props.intl.formatMessage({ id: 'CO_LEADERS' })}
           </Text>
           <SectionIcon open={open} onClick={this.toggle} />
         </Flex>
@@ -90,4 +99,6 @@ class LeaderInvite extends Component {
   }
 }
 
-export default LeaderInvite
+const LeaderInviteWithIntl = injectIntl(LeaderInvite)
+
+export default LeaderInviteWithIntl

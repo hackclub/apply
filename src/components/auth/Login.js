@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import Flag from '../Flag'
 import LoginForm from './LoginForm'
+import { useIntl } from 'react-intl'
 
 const Base = styled(Flex)`
   flex-direction: column;
@@ -21,13 +22,18 @@ const FixedFlag = styled(Flag)`
 `
 
 const Login = ({ userType = 'applicant', color, heading, bg }) => {
+  const intl = useIntl()
+
   const resultColor = color || { applicant: 'white' }[userType]
   const resultBg = bg || { applicant: 'primary' }[userType]
   const resultHeading =
-    heading || { applicant: 'Start your application' }[userType]
+    heading ||
+    { applicant: intl.formatMessage({ id: 'START_YOUR_APPLICATION' }) }[
+      userType
+    ]
   return (
     <Base color={resultColor} bg={resultBg}>
-      <Helmet title="Log in – Hack Club" />
+      <Helmet title={intl.formatMessage({ id: 'LOG_IN_HACK_CLUB' })} />
       <FixedFlag />
       <Heading.h1
         fontSize={[4, 5]}

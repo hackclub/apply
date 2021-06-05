@@ -6,6 +6,7 @@ import { Submit } from '../Forms'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 import storage from '../../storage'
+import { injectIntl } from 'react-intl'
 
 const StyledInput = styled(Input)`
   text-align: inherit;
@@ -72,13 +73,14 @@ class InnerForm extends Component {
             <span role="img" aria-label="">
               📬
             </span>{' '}
-            We just sent a login code to {email}.
+            {this.props.intl.formatMessage({ id: 'WE_JUST_SENT_A_LOGIN_CODE' })}{' '}
+            {email}.
           </Text>
           <StyledInput
             name="loginCode"
             color={color}
             bg={bg}
-            placeholder="Login Code"
+            placeholder={this.props.intl.formatMessage({ id: 'LOGIN_CODE' })}
             value={values.loginCode}
             onChange={(e) => {
               e.target.value = this.formatAsLoginCode(e, e.target.value)
@@ -92,7 +94,7 @@ class InnerForm extends Component {
             {...inputProps}
           />
           <Text color={color} mt={3} fontSize={2}>
-            Make sure to check your spam folder
+            {this.props.intl.formatMessage({ id: 'MAKE_SURE_TO_CHECK_SPAM' })}
           </Text>
         </Label>
         {errors.loginCode && (
@@ -105,7 +107,7 @@ class InnerForm extends Component {
         )}
         <Submit
           mt={3}
-          value="Go to application »"
+          value={this.props.intl.formatMessage({ id: 'GO_TO_APPLICATION' })}
           color={color}
           bg={bg}
           mx={inputProps.mx || '0'}
@@ -147,4 +149,7 @@ const LoginCodeForm = withFormik({
   },
   displayName: 'LoginCodeForm'
 })(InnerForm)
-export default LoginCodeForm
+
+const LoginCodeFormWithIntl = injectIntl(LoginCodeForm)
+
+export default LoginCodeFormWithIntl

@@ -10,6 +10,7 @@ import Sheet from '../components/Sheet'
 import ApplyNav from '../components/apply/ApplyNav'
 import LoadingBar from '../components/LoadingBar'
 import LeaderApplicationForm from '../components/apply/LeaderApplicationForm'
+import { useIntl } from 'react-intl'
 
 LargeButton.link = LargeButton.withComponent(Link)
 
@@ -55,6 +56,8 @@ export default class extends Component {
 }
 
 const Content = ({ status, formFields, id }) => {
+  const intl = useIntl()
+
   switch (status) {
     case 'needsToAuth':
       return <Login />
@@ -68,14 +71,14 @@ const Content = ({ status, formFields, id }) => {
             <LeaderApplicationForm params={formFields} id={id} />
           </Sheet>
           <Heading.h4 align="center">
-            Your form is automatically saved{' '}
+            {intl.formatMessage({ id: 'YOUR_FORM_IS_AUTOMATICALLY_SAVED' })}{' '}
             <span role="img" aria-label="">
               ✨
             </span>
           </Heading.h4>
           <Container align="center" mt={4} mb={5}>
             <LargeButton.link href="/" chevronLeft>
-              Back
+              {intl.formatMessage({ id: 'BACK' })}
             </LargeButton.link>
           </Container>
         </>

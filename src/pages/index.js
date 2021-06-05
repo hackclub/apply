@@ -12,6 +12,7 @@ import Sheet from '../components/Sheet'
 import Main from '../components/apply/Main'
 import LoginForm from '../components/auth/LoginForm'
 import LoadingBar from '../components/LoadingBar'
+import { injectIntl } from 'react-intl'
 
 LargeButton.link = LargeButton.withComponent(Link)
 
@@ -25,7 +26,7 @@ const Full = styled(Flex).attrs({
   height: 100vh;
 `
 
-export default class extends Component {
+class IndexPage extends Component {
   state = {
     status: 'loading',
     app: undefined,
@@ -34,8 +35,9 @@ export default class extends Component {
   }
 
   createNewApplication = (firstTime = false) => {
-    const msg =
-      'If you start a new application you won’t be able to access this one. Continue?'
+    const msg = this.props.intl.formatMessage({
+      id: 'REPLACE_CURRENT_APPLICATION_WARNING'
+    })
     // eslint-disable-next-line
     if (!firstTime && !window.confirm(msg)) {
       return Promise.resolve(null)
@@ -111,6 +113,8 @@ export default class extends Component {
   }
 
   content() {
+    const { intl } = this.props
+
     const { app, status, userId, country } = this.state
     switch (status) {
       case 'needsToAuth':
@@ -125,12 +129,16 @@ export default class extends Component {
               style={{ mixBlendMode: 'multiply' }}
             >
               <Heading.h1 fontSize={6} style={{ lineHeight: '1.125' }}>
-                Welcome!
+                {intl.formatMessage({ id: 'WELCOME_TITLE' })}
               </Heading.h1>
               <Text fontSize={4} mt={2} mb={3}>
-                We can’t wait to see your application.
+                {intl.formatMessage({
+                  id: 'WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE'
+                })}
                 <br />
-                Let’s get you signed in!
+                {intl.formatMessage({
+                  id: 'WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE'
+                })}
               </Text>
               <LoginForm
                 bg="black"
@@ -159,7 +167,7 @@ export default class extends Component {
       default:
         return (
           <Text color="error" py={4}>
-            Something terrible has happened.
+            {intl.formatMessage({ id: 'SOMETHING_TERRIBLE_HAPPENED' })}
           </Text>
         )
     }
@@ -168,9 +176,15 @@ export default class extends Component {
   render() {
     return (
       <Layout>
-        <Helmet title="Apply – Hack Club" />
+        <Helmet
+          title={this.props.intl.formatMessage({ id: 'INITIAL_PAGE_TITLE' })}
+        />
         {this.content()}
       </Layout>
     )
   }
 }
+
+const IndexPageWithIntl = injectIntl(IndexPage)
+
+export default IndexPageWithIntl

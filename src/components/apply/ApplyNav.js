@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { useRouter } from 'next/router'
 import { Text, Flex, Box, Link } from '@hackclub/design-system'
 import Flag from '../Flag'
 import LogoutButton from '../auth/LogoutButton'
 import { startCase, toLower } from 'lodash'
+import { injectIntl } from 'react-intl'
 
 const Crumb = ({ isLast, ...props }) => {
   const Tag = isLast ? Text.span : Link
@@ -15,7 +17,7 @@ class Breadcrumb extends Component {
   componentDidMount() {
     const path = window.location.pathname
       .split('/')
-      .filter((chunk) => chunk !== '')
+      .filter((chunk) => chunk !== '' && !this.props.locales.includes(chunk))
     this.setState({ path })
   }
 
@@ -25,7 +27,7 @@ class Breadcrumb extends Component {
     return (
       <>
         <Crumb href="/" color="slate" fontSize={3}>
-          Apply
+          {this.props.intl.formatMessage({ id: 'APPLY' })}
         </Crumb>
         {path.length > 0 && (
           <Text.span mx={2} color="muted" regular children="›" />
@@ -33,7 +35,13 @@ class Breadcrumb extends Component {
         {path.map((section, index) => {
           runningPath.push(section)
           const isLast = path.length - index - 1 === 0
-          const humanizedSection = startCase(toLower(section))
+          const humanizedSection = startCase(
+            toLower(
+              this.props.intl.formatMessage({
+                id: `${section.toUpperCase()}_ROUTE`
+              })
+            )
+          )
           return (
             <Crumb
               href={runningPath.join('/')}
@@ -51,24 +59,30 @@ class Breadcrumb extends Component {
   }
 }
 
-const ApplyNav = ({ breadcrumb = true, ...props }) => (
-  <Flex
-    px={[3, 4]}
-    pb={2}
-    justify="space-between"
-    align="center"
-    width={1}
-    style={{ position: 'relative' }}
-    {...props}
-  >
-    <Flag />
-    {breadcrumb && (
-      <Box fontSize={[2, 4]} mt={2} width={32 * 16}>
-        <Breadcrumb />
-      </Box>
-    )}
-    <LogoutButton mt={2} inverted />
-  </Flex>
-)
+const BreadCrumbWithIntl = injectIntl(Breadcrumb)
+
+const ApplyNav = ({ breadcrumb = true, ...props }) => {
+  const { locales } = useRouter()
+
+  return (
+    <Flex
+      px={[3, 4]}
+      pb={2}
+      justify="space-between"
+      align="center"
+      width={1}
+      style={{ position: 'relative' }}
+      {...props}
+    >
+      <Flag />
+      {breadcrumb && (
+        <Box fontSize={[2, 4]} mt={2} width={32 * 16}>
+          <BreadCrumbWithIntl locales={locales} />
+        </Box>
+      )}
+      <LogoutButton mt={2} inverted />
+    </Flex>
+  )
+}
 
 export default ApplyNav
