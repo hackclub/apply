@@ -48,7 +48,9 @@ class LeaderInviteForm extends Component {
             // skip
           } else if (e.message === 'email') {
             this.setState({
-              error: this.props.intl.formatMessage({ id: 'INVALID_EMAIL_ADDRESS' })
+              error: this.props.intl.formatMessage({
+                id: 'INVALID_EMAIL_ADDRESS'
+              })
             })
           } else {
             this.setState({
@@ -67,7 +69,9 @@ class LeaderInviteForm extends Component {
           name="new_leader_invite_email"
           onKeyDown={handleChange}
           label={this.props.intl.formatMessage({ id: 'NEW_CO_LEADER_EMAIL' })}
-          placeholder={this.props.intl.formatMessage({ id: 'FRIEND_GMAIL_COM' })}
+          placeholder={this.props.intl.formatMessage({
+            id: 'FRIEND_GMAIL_COM'
+          })}
           error={error}
           mb={4}
         />

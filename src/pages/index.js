@@ -30,8 +30,7 @@ class IndexPage extends Component {
   state = {
     status: 'loading',
     app: undefined,
-    userId: undefined,
-    country: null
+    userId: undefined
   }
 
   createNewApplication = (firstTime = false) => {
@@ -88,20 +87,8 @@ class IndexPage extends Component {
     }
   }
 
-  getCountry = async () => {
-    const ipResponse = await fetch('https://api.ipify.org?format=json')
-    const ipJson = await ipResponse.json()
-    const countryResponse = await fetch(
-      `https://www.iplocate.io/api/lookup/${ipJson.ip}`
-    )
-    const countryJson = await countryResponse.json()
-    const country = countryJson.country
-    return country
-  }
-
   componentDidMount() {
     const userId = storage.get('userId')
-    this.getCountry().then((response) => this.setState({ country: response }))
     this.setState({ userId })
     const needsToAuth = userId === null
 
@@ -115,7 +102,7 @@ class IndexPage extends Component {
   content() {
     const { intl } = this.props
 
-    const { app, status, userId, country } = this.state
+    const { app, status, userId } = this.state
     switch (status) {
       case 'needsToAuth':
         return (
@@ -160,7 +147,6 @@ class IndexPage extends Component {
               userId={userId}
               callback={this.populateApplications}
               resetCallback={this.resetApplication}
-              country={country}
             />
           </Fragment>
         )

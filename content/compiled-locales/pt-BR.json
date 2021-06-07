@@ -106,7 +106,7 @@
   "BEFORE_YOU_SUBMIT": [
     {
       "type": 0,
-      "value": "Antes de submeter…"
+      "value": "Antes de enviar..."
     }
   ],
   "BLACK": [
@@ -460,7 +460,7 @@
   "ONCE_YOU_SUBMIT_WILL_RECEIVE_CONFIRMATION": [
     {
       "type": 0,
-      "value": "Assim que submeter, você receberá um e-mail de nós com os próximos passos."
+      "value": "Assim que enviar, você receberá um e-mail de nós com os próximos passos."
     }
   ],
   "OPTIONAL": [
@@ -550,7 +550,7 @@
   "READY_TO_SUBMIT": [
     {
       "type": 0,
-      "value": "pronta para submeter!"
+      "value": "pronta para enviar!"
     }
   ],
   "REJECTED_MESSAGE": [
@@ -694,7 +694,7 @@
   "SUBMIT_YOUR_APPLICATION": [
     {
       "type": 0,
-      "value": "Submeta sua inscrição"
+      "value": "Envie sua inscrição"
     }
   ],
   "TEACHER_SPONSOR_DOESNT_NEED_TO_FILL_PROFILE": [

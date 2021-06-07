@@ -58,12 +58,6 @@ const ContactBase = styled(Sheet).attrs({
   }
 `
 
-const ApplicationInPortugueseBase = styled(Sheet).attrs({
-  mt: [3, 4],
-  px: [3, 4],
-  py: 3
-})``
-
 const ContactInfo = () => {
   const intl = useIntl()
 
@@ -82,22 +76,6 @@ const ContactInfo = () => {
     </ContactBase>
   )
 }
-
-const ApplicationInPortuguese = ({ country }) => (
-  <Box>
-    {country === 'Brazil' || country === 'Brasil' || country === 'BR' ? (
-      <ApplicationInPortugueseBase>
-        <Box color="#009c3b	" fontSize="120%" align="left">
-          <Text>
-            Você está se inscrevendo do <strong>Brasil</strong>? Se sim,
-            sinta-se à vontade de preencher a inscrição em{' '}
-            <strong>Inglês</strong> ou <strong>Português</strong>.
-          </Text>
-        </Box>
-      </ApplicationInPortugueseBase>
-    ) : null}
-  </Box>
-)
 
 const SectionBase = styled(Flex).attrs({
   py: 4,
@@ -185,7 +163,7 @@ const Main = (props) => {
   const intl = useIntl()
 
   const { id, leader_profiles, updated_at, created_at } = props.app
-  const { callback, app, resetCallback, country } = props
+  const { callback, app, resetCallback } = props
 
   const leaderProfile = leader_profiles.find(
     (profile) => profile.user && profile.user.id === props.userId
@@ -235,10 +213,9 @@ const Main = (props) => {
   return (
     <Container maxWidth={52} py={4}>
       <ContactInfo />
-      <ApplicationInPortuguese country={country} />
       <Sheet mt={4} p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>
-          <Text.span style={{ display: 'block' }}>
+          <Text.span>
             {intl.formatMessage({ id: 'APPLICATION_STATUS_MESSAGE' })}
           </Text.span>
           <SubmitStatus {...submitStatusProps} />{' '}

@@ -48,7 +48,7 @@
     "description": ""
   },
   "READY_TO_SUBMIT": {
-    "defaultMessage": "pronta para submeter!",
+    "defaultMessage": "pronta para enviar!",
     "description": ""
   },
   "SUBMITTED_WITH_EXCLAMATION_MARK": {
@@ -348,7 +348,7 @@
     "description": ""
   },
   "ONCE_YOU_SUBMIT_WILL_RECEIVE_CONFIRMATION": {
-    "defaultMessage": "Assim que submeter, você receberá um e-mail de nós com os próximos passos.",
+    "defaultMessage": "Assim que enviar, você receberá um e-mail de nós com os próximos passos.",
     "description": ""
   },
   "WE_HAVE_RECEIVED_YOUR_APPLICATION": {
@@ -356,7 +356,7 @@
     "description": ""
   },
   "SUBMIT_YOUR_APPLICATION": {
-    "defaultMessage": "Submeta sua inscrição",
+    "defaultMessage": "Envie sua inscrição",
     "description": ""
   },
   "ENTER_YOUR_EMAIL_LABEL": {
@@ -408,7 +408,7 @@
     "description": ""
   },
   "BEFORE_YOU_SUBMIT": {
-    "defaultMessage": "Antes de submeter…",
+    "defaultMessage": "Antes de enviar...",
     "description": ""
   },
   "SAVED": {
