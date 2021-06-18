@@ -13,6 +13,7 @@ import {
   theme
 } from '@hackclub/design-system'
 import styled, { keyframes } from 'styled-components'
+import { injectIntl, useIntl } from 'react-intl'
 
 const spin = keyframes`
   from {
@@ -29,16 +30,24 @@ const SaveBaseIcon = styled(Icon)`
   ${(props) => !props.saved && { animation: `4s ${spin} infinite` }}
 `
 
-const SaveStatusIcon = ({ saved }) => (
-  <SaveBaseIcon
-    glyph={saved ? 'checkmark' : 'community'}
-    color={saved ? 'muted' : 'primary'}
-    title={saved ? 'Saved!' : 'Saving, gimme a sec…'}
-    size={36}
-    m={2}
-    saved={saved}
-  />
-)
+const SaveStatusIcon = ({ saved }) => {
+  const intl = useIntl()
+
+  return (
+    <SaveBaseIcon
+      glyph={saved ? 'checkmark' : 'community'}
+      color={saved ? 'muted' : 'primary'}
+      title={
+        saved
+          ? intl.formatMessage({ id: 'SAVED' })
+          : intl.formatMessage({ id: 'SAVING' })
+      }
+      size={36}
+      m={2}
+      saved={saved}
+    />
+  )
+}
 
 const SaveStatusLine = styled(Box)`
   width: 100%;
@@ -134,13 +143,11 @@ export const Hint = styled(Text.span).attrs({
 `
 
 // currently unused
-export class ConfirmClose extends Component {
+class ConfirmClose extends Component {
   componentDidMount() {
     // https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
     window.onbeforeunload = () =>
-      window.confirm(
-        'Hold on, you’re about to lose unsaved changes! Sure you want to leave?'
-      )
+      window.confirm(intl.formatMessage({ id: 'BEFORE_LEAVING_WARNING' }))
   }
 
   componentWillUnmount() {
@@ -152,27 +159,40 @@ export class ConfirmClose extends Component {
   }
 }
 
-export const Optional = () => (
-  <Text.span
-    className="optional"
-    fontSize={1}
-    ml={1}
-    color="muted"
-    children="(optional)"
-  />
-)
+export const confirmCloseWithIntl = injectIntl(ConfirmClose)
 
-export const LengthHint = ({ min, max, actual }) => (
-  <Text.span
-    className="length-hint"
-    color="muted"
-    children={
-      actual === 0
-        ? `(Aim for between ${min} and ${max} characters)`
-        : `${actual} characters (aim for ${min} to ${max})`
-    }
-  />
-)
+export const Optional = () => {
+  const intl = useIntl()
+
+  return (
+    <Text.span
+      className="optional"
+      fontSize={1}
+      ml={1}
+      color="muted"
+      children={`(${intl.formatMessage({ id: 'OPTIONAL' })})`}
+    />
+  )
+}
+
+export const LengthHint = ({ min, max, actual }) => {
+  const intl = useIntl()
+
+  return (
+    <Text.span
+      className="length-hint"
+      color="muted"
+      children={
+        actual === 0
+          ? intl.formatMessage({ id: 'AIM_FOR_BETWEEN' }, { min, max })
+          : intl.formatMessage(
+              { id: 'AIM_FOR_BETWEEN_WITH_ACTUAL' },
+              { actual, min, max }
+            )
+      }
+    />
+  )
+}
 
 export class Field extends Component {
   static defaultProps = {

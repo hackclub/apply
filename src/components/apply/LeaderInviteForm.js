@@ -3,6 +3,7 @@ import { Field } from '@hackclub/design-system'
 import { SendForm, SendButton } from '../SendForm'
 import api from '../../api'
 import * as yup from 'yup'
+import { injectIntl } from 'react-intl'
 
 class LeaderInviteForm extends Component {
   state = { errors: undefined }
@@ -46,9 +47,17 @@ class LeaderInviteForm extends Component {
           if (e.type === 'required') {
             // skip
           } else if (e.message === 'email') {
-            this.setState({ error: 'Invalid email address' })
+            this.setState({
+              error: this.props.intl.formatMessage({
+                id: 'INVALID_EMAIL_ADDRESS'
+              })
+            })
           } else {
-            this.setState({ error: 'Something went terribly wrong' })
+            this.setState({
+              error: this.props.intl.formatMessage({
+                id: 'SOMETHING_WENT_TERRIBLY_WRONG'
+              })
+            })
           }
         })
     }
@@ -59,13 +68,17 @@ class LeaderInviteForm extends Component {
           id="leader_invite"
           name="new_leader_invite_email"
           onKeyDown={handleChange}
-          label="New co-leader’s email"
-          placeholder="friend@gmail.com"
+          label={this.props.intl.formatMessage({ id: 'NEW_CO_LEADER_EMAIL' })}
+          placeholder={this.props.intl.formatMessage({
+            id: 'FRIEND_GMAIL_COM'
+          })}
           error={error}
           mb={4}
         />
         <SendButton
-          aria-label="Send this invitation"
+          aria-label={this.props.intl.formatMessage({
+            id: 'SEND_THIS_INVITATION'
+          })}
           onClick={handleSubmit}
           bg="info"
           mb={4}
@@ -75,4 +88,6 @@ class LeaderInviteForm extends Component {
   }
 }
 
-export default LeaderInviteForm
+const LeaderInviteFormWithIntl = injectIntl(LeaderInviteForm)
+
+export default LeaderInviteFormWithIntl

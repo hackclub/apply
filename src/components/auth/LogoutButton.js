@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Link } from '@hackclub/design-system'
 import storage from '../../storage'
+import { useIntl } from 'react-intl'
 
 export const destroySession = () => {
   storage.remove('authToken')
@@ -10,6 +11,15 @@ export const destroySession = () => {
 
 Button.link = Button.withComponent(Link)
 
-export default (props) => (
-  <Button.link href="/" onClick={destroySession} children="Logout" {...props} />
-)
+export default (props) => {
+  const intl = useIntl()
+
+  return (
+    <Button.link
+      href="/"
+      onClick={destroySession}
+      children={intl.formatMessage({ id: 'LOGOUT' })}
+      {...props}
+    />
+  )
+}

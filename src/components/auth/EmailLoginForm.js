@@ -7,6 +7,7 @@ import { Submit } from '../Forms'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 import storage from '../../storage'
+import { useIntl } from 'react-intl'
 
 const StyledInput = styled(Input)`
   text-align: inherit;
@@ -37,58 +38,65 @@ const InnerForm = ({
   status,
   inputProps = {},
   textProps = {}
-}) => (
-  <form onSubmit={handleSubmit}>
-    <Label className="email" id="email" mb={0} {...textProps}>
-      <Text mb={2} color={color}>
-        Enter your email
-      </Text>
-      <StyledInput
-        name="email"
-        placeholder="Email address"
+}) => {
+  const intl = useIntl()
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Label className="email" id="email" mb={0} {...textProps}>
+        <Text mb={2} color={color}>
+          {intl.formatMessage({ id: 'ENTER_YOUR_EMAIL_LABEL' })}
+        </Text>
+        <StyledInput
+          name="email"
+          placeholder={intl.formatMessage({
+            id: 'ENTER_YOUR_EMAIL_PLACEHOLDER'
+          })}
+          color={color}
+          bg={bg}
+          value={values.email}
+          onChange={(e) => {
+            e.target.value = e.target.value.trim()
+            handleChange(e)
+          }}
+          onBlur={handleBlur}
+          disabled={isSubmitting}
+          autoComplete="off"
+          autoFocus
+          {...inputProps}
+        />
+      </Label>
+      {errors.email && (
+        <Text
+          fontSize={1}
+          mt={2}
+          align={textProps.align || 'center'}
+          children={errors.email || ''}
+        />
+      )}
+      <Submit
+        mt={3}
+        value={intl.formatMessage({ id: 'CONTINUE' })}
         color={color}
         bg={bg}
-        value={values.email}
-        onChange={(e) => {
-          e.target.value = e.target.value.trim()
-          handleChange(e)
-        }}
-        onBlur={handleBlur}
-        disabled={isSubmitting}
-        autoComplete="off"
-        autoFocus
-        {...inputProps}
+        mx={inputProps.mx || '0'}
+        style={{ display: 'block' }}
+        onClick={handleSubmit}
+        inverted
       />
-    </Label>
-    {errors.email && (
-      <Text
-        fontSize={1}
-        mt={2}
-        align={textProps.align || 'center'}
-        children={errors.email || ''}
-      />
-    )}
-    <Submit
-      mt={3}
-      value="Continue »"
-      color={color}
-      bg={bg}
-      mx={inputProps.mx || '0'}
-      style={{ display: 'block' }}
-      onClick={handleSubmit}
-      inverted
-    />
-    {/*
-    <Text>{getSeason()} applications accepted on a rolling basis</Text>
-    */}
-  </form>
-)
+      {/*
+      <Text>{getSeason()} applications accepted on a rolling basis</Text>
+      */}
+    </form>
+  )
+}
 
 const EmailLoginForm = withFormik({
   mapPropsToValues: ({ email }) => ({ email: email || '' }),
   enableReinitialize: true,
   validateOnChange: false,
   validationSchema: yup.object().shape({
+    // email: yup.string().email(intl.formatMessage({id: "THAT_DOESNT_LOOK_LIKE_VALID_EMAIL"}))
     email: yup.string().email('That doesn’t look like a valid email.')
   }),
   handleSubmit: (data, { props, setSubmitting }) => {

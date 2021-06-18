@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { useIntl } from 'react-intl'
 import styled, { css } from 'styled-components'
 import {
   Box,
@@ -19,6 +20,7 @@ import SubmitButton from './SubmitButton'
 import Status from './Status'
 import api from '../../api'
 import storage from '../../storage'
+import { useRouter } from 'next/router'
 
 const authToken = storage.get('authToken')
 
@@ -31,17 +33,19 @@ const A = styled(Link)`
   }
 `
 
-const Rejected = ({ resetCallback }) => (
-  <Box mb={4}>
+const Rejected = ({ resetCallback }) => {
+  const intl = useIntl()
+
+  ;<Box mb={4}>
     <Heading.h3 color="error" mb={3}>
-      Unfortunately, you’ve been rejected
+      {intl.formatMessage({ id: 'REJECTED_TITLE' })}
     </Heading.h3>
     <P>
-      You can start a new application by clicking{' '}
-      <A onClick={resetCallback}>here</A>.
+      {intl.formatMessage({ id: 'REJECTED_MESSAGE' })}{' '}
+      <A onClick={resetCallback}>{intl.formatMessage({ id: 'HERE' })}</A>.
     </P>
   </Box>
-)
+}
 const ContactBase = styled(Sheet).attrs({
   mt: [3, 4],
   px: [3, 4],
@@ -54,42 +58,24 @@ const ContactBase = styled(Sheet).attrs({
   }
 `
 
-const ApplicationInPortugueseBase = styled(Sheet).attrs({
-  mt: [3, 4],
-  px: [3, 4],
-  py: 3
-})``
+const ContactInfo = () => {
+  const intl = useIntl()
 
-const ContactInfo = () => (
-  <ContactBase>
-    <Icon glyph="support" size={36} mr={[2, 3]} color="info" />
-    <Box color="info" fontSize={2} align="left">
-      <Text>
-        Please don’t hesitate to reach out. We’re available to email at{' '}
-        <a href="mailto:applications@hackclub.com">
-          <strong>applications@hackclub.com</strong>
-        </a>
-        .
-      </Text>
-    </Box>
-  </ContactBase>
-)
-
-const ApplicationInPortuguese = ({ country }) => (
-  <Box>
-    {country === 'Brazil' || country === 'Brasil' || country === 'BR' ? (
-      <ApplicationInPortugueseBase>
-        <Box color="#009c3b	" fontSize="120%" align="left">
-          <Text>
-            Você está se inscrevendo do <strong>Brasil</strong>? Se sim,
-            sinta-se à vontade de preencher a inscrição em{' '}
-            <strong>Inglês</strong> ou <strong>Português</strong>.
-          </Text>
-        </Box>
-      </ApplicationInPortugueseBase>
-    ) : null}
-  </Box>
-)
+  return (
+    <ContactBase>
+      <Icon glyph="support" size={36} mr={[2, 3]} color="info" />
+      <Box color="info" fontSize={2} align="left">
+        <Text>
+          {intl.formatMessage({ id: 'CONTACT_MESSAGE' })}{' '}
+          <a href="mailto:applications@hackclub.com">
+            <strong>applications@hackclub.com</strong>
+          </a>
+          .
+        </Text>
+      </Box>
+    </ContactBase>
+  )
+}
 
 const SectionBase = styled(Flex).attrs({
   py: 4,
@@ -173,8 +159,11 @@ const profileStatus = (profile) =>
     : 'incomplete'
 
 const Main = (props) => {
+  const { locale } = useRouter()
+  const intl = useIntl()
+
   const { id, leader_profiles, updated_at, created_at } = props.app
-  const { callback, app, resetCallback, country } = props
+  const { callback, app, resetCallback } = props
 
   const leaderProfile = leader_profiles.find(
     (profile) => profile.user && profile.user.id === props.userId
@@ -203,20 +192,31 @@ const Main = (props) => {
       : 'incomplete'
 
   const submitStatusProps = {
-    unopened: { color: 'primary', children: 'ready for you!' },
-    incomplete: { color: 'warning', children: 'in progress.' },
-    complete: { color: 'info', children: 'ready to submit!' },
-    submitted: { color: 'success', children: 'submitted!' }
+    unopened: {
+      color: 'primary',
+      children: intl.formatMessage({ id: 'READY_FOR_YOU' })
+    },
+    incomplete: {
+      color: 'warning',
+      children: intl.formatMessage({ id: 'IN_PROGRESS_WITH_PERIOD' })
+    },
+    complete: {
+      color: 'info',
+      children: intl.formatMessage({ id: 'READY_TO_SUBMIT' })
+    },
+    submitted: {
+      color: 'success',
+      children: intl.formatMessage({ id: 'SUBMITTED_WITH_EXCLAMATION_MARK' })
+    }
   }[submitButtonStatus]
 
   return (
     <Container maxWidth={52} py={4}>
       <ContactInfo />
-      <ApplicationInPortuguese country={country} />
       <Sheet mt={4} p={[3, 4, 5]}>
         <Headline mb={4} style={{ position: 'relative' }}>
-          <Text.span style={{ display: 'block' }}>
-            Your application to Hack Club is
+          <Text.span>
+            {intl.formatMessage({ id: 'APPLICATION_STATUS_MESSAGE' })}
           </Text.span>
           <SubmitStatus {...submitStatusProps} />{' '}
         </Headline>
@@ -226,27 +226,34 @@ const Main = (props) => {
         </Text>
         */}
         <Section
-          href={`/club?id=${id}`}
+          href={`/${locale !== 'en-US' ? `${locale}/` : ''}club?id=${id}`}
           name={
             <Box>
               <Status type={applicationStatus()} />
-              <Text>{app.high_school_name || 'Club application'}</Text>
+              <Text>
+                {app.high_school_name ||
+                  intl.formatMessage({ id: 'CLUB_APPLICATION' })}
+              </Text>
             </Box>
           }
         />
         <Section
-          href={`/leader?id=${leaderProfile.id}`}
+          href={`/${locale !== 'en-US' ? `${locale}/` : ''}leader?id=${
+            leaderProfile.id
+          }`}
           name={
             <Box>
               <Status type={profileStatus(leaderProfile)} />
-              <Text>My personal profile</Text>
+              <Text>{intl.formatMessage({ id: 'MY_PERSONAL_PROFILE' })}</Text>
             </Box>
           }
         />
         <LeaderInvite id={id} callback={callback} />
         {coLeaderProfiles.length === 0 && (
           <Text py={4} color="muted" align="center" fontSize={3}>
-            <Text.span bold>No co-leaders yet!</Text.span>
+            <Text.span bold>
+              {intl.formatMessage({ id: 'NO_COLEADERS_YET' })}
+            </Text.span>
           </Text>
         )}
         {coLeaderProfiles.map((profile) => (
@@ -263,7 +270,10 @@ const Main = (props) => {
                 if (
                   // eslint-disable-next-line
                   confirm(
-                    `Are you sure you want to remove ${profile.user.email} as a team member?`
+                    intl.formatMessage(
+                      { id: 'ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER' },
+                      { team_member: profile.user.email }
+                    )
                   )
                 ) {
                   api
@@ -276,7 +286,7 @@ const Main = (props) => {
                     })
                 }
               }}
-              aria-label="Remove team member"
+              aria-label={intl.formatMessage({ id: 'REMOVE_TEAM_MEMBER' })}
             />
           </SectionBase>
         ))}

@@ -3,6 +3,7 @@ import { AutoSaver, Fieldset, Field, Form } from '../Forms'
 import { withFormik } from 'formik'
 import * as yup from 'yup'
 import api from '../../api'
+import { useIntl } from 'react-intl'
 
 export const clubApplicationSchema = yup.object().shape({
   high_school_name: yup.string().required(),
@@ -29,6 +30,8 @@ const InnerForm = ({
   handleSubmit,
   isSubmitting
 }) => {
+  const intl = useIntl()
+
   const field = (name) => ({
     name,
     value: values[name] === null ? '' : values[name],
@@ -39,42 +42,51 @@ const InnerForm = ({
   })
   return (
     <Form onSubmit={handleSubmit}>
-      <Fieldset section="school">
-        <Field {...field('high_school_name')} label="Name of high school" />
+      <Fieldset section={intl.formatMessage({ id: 'SCHOOL' })}>
+        <Field
+          {...field('high_school_name')}
+          label={intl.formatMessage({ id: 'HIGH_SCHOOL_NAME_LABEL' })}
+        />
         <Field
           {...field('high_school_url')}
-          label="Link to your high school’s website, if any"
+          label={intl.formatMessage({ id: 'HIGH_SCHOOL_LINK_LABEL' })}
           type="url"
           optional
         />
         <Field
           {...field('high_school_type')}
-          label="Type of school"
+          label={intl.formatMessage({ id: 'HIGH_SCHOOL_TYPE_LABEL' })}
           type="select"
         >
           <option disabled value="">
-            Select One
+            {intl.formatMessage({ id: 'SELECT_ONE' })}
           </option>
-          <option value="public_school">Public school</option>
-          <option value="private_school">Private school</option>
-          <option value="charter_school">Charter school</option>
+          <option value="public_school">
+            {intl.formatMessage({ id: 'PUBLIC_SCHOOL' })}
+          </option>
+          <option value="private_school">
+            {intl.formatMessage({ id: 'PRIVATE_SCHOOL' })}
+          </option>
+          <option value="charter_school">
+            {intl.formatMessage({ id: 'CHARTER_SCHOOL' })}
+          </option>
         </Field>
         <Field
           {...field('high_school_address')}
-          label="High school’s full address"
-          hint="Please include city, state / province, country, and postal code."
+          label={intl.formatMessage({ id: 'HIGH_SCHOOL_ADDRESS_LABEL' })}
+          hint={intl.formatMessage({ id: 'ADDRESS_HINT' })}
           type="textarea"
           rows="3"
         />
       </Fieldset>
-      <Fieldset section="leaders">
+      <Fieldset section={intl.formatMessage({ id: 'LEADERS' })}>
         <Field
           {...field('point_of_contact_id')}
-          label="President / equivalent position"
+          label={intl.formatMessage({ id: 'PRESIDENT_OR_EQUIVALENT_LABEL' })}
           type="select"
         >
           <option disabled value="">
-            Select One
+            {intl.formatMessage({ id: 'SELECT_ONE' })}
           </option>
           {values.leader_profiles
             .filter((profile) => profile.user != null)
@@ -86,67 +98,73 @@ const InnerForm = ({
         </Field>
         <Field
           {...field('leaders_team_origin_story')}
-          label="How long have you known your other club leaders and how did you meet?"
+          label={intl.formatMessage({ id: 'TEAM_ORIGIN_STORY_LABEL' })}
           type="textarea"
           min="350"
           max="600"
         />
       </Fieldset>
-      <Fieldset section="idea">
+      <Fieldset section={intl.formatMessage({ id: 'IDEA' })}>
         <Field
           {...field('idea_why')}
-          label="Why are you planning to start a Hack Club? Have you run anything like a Hack Club before? Why do you think the club is going to work?"
+          label={intl.formatMessage({ id: 'WHY_PLANNING_TO_START_CLUB_LABEL' })}
           type="textarea"
           min="350"
           max="600"
         />
         <Field
           {...field('idea_other_coding_clubs')}
-          label="Has your school had coding clubs before? What’s going to be new about your Hack Club?"
+          label={intl.formatMessage({ id: 'OTHER_CODING_CLUBS_LABEL' })}
           type="textarea"
           min="350"
           max="600"
         />
         <Field
           {...field('idea_other_general_clubs')}
-          label="What successful clubs exist at your school? What makes them successful? Why will you be just as successful, if not more, than them?"
+          label={intl.formatMessage({ id: 'OTHER_GENERAL_CLUBS_LABEL' })}
           type="textarea"
           min="350"
           max="600"
         />
       </Fieldset>
-      <Fieldset section="formation">
+      <Fieldset section={intl.formatMessage({ id: 'FORMATION' })}>
         <Field
           {...field('formation_registered')}
-          label="Have you already registered your club with your school?"
+          label={intl.formatMessage({ id: 'CLUB_ALREADY_REGISTERED_LABEL' })}
         />
         <Field
           {...field('formation_misc')}
-          label="Please provide any other relevant information about your relationship with the school. For example, do you already have a teacher sponsor?"
+          label={intl.formatMessage({
+            id: 'OTHER_RELEVANT_INFO_ABOUT_SCHOOL_RELATIONSHIP_LABEL'
+          })}
           type="textarea"
           optional
         />
       </Fieldset>
-      <Fieldset section="other">
+      <Fieldset section={intl.formatMessage({ id: 'OTHER_SECTION' })}>
         <Field
           {...field('other_surprising_or_amusing_discovery')}
-          label="What is something surprising or amusing you learned recently?"
-          hint="Don't make it about Hack Club! Doesn't have to be about coding."
+          label={intl.formatMessage({
+            id: 'SOMETHING_SURPRISING_YOU_LEARNED_LABEL'
+          })}
+          hint={intl.formatMessage({
+            id: 'SOMETHING_SURPRISING_YOU_LEARNED_HINT'
+          })}
           type="textarea"
           min="50"
           max="400"
         />
       </Fieldset>
-      <Fieldset section="curious">
+      <Fieldset section={intl.formatMessage({ id: 'CURIOUS' })}>
         <Field
           {...field('curious_what_convinced')}
-          label="What do you hope to get out of Hack Club?"
+          label={intl.formatMessage({ id: 'WHAT_DO_YOU_EXPECT_LABEL' })}
           type="textarea"
           optional
         />
         <Field
           {...field('curious_how_did_hear')}
-          label="How did you hear about Hack Club? If you heard about us at an event or on a website, mention it here."
+          label={intl.formatMessage({ id: 'HOW_DID_YOU_HEAR_LABEL' })}
           type="textarea"
           optional
         />

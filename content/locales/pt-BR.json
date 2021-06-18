@@ -1,0 +1,502 @@
+{
+  "REPLACE_CURRENT_APPLICATION_WARNING": {
+    "defaultMessage": "Se você iniciar uma nova inscrição você não poderá acessar esta novamente. Deseja continuar?",
+    "description": ""
+  },
+  "WELCOME_TITLE": {
+    "defaultMessage": "Bem-vindo",
+    "description": ""
+  },
+  "WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE": {
+    "defaultMessage": "Mal podemos esperar para receber sua inscrição.",
+    "description": ""
+  },
+  "WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE": {
+    "defaultMessage": "Vamos logar você!",
+    "description": ""
+  },
+  "SOMETHING_TERRIBLE_HAPPENED": {
+    "defaultMessage": "Algo terrível aconteceu.",
+    "description": ""
+  },
+  "INITIAL_PAGE_TITLE": {
+    "defaultMessage": "Inscrição – Hack Club",
+    "description": ""
+  },
+  "REJECTED_TITLE": {
+    "defaultMessage": "Infelizmente, você foi rejeitado",
+    "description": ""
+  },
+  "REJECTED_MESSAGE": {
+    "defaultMessage": "Você pode iniciar uma nova inscrição clicando",
+    "description": ""
+  },
+  "HERE": {
+    "defaultMessage": "aqui",
+    "description": ""
+  },
+  "CONTACT_MESSAGE": {
+    "defaultMessage": "Por favor não hesite em entrar em contato. Você pode nos enviar um e-mail em",
+    "description": ""
+  },
+  "READY_FOR_YOU": {
+    "defaultMessage": "pronta para você!",
+    "description": ""
+  },
+  "IN_PROGRESS_WITH_PERIOD": {
+    "defaultMessage": "em progresso.",
+    "description": ""
+  },
+  "READY_TO_SUBMIT": {
+    "defaultMessage": "pronta para enviar!",
+    "description": ""
+  },
+  "SUBMITTED_WITH_EXCLAMATION_MARK": {
+    "defaultMessage": "submetida!",
+    "description": ""
+  },
+  "APPLICATION_STATUS_MESSAGE": {
+    "defaultMessage": "Sua inscrição para o Hack Club está ",
+    "description": ""
+  },
+  "CLUB_APPLICATION": {
+    "defaultMessage": "Inscrição do clube",
+    "description": ""
+  },
+  "MY_PERSONAL_PROFILE": {
+    "defaultMessage": "Meu perfil pessoal",
+    "description": ""
+  },
+  "NO_COLEADERS_YET": {
+    "defaultMessage": "Nenhum co-líder ainda!",
+    "description": ""
+  },
+  "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER": {
+    "defaultMessage": "Você tem certeza que deseja remover {team_member} como um membro de sua equipe?",
+    "description": ""
+  },
+  "REMOVE_TEAM_MEMBER": {
+    "defaultMessage": "Remover membro da equipe",
+    "description": ""
+  },
+  "HIGH_SCHOOL_NAME_LABEL": {
+    "defaultMessage": "Nome da escola",
+    "description": ""
+  },
+  "HIGH_SCHOOL_LINK_LABEL": {
+    "defaultMessage": "Coloque o link para o website de sua escola, se houver",
+    "description": ""
+  },
+  "HIGH_SCHOOL_TYPE_LABEL": {
+    "defaultMessage": "Tipo da escola",
+    "description": ""
+  },
+  "SELECT_ONE": {
+    "defaultMessage": "Selecione Um",
+    "description": ""
+  },
+  "PUBLIC_SCHOOL": {
+    "defaultMessage": "Escola pública",
+    "description": ""
+  },
+  "PRIVATE_SCHOOL": {
+    "defaultMessage": "Escola particular",
+    "description": ""
+  },
+  "CHARTER_SCHOOL": {
+    "defaultMessage": "Escola conveniada",
+    "description": ""
+  },
+  "HIGH_SCHOOL_ADDRESS_LABEL": {
+    "defaultMessage": "Endereço completo da escola",
+    "description": ""
+  },
+  "ADDRESS_HINT": {
+    "defaultMessage": "Por favor inclua cidade, estado / província, país, e CEP.",
+    "description": ""
+  },
+  "PRESIDENT_OR_EQUIVALENT_LABEL": {
+    "defaultMessage": "Presidente / posição equivalente",
+    "description": ""
+  },
+  "TEAM_ORIGIN_STORY_LABEL": {
+    "defaultMessage": "Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?",
+    "description": ""
+  },
+  "WHY_PLANNING_TO_START_CLUB_LABEL": {
+    "defaultMessage": "Por que você deseja iniciar um Hack Club? Você já fez algo parecido com o Hack Club antes? Por que você acha que seu clube vai funcionar?",
+    "description": ""
+  },
+  "OTHER_CODING_CLUBS_LABEL": {
+    "defaultMessage": "Sua escola já teve clubes de programação antes? O que vai ser diferente no seu Hack Club?",
+    "description": ""
+  },
+  "OTHER_GENERAL_CLUBS_LABEL": {
+    "defaultMessage": "Quais outros clubes bem sucedidos existem na sua escola? O que faz eles darem certo? O que vai fazer seu clube ser mais bem sucedido, se não mais do que eles?",
+    "description": ""
+  },
+  "CLUB_ALREADY_REGISTERED_LABEL": {
+    "defaultMessage": "Você já registrou seu clube na sua escola?",
+    "description": ""
+  },
+  "OTHER_RELEVANT_INFO_ABOUT_SCHOOL_RELATIONSHIP_LABEL": {
+    "defaultMessage": "Por favor inclua aqui informações adicionais sobre seu relacionamento com sua escola. Por exemplo, você já possui um professor para te apoiar no processo de criação do seu clube?",
+    "description": ""
+  },
+  "SOMETHING_SURPRISING_YOU_LEARNED_LABEL": {
+    "defaultMessage": "Nos fale sobre algo que você e/ou seus co-líderes aprenderam recentemente",
+    "description": ""
+  },
+  "SOMETHING_SURPRISING_YOU_LEARNED_HINT": {
+    "defaultMessage": "Não faça essa pergunta ser sobre o Hack Club! Não precisa ter relação com programação",
+    "description": ""
+  },
+  "WHAT_DO_YOU_EXPECT_LABEL": {
+    "defaultMessage": "Quais resultados você espera obter do Hack Club?",
+    "description": ""
+  },
+  "HOW_DID_YOU_HEAR_LABEL": {
+    "defaultMessage": "Como você ouviu falar do Hack Club? Se você ouviu falar de nós por meio de um evento ou website, mencione ele aqui.",
+    "description": ""
+  },
+  "LEADER_FULL_NAME_LABEL": {
+    "defaultMessage": "Nome Completo",
+    "description": ""
+  },
+  "LEADER_BIRTHDAY_LABEL": {
+    "defaultMessage": "Data de Aniversário",
+    "description": ""
+  },
+  "LEADER_YEAR_IN_SCHOOL_LABEL": {
+    "defaultMessage": "Ano na escola",
+    "description": ""
+  },
+  "FRESHMAN": {
+    "defaultMessage": "9º ano do Ensino Fundamental",
+    "description": ""
+  },
+  "SOPHOMORE": {
+    "defaultMessage": "1º ano do Ensino Médio",
+    "description": ""
+  },
+  "JUNIOR": {
+    "defaultMessage": "2º ano do Ensino Médio",
+    "description": ""
+  },
+  "SENIOR": {
+    "defaultMessage": "3º ou 4º ano do Ensino Médio",
+    "description": ""
+  },
+  "OTHER_YEAR": {
+    "defaultMessage": "Ensino Superior",
+    "description": ""
+  },
+  "LEADER_PHONE_NUMBER_LABEL": {
+    "defaultMessage": "Número de telefone (inclua +55 antes se for do Brasil)",
+    "description": ""
+  },
+  "LEADER_ADDRESS_LABEL": {
+    "defaultMessage": "Seu endereço completo (onde podemos te enviar figurinhas adesivas)",
+    "description": ""
+  },
+  "DEMOGRAPHIC_STATS_DISCLAIMER": {
+    "defaultMessage": "Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição.",
+    "description": ""
+  },
+  "GENDER": {
+    "defaultMessage": "Gênero",
+    "description": ""
+  },
+  "MALE": {
+    "defaultMessage": "Masculino",
+    "description": ""
+  },
+  "FEMALE": {
+    "defaultMessage": "Feminino",
+    "description": ""
+  },
+  "GENDERQUEER": {
+    "defaultMessage": "Não-binário",
+    "description": ""
+  },
+  "AGENDER": {
+    "defaultMessage": "Agênero",
+    "description": ""
+  },
+  "OTHER": {
+    "defaultMessage": "Outro",
+    "description": ""
+  },
+  "ETHNICITY": {
+    "defaultMessage": "Etnia",
+    "description": ""
+  },
+  "HISPANIC_OR_LATINO": {
+    "defaultMessage": "Latino ou hispânico",
+    "description": ""
+  },
+  "WHITE": {
+    "defaultMessage": "Branco",
+    "description": ""
+  },
+  "BLACK": {
+    "defaultMessage": "Preto",
+    "description": ""
+  },
+  "NATIVE_AMERICAN_OR_INDIAN": {
+    "defaultMessage": "Americano Nativo ou Indígena Americano",
+    "description": ""
+  },
+  "ASIAN_OR_PACIFIC": {
+    "defaultMessage": "Asiático ou das Ilhas do Pacífico",
+    "description": ""
+  },
+  "OTHER_ETHNICITY": {
+    "defaultMessage": "Outra etnia",
+    "description": ""
+  },
+  "PERSONAL_WEBSITE_LINK": {
+    "defaultMessage": "Link do site pessoal",
+    "description": ""
+  },
+  "GITHUB_LINK": {
+    "defaultMessage": "Link do GitHub",
+    "description": ""
+  },
+  "TWITTER_LINK": {
+    "defaultMessage": "Link do Twitter",
+    "description": ""
+  },
+  "SKILLS_SYSTEM_LABEL": {
+    "defaultMessage": "Por favor nos conte alguma vez que você hackeou com sucesso algum sistema (não computacional) para obter alguma vantagem.",
+    "description": ""
+  },
+  "HERE_ARE_EXAMPLES": {
+    "defaultMessage": "Aqui estão alguns exemplos",
+    "description": ""
+  },
+  "OF_WHAT_WE_ARE_LOOKING": {
+    "defaultMessage": "do que estamos buscando.",
+    "description": ""
+  },
+  "SKILLS_IMPRESSIVE_ACHIEVEMENT_LABEL": {
+    "defaultMessage": "Por favor nos conte em um parágrafo ou dois da coisa mais impressionante que você construiu ou alcançou. Inclua links (e links para imagens) se possível.",
+    "description": ""
+  },
+  "SKILLS_IS_TECHNICAL_LABEL": {
+    "defaultMessage": "Você tem habilidades técnicas? (Você é um programador que consegue ensinar sem assistência externa)",
+    "description": ""
+  },
+  "YES": {
+    "defaultMessage": "Sim",
+    "description": ""
+  },
+  "NO": {
+    "defaultMessage": "Não",
+    "description": ""
+  },
+  "YOU_CAN_READ_OUR": {
+    "defaultMessage": "Você pode ler nosso ",
+    "description": ""
+  },
+  "GUIDE_FOR_SELECTING_TEAM": {
+    "defaultMessage": "guia de como escolher sua equipe aqui",
+    "description": ""
+  },
+  "TEACHER_SPONSOR_DOESNT_NEED_TO_FILL_PROFILE": {
+    "defaultMessage": "Seu professor de apoio não precisa preencher um perfil.",
+    "description": ""
+  },
+  "CO_LEADERS": {
+    "defaultMessage": "Co-líderes",
+    "description": ""
+  },
+  "INVALID_EMAIL_ADDRESS": {
+    "defaultMessage": "Endereço de e-mail inválido",
+    "description": ""
+  },
+  "SOMETHING_WENT_TERRIBLY_WRONG": {
+    "defaultMessage": "Algo deu terrivelmente errado",
+    "description": ""
+  },
+  "NEW_CO_LEADER_EMAIL": {
+    "defaultMessage": "Endereço de e-mail do novo co-líder",
+    "description": ""
+  },
+  "FRIEND_GMAIL_COM": {
+    "defaultMessage": "amigo@gmail.com",
+    "description": ""
+  },
+  "SEND_THIS_INVITATION": {
+    "defaultMessage": "Enviar convite",
+    "description": ""
+  },
+  "NOT_STARTED": {
+    "defaultMessage": "não iniciada",
+    "description": ""
+  },
+  "IN_PROGRESS": {
+    "defaultMessage": "em progresso",
+    "description": ""
+  },
+  "COMPLETE": {
+    "defaultMessage": "completa",
+    "description": ""
+  },
+  "SUBMITTED": {
+    "defaultMessage": "submetida",
+    "description": ""
+  },
+  "ONCE_YOU_SUBMIT_WILL_RECEIVE_CONFIRMATION": {
+    "defaultMessage": "Assim que enviar, você receberá um e-mail de nós com os próximos passos.",
+    "description": ""
+  },
+  "WE_HAVE_RECEIVED_YOUR_APPLICATION": {
+    "defaultMessage": "Nós recebemos sua inscrição",
+    "description": ""
+  },
+  "SUBMIT_YOUR_APPLICATION": {
+    "defaultMessage": "Envie sua inscrição",
+    "description": ""
+  },
+  "ENTER_YOUR_EMAIL_LABEL": {
+    "defaultMessage": "Insira seu e-mail",
+    "description": ""
+  },
+  "ENTER_YOUR_EMAIL_PLACEHOLDER": {
+    "defaultMessage": "Endereço de e-mail",
+    "description": ""
+  },
+  "CONTINUE": {
+    "defaultMessage": "Continuar »",
+    "description": ""
+  },
+  "THAT_DOESNT_LOOK_LIKE_VALID_EMAIL": {
+    "defaultMessage": "Isso não se parece com um e-mail válido.",
+    "description": ""
+  },
+  "START_YOUR_APPLICATION": {
+    "defaultMessage": "Iniciar sua inscrição",
+    "description": ""
+  },
+  "LOG_IN_HACK_CLUB": {
+    "defaultMessage": "Entrar - Hack Club",
+    "description": ""
+  },
+  "WE_JUST_SENT_A_LOGIN_CODE": {
+    "defaultMessage": "Nós acabamos de enviar um código de login para",
+    "description": ""
+  },
+  "LOGIN_CODE": {
+    "defaultMessage": "Código de Login",
+    "description": ""
+  },
+  "MAKE_SURE_TO_CHECK_SPAM": {
+    "defaultMessage": "Lembre-se de checar sua caixa de spam",
+    "description": ""
+  },
+  "GO_TO_APPLICATION": {
+    "defaultMessage": "Ir para inscrição »",
+    "description": ""
+  },
+  "WRONG_CODE_MESSAGE": {
+    "defaultMessage": "Esse não parece ser o código que enviamos.",
+    "description": ""
+  },
+  "LOGOUT": {
+    "defaultMessage": "Deslogar",
+    "description": ""
+  },
+  "BEFORE_YOU_SUBMIT": {
+    "defaultMessage": "Antes de enviar...",
+    "description": ""
+  },
+  "SAVED": {
+    "defaultMessage": "Salvo!",
+    "description": ""
+  },
+  "SAVING": {
+    "defaultMessage": "Salvando, só um segundinho...",
+    "description": ""
+  },
+  "BEFORE_LEAVING_WARNING": {
+    "defaultMessage": "Calma aí, você está prestes a perder mudanças não salvas! Certeza que deseja sair?",
+    "description": ""
+  },
+  "OPTIONAL": {
+    "defaultMessage": "opcional",
+    "description": ""
+  },
+  "AIM_FOR_BETWEEN": {
+    "defaultMessage": "(Tente utilizar de {min} a {max} caracteres)",
+    "description": ""
+  },
+  "AIM_FOR_BETWEEN_WITH_ACTUAL": {
+    "defaultMessage": "{actual} caracteres (tente utilizar de {min} a {max})",
+    "description": ""
+  },
+  "YOUR_FORM_IS_AUTOMATICALLY_SAVED": {
+    "defaultMessage": "Seu formulário é salvo automaticamente",
+    "description": ""
+  },
+  "BACK": {
+    "defaultMessage": "Voltar",
+    "description": ""
+  },
+  "EDIT_LEADER_APPLICATION": {
+    "defaultMessage": "Editar Inscrição do Líder – Hack Club",
+    "description": ""
+  },
+  "EDIT_CLUB_APPLICATION": {
+    "defaultMessage": "Editar Inscrição do Clube – Hack Club",
+    "description": ""
+  },
+  "APPLY": {
+    "defaultMessage": "Inscrição",
+    "description": ""
+  },
+  "CLUB_ROUTE": {
+    "defaultMessage": "clube",
+    "description": ""
+  },
+  "LEADER_ROUTE": {
+    "defaultMessage": "líder",
+    "description": ""
+  },
+  "STATS": {
+    "defaultMessage": "estatísticas",
+    "description": ""
+  },
+  "PRESENCE": {
+    "defaultMessage": "redes sociais",
+    "description": ""
+  },
+  "SKILLS": {
+    "defaultMessage": "habilidades",
+    "description": ""
+  },
+  "SCHOOL": {
+    "defaultMessage": "escola",
+    "description": ""
+  },
+  "LEADERS": {
+    "defaultMessage": "líderes",
+    "description": ""
+  },
+  "IDEA": {
+    "defaultMessage": "ideia",
+    "description": ""
+  },
+  "FORMATION": {
+    "defaultMessage": "organização",
+    "description": ""
+  },
+  "OTHER_SECTION": {
+    "defaultMessage": "informações adicionais",
+    "description": ""
+  },
+  "CURIOUS": {
+    "defaultMessage": "curiosidades",
+    "description": ""
+  }
+}

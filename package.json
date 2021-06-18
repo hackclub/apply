@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "compile": "formatjs compile",
     "build": "next build",
     "start": "next start",
     "dev": "next dev",
@@ -26,7 +27,11 @@
     "react": "latest",
     "react-dom": "latest",
     "react-helmet": "^5.2.0",
+    "react-intl": "^5.20.1",
     "styled-components": "3.4.10",
     "yup": "^0.27.0"
+  },
+  "devDependencies": {
+    "@formatjs/cli": "^4.2.19"
   }
 }

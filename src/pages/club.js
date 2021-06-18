@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { injectIntl } from 'react-intl'
 import Helmet from 'react-helmet'
 import search from '../search'
 import api from '../api'
@@ -13,7 +14,7 @@ import ClubApplicationForm from '../components/apply/ClubApplicationForm'
 
 LargeButton.link = LargeButton.withComponent(Link)
 
-export default class extends Component {
+class ClubPage extends Component {
   state = {
     status: 'loading',
     formFields: undefined,
@@ -42,16 +43,18 @@ export default class extends Component {
   }
 
   render() {
+    const { intl } = this.props
+
     return (
       <Layout bg="snow">
-        <Helmet title="Edit Club Application – Hack Club" />
-        <Content {...this.state} />
+        <Helmet title={intl.formatMessage({ id: 'EDIT_CLUB_APPLICATION' })} />
+        <ContentWithIntl {...this.state} />
       </Layout>
     )
   }
 }
 
-const Content = ({ status, formFields, id }) => {
+const Content = ({ status, formFields, id, intl }) => {
   switch (status) {
     case 'needsToAuth':
       return <Login />
@@ -65,17 +68,24 @@ const Content = ({ status, formFields, id }) => {
             <ClubApplicationForm params={formFields} id={id} />
           </Sheet>
           <Heading.h4 align="center">
-            Your form is automatically saved{' '}
+            {`${intl.formatMessage({
+              id: 'YOUR_FORM_IS_AUTOMATICALLY_SAVED'
+            })} `}
             <span role="img" aria-label="">
               ✨
             </span>
           </Heading.h4>
           <Container align="center" mt={4} mb={5}>
             <LargeButton.link href="/" chevronLeft>
-              Back
+              {intl.formatMessage({ id: 'BACK' })}
             </LargeButton.link>
           </Container>
         </>
       )
   }
 }
+
+const ClubPageWithIntl = injectIntl(ClubPage)
+const ContentWithIntl = injectIntl(Content)
+
+export default ClubPageWithIntl

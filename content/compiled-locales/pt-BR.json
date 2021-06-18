@@ -1,0 +1,796 @@
+{
+  "ADDRESS_HINT": [
+    {
+      "type": 0,
+      "value": "Por favor inclua cidade, estado / província, país, e CEP."
+    }
+  ],
+  "AGENDER": [
+    {
+      "type": 0,
+      "value": "Agênero"
+    }
+  ],
+  "AIM_FOR_BETWEEN": [
+    {
+      "type": 0,
+      "value": "(Tente utilizar de "
+    },
+    {
+      "type": 1,
+      "value": "min"
+    },
+    {
+      "type": 0,
+      "value": " a "
+    },
+    {
+      "type": 1,
+      "value": "max"
+    },
+    {
+      "type": 0,
+      "value": " caracteres)"
+    }
+  ],
+  "AIM_FOR_BETWEEN_WITH_ACTUAL": [
+    {
+      "type": 1,
+      "value": "actual"
+    },
+    {
+      "type": 0,
+      "value": " caracteres (tente utilizar de "
+    },
+    {
+      "type": 1,
+      "value": "min"
+    },
+    {
+      "type": 0,
+      "value": " a "
+    },
+    {
+      "type": 1,
+      "value": "max"
+    },
+    {
+      "type": 0,
+      "value": ")"
+    }
+  ],
+  "APPLICATION_STATUS_MESSAGE": [
+    {
+      "type": 0,
+      "value": "Sua inscrição para o Hack Club está "
+    }
+  ],
+  "APPLY": [
+    {
+      "type": 0,
+      "value": "Inscrição"
+    }
+  ],
+  "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER": [
+    {
+      "type": 0,
+      "value": "Você tem certeza que deseja remover "
+    },
+    {
+      "type": 1,
+      "value": "team_member"
+    },
+    {
+      "type": 0,
+      "value": " como um membro de sua equipe?"
+    }
+  ],
+  "ASIAN_OR_PACIFIC": [
+    {
+      "type": 0,
+      "value": "Asiático ou das Ilhas do Pacífico"
+    }
+  ],
+  "BACK": [
+    {
+      "type": 0,
+      "value": "Voltar"
+    }
+  ],
+  "BEFORE_LEAVING_WARNING": [
+    {
+      "type": 0,
+      "value": "Calma aí, você está prestes a perder mudanças não salvas! Certeza que deseja sair?"
+    }
+  ],
+  "BEFORE_YOU_SUBMIT": [
+    {
+      "type": 0,
+      "value": "Antes de enviar..."
+    }
+  ],
+  "BLACK": [
+    {
+      "type": 0,
+      "value": "Preto"
+    }
+  ],
+  "CHARTER_SCHOOL": [
+    {
+      "type": 0,
+      "value": "Escola conveniada"
+    }
+  ],
+  "CLUB_ALREADY_REGISTERED_LABEL": [
+    {
+      "type": 0,
+      "value": "Você já registrou seu clube na sua escola?"
+    }
+  ],
+  "CLUB_APPLICATION": [
+    {
+      "type": 0,
+      "value": "Inscrição do clube"
+    }
+  ],
+  "CLUB_ROUTE": [
+    {
+      "type": 0,
+      "value": "clube"
+    }
+  ],
+  "COMPLETE": [
+    {
+      "type": 0,
+      "value": "completa"
+    }
+  ],
+  "CONTACT_MESSAGE": [
+    {
+      "type": 0,
+      "value": "Por favor não hesite em entrar em contato. Você pode nos enviar um e-mail em"
+    }
+  ],
+  "CONTINUE": [
+    {
+      "type": 0,
+      "value": "Continuar »"
+    }
+  ],
+  "CO_LEADERS": [
+    {
+      "type": 0,
+      "value": "Co-líderes"
+    }
+  ],
+  "CURIOUS": [
+    {
+      "type": 0,
+      "value": "curiosidades"
+    }
+  ],
+  "DEMOGRAPHIC_STATS_DISCLAIMER": [
+    {
+      "type": 0,
+      "value": "Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição."
+    }
+  ],
+  "EDIT_CLUB_APPLICATION": [
+    {
+      "type": 0,
+      "value": "Editar Inscrição do Clube – Hack Club"
+    }
+  ],
+  "EDIT_LEADER_APPLICATION": [
+    {
+      "type": 0,
+      "value": "Editar Inscrição do Líder – Hack Club"
+    }
+  ],
+  "ENTER_YOUR_EMAIL_LABEL": [
+    {
+      "type": 0,
+      "value": "Insira seu e-mail"
+    }
+  ],
+  "ENTER_YOUR_EMAIL_PLACEHOLDER": [
+    {
+      "type": 0,
+      "value": "Endereço de e-mail"
+    }
+  ],
+  "ETHNICITY": [
+    {
+      "type": 0,
+      "value": "Etnia"
+    }
+  ],
+  "FEMALE": [
+    {
+      "type": 0,
+      "value": "Feminino"
+    }
+  ],
+  "FORMATION": [
+    {
+      "type": 0,
+      "value": "organização"
+    }
+  ],
+  "FRESHMAN": [
+    {
+      "type": 0,
+      "value": "9º ano do Ensino Fundamental"
+    }
+  ],
+  "FRIEND_GMAIL_COM": [
+    {
+      "type": 0,
+      "value": "amigo@gmail.com"
+    }
+  ],
+  "GENDER": [
+    {
+      "type": 0,
+      "value": "Gênero"
+    }
+  ],
+  "GENDERQUEER": [
+    {
+      "type": 0,
+      "value": "Não-binário"
+    }
+  ],
+  "GITHUB_LINK": [
+    {
+      "type": 0,
+      "value": "Link do GitHub"
+    }
+  ],
+  "GO_TO_APPLICATION": [
+    {
+      "type": 0,
+      "value": "Ir para inscrição »"
+    }
+  ],
+  "GUIDE_FOR_SELECTING_TEAM": [
+    {
+      "type": 0,
+      "value": "guia de como escolher sua equipe aqui"
+    }
+  ],
+  "HERE": [
+    {
+      "type": 0,
+      "value": "aqui"
+    }
+  ],
+  "HERE_ARE_EXAMPLES": [
+    {
+      "type": 0,
+      "value": "Aqui estão alguns exemplos"
+    }
+  ],
+  "HIGH_SCHOOL_ADDRESS_LABEL": [
+    {
+      "type": 0,
+      "value": "Endereço completo da escola"
+    }
+  ],
+  "HIGH_SCHOOL_LINK_LABEL": [
+    {
+      "type": 0,
+      "value": "Coloque o link para o website de sua escola, se houver"
+    }
+  ],
+  "HIGH_SCHOOL_NAME_LABEL": [
+    {
+      "type": 0,
+      "value": "Nome da escola"
+    }
+  ],
+  "HIGH_SCHOOL_TYPE_LABEL": [
+    {
+      "type": 0,
+      "value": "Tipo da escola"
+    }
+  ],
+  "HISPANIC_OR_LATINO": [
+    {
+      "type": 0,
+      "value": "Latino ou hispânico"
+    }
+  ],
+  "HOW_DID_YOU_HEAR_LABEL": [
+    {
+      "type": 0,
+      "value": "Como você ouviu falar do Hack Club? Se você ouviu falar de nós por meio de um evento ou website, mencione ele aqui."
+    }
+  ],
+  "IDEA": [
+    {
+      "type": 0,
+      "value": "ideia"
+    }
+  ],
+  "INITIAL_PAGE_TITLE": [
+    {
+      "type": 0,
+      "value": "Inscrição – Hack Club"
+    }
+  ],
+  "INVALID_EMAIL_ADDRESS": [
+    {
+      "type": 0,
+      "value": "Endereço de e-mail inválido"
+    }
+  ],
+  "IN_PROGRESS": [
+    {
+      "type": 0,
+      "value": "em progresso"
+    }
+  ],
+  "IN_PROGRESS_WITH_PERIOD": [
+    {
+      "type": 0,
+      "value": "em progresso."
+    }
+  ],
+  "JUNIOR": [
+    {
+      "type": 0,
+      "value": "2º ano do Ensino Médio"
+    }
+  ],
+  "LEADERS": [
+    {
+      "type": 0,
+      "value": "líderes"
+    }
+  ],
+  "LEADER_ADDRESS_LABEL": [
+    {
+      "type": 0,
+      "value": "Seu endereço completo (onde podemos te enviar figurinhas adesivas)"
+    }
+  ],
+  "LEADER_BIRTHDAY_LABEL": [
+    {
+      "type": 0,
+      "value": "Data de Aniversário"
+    }
+  ],
+  "LEADER_FULL_NAME_LABEL": [
+    {
+      "type": 0,
+      "value": "Nome Completo"
+    }
+  ],
+  "LEADER_PHONE_NUMBER_LABEL": [
+    {
+      "type": 0,
+      "value": "Número de telefone (inclua +55 antes se for do Brasil)"
+    }
+  ],
+  "LEADER_ROUTE": [
+    {
+      "type": 0,
+      "value": "líder"
+    }
+  ],
+  "LEADER_YEAR_IN_SCHOOL_LABEL": [
+    {
+      "type": 0,
+      "value": "Ano na escola"
+    }
+  ],
+  "LOGIN_CODE": [
+    {
+      "type": 0,
+      "value": "Código de Login"
+    }
+  ],
+  "LOGOUT": [
+    {
+      "type": 0,
+      "value": "Deslogar"
+    }
+  ],
+  "LOG_IN_HACK_CLUB": [
+    {
+      "type": 0,
+      "value": "Entrar - Hack Club"
+    }
+  ],
+  "MAKE_SURE_TO_CHECK_SPAM": [
+    {
+      "type": 0,
+      "value": "Lembre-se de checar sua caixa de spam"
+    }
+  ],
+  "MALE": [
+    {
+      "type": 0,
+      "value": "Masculino"
+    }
+  ],
+  "MY_PERSONAL_PROFILE": [
+    {
+      "type": 0,
+      "value": "Meu perfil pessoal"
+    }
+  ],
+  "NATIVE_AMERICAN_OR_INDIAN": [
+    {
+      "type": 0,
+      "value": "Americano Nativo ou Indígena Americano"
+    }
+  ],
+  "NEW_CO_LEADER_EMAIL": [
+    {
+      "type": 0,
+      "value": "Endereço de e-mail do novo co-líder"
+    }
+  ],
+  "NO": [
+    {
+      "type": 0,
+      "value": "Não"
+    }
+  ],
+  "NOT_STARTED": [
+    {
+      "type": 0,
+      "value": "não iniciada"
+    }
+  ],
+  "NO_COLEADERS_YET": [
+    {
+      "type": 0,
+      "value": "Nenhum co-líder ainda!"
+    }
+  ],
+  "OF_WHAT_WE_ARE_LOOKING": [
+    {
+      "type": 0,
+      "value": "do que estamos buscando."
+    }
+  ],
+  "ONCE_YOU_SUBMIT_WILL_RECEIVE_CONFIRMATION": [
+    {
+      "type": 0,
+      "value": "Assim que enviar, você receberá um e-mail de nós com os próximos passos."
+    }
+  ],
+  "OPTIONAL": [
+    {
+      "type": 0,
+      "value": "opcional"
+    }
+  ],
+  "OTHER": [
+    {
+      "type": 0,
+      "value": "Outro"
+    }
+  ],
+  "OTHER_CODING_CLUBS_LABEL": [
+    {
+      "type": 0,
+      "value": "Sua escola já teve clubes de programação antes? O que vai ser diferente no seu Hack Club?"
+    }
+  ],
+  "OTHER_ETHNICITY": [
+    {
+      "type": 0,
+      "value": "Outra etnia"
+    }
+  ],
+  "OTHER_GENERAL_CLUBS_LABEL": [
+    {
+      "type": 0,
+      "value": "Quais outros clubes bem sucedidos existem na sua escola? O que faz eles darem certo? O que vai fazer seu clube ser mais bem sucedido, se não mais do que eles?"
+    }
+  ],
+  "OTHER_RELEVANT_INFO_ABOUT_SCHOOL_RELATIONSHIP_LABEL": [
+    {
+      "type": 0,
+      "value": "Por favor inclua aqui informações adicionais sobre seu relacionamento com sua escola. Por exemplo, você já possui um professor para te apoiar no processo de criação do seu clube?"
+    }
+  ],
+  "OTHER_SECTION": [
+    {
+      "type": 0,
+      "value": "informações adicionais"
+    }
+  ],
+  "OTHER_YEAR": [
+    {
+      "type": 0,
+      "value": "Ensino Superior"
+    }
+  ],
+  "PERSONAL_WEBSITE_LINK": [
+    {
+      "type": 0,
+      "value": "Link do site pessoal"
+    }
+  ],
+  "PRESENCE": [
+    {
+      "type": 0,
+      "value": "redes sociais"
+    }
+  ],
+  "PRESIDENT_OR_EQUIVALENT_LABEL": [
+    {
+      "type": 0,
+      "value": "Presidente / posição equivalente"
+    }
+  ],
+  "PRIVATE_SCHOOL": [
+    {
+      "type": 0,
+      "value": "Escola particular"
+    }
+  ],
+  "PUBLIC_SCHOOL": [
+    {
+      "type": 0,
+      "value": "Escola pública"
+    }
+  ],
+  "READY_FOR_YOU": [
+    {
+      "type": 0,
+      "value": "pronta para você!"
+    }
+  ],
+  "READY_TO_SUBMIT": [
+    {
+      "type": 0,
+      "value": "pronta para enviar!"
+    }
+  ],
+  "REJECTED_MESSAGE": [
+    {
+      "type": 0,
+      "value": "Você pode iniciar uma nova inscrição clicando"
+    }
+  ],
+  "REJECTED_TITLE": [
+    {
+      "type": 0,
+      "value": "Infelizmente, você foi rejeitado"
+    }
+  ],
+  "REMOVE_TEAM_MEMBER": [
+    {
+      "type": 0,
+      "value": "Remover membro da equipe"
+    }
+  ],
+  "REPLACE_CURRENT_APPLICATION_WARNING": [
+    {
+      "type": 0,
+      "value": "Se você iniciar uma nova inscrição você não poderá acessar esta novamente. Deseja continuar?"
+    }
+  ],
+  "SAVED": [
+    {
+      "type": 0,
+      "value": "Salvo!"
+    }
+  ],
+  "SAVING": [
+    {
+      "type": 0,
+      "value": "Salvando, só um segundinho..."
+    }
+  ],
+  "SCHOOL": [
+    {
+      "type": 0,
+      "value": "escola"
+    }
+  ],
+  "SELECT_ONE": [
+    {
+      "type": 0,
+      "value": "Selecione Um"
+    }
+  ],
+  "SEND_THIS_INVITATION": [
+    {
+      "type": 0,
+      "value": "Enviar convite"
+    }
+  ],
+  "SENIOR": [
+    {
+      "type": 0,
+      "value": "3º ou 4º ano do Ensino Médio"
+    }
+  ],
+  "SKILLS": [
+    {
+      "type": 0,
+      "value": "habilidades"
+    }
+  ],
+  "SKILLS_IMPRESSIVE_ACHIEVEMENT_LABEL": [
+    {
+      "type": 0,
+      "value": "Por favor nos conte em um parágrafo ou dois da coisa mais impressionante que você construiu ou alcançou. Inclua links (e links para imagens) se possível."
+    }
+  ],
+  "SKILLS_IS_TECHNICAL_LABEL": [
+    {
+      "type": 0,
+      "value": "Você tem habilidades técnicas? (Você é um programador que consegue ensinar sem assistência externa)"
+    }
+  ],
+  "SKILLS_SYSTEM_LABEL": [
+    {
+      "type": 0,
+      "value": "Por favor nos conte alguma vez que você hackeou com sucesso algum sistema (não computacional) para obter alguma vantagem."
+    }
+  ],
+  "SOMETHING_SURPRISING_YOU_LEARNED_HINT": [
+    {
+      "type": 0,
+      "value": "Não faça essa pergunta ser sobre o Hack Club! Não precisa ter relação com programação"
+    }
+  ],
+  "SOMETHING_SURPRISING_YOU_LEARNED_LABEL": [
+    {
+      "type": 0,
+      "value": "Nos fale sobre algo que você e/ou seus co-líderes aprenderam recentemente"
+    }
+  ],
+  "SOMETHING_TERRIBLE_HAPPENED": [
+    {
+      "type": 0,
+      "value": "Algo terrível aconteceu."
+    }
+  ],
+  "SOMETHING_WENT_TERRIBLY_WRONG": [
+    {
+      "type": 0,
+      "value": "Algo deu terrivelmente errado"
+    }
+  ],
+  "SOPHOMORE": [
+    {
+      "type": 0,
+      "value": "1º ano do Ensino Médio"
+    }
+  ],
+  "START_YOUR_APPLICATION": [
+    {
+      "type": 0,
+      "value": "Iniciar sua inscrição"
+    }
+  ],
+  "STATS": [
+    {
+      "type": 0,
+      "value": "estatísticas"
+    }
+  ],
+  "SUBMITTED": [
+    {
+      "type": 0,
+      "value": "submetida"
+    }
+  ],
+  "SUBMITTED_WITH_EXCLAMATION_MARK": [
+    {
+      "type": 0,
+      "value": "submetida!"
+    }
+  ],
+  "SUBMIT_YOUR_APPLICATION": [
+    {
+      "type": 0,
+      "value": "Envie sua inscrição"
+    }
+  ],
+  "TEACHER_SPONSOR_DOESNT_NEED_TO_FILL_PROFILE": [
+    {
+      "type": 0,
+      "value": "Seu professor de apoio não precisa preencher um perfil."
+    }
+  ],
+  "TEAM_ORIGIN_STORY_LABEL": [
+    {
+      "type": 0,
+      "value": "Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?"
+    }
+  ],
+  "THAT_DOESNT_LOOK_LIKE_VALID_EMAIL": [
+    {
+      "type": 0,
+      "value": "Isso não se parece com um e-mail válido."
+    }
+  ],
+  "TWITTER_LINK": [
+    {
+      "type": 0,
+      "value": "Link do Twitter"
+    }
+  ],
+  "WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE": [
+    {
+      "type": 0,
+      "value": "Vamos logar você!"
+    }
+  ],
+  "WELCOME_TITLE": [
+    {
+      "type": 0,
+      "value": "Bem-vindo"
+    }
+  ],
+  "WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE": [
+    {
+      "type": 0,
+      "value": "Mal podemos esperar para receber sua inscrição."
+    }
+  ],
+  "WE_HAVE_RECEIVED_YOUR_APPLICATION": [
+    {
+      "type": 0,
+      "value": "Nós recebemos sua inscrição"
+    }
+  ],
+  "WE_JUST_SENT_A_LOGIN_CODE": [
+    {
+      "type": 0,
+      "value": "Nós acabamos de enviar um código de login para"
+    }
+  ],
+  "WHAT_DO_YOU_EXPECT_LABEL": [
+    {
+      "type": 0,
+      "value": "Quais resultados você espera obter do Hack Club?"
+    }
+  ],
+  "WHITE": [
+    {
+      "type": 0,
+      "value": "Branco"
+    }
+  ],
+  "WHY_PLANNING_TO_START_CLUB_LABEL": [
+    {
+      "type": 0,
+      "value": "Por que você deseja iniciar um Hack Club? Você já fez algo parecido com o Hack Club antes? Por que você acha que seu clube vai funcionar?"
+    }
+  ],
+  "WRONG_CODE_MESSAGE": [
+    {
+      "type": 0,
+      "value": "Esse não parece ser o código que enviamos."
+    }
+  ],
+  "YES": [
+    {
+      "type": 0,
+      "value": "Sim"
+    }
+  ],
+  "YOUR_FORM_IS_AUTOMATICALLY_SAVED": [
+    {
+      "type": 0,
+      "value": "Seu formulário é salvo automaticamente"
+    }
+  ],
+  "YOU_CAN_READ_OUR": [
+    {
+      "type": 0,
+      "value": "Você pode ler nosso "
+    }
+  ]
+}
