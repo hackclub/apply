@@ -494,5 +494,9 @@
   "CURIOUS": {
     "defaultMessage": "curious",
     "description": ""
+  },
+  "EMAIL_FOR_QUESTIONS": {
+    "defaultMessage": "applications@hackclub.com",
+    "description": ""
   }
 }

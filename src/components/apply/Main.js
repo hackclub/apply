@@ -67,8 +67,10 @@ const ContactInfo = () => {
       <Box color="info" fontSize={2} align="left">
         <Text>
           {intl.formatMessage({ id: 'CONTACT_MESSAGE' })}{' '}
-          <a href="mailto:applications@hackclub.com">
-            <strong>applications@hackclub.com</strong>
+          <a
+            href={'mailto:' + intl.formatMessage({ id: 'EMAIL_FOR_QUESTIONS' })}
+          >
+            <strong>{intl.formatMessage({ id: 'EMAIL_FOR_QUESTIONS' })}</strong>
           </a>
           .
         </Text>

@@ -187,6 +187,12 @@
       "value": "Edit Leader Application – Hack Club"
     }
   ],
+  "EMAIL_FOR_QUESTIONS": [
+    {
+      "type": 0,
+      "value": "applications@hackclub.com"
+    }
+  ],
   "ENTER_YOUR_EMAIL_LABEL": [
     {
       "type": 0,

@@ -356,7 +356,7 @@
     "description": ""
   },
   "SUBMIT_YOUR_APPLICATION": {
-    "defaultMessage": "Envie sua inscrição",
+    "defaultMessage": "Enviar sua inscrição",
     "description": ""
   },
   "ENTER_YOUR_EMAIL_LABEL": {
@@ -497,6 +497,10 @@
   },
   "CURIOUS": {
     "defaultMessage": "curiosidades",
+    "description": ""
+  },
+  "EMAIL_FOR_QUESTIONS": {
+    "defaultMessage": "brasil@hackclub.com",
     "description": ""
   }
 }
