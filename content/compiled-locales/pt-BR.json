@@ -187,6 +187,12 @@
       "value": "Editar Inscrição do Líder – Hack Club"
     }
   ],
+  "EMAIL_FOR_QUESTIONS": [
+    {
+      "type": 0,
+      "value": "brasil@hackclub.com"
+    }
+  ],
   "ENTER_YOUR_EMAIL_LABEL": [
     {
       "type": 0,
@@ -694,7 +700,7 @@
   "SUBMIT_YOUR_APPLICATION": [
     {
       "type": 0,
-      "value": "Envie sua inscrição"
+      "value": "Enviar sua inscrição"
     }
   ],
   "TEACHER_SPONSOR_DOESNT_NEED_TO_FILL_PROFILE": [
