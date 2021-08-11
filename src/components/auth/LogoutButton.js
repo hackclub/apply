@@ -11,7 +11,7 @@ export const destroySession = () => {
 
 Button.link = Button.withComponent(Link)
 
-export default (props) => {
+const LogoutButton =(props) => {
   const intl = useIntl()
 
   return (
@@ -23,3 +23,5 @@ export default (props) => {
     />
   )
 }
+
+export default LogoutButton

@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { name, title, description, img, url } from '../data.json'
+import dataJson from '../data.json'
+const { name, title, description, img, url } = dataJson
 import { ThemeProvider, theme } from '@hackclub/design-system'
 import BG from '../components/BG'
 
@@ -9,7 +10,7 @@ const meta = (tags) =>
     React.createElement('meta', { ...props, key: index })
   )
 
-export default ({ bg, children }) => (
+const Layout = ({ bg, children }) => (
   <ThemeProvider webfonts>
     <Helmet defaultTitle={title}>
       <html lang="en" />
@@ -38,3 +39,5 @@ export default ({ bg, children }) => (
     {children}
   </ThemeProvider>
 )
+
+export default Layout
