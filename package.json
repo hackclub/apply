@@ -6,10 +6,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "compile": "formatjs compile",
-    "build": "next build",
+    "compile-locale": "formatjs compile-folder ./content/locales --ast content/compiled-locales/",
+    "build": "yarn compile-locale && next build",
     "start": "next start",
-    "dev": "next dev",
+    "dev": "yarn compile-locale && next dev",
     "fmt": "npx prettier \"{src/**,}/*.js\" --single-quote --no-semi --write"
   },
   "dependencies": {
