@@ -80,19 +80,31 @@
     "description": ""
   },
   "HIGH_SCHOOL_NAME_LABEL": {
-    "defaultMessage": "Name of high school",
+    "defaultMessage": "Name of venue",
     "description": ""
   },
   "HIGH_SCHOOL_LINK_LABEL": {
-    "defaultMessage": "Link to your high school’s website, if any",
+    "defaultMessage": "Link to your venue’s website",
     "description": ""
   },
   "HIGH_SCHOOL_TYPE_LABEL": {
-    "defaultMessage": "Type of school",
+    "defaultMessage": "Type of venue",
     "description": ""
   },
   "SELECT_ONE": {
     "defaultMessage": "Select One",
+    "description": ""
+  },
+  "MAKERSPACE": {
+    "defaultMessage": "Makerspace",
+    "description": ""
+  },
+  "ONLINE": {
+    "defaultMessage": "Online",
+    "description": ""
+  },
+  "OTHER_VENUE": {
+    "defaultMessage": "Other",
     "description": ""
   },
   "PUBLIC_SCHOOL": {
@@ -108,7 +120,7 @@
     "description": ""
   },
   "HIGH_SCHOOL_ADDRESS_LABEL": {
-    "defaultMessage": "High school’s full address",
+    "defaultMessage": "Venue’s full address",
     "description": ""
   },
   "ADDRESS_HINT": {

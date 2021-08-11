@@ -61,6 +61,9 @@ const InnerForm = ({
           <option disabled value="">
             {intl.formatMessage({ id: 'SELECT_ONE' })}
           </option>
+          <option value="makerspace">
+            {intl.formatMessage({ id: 'MAKERSPACE' })}
+          </option>
           <option value="public_school">
             {intl.formatMessage({ id: 'PUBLIC_SCHOOL' })}
           </option>
@@ -69,6 +72,12 @@ const InnerForm = ({
           </option>
           <option value="charter_school">
             {intl.formatMessage({ id: 'CHARTER_SCHOOL' })}
+          </option>
+          <option value="online">
+            {intl.formatMessage({ id: 'ONLINE' })}
+          </option>
+          <option value="other">
+            {intl.formatMessage({ id: 'OTHER_VENUE' })}
           </option>
         </Field>
         <Field
