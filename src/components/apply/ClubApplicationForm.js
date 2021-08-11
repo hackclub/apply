@@ -76,7 +76,7 @@ const InnerForm = ({
           <option value="online">
             {intl.formatMessage({ id: 'ONLINE' })}
           </option>
-          <option value="other">
+          <option value="other_venue">
             {intl.formatMessage({ id: 'OTHER_VENUE' })}
           </option>
         </Field>
