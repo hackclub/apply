@@ -16,6 +16,9 @@ body {
 }
 
 .reach-out {
+  display: grid;
+  grid-template: ". ." 100% / auto auto;
+  place-items: center;
   appearance: none;
   text-decoration: none;
   color: rgb(45, 158, 228);
