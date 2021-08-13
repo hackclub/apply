@@ -22,7 +22,7 @@
     "formik": "^1.5.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.21",
-    "next": "^10.2",
+    "next": "^11.1",
     "prop-types": "^15.7.2",
     "react": "latest",
     "react-dom": "latest",
