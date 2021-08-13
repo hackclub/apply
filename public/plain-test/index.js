@@ -10,7 +10,7 @@ const state = {
   caStatus: "imcomplete", // not started | imcomplete | complete
   laOpen: false,
   laStatus: "complete", // not started | imcomplete | complete
-  coLeaders: false,
+  coLeadersOpen: false,
 }
 
 const mainHTML = state => html`
@@ -29,10 +29,13 @@ const mainHTML = state => html`
     </div>
     <application-form id="leader-app" class=${!state.laOpen ? "hidden" : ""}></application-form>
     <hr>
-    <div class="app-link">
+    <div class="coLeadersLink app-link">
       Co-Leaders
       <span class="app-link-status optional">optional</span>
       <span class="app-link-arrow noselect">${state.coLeadersOpen ? "▽" : "▷"}</span>
+    </div>
+    <div class=${!state.coLeadersOpen ? "hidden" : ""}>
+      put co lead stuff here
     </div>
     <hr>
     <div class="submit-button">SUBMIT YOUR APPLICATION</div>
@@ -94,6 +97,11 @@ function init() {
   const laLink = document.querySelector(".laLink");
   laLink.addEventListener("mousedown", () => {
     state.laOpen = !state.laOpen;
+    r();
+  })
+
+  document.querySelector(".coLeadersLink").addEventListener("mousedown", () => {
+    state.coLeadersOpen = !state.coLeadersOpen;
     r();
   })
 
