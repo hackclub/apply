@@ -58,6 +58,7 @@ export default function ApplicationHome({
     const submissionAPICall = await fetch(
       `/api/submit?id=${params.application}`
     ).then(r => r.json())
+    console.log(submissionAPICall)
     if (submissionAPICall.success) {
       alert('✅ Submitted!')
       router.replace(router.asPath)
@@ -283,10 +284,10 @@ export default function ApplicationHome({
           }}
           variant="ctaLg"
           onClick={() =>
-            applicationsRecord.fields['All Complete (incl Leaders)'] == 1 &&
-            !applicationsRecord.fields['Submitted']
-              ? submitApplication
-              : console.log(`You're not done hacker.`)
+            applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
+            applicationsRecord.fields['Submitted']
+              ? console.log(`You're not done hacker.`)
+              : submitApplication()
           }
         >
           Submit Your Application!
