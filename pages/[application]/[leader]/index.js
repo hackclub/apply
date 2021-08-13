@@ -301,7 +301,6 @@ export default function ApplicationHome({
 export async function getServerSideProps({ req, params }) {
   const {
     prospectiveLeadersAirtable,
-    loginsAirtable,
     applicationsAirtable
   } = require('../../../lib/airtable')
   const cookies = nookies.get({req})
