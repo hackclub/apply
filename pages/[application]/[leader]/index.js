@@ -283,8 +283,8 @@ export default function ApplicationHome({
           }}
           variant="ctaLg"
           onClick={() =>
-            applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
-            applicationsRecord.fields['Submitted']
+            applicationsRecord.fields['All Complete (incl Leaders)'] == 1 &&
+            !applicationsRecord.fields['Submitted']
               ? submitApplication
               : console.log(`You're not done hacker.`)
           }
