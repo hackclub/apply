@@ -300,8 +300,10 @@ export default function ApplicationHome({
             bg: 'muted'
           }}
           variant="lg"
-          onClick={() => {
-            destroyCookie(null, 'authToken')
+          onClick={async () => {
+            await destroyCookie(null, 'authToken', {
+              path: '/'
+            })
             router.push('/')
           }}
         >
