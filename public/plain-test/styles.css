@@ -176,6 +176,32 @@ body {
   box-shadow: rgb(0 0 0 / 6%) 0px 0px 2px 0px, rgb(0 0 0 / 13%) 0px 2px 4px 0px !important;
 }
 
+.logout-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 12px 18px;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 1.125;
+  appearance: none;
+  cursor: pointer;
+  transition: box-shadow 0.1875s cubic-bezier(0.375, 0, 0.675, 1) 0s;
+  box-shadow: rgb(0 0 0 / 13%) 0px 2px 4px;
+  border-radius: 9999px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: rgb(228, 45, 66);
+}
+
 @media screen and (min-width: 48em) {
   .app-container {
     padding: 36px;
