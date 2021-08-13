@@ -294,9 +294,10 @@ export default function ApplicationHome({
         </Button>
         <Button
           sx={{
-            mt: 4,
+            mt: 2,
             width: '100%',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            bg: 'muted'
           }}
           variant="lg"
           onClick={() => {
