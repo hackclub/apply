@@ -12,7 +12,9 @@ export default async function handler(req, res) {
     const tokenRecord = await loginsAirtable.find(
       'rec' + cookies.authToken
     )
-    if(!tokenRecord.fields['Path'].includes(req.query.id)){
+    console.log(tokenRecord.fields['Path'])
+    console.log(req.query.id)
+    if(!tokenRecord.fields['Path'][0].includes(req.query.id)){
       res.redirect('/')
       return
     }
