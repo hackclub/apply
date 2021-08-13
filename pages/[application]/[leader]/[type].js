@@ -18,6 +18,7 @@ import Icon from '@hackclub/icons'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import manifest from '../../../manifest'
+import nookies from 'nookies'
 
 export default function ApplicationClub({
   notFound,
@@ -203,19 +204,33 @@ export default function ApplicationClub({
   )
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ req, params }) {
   const {
     prospectiveLeadersAirtable,
     applicationsAirtable
   } = require('../../../lib/airtable')
+  const cookies = nookies.get({req})
+  if (cookies.authToken) {
   try {
     const leaderRecord = await prospectiveLeadersAirtable.find('rec'+ params.leader)
     const applicationsRecord = await applicationsAirtable.find(
      'rec'+ params.application
     )
-    return { props: { params, applicationsRecord, leaderRecord } }
+    if(leaderRecord.fields["Accepted Tokens"].includes(cookies.authToken)){
+      return { props: { params, applicationsRecord, leaderRecord } }
+    }
+    else{
+      res.statusCode = 302
+      res.setHeader('Location', `/`)
+      return
+    }
   } catch (e) {
     console.log(e)
     return { props: { notFound: true } }
+  }}
+  else{
+    res.statusCode = 302
+    res.setHeader('Location', `/`)
+    return
   }
 }

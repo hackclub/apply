@@ -3,13 +3,21 @@ import {
   prospectiveLeadersAirtable
 } from '../../../lib/airtable'
 import manifest from '../../../manifest'
+import nookies from 'nookies'
 
 export default async function handler(req, res) {
+  const cookies = nookies.get({req})
   try {
+    const tokenRecord = await loginsAirtable.find(
+      'rec' + cookies.authToken
+    )
+    if(!tokenRecord.fields['Path'].includes(req.query.id)){
+      res.redirect('/')
+      return
+    }
     let newData = {}
     let complete = true
     let requestBody = JSON.parse(req.body)
-
     let mapping = (
       req.query.type == 'club' ? manifest.clubs : manifest.leaders
     ).map(sectionItem =>

@@ -2,9 +2,18 @@ import {
   prospectiveLeadersAirtable,
   loginsAirtable,
 } from '../../lib/airtable'
+const cookies = nookies.get({req})
 
 export default async function handler(req, res) {
+  const cookies = nookies.get({req})
   try {
+    const tokenRecord = await loginsAirtable.find(
+      'rec' + cookies.authToken
+    )
+    if(!tokenRecord.fields['Path'].includes(req.query.id)){
+      res.redirect('/')
+      return
+    }
     const prospectiveLeadersRecord = await prospectiveLeadersAirtable.create({
       Email: req.query.email,
       Application: ['rec'+ req.query.id]

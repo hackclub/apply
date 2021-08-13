@@ -1,5 +1,6 @@
 import { Box, Button, Text, Flex, Heading, Input } from 'theme-ui'
 import { useState } from 'react'
+import nookies from 'nookies'
 
 function validateEmail(email) {
   const re =
@@ -60,7 +61,8 @@ export default function IndexHome() {
           onChange={e => setEmail(e.target.value)}
           sx={{
             color: 'rgb(56, 64, 70)',
-            display: status == 'awaiting' ||status == 'error' ? 'block' : 'none',
+            display:
+              status == 'awaiting' || status == 'error' ? 'block' : 'none',
             '::placeholder': {
               color: 'rgb(56, 64, 70)'
             }
@@ -73,7 +75,8 @@ export default function IndexHome() {
             boxShadow: 'none',
             textTransform: 'uppercase',
             mt: 3,
-            display: status == 'awaiting' ||status == 'error'  ? 'block' : 'none'
+            display:
+              status == 'awaiting' || status == 'error' ? 'block' : 'none'
           }}
           onClick={handleSubmission}
         >
@@ -82,4 +85,23 @@ export default function IndexHome() {
       </Box>
     </Flex>
   )
+}
+
+export async function getServerSideProps(ctx) {
+  const { loginsAirtable } = require('../lib/airtable')
+  const cookies = nookies.get(ctx)
+  if (cookies.authToken) {
+    try{
+    const tokenRecord = await loginsAirtable.find(
+      'rec' + cookies.authToken
+    )
+    let res = ctx.res
+    res.statusCode = 302
+    res.setHeader('Location', `/${tokenRecord.fields["Path"]}`)
+    }
+    catch{
+      nookies.destroy(ctx, 'authToken')
+    }
+  }
+  return {props: {}}
 }
