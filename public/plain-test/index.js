@@ -1,9 +1,11 @@
 import { html, render } from "./makeWebComponent.js";
 import { clubApplication } from "./club-application.js";
 import { leaderApplication } from "./leader-application.js";
+import { coleadApplication } from "./colead-add.js";
 
 const caJSON = JSON.stringify(clubApplication);
 const laJSON = JSON.stringify(leaderApplication);
+const coJSON = JSON.stringify(coleadApplication);
 
 const state = {
   caOpen: false,
@@ -11,6 +13,8 @@ const state = {
   laOpen: false,
   laStatus: "complete", // not started | imcomplete | complete
   coLeadersOpen: false,
+  coOpen: false,
+  coStatus: "imcomplete", // not started | imcomplete | complete
 }
 
 const mainHTML = state => html`
@@ -34,9 +38,7 @@ const mainHTML = state => html`
       <span class="app-link-status optional">optional</span>
       <span class="app-link-arrow noselect">${state.coLeadersOpen ? "▽" : "▷"}</span>
     </div>
-    <div class=${!state.coLeadersOpen ? "hidden" : ""}>
-      put co lead stuff here
-    </div>
+    <application-form id="colead-app" class=${!state.coOpen ? "hidden" : ""}></application-form>
     <hr>
     <div class="submit-button">SUBMIT YOUR APPLICATION</div>
     <br><br>
@@ -88,6 +90,13 @@ function init() {
     console.log("save")
   })
 
+  const co = document.querySelector("#colead-app");
+  co.setAttribute('form-template', coJSON)
+  co.render();
+  co.addEventListener("input", () => {
+    console.log("save")
+  })
+
   const caLink = document.querySelector(".caLink");
   caLink.addEventListener("mousedown", () => {
     state.caOpen = !state.caOpen;
@@ -97,6 +106,12 @@ function init() {
   const laLink = document.querySelector(".laLink");
   laLink.addEventListener("mousedown", () => {
     state.laOpen = !state.laOpen;
+    r();
+  })
+
+  const coLink = document.querySelector(".coLink");
+  coLink.addEventListener("mousedown", () => {
+    state.coOpen = !state.coOpen;
     r();
   })
 
