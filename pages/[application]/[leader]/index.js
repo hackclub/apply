@@ -294,7 +294,7 @@ export default function ApplicationHome({
         </Button>
         <Button
           sx={{
-            mt: 2,
+            mt: 3,
             width: '100%',
             textTransform: 'uppercase',
             bg: 'muted'
