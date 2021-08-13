@@ -1,12 +1,7 @@
 import { Box, Button, Text, Flex, Heading, Input } from 'theme-ui'
 import { useState } from 'react'
 import nookies from 'nookies'
-
-function validateEmail(email) {
-  const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(String(email).toLowerCase())
-}
+import {validateEmail} from '../lib/helpers'
 
 export default function IndexHome() {
   const [status, setStatus] = useState('awaiting')

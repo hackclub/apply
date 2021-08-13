@@ -127,7 +127,12 @@ export default function ApplicationClub({
                         </Text>
                       }
                       disabled={applicationsRecord.fields['Submitted'] ? true : false}
-                      onBlur={() => poster()}
+                      onChange={e => {
+                        let newData = {}
+                        newData[item.key] = e.target.value
+                        setData({ ...data, ...newData })
+                        setSaved(false)
+                      }}
                       placeholder={item.placeholder}
                       as={
                         item.type == 'string'

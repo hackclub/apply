@@ -17,12 +17,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import nookies, {destroyCookie} from 'nookies'
-
-function validateEmail(email) {
-  const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  return re.test(String(email).toLowerCase())
-}
+import {validateEmail} from '../../../lib/helpers'
 
 const SubmitStatus = styled(Text)`
   background: transparent url(/underline.svg) bottom left no-repeat;
@@ -79,7 +74,6 @@ export default function ApplicationHome({
       >
         <Icon glyph="message" />
         <Text sx={{ ml: 2 }}>
-          {' '}
           Please don’t hesitate to reach out. We’re available to email at{' '}
           <b>
             <Text
