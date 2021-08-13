@@ -6,7 +6,7 @@ export const clubApplication = [
         id: "leaders_team_origin_story",
         q: "How long have you known your other club leaders and how did you meet?",
         hint: "(optional)",
-        type: ["textarea", { words: 100 }] 
+        type: ["textarea", { words: 40 }] 
       }
     ]
   },
