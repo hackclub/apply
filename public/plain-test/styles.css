@@ -22,14 +22,6 @@ body {
   margin: 10px;
 }
 
-header {
-  background: url('../orpheus-flag.png') no-repeat;
-  /* background-size: contain; */
-  height: 20%;
-  position: fixed; left: 0; right: auto; top: 0; bottom: auto;
-  /* z-index: 10; */
-}
-
 .reach-out {
   display: grid;
   grid-template: ". ." 100% / auto auto;
@@ -162,6 +154,20 @@ header {
   font-family: inherit;
   font-weight: bold;
   color: white;
+}
+
+.dino-hand {
+  background-image: url(https://assets.hackclub.com/flag-orpheus-top.svg);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: contain;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 112px;
+  height: 48px;
+  transition: transform 0.1875s cubic-bezier(0.375, 0, 0.675, 1) 0s;
+  transform-origin: left top;
+  transform: translate(10px, 0px) scale(1.3);
 }
 
 .send-button:hover {
