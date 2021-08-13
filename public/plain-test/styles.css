@@ -137,11 +137,14 @@ header {
 .send-button-container {
   display: grid;
   width: 100%;
-  place-items: end;
+  place-items: center;
 }
 
 .send-button {
-  float: right;
+  display: grid;
+  grid-template: ". ." 100% / auto auto;
+  place-items: center;
+  width: 30%;
   padding: 6px 18px;
   background-color: rgb(45, 158, 228);
   -webkit-font-smoothing: antialiased;
@@ -152,6 +155,13 @@ header {
   box-shadow: rgb(0 0 0 / 13%) 0px 2px 4px;
   border-radius: 9999px;
   border: none;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: bold;
+  color: white;
 }
 
 .send-button:hover {
