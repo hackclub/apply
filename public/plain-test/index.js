@@ -44,7 +44,10 @@ const mainHTML = state => html`
       <span class="app-link-status optional">optional</span>
       <span class="app-link-arrow noselect">${state.coLeadersOpen ? "▽" : "▷"}</span>
     </div>
-    <application-form id="colead-app" class=${!state.coLeadersOpen ? "hidden" : ""}></application-form>
+    <div class=${!state.coLeadersOpen ? "hidden" : ""}>
+      <application-form id="colead-app"></application-form>
+      <div>add regular html here</div>
+    </div>
     <hr>
     <div class="submit-button">SUBMIT YOUR APPLICATION</div>
     <br><br>

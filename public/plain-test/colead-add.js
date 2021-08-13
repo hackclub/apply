@@ -1,6 +1,6 @@
 export const coleadApplication = [
   {
-    sectionName: "",
+    sectionName: "Add Leaders",
     questions: [
       {
         id: "colead-email-address",
