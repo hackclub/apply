@@ -205,7 +205,7 @@ export default function ApplicationHome({
                 <Text mr={2}>Send Invite</Text>
               </Flex>
             </Flex>
-            <Grid columns={2} mt={3}>
+            <Grid columns={[1, 2]} mt={3}>
               <Flex
                 sx={{
                   color: 'blue',
