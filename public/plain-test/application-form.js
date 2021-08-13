@@ -169,20 +169,20 @@ const template = (host) => html`
 
   <main>
     <form class="form">${
-    	host.getAttribute("form-template") 
-    		? JSON.parse(host.getAttribute("form-template")).map(htmlForm)
+    	host.form
+    		? host.form.map(htmlForm)
     		: ""
     	}</form>
   </main>
 `
 
-const onRender = host => {
-	const ft = host.getAttribute("form-template");
-	console.log(ft);
-	// JSON.parse(host.getAttribute("form-template")).map(htmlForm)
-}
-
 const onConstruct = host => {
+  host.form = null;
+
+  host.setForm = form => {
+    host.form = form;
+    host.render();
+  }
 
 	host.checkIsValid = () => {
 		const formData = host.getFormData();

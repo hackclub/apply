@@ -5,9 +5,9 @@ import { coleadApplication } from "./colead-add.js";
 
 // import { logoIsh } from "./logo-ish.js";
 
-const caJSON = JSON.stringify(clubApplication);
-const laJSON = JSON.stringify(leaderApplication);
-const coJSON = JSON.stringify(coleadApplication);
+// const caJSON = JSON.stringify(clubApplication);
+// const laJSON = JSON.stringify(leaderApplication);
+// const coJSON = JSON.stringify(coleadApplication);
 
 const state = {
   caOpen: false,
@@ -101,15 +101,15 @@ function init() {
   document.body.style = `${document.body.style} ${pulseStyle}`
 
   const ca = document.querySelector("#club-app");
-  ca.setAttribute('form-template', caJSON)
-  ca.render();
+  // ca.setAttribute('form-template', caJSON)
+  ca.setForm(clubApplication);
   ca.addEventListener("input", () => {
     console.log("save")
   })
 
   const la = document.querySelector("#leader-app");
-  la.setAttribute('form-template', laJSON)
-  la.render();
+  // la.setAttribute('form-template', laJSON)
+  la.setForm(leaderApplication);
   la.addEventListener("input", () => {
     console.log("save")
 
@@ -118,8 +118,8 @@ function init() {
   })
 
   const co = document.querySelector("#colead-app");
-  co.setAttribute('form-template', coJSON)
-  co.render();
+  // co.setAttribute('form-template', coJSON)
+  co.setForm(coleadApplication);
   co.addEventListener("input", () => {
     console.log("save")
   })
