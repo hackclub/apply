@@ -132,7 +132,6 @@ export default function ApplicationHome({
             <Heading sx={{ flexGrow: 1, color: 'blue', ml: 2 }} as="h1">
               Your Club
             </Heading>
-
             <Icon glyph="view-forward" />
           </Flex>
         </Link>
@@ -293,6 +292,20 @@ export default function ApplicationHome({
         >
           Submit Your Application!
         </Button>
+        <Button
+          sx={{
+            mt: 4,
+            width: '100%',
+            textTransform: 'uppercase'
+          }}
+          variant="lg"
+          onClick={() => {
+            destroyCookie(null, 'authToken')
+            router.push('/')
+          }}
+        >
+          Log Out
+        </Button>
       </Card>
     </Container>
   )
@@ -303,7 +316,7 @@ export async function getServerSideProps({ req, params }) {
     prospectiveLeadersAirtable,
     applicationsAirtable
   } = require('../../../lib/airtable')
-  const cookies = nookies.get({req})
+  const cookies = nookies.get({ req })
   if (cookies.authToken) {
     try {
       const leaderRecord = await prospectiveLeadersAirtable.find(
@@ -312,10 +325,9 @@ export async function getServerSideProps({ req, params }) {
       const applicationsRecord = await applicationsAirtable.find(
         'rec' + params.application
       )
-      if(leaderRecord.fields["Accepted Tokens"].includes(cookies.authToken)){
+      if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
         return { props: { params, applicationsRecord, leaderRecord } }
-      }
-      else{
+      } else {
         res.statusCode = 302
         res.setHeader('Location', `/`)
         return
