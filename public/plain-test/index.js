@@ -2,6 +2,8 @@ import { html, render } from "./makeWebComponent.js";
 import { clubApplication } from "./club-application.js";
 import { leaderApplication } from "./leader-application.js";
 
+// import { logoIsh } from "./logo-ish.js";
+
 const caJSON = JSON.stringify(clubApplication);
 const laJSON = JSON.stringify(leaderApplication);
 
@@ -27,7 +29,12 @@ const mainHTML = state => html`
       <span class=${"app-link-status " + state.laStatus}>${state.laStatus}</span>
       <span class="app-link-arrow noselect">${state.laOpen ? "▽" : "▷"}</span>
     </div>
-    <application-form id="leader-app" class=${!state.laOpen ? "hidden" : ""}></application-form>
+    <div class=${!state.laOpen ? "hidden" : ""}>
+      <application-form id="leader-app"></application-form>
+      <div class="canvas-container" style="display: grid; place-items: start; width: calc(100% - 210px); margin-left: 210px;">
+        <canvas width=300px height=300px style="border: 1px black solid;"></canvas>
+      </div>
+    </div>
     <hr>
     <div class="coLeadersLink app-link">
       Co-Leaders
@@ -91,6 +98,8 @@ function init() {
   la.render();
   la.addEventListener("input", () => {
     console.log("save")
+    const logoData = la.getFormData().get("bonus");
+    logoIsh(logoData);
   })
 
   const caLink = document.querySelector(".caLink");
