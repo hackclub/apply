@@ -16,7 +16,7 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import nookies from 'nookies'
+import nookies, {destroyCookie} from 'nookies'
 
 function validateEmail(email) {
   const re =
