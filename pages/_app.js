@@ -6,12 +6,14 @@ import theme from '@hackclub/theme'
 import { ThemeProvider } from 'theme-ui'
 import ColorSwitcher from '../components/color-switcher'
 import ForceTheme from '../components/force-theme'
+import Flag from '../components/flag'
 
 export default class App extends NextApp {
   render() {
     const { Component, pageProps } = this.props
     return (
       <ThemeProvider theme={theme}>
+        <Flag />
         <ForceTheme theme="light" />
         <Component {...pageProps} />
       </ThemeProvider>
