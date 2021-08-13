@@ -18,7 +18,7 @@ import Icon from '@hackclub/icons'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import manifest from '../../../manifest'
-import nookies from 'nookies'
+import nookies, {destroyCookie} from 'nookies'
 
 export default function ApplicationClub({
   notFound,
