@@ -4,7 +4,6 @@ import '../styles/app.css'
 import '@hackclub/theme/fonts/reg-bold.css'
 import theme from '@hackclub/theme'
 import { ThemeProvider } from 'theme-ui'
-import ColorSwitcher from '../components/color-switcher'
 import ForceTheme from '../components/force-theme'
 import Flag from '../components/flag'
 
