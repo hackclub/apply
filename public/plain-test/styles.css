@@ -29,6 +29,7 @@ body {
 }
 
 .app-container {
+  background: #fffdfd;
   box-sizing: border-box;
   max-width: 50rem;
   border-radius: 8px;
@@ -61,6 +62,7 @@ body {
   text-transform: uppercase;
   box-shadow: rgb(0 0 0 / 13%) 0px 2px 12px;
   background-image: radial-gradient(at left top, rgb(228, 115, 45) 0%, rgb(228, 45, 66) 100%);
+  cursor: pointer;
 }
 
 .disabled-submit-button {

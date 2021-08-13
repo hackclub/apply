@@ -13,6 +13,7 @@ const frames = points.map(n => `background-color: ${cx(`${names[n]}.0`)}`)
 const styles = points.map(p => `${step(p)} { ${frames[p]} }`).join('\n')
 const pulse = keyframes([], styles)
 
+console.log(cx('blue.0'));
 const Pulse = () => (
   <Helmet>
     <style

@@ -76,11 +76,17 @@ const template = (host) => html`
 
     .form-item-content {
       width: 80%;
-      background: white;
+      background: none;
       padding: 10px;
       line-height: 1.375;
       font-size: 18px;
       color: #384046;
+    }
+
+    .form-item-content textarea,
+    .form-item-content input,
+    .form-item-content select {
+    	background: white;
     }
 
     .question {
