@@ -54,6 +54,17 @@ export default function ApplicationHome({
       alert('Please input a valid email address!')
     }
   }
+  async function submitApplication() {
+    const submissionAPICall = await fetch(
+      `/api/submit?id=${params.application}`
+    ).then(r => r.json())
+    if (submissionAPICall.success) {
+      alert('✅ Submitted!')
+      router.replace(router.asPath)
+    } else {
+      alert('❌ Error! Please try again!')
+    }
+  }
   if (notFound) {
     return <Error statusCode="404" />
   }
@@ -92,7 +103,15 @@ export default function ApplicationHome({
           Your application to start a Hack Club{' '}
           {applicationsRecord.fields['All Complete (incl Leaders)'] == 1 ? (
             <>
-              is <SubmitStatus>ready to go!</SubmitStatus>
+              {applicationsRecord.fields['Submitted'] ? (
+                <>
+                  <SubmitStatus>has been submitted!</SubmitStatus>
+                </>
+              ) : (
+                <>
+                  is <SubmitStatus>ready to go!</SubmitStatus>
+                </>
+              )}
             </>
           ) : (
             <>
@@ -254,11 +273,21 @@ export default function ApplicationHome({
             mt: 4,
             width: '100%',
             textTransform: 'uppercase',
-            ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1
-              ? { opacity: 0.7, ':hover,:focus': { transform: 'none', boxShadow: 'none' } }
+            ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
+            applicationsRecord.fields['Submitted']
+              ? {
+                  opacity: 0.7,
+                  ':hover,:focus': { transform: 'none', boxShadow: 'none' }
+                }
               : {})
           }}
           variant="ctaLg"
+          onClick={() =>
+            applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
+            applicationsRecord.fields['Submitted']
+              ? submitApplication
+              : console.log(`You're not done hacker.`)
+          }
         >
           Submit Your Application!
         </Button>
@@ -274,9 +303,11 @@ export async function getServerSideProps({ params }) {
     applicationsAirtable
   } = require('../../../lib/airtable')
   try {
-    const leaderRecord = await prospectiveLeadersAirtable.find('rec'+ params.leader)
+    const leaderRecord = await prospectiveLeadersAirtable.find(
+      'rec' + params.leader
+    )
     const applicationsRecord = await applicationsAirtable.find(
-      'rec'+ params.application
+      'rec' + params.application
     )
     return { props: { params, applicationsRecord, leaderRecord } }
   } catch (e) {

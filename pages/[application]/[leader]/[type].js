@@ -131,6 +131,7 @@ export default function ApplicationClub({
                         setData({ ...data, ...newData })
                         setSaved(false)
                       }}
+                      disabled={applicationsRecord.fields['Submitted'] ? true : false}
                       onBlur={() => poster()}
                       placeholder={item.placeholder}
                       as={
