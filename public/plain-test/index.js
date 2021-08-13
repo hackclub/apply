@@ -20,7 +20,7 @@ const state = {
 
 const mainHTML = state => html`
   <div class="app-container">
-  <header />
+  <img href="/public/orpheus-flag.png"/>
     <div class="caLink app-link">
       Club Application
       <span class=${"app-link-status " + state.caStatus}>${state.caStatus}</span>

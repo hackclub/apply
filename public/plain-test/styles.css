@@ -25,6 +25,7 @@ body {
 header {
   background: url('../orpheus-flag.png') no-repeat;
   /* background-size: contain; */
+  height: 20%;
   position: fixed; left: 0; right: auto; top: 0; bottom: auto;
   /* z-index: 10; */
 }
