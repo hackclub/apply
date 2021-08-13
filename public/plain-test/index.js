@@ -15,7 +15,6 @@ const state = {
   laOpen: false,
   laStatus: "complete", // not started | imcomplete | complete
   coLeadersOpen: false,
-  coOpen: false,
   coStatus: "imcomplete", // not started | imcomplete | complete
 }
 
@@ -45,7 +44,7 @@ const mainHTML = state => html`
       <span class="app-link-status optional">optional</span>
       <span class="app-link-arrow noselect">${state.coLeadersOpen ? "▽" : "▷"}</span>
     </div>
-    <application-form id="colead-app" class=${!state.coOpen ? "hidden" : ""}></application-form>
+    <application-form id="colead-app" class=${!state.coLeadersOpen ? "hidden" : ""}></application-form>
     <hr>
     <div class="submit-button">SUBMIT YOUR APPLICATION</div>
     <br><br>
@@ -100,8 +99,9 @@ function init() {
   la.render();
   la.addEventListener("input", () => {
     console.log("save")
-    const logoData = la.getFormData().get("bonus");
-    logoIsh(logoData);
+
+    // const logoData = la.getFormData().get("bonus");
+    // logoIsh(logoData);
   })
 
   const co = document.querySelector("#colead-app");
@@ -111,21 +111,13 @@ function init() {
     console.log("save")
   })
 
-  const caLink = document.querySelector(".caLink");
-  caLink.addEventListener("mousedown", () => {
+  document.querySelector(".caLink").addEventListener("mousedown", () => {
     state.caOpen = !state.caOpen;
     r();
   })
 
-  const laLink = document.querySelector(".laLink");
-  laLink.addEventListener("mousedown", () => {
+  document.querySelector(".laLink").addEventListener("mousedown", () => {
     state.laOpen = !state.laOpen;
-    r();
-  })
-
-  const coLink = document.querySelector(".coLink");
-  coLink.addEventListener("mousedown", () => {
-    state.coOpen = !state.coOpen;
     r();
   })
 
