@@ -20,6 +20,7 @@ const state = {
 
 const mainHTML = state => html`
   <div class="app-container">
+  <header />
     <div class="caLink app-link">
       Club Application
       <span class=${"app-link-status " + state.caStatus}>${state.caStatus}</span>
