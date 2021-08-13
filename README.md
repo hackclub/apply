@@ -17,6 +17,6 @@ cd apply
 yarn && yarn run dev
 ```
 
-4. It should now be running, open [localhost:8000](http://localhost:8000) to view it
+4. It should now be running, open [localhost:3000](http://localhost:3000) to view it
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more!
