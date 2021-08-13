@@ -10,8 +10,8 @@ const inputType = {
   `,
   "options": (id, { choices } = { choices: [] }) => html`
   	<select class="options" name=${id}>
-  		<option disabled value="">Select One</option>
-  		${choices.map( (choice) => html`<option value=${choice}>${choice}</option/>`)}
+  		<option disabled selected value="">Select One</option>
+  		${choices.map( (choice) => html`<option value=${choice}>${choice}</option>`)}
   	</select>
   `
 }
@@ -154,7 +154,7 @@ const template = (host) => html`
 
     .options[type="select"] {
     	background: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23606e77' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E) right 0.75rem center / 0.5rem no-repeat rgb(255, 255, 255);
-	}
+	  }
 
     @media only screen and (max-width: 500px) {
       .form-item {
