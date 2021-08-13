@@ -13,7 +13,7 @@ import {
 } from '@hackclub/design-system'
 // import getSeason from '@hackclub/season'
 import LeaderInvite from './LeaderInvite'
-import { clubApplicationSchema } from './ClubApplicationForm'
+// import { clubApplicationSchema } from './ClubApplicationForm'
 import { Headline } from '../Content'
 import Sheet from '../Sheet'
 import SubmitButton from './SubmitButton'
@@ -177,7 +177,11 @@ const Main = (props) => {
   const completeProfiles = leader_profiles.every(
     (profile) => profile.completed_at
   )
-  const completeApplication = clubApplicationSchema.isValidSync(app)
+
+  console.log(app); // validate it is complete
+  // clubApplicationSchema.isValidSync(app)
+  const completeApplication = false;
+
   let submitButtonStatus
   if (app.submitted_at) {
     submitButtonStatus = 'submitted'

@@ -65,7 +65,7 @@ const Content = ({ status, formFields, id, intl }) => {
         <>
           <ApplyNav />
           <Sheet maxWidth={48} mt={3} mb={5}>
-            <ClubApplicationForm params={formFields} id={id} />
+            <ClubApplicationForm/>
           </Sheet>
           <Heading.h4 align="center">
             {`${intl.formatMessage({
