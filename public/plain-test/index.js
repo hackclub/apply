@@ -46,7 +46,10 @@ const mainHTML = state => html`
     </div>
     <div class=${!state.coLeadersOpen ? "hidden" : ""}>
       <application-form id="colead-app"></application-form>
-      <div>add regular html here</div>
+      <div>
+        <div class="tip">You can read our <b><a>guide for selecting your team here</a></b>.</div>
+        <div class="tip">Your teacher sponsor does not need to fill out a profile.</div>
+      </div>
     </div>
     <hr>
     <div class="submit-button">SUBMIT YOUR APPLICATION</div>
