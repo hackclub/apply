@@ -1,4 +1,4 @@
-import { applicationsAirtable } from '../../lib/airtable'
+import { applicationsAirtable, loginsAirtable } from '../../lib/airtable'
 const cookies = nookies.get({ req })
 
 export default async function handler(req, res) {

@@ -1,6 +1,7 @@
 import {
   applicationsAirtable,
-  prospectiveLeadersAirtable
+  prospectiveLeadersAirtable,
+  loginsAirtable
 } from '../../../lib/airtable'
 import manifest from '../../../manifest'
 import nookies from 'nookies'

@@ -207,7 +207,8 @@ export default function ApplicationClub({
 export async function getServerSideProps({ req, params }) {
   const {
     prospectiveLeadersAirtable,
-    applicationsAirtable
+    applicationsAirtable,
+    loginsAirtable
   } = require('../../../lib/airtable')
   const cookies = nookies.get({req})
   if (cookies.authToken) {
