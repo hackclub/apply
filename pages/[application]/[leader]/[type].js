@@ -45,7 +45,7 @@ const inputType = {
 
 const MyTextarea = ({ words, fieldName, placeholder }) => { // can't use name as prop
 
-  const wordCount = words !== 0;
+  const wordCount = words !== 0 && words !== undefined;
   let [ numWords, setWords] = useState(0);
 
   return (
@@ -74,7 +74,7 @@ const formQuestion = ({text, hint, type, name, optional}) => (
   <div className="question">
     <div className="question-text">
       { text ? text : "" } 
-      { optional ? <span className="question-hint">(optional)</span> : ""}
+      { optional ? <span className="question-hint">&nbsp;(optional)</span> : ""}
     </div>
     <div className="question-hint">{ hint ? hint : "" }</div>
     {inputType[Array.isArray(type) ? type[0] : type](name, ...type.slice(1))}

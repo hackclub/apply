@@ -3,13 +3,12 @@
 
 // sectionName: string = ""
 // hint: string = ""
-// optional: bool = false
-
 // question
 // {
 //   name: string = ""
 //   text: string = ""
 //   hint: string = ""
+//   optional: bool = false
 //   type: 
 //     [ "input", { placeholder: "" } ] 
 //     [ "options", { choices: [] } 

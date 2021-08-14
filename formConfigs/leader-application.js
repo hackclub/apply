@@ -54,14 +54,14 @@ export const leaderApplication = [
     questions: [
       {
         name: "website",
+        optional: true,
         text: "Personal Website Link",
-        hint: "(optional)",
         type: ["input", { placeholder: "https://" }]
       },
       {
         name: "github",
+        optional: true,
         text: "Github Link",
-        hint: "(optional)",
         type: ["input", { placeholder: "https://" }]
       },
     ]

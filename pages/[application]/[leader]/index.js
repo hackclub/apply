@@ -268,7 +268,7 @@ export default function ApplicationHome({
   if (notFound) return <Error statusCode="404" />
 
   return (
-    <Container py={4} variant="copy">
+    <Container py={1} variant="copy">
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
         <Heading sx={{ fontSize: [4, 5] }}>
         {ApplicationStatus(applicationsRecord, router)}
