@@ -245,6 +245,7 @@ export default {
               .
             </>
           ),
+          plainText: 'Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.',
           type: 'paragraph',
           optional: false,
           characters: [450, 1200]
