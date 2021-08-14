@@ -1,3 +1,22 @@
+
+// type/description
+
+// sectionName: string = ""
+// hint: string = ""
+// optional: bool = false
+
+// question
+// {
+//   key: string = ""
+//   text: string = ""
+//   hint: string = ""
+//   type: 
+//     [ "input", { placeholder: "" } ] 
+//     [ "options", { choices: [] } 
+//     [ "textarea", { words: 0, placeholder: "" } 
+//     [ "jsx", (key) => <></> ]
+// }
+
 export const clubApplication = [
   {
     sectionName: "Leaders",
@@ -5,15 +24,7 @@ export const clubApplication = [
       {
         key: "leaders_team_origin_story",
         text: "How long have you known your other club leaders and how did you meet?",
-        hint: "",
-        // optional: false,
-        type: [
-          "textarea", 
-          { 
-            words: 50, 
-            // placeholder: "" 
-          }
-        ]
+        type: [ "textarea", { words: 50 } ]
       }
     ]
   },
@@ -23,20 +34,19 @@ export const clubApplication = [
       {
         key: "high_school_name",
         text: "Where are you planning to run your Hack Club?",
-        hint: "",
-        type: ["input"] 
+        type: "input" 
       },
       {
         key: "high_school_type",
         text: "What type of venue is it?",
         hint: "(It can be a high school, makerspace, library, or something else.)",
-        type: ["input"] 
+        type: "input" 
       },
       {
         key: "high_school_address",
         text: "What's the full address?",
         hint: "(Please include city, state/province, country, and postal code.)",
-        type: ["textarea"] 
+        type: "textarea" 
       }
     ]
   },
@@ -46,19 +56,16 @@ export const clubApplication = [
       {
         key: "idea_why",
         text: "Why do you want to start a Hack Club?",
-        hint: "",
         type: ["textarea", { words: 75 }]
       },
       {
         key: "idea_other_coding_clubs",
         text: "What will your club do and what would a successful club look like?",
-        hint: "",
         type: ["textarea", { words: 75 }] 
       },
       {
         key: "idea_other_general_clubs",
         text: "What do you personally hope to get out of Hack Club?",
-        hint: "",
         type: ["textarea", { words: 75 }] 
       }
     ]
@@ -75,7 +82,6 @@ export const clubApplication = [
       {
         key: "different",
         text: "Has your school had coding clubs before? What’s going to be new about your Hack Club?",
-        hint: "",
         type: ["textarea", { words: 50 }] 
       }
     ]
@@ -87,7 +93,7 @@ export const clubApplication = [
         key: "point_of_contact_id",
         text: "How did you hear about Hack Club?",
         hint: "(i.e. from a friend, event, teacher, website, twitter)",
-        type: ["textarea"] 
+        type: "textarea" 
       }
     ]
   }

@@ -30,7 +30,9 @@ const inputType = {
       className="question-input">
     </input>
   ),
-  textarea: (key, { words, placeholder } = { words: 0, placeholder: "" }) => <MyTextarea words={words} key placeholder />,
+  textarea: (key, { words, placeholder } = { words: 0, placeholder: "" }) => (
+    <MyTextarea words={words} keyName={key} placeholder={placeholder} />
+  ),
   options: (key, { choices } = { choices: [] }) => <>
     <Select className="options" name={key}>
       <option disabled selected value="">Select One</option>
@@ -41,7 +43,7 @@ const inputType = {
   jsx: (key, jsxMaker) => jsxMaker(key)
 }
 
-const MyTextarea = ({ words, key, placeholder }) => {
+const MyTextarea = ({ words, keyName, placeholder }) => { // can't use key as prop
 
   const wordCount = words !== 0;
   let [ numWords, setWords] = useState(0);
@@ -49,7 +51,7 @@ const MyTextarea = ({ words, key, placeholder }) => {
   return (
     <div className="ta">
       <textarea 
-        name={key} 
+        name={keyName} 
         placeholder={placeholder} 
         className="question-textarea question-input"
         onKeyUp={(e) => {
@@ -75,7 +77,7 @@ const formQuestion = ({text, hint, type, key, optional}) => (
       { optional ? <span className="question-hint">(optional)</span> : ""}
     </div>
     <div className="question-hint">{ hint ? hint : "" }</div>
-    {inputType[type[0]](key, ...type.slice(1))}
+    {inputType[Array.isArray(type) ? type[0] : type](key, ...type.slice(1))}
   </div>
 )
 
@@ -289,6 +291,24 @@ export default function ApplicationClub({
     router.push(`/${params.application}/${params.leader}`)
   }
 
+  function handleFormInput(e) {
+    setSavedState(false);
+
+    // losing textarea because react
+    const formData = new FormData(e.target.form);
+
+    const entries = Object.fromEntries(formData.entries());
+    console.log("data:", entries);
+
+    // asList = [...formData.entries()]
+
+    // const data = {};
+    // for (const field of Object.values(e.target.form)) {
+    //   if (field.name && field.value) data[field.name] = field.value;
+    // };
+    // console.log(data);
+  }
+
   if (notFound) return <Error statusCode="404" />
 
   return (
@@ -296,12 +316,7 @@ export default function ApplicationClub({
       <style jsx>{formStyle}</style>
       {savedInfo(saved, poster)}
       <Card>
-        <form onInput={(e) => {
-          const formData = new FormData(e.target.form);
-          const entries = Object.fromEntries(formData.entries());
-          setSavedState(false);
-          console.log(entries, [...formData.entries()]);
-        }}>
+        <form onInput={handleFormInput}>
           <fieldset 
             style={{all: "unset", width:"100%"}} 
             disabled={applicationsRecord.fields['Submitted'] ? true : false}
