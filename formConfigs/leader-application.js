@@ -3,32 +3,29 @@ export const leaderApplication = [
     sectionName: "Leader",
     questions: [
       {
-        id: "name",
-        q: "Full Name",
-        hint: "",
+        key: "name",
+        text: "Full Name",
         type: ["input"] 
       },
       {
-        id: "birthday",
-        q: "Birthday",
-        hint: "(day, month, year)",
-        type: ["input"] 
+        key: "birthday",
+        text: "Birthday",
+        type: ["date"] 
       },
       {
-        id: "class_year",
-        q: "Year in School",
-        hint: "options",
+        key: "class_year",
+        text: "Year in School",
         type: ["options", { choices: ["freshman", "sophomore", "junior", "senior"] }] 
       },
       {
-        id: "phone",
-        q: "Phone Number",
-        hint: "(Include country code if not in United States)",
+        key: "phone",
+        text: "Phone Number",
+        hint: "(Include country code if not in the United States)",
         type: ["input"] 
       },
       {
-        id: "address",
-        q: "Your full adress",
+        key: "address",
+        text: "Your full address",
         hint: "(for stickers!)",
         type: ["textarea"] 
       }
@@ -38,14 +35,14 @@ export const leaderApplication = [
     sectionName: "Stats",
     questions: [
       {
-        id: "gender",
-        q: "Gender",
+        key: "gender",
+        text: "Gender",
         hint: "",
         type: ["options", { choices: ["male", "female", "other"] }] 
       },
       {
-        id: "ethnicity",
-        q: "Ethnicity",
+        key: "ethnicity",
+        text: "Ethnicity",
         hint: "",
         type: ["options", { choices: ["white", "black", "hispanic_or_latino", "native_american", "asian", "other"] }] 
       },
@@ -55,14 +52,14 @@ export const leaderApplication = [
     sectionName: "Presence",
     questions: [
       {
-        id: "website",
-        q: "Personal Website Link",
+        key: "website",
+        text: "Personal Website Link",
         hint: "(optional)",
         type: ["input"]
       },
       {
-        id: "github",
-        q: "Github Link",
+        key: "github",
+        text: "Github Link",
         hint: "(optional)",
         type: ["input"]
       },
@@ -72,14 +69,14 @@ export const leaderApplication = [
     sectionName: "Skills",
     questions: [
       {
-        id: "made",
-        q: "Tell us about something you made which was personally meaningful to you?",
+        key: "made",
+        text: "Tell us about something you made which was personally meaningful to you?",
         hint: "(include links and links to images if possible)",
         type: ["textarea", { words: 100 }]
       },
       {
-        id: "different",
-        q: "Do you already know how to code?",
+        key: "different",
+        text: "Do you already know how to code?",
         hint: "(It's okay if not!)",
         type: ["options", { choices: ["yes", "no"] }] 
       }
@@ -89,8 +86,8 @@ export const leaderApplication = [
     sectionName: "Bonus",
     questions: [
       {
-        id: "bonus",
-        q: "Make something! Our clubs lead Leo McElroy has been deeply influenced by this little drawing tool called the Turtle. You can tell it to move around with these commands. Play around with it and draw a picture.",
+        key: "bonus",
+        text: "Make something! Our clubs lead Leo McElroy has been deeply influenced by this little drawing tool called the Turtle. You can tell it to move around with these commands. Play around with it and draw a picture.",
         hint: "",
         type: ["textarea"] 
       }

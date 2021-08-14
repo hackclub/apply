@@ -17,42 +17,69 @@ import {
 import Icon from '@hackclub/icons'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import manifest from '../../../manifest'
 import nookies from 'nookies'
 import { useRouter } from 'next/router'
 import { clubApplication } from "/formConfigs/club-application.js";
-import styled from '@emotion/styled'
-
-
-console.log(clubApplication);
+import { leaderApplication } from "/formConfigs/leader-application.js";
 
 const inputType = {
-  input: (key) => <input name={key} className="question-input"></input>,
-  textarea: (key, { words } = { words: 0 }) => <>
-    <div className="ta">
-      <textarea name={key} className="question-textarea question-input"></textarea>
-      { words ? <div className="wordcount question-hint" data-words={words}>(aim for {words} words)</div> : "" }
-    </div>
-  </>,
+  input: (key, { placeholder } = { placeholder: "" }) => (
+    <input 
+      name={key} 
+      placeholder={placeholder} 
+      className="question-input">
+    </input>
+  ),
+  textarea: (key, { words, placeholder } = { words: 0, placeholder: "" }) => <MyTextarea words={words} key placeholder />,
   options: (key, { choices } = { choices: [] }) => <>
-    <select className="options" name={key}>
+    <Select className="options" name={key}>
       <option disabled selected value="">Select One</option>
-      {choices.map( (choice) => <option value={choice}>{choice}</option> )}
-    </select>
-  </>
+      {choices.map( choice => <option value={choice}>{choice}</option> )}
+    </Select>
+  </>,
+  date: (key) => <Input className="question-input" type="date"/>,
+  jsx: (key, jsxMaker) => jsxMaker
 }
 
-const htmlQuestion = ({text, hint, type, key, optional}) => (
+const MyTextarea = ({ words, key, placeholder }) => {
+
+  const wordCount = words !== 0;
+  let [ numWords, setWords] = useState(0);
+
+  return (
+    <div className="ta">
+      <textarea 
+        name={key} 
+        placeholder={placeholder} 
+        className="question-textarea question-input"
+        onKeyUp={(e) => {
+          const n = e.target.value === "" ? 0 : e.target.value.split(" ").length;
+          setWords(n)
+        }}
+        >
+      </textarea>
+      { wordCount
+        ? numWords > 0 
+          ? <div className="wordcount question-hint">({numWords} of ~{words})</div>
+          : <div className="wordcount question-hint">(aim for {words} words)</div>   
+        : ""
+      }
+    </div>
+  )
+}
+
+const formQuestion = ({text, hint, type, key, optional}) => (
   <div className="question">
     <div className="question-text">
-      {text} { optional ? <span className="question-hint">(optional)</span> : ""}
+      { text ? text : "" } 
+      { optional ? <span className="question-hint">(optional)</span> : ""}
     </div>
-    <div className="question-hint">{hint}</div>
+    <div className="question-hint">{ hint ? hint : "" }</div>
     {inputType[type[0]](key, ...type.slice(1))}
   </div>
 )
 
-const htmlQuestions = qs => qs.map(htmlQuestion);
+const formQuestions = qs => qs.map(formQuestion);
 
 const formStyle = `
     * {
@@ -122,7 +149,6 @@ const formStyle = `
       display: block;
       width: 100%;
       box-sizing: border-box;
-      resize: vertical;
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
@@ -171,20 +197,21 @@ const formStyle = `
     }
 `
 
-const htmlForm = ({sectionName, questions}) => (<>
-  <style jsx>{formStyle}</style>
+const htmlForm = ({sectionName, questions}) => (
   <div className="form-item">
     <div className="form-item-name">
       {sectionName}
     </div>
     <div className="form-item-content">
-      {htmlQuestions(questions)}
+      {formQuestions(questions)}
     </div>
   </div>
-</>)
+)
+
 const savedInfo = (saved, poster) => (
-  <Flex
-    sx={{ 
+  <div
+    style={{ 
+      display: "flex",
       position: "fixed", 
       right: "10px", 
       bottom: "10px", 
@@ -206,33 +233,8 @@ const savedInfo = (saved, poster) => (
       glyph={saved ? 'checkmark' : 'important'}
       color={saved ? '#33d6a6' : '#ff8c37'}
       />
-  </Flex>
+  </div>
 )
-
-const topBar = (params, goHome, saved) => (
-  <Card
-    px={[4, 4]}
-    py={[3, 3]}
-    sx={{
-      color: 'blue',
-      textAlign: 'left'
-    }}
-    >
-    <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
-      <Icon glyph="home" onClick={goHome} />
-      <Text
-        variant="subheadline"
-        sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
-        as="div"
-      >
-        <Text sx={{ textDecoration: 'none', color: 'blue' }} onClick={goHome} >Apply</Text>
-
-        {' / '}
-        <b>{params.type == 'club' ? 'Club' : 'Leader'}</b>
-      </Text>
-    </Flex>
-  </Card>
-)      
 
 export default function ApplicationClub({
   notFound,
@@ -280,9 +282,7 @@ export default function ApplicationClub({
   })
 
   async function goHome() {
-    if (!savingStateRef.current) {
-      await poster()
-    }
+    if (!savingStateRef.current) await poster();
     router.push(`/${params.application}/${params.leader}`)
   }
 
@@ -290,114 +290,18 @@ export default function ApplicationClub({
 
   return (
     <Container py={4} variant="copy">
+      <style jsx>{formStyle}</style>
       {savedInfo(saved, poster)}
-      <Card px={[4, 4]} py={[4, 4]}>
-        {(params.type == 'club' ? manifest.clubs : manifest.leaders).map(
-          (sectionItem, sectionIndex) => (
-            <Box>
-              <Box sx={{ textAlign: 'left' }}>
-                <Text sx={{ color: 'red', fontSize: '27px', fontWeight: 800 }}>
-                  {sectionItem.header}
-                </Text>
-              </Box>
-              <Box>
-                {sectionItem.label && (
-                  <Box sx={{ color: 'muted', mb: 3 }}>{sectionItem.label}</Box>
-                )}
-                {sectionItem.items.map((item, index) => (
-                  <Box
-                    mt={1}
-                    mb={3}
-                    key={'form-item-' + sectionIndex + '-' + index}
-                  >
-                    <Field
-                      label={
-                        <Text>
-                          {item.label}{' '}
-                          <Text
-                            sx={{
-                              color: 'muted',
-                              display: item.optional ? 'inline' : 'none'
-                            }}
-                          >
-                            (optional)
-                          </Text>
-                        </Text>
-                      }
-                      disabled={
-                        applicationsRecord.fields['Submitted'] ? true : false
-                      }
-                      onChange={e => {
-                        let newData = {}
-                        newData[item.key] = e.target.value
-                        setData({ ...data, ...newData })
-                        setSaved(false)
-                      }}
-                      placeholder={item.placeholder}
-                      as={
-                        item.type == 'string'
-                          ? Input
-                          : item.type == 'paragraph'
-                          ? Textarea
-                          : Select
-                      }
-                      type={item.inputType}
-                      name="email"
-                      value={data[item.key] !== undefined ? data[item.key] : ''}
-                      sx={{
-                        border: '1px solid',
-                        borderColor: 'rgb(221, 225, 228)'
-                      }}
-                      {...(item.type == 'select'
-                        ? item.options
-                          ? {
-                              children: (
-                                <>
-                                  <option value="" disabled>
-                                    Select One
-                                  </option>
-                                  {item.options.map(option => (
-                                    <option>{option}</option>
-                                  ))}
-                                </>
-                              )
-                            }
-                          : {
-                              children: (
-                                <>
-                                  <option value="" disabled>
-                                    Select One
-                                  </option>
-                                  {applicationsRecord.fields[
-                                    item.optionsKey
-                                  ].map(option => (
-                                    <option>{option}</option>
-                                  ))}
-                                </>
-                              )
-                            }
-                        : {})}
-                    />
-                    {item.characters && (
-                      <Text
-                        sx={{ fontSize: '18px', color: 'muted', mt: 1 }}
-                        as="p"
-                      >
-                        (Aim for between {item.characters[0]} and{' '}
-                        {item.characters[1]} characters)
-                      </Text>
-                    )}
-                    {item.sublabel && (
-                      <Text sx={{ fontSize: '16px', color: 'muted' }} as="p">
-                        {item.sublabel}
-                      </Text>
-                    )}
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-          )
-        )}
+      <Card>
+        <form onInput={(e) => {
+          const formData = new FormData(e.target.form);
+          const entries = Object.fromEntries(formData.entries());
+          setSavedState(false);
+          console.log(entries, [...formData.entries()]);
+
+        }}>
+          {(params.type === "club" ? clubApplication : leaderApplication).map(htmlForm)}
+        </form>
         <Button
           sx={{
             mt: 3,
@@ -406,13 +310,9 @@ export default function ApplicationClub({
           }}
           variant="ctaLg"
           onClick={goHome}
-        >
+          >
           {'<<'} Save & Go Back
         </Button>
-      </Card>
-      <br/>
-      <Card>
-        {clubApplication.map(htmlForm)}
       </Card>
     </Container>
   )

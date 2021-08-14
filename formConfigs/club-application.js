@@ -6,8 +6,14 @@ export const clubApplication = [
         key: "leaders_team_origin_story",
         text: "How long have you known your other club leaders and how did you meet?",
         hint: "",
-        optional: true,
-        type: ["textarea", { words: 40 }]
+        // optional: false,
+        type: [
+          "textarea", 
+          { 
+            words: 40, 
+            // placeholder: "" 
+          }
+        ]
       }
     ]
   },
@@ -17,7 +23,13 @@ export const clubApplication = [
       {
         key: "high_school_name",
         text: "Where are you planning to run your Hack Club?",
-        hint: "(Give us the name and type. It can be a high school, makerspace, or something else.)",
+        hint: "",
+        type: ["input"] 
+      },
+      {
+        key: "high_school_type",
+        text: "What type of venue is it?",
+        hint: "(It can be a high school, makerspace, library, or something else.)",
         type: ["input"] 
       },
       {
