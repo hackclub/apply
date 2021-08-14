@@ -20,6 +20,219 @@ import Link from 'next/link'
 import manifest from '../../../manifest'
 import nookies from 'nookies'
 import { useRouter } from 'next/router'
+import { clubApplication } from "/formConfigs/club-application.js";
+import styled from '@emotion/styled'
+
+
+console.log(clubApplication);
+
+const inputType = {
+  input: (key) => <input name={key} className="question-input"></input>,
+  textarea: (key, { words } = { words: 0 }) => <>
+    <div className="ta">
+      <textarea name={key} className="question-textarea question-input"></textarea>
+      { words ? <div className="wordcount question-hint" data-words={words}>(aim for {words} words)</div> : "" }
+    </div>
+  </>,
+  options: (key, { choices } = { choices: [] }) => <>
+    <select className="options" name={key}>
+      <option disabled selected value="">Select One</option>
+      {choices.map( (choice) => <option value={choice}>{choice}</option> )}
+    </select>
+  </>
+}
+
+const htmlQuestion = ({text, hint, type, key, optional}) => (
+  <div className="question">
+    <div className="question-text">
+      {text} { optional ? <span className="question-hint">(optional)</span> : ""}
+    </div>
+    <div className="question-hint">{hint}</div>
+    {inputType[type[0]](key, ...type.slice(1))}
+  </div>
+)
+
+const htmlQuestions = qs => qs.map(htmlQuestion);
+
+const formStyle = `
+    * {
+      font-family: "Phantom Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    }
+
+    .noselect {
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome, Edge, Opera and Firefox */
+    }
+
+    .form-item {
+      display: flex;
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+    }
+
+    .form-item-name {
+      text-align: left;
+      width: 200px;
+      font-size: 27px;
+      margin: 0px;
+      color: #e42d42;
+      font-weight: bold;
+      line-height: 1.25;
+      padding: 10px;
+      padding-right: 20px;
+    }
+
+    .form-item-content {
+      width: 100%;
+      background: none;
+      padding: 10px;
+      line-height: 1.375;
+      font-size: 20px;
+      color: #384046;
+    }
+
+    .form-item-content textarea,
+    .form-item-content input,
+    .form-item-content select {
+      background: white;
+    }
+
+    .question {
+      margin: auto;
+      padding-bottom: 12px;
+      max-width: 32rem;
+    }
+
+    .question-hint {
+      font-size: 13px;
+      color: #7a8c97;
+    }
+
+    .question-textarea {
+      resize: vertical;
+    }
+
+    .question-input {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      resize: vertical;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      vertical-align: middle;
+      min-height: 36px;
+      line-height: inherit;
+      font-family: inherit;
+      color: inherit;
+      background-color: transparent;
+      border-radius: 4px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #dde1e4;
+      font-size: inherit;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      background-color: transparent;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .options {
+      display: block;
+      vertical-align: middle;
+      max-width: 32rem;
+      min-height: 36px;
+      line-height: inherit;
+      font-family: inherit;
+      border-radius: 4px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(221, 225, 228);
+      transition: box-shadow 0.1875s cubic-bezier(0.375, 0, 0.675, 1) 0s;
+      font-size: 18px;
+      margin: 0px;
+      padding: 6px 12px;
+      width: 100%;
+      background-color: transparent;
+      color: inherit;
+    }
+
+    .options[type="select"] {
+      background: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23606e77' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E) right 0.75rem center / 0.5rem no-repeat rgb(255, 255, 255);
+    }
+`
+
+const htmlForm = ({sectionName, questions}) => (<>
+  <style jsx>{formStyle}</style>
+  <div className="form-item">
+    <div className="form-item-name">
+      {sectionName}
+    </div>
+    <div className="form-item-content">
+      {htmlQuestions(questions)}
+    </div>
+  </div>
+</>)
+const savedInfo = (saved, poster) => (
+  <Flex
+    sx={{ 
+      position: "fixed", 
+      right: "10px", 
+      bottom: "10px", 
+      cursor: 'pointer',
+      "place-items": "center"
+    }}
+    onClick={poster}
+    >
+    <Text
+      sx={{
+        color: saved ? '#33d6a6' : '#ff8c37',
+        fontWeight: '800',
+        textTransform: 'uppercase',
+      }}
+      >
+      {saved ? 'Saved' : 'Click to Save'}
+    </Text>
+    <Icon
+      glyph={saved ? 'checkmark' : 'important'}
+      color={saved ? '#33d6a6' : '#ff8c37'}
+      />
+  </Flex>
+)
+
+const topBar = (params, goHome, saved) => (
+  <Card
+    px={[4, 4]}
+    py={[3, 3]}
+    sx={{
+      color: 'blue',
+      textAlign: 'left'
+    }}
+    >
+    <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
+      <Icon glyph="home" onClick={goHome} />
+      <Text
+        variant="subheadline"
+        sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
+        as="div"
+      >
+        <Text sx={{ textDecoration: 'none', color: 'blue' }} onClick={goHome} >Apply</Text>
+
+        {' / '}
+        <b>{params.type == 'club' ? 'Club' : 'Leader'}</b>
+      </Text>
+    </Flex>
+  </Card>
+)      
 
 export default function ApplicationClub({
   notFound,
@@ -73,53 +286,12 @@ export default function ApplicationClub({
     router.push(`/${params.application}/${params.leader}`)
   }
 
-  if (notFound) {
-    return <Error statusCode="404" />
-  }
+  if (notFound) return <Error statusCode="404" />
+
   return (
     <Container py={4} variant="copy">
-      <Card
-        px={[4, 4]}
-        py={[3, 3]}
-        sx={{
-          color: 'blue',
-          textAlign: 'left'
-        }}
-      >
-        <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
-          <Icon glyph="home" onClick={goHome} />
-          <Text
-            variant="subheadline"
-            sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
-            as="div"
-          >
-            <Text sx={{ textDecoration: 'none', color: 'blue' }} onClick={goHome} >Apply</Text>
-
-            {' / '}
-            <b>{params.type == 'club' ? 'Club' : 'Leader'}</b>
-          </Text>
-          <Flex
-            sx={{ alignItems: 'center', cursor: 'pointer' }}
-            onClick={() => poster()}
-          >
-            <Text
-              sx={{
-                color: saved ? '#33d6a6' : '#ff8c37',
-                mr: 2,
-                fontWeight: '800',
-                textTransform: 'uppercase'
-              }}
-            >
-              {saved ? 'Changes Saved' : 'Save Changes'}
-            </Text>
-            <Icon
-              glyph={saved ? 'checkmark' : 'important'}
-              color={saved ? '#33d6a6' : '#ff8c37'}
-            />
-          </Flex>
-        </Flex>
-      </Card>
-      <Card px={[4, 4]} py={[4, 4]} mt={4}>
+      {savedInfo(saved, poster)}
+      <Card px={[4, 4]} py={[4, 4]}>
         {(params.type == 'club' ? manifest.clubs : manifest.leaders).map(
           (sectionItem, sectionIndex) => (
             <Box>
@@ -237,6 +409,10 @@ export default function ApplicationClub({
         >
           {'<<'} Save & Go Back
         </Button>
+      </Card>
+      <br/>
+      <Card>
+        {clubApplication.map(htmlForm)}
       </Card>
     </Container>
   )

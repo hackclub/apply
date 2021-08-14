@@ -6,6 +6,7 @@ import {validateEmail} from '../lib/helpers'
 export default function IndexHome() {
   const [status, setStatus] = useState('awaiting')
   const [email, setEmail] = useState('')
+  
   async function handleSubmission() {
     if (validateEmail(email)) {
       setStatus('loading')
@@ -21,6 +22,7 @@ export default function IndexHome() {
       alert('Please input a valid email address!')
     }
   }
+
   return (
     <Flex
       sx={{
