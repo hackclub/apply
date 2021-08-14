@@ -226,6 +226,17 @@ export default function ApplicationClub({
             </Box>
           )
         )}
+        <Button
+          sx={{
+            mt: 3,
+            width: '100%',
+            textTransform: 'uppercase'
+          }}
+          variant="ctaLg"
+          onClick={goHome}
+        >
+          {'<<'} Save & Go Back
+        </Button>
       </Card>
     </Container>
   )
