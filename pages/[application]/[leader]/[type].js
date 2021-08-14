@@ -34,11 +34,11 @@ const inputType = {
   options: (key, { choices } = { choices: [] }) => <>
     <Select className="options" name={key}>
       <option disabled selected value="">Select One</option>
-      {choices.map( choice => <option value={choice}>{choice}</option> )}
+      {choices.map( choice => <option value={choice.toLowerCase().replaceAll(" ", "_")}>{choice}</option> )}
     </Select>
   </>,
-  date: (key) => <Input className="question-input" type="date"/>,
-  jsx: (key, jsxMaker) => jsxMaker
+  date: (key) => <Input name={key} className="question-input" type="date"/>,
+  jsx: (key, jsxMaker) => jsxMaker(key)
 }
 
 const MyTextarea = ({ words, key, placeholder }) => {
@@ -301,9 +301,13 @@ export default function ApplicationClub({
           const entries = Object.fromEntries(formData.entries());
           setSavedState(false);
           console.log(entries, [...formData.entries()]);
-
         }}>
-          {(params.type === "club" ? clubApplication : leaderApplication).map(htmlForm)}
+          <fieldset 
+            style={{all: "unset", width:"100%"}} 
+            disabled={applicationsRecord.fields['Submitted'] ? true : false}
+            >
+            {(params.type === "club" ? clubApplication : leaderApplication).map(htmlForm)}
+          </fieldset>
         </form>
         <Button
           sx={{

@@ -15,7 +15,7 @@ export const leaderApplication = [
       {
         key: "class_year",
         text: "Year in School",
-        type: ["options", { choices: ["freshman", "sophomore", "junior", "senior"] }] 
+        type: ["options", { choices: ["Freshman", "Sophomore", "Junior", "Senior"] }] 
       },
       {
         key: "phone",
@@ -39,13 +39,13 @@ export const leaderApplication = [
         key: "gender",
         text: "Gender",
         hint: "",
-        type: ["options", { choices: ["male", "female", "other"] }] 
+        type: ["options", { choices: ["Male", "Female", "Other"] }] 
       },
       {
         key: "ethnicity",
         text: "Ethnicity",
         hint: "",
-        type: ["options", { choices: ["white", "black", "hispanic_or_latino", "native_american", "asian", "other"] }] 
+        type: ["options", { choices: ["White", "Black", "Hispanic or Latino", "Native American", "Asian", "Other"] }] 
       },
     ]
   },
