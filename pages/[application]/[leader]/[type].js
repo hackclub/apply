@@ -81,6 +81,46 @@ const formQuestion = ({text, hint, type, key, optional}) => (
 
 const formQuestions = qs => qs.map(formQuestion);
 
+const htmlForm = ({sectionName, hint, questions}) => (
+  <div className="form-item">
+    <div className="form-item-name">
+      {sectionName}
+    </div>
+    <div className="section-hint">{ hint ? hint : "" }</div>
+    <div className="form-item-content">
+      {formQuestions(questions)}
+    </div>
+  </div>
+)
+
+const savedInfo = (saved, poster) => (
+  <div
+    style={{ 
+      display: "flex",
+      position: "fixed", 
+      right: "10px", 
+      bottom: "10px", 
+      cursor: 'pointer',
+      "place-items": "center"
+    }}
+    onClick={poster}
+    >
+    <Text
+      sx={{
+        color: saved ? '#33d6a6' : '#ff8c37',
+        fontWeight: '800',
+        textTransform: 'uppercase',
+      }}
+      >
+      {saved ? 'Saved' : 'Click to Save'}
+    </Text>
+    <Icon
+      glyph={saved ? 'checkmark' : 'important'}
+      color={saved ? '#33d6a6' : '#ff8c37'}
+      />
+  </div>
+)
+
 const formStyle = `
     * {
       font-family: "Phantom Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
@@ -198,46 +238,6 @@ const formStyle = `
       background: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23606e77' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E) right 0.75rem center / 0.5rem no-repeat rgb(255, 255, 255);
     }
 `
-
-const htmlForm = ({sectionName, hint, questions}) => (
-  <div className="form-item">
-    <div className="form-item-name">
-      {sectionName}
-    </div>
-    <div className="section-hint">{ hint ? hint : "" }</div>
-    <div className="form-item-content">
-      {formQuestions(questions)}
-    </div>
-  </div>
-)
-
-const savedInfo = (saved, poster) => (
-  <div
-    style={{ 
-      display: "flex",
-      position: "fixed", 
-      right: "10px", 
-      bottom: "10px", 
-      cursor: 'pointer',
-      "place-items": "center"
-    }}
-    onClick={poster}
-    >
-    <Text
-      sx={{
-        color: saved ? '#33d6a6' : '#ff8c37',
-        fontWeight: '800',
-        textTransform: 'uppercase',
-      }}
-      >
-      {saved ? 'Saved' : 'Click to Save'}
-    </Text>
-    <Icon
-      glyph={saved ? 'checkmark' : 'important'}
-      color={saved ? '#33d6a6' : '#ff8c37'}
-      />
-  </div>
-)
 
 export default function ApplicationClub({
   notFound,
