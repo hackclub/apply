@@ -51,7 +51,7 @@ export default function ApplicationHome({
     }
   }
   async function deleteLeader(leaderID) {
-    if (window.confirm("Do you really want to delete this leader from your application?" +leaderID )) {
+    if (window.confirm("Do you really want to delete this leader from your application?" )) {
     const deleteLeaderCall = await fetch(
       `/api/remove?id=${params.application}&leaderID=${leaderID}`
     ).then(r => r.json())
