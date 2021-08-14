@@ -16,8 +16,8 @@ import styled from '@emotion/styled'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import nookies, {destroyCookie} from 'nookies'
-import {validateEmail} from '../../../lib/helpers'
+import nookies, { destroyCookie } from 'nookies'
+import { validateEmail } from '../../../lib/helpers'
 
 const SubmitStatus = styled(Text)`
   background: transparent url(/underline.svg) bottom left no-repeat;
@@ -32,7 +32,7 @@ export default function ApplicationHome({
   leaderRecord
 }) {
   const [addingLeader, setAddingLeader] = useState(false)
-  const [emailToInvite, setEmailToInvite] = useState(false)
+  const [emailToInvite, setEmailToInvite] = useState('')
   const router = useRouter()
   async function sendInvite() {
     if (validateEmail(emailToInvite)) {
@@ -49,6 +49,19 @@ export default function ApplicationHome({
     } else {
       alert('Please input a valid email address!')
     }
+  }
+  async function deleteLeader(leaderID) {
+    if (window.confirm("Do you really want to delete this leader from your application?" +leaderID )) {
+    const deleteLeaderCall = await fetch(
+      `/api/remove?id=${params.application}&leaderID=${leaderID}`
+    ).then(r => r.json())
+    if (deleteLeaderCall.success) {
+      alert('✅ Deleted leader from application!')
+      router.replace(router.asPath)
+    } else {
+      alert('❌ Error! Please try again!')
+    }
+  }
   }
   async function submitApplication() {
     const submissionAPICall = await fetch(
@@ -191,7 +204,8 @@ export default function ApplicationHome({
                   boxShadow: 'card',
                   height: '40px',
                   minWidth: '150px',
-                  fontWeight: 'bold'
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
                 }}
                 onClick={() => sendInvite()}
               >
@@ -237,18 +251,36 @@ export default function ApplicationHome({
         {applicationsRecord.fields['Leaders Emails'].map(
           (leaderEmail, leaderIndex) => (
             <Flex sx={{ alignItems: 'center', mt: 3 }}>
-              <Icon
-                glyph={
-                  applicationsRecord.fields['Leaders Complete?'][leaderIndex]
-                    ? 'checkmark'
-                    : 'important'
-                }
-                color={
-                  applicationsRecord.fields['Leaders Complete?'][leaderIndex]
-                    ? '#33d6a6'
-                    : '#ff8c37'
-                }
-              />
+              <Text
+                sx={leaderEmail != leaderRecord["fields"]["Email"] ? {
+                  cursor: 'pointer',
+                  ':hover > .importantIcon': { display: 'none' },
+                  '> .removeIcon': { display: 'none' },
+                  ':hover > .removeIcon': { display: 'inline' }
+                } : {'> .removeIcon': { display: 'none' },}}
+              >
+                <Icon
+                  class="importantIcon"
+                  glyph={
+                    applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+                      ? 'checkmark'
+                      : 'important'
+                  }
+                  color={
+                    applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+                      ? '#33d6a6'
+                      : '#ff8c37'
+                  }
+                />
+                <Icon
+                  class="removeIcon"
+                  glyph={'member-remove'}
+                  onClick={() => deleteLeader(applicationsRecord.fields['Prospective Leaders'][leaderIndex])}
+                  color={
+                    '#ec3750'
+                   }
+                />
+              </Text>
               <Heading
                 sx={{
                   flexGrow: 1,

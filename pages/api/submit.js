@@ -1,11 +1,11 @@
 import { applicationsAirtable, loginsAirtable } from '../../lib/airtable'
-const cookies = nookies.get({ req })
+import nookies from 'nookies'
 
 export default async function handler(req, res) {
   const cookies = nookies.get({ req })
   try {
     const tokenRecord = await loginsAirtable.find('rec' + cookies.authToken)
-    if (!tokenRecord.fields['Path'].includes(req.query.id)) {
+    if (!tokenRecord.fields['Path'][0].includes(req.query.id)) {
       res.redirect('/')
       return
     }
