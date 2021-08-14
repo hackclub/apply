@@ -15,10 +15,11 @@ import {
   Grid
 } from 'theme-ui'
 import Icon from '@hackclub/icons'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import manifest from '../../../manifest'
 import nookies from 'nookies'
+import { useRouter } from 'next/router'
 
 export default function ApplicationClub({
   notFound,
@@ -29,7 +30,7 @@ export default function ApplicationClub({
   const [data, setData] = useState(
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
-  const [saved, setSaved] = useState(true)
+  const [saved, setSavedState] = useState(true)
   const poster = () => {
     fetch(
       `/api/${params.type}/save?id=${
@@ -47,14 +48,30 @@ export default function ApplicationClub({
       })
   }
 
+  const savingStateRef = useRef(saved)
+  const router = useRouter()
+  const setSaved = data => {
+    savingStateRef.current = data
+    setSavedState(data)
+  }
+
   useEffect(() => {
-    window.onbeforeunload = function () {
-      poster()
-      if (!saved) {
-        window.confirm('You have unsaved changes!')
+    window.addEventListener('beforeunload', function (e) {
+      if (!savingStateRef.current) {
+        e.preventDefault()
+        e.returnValue = ''
+      } else {
+        delete e['returnValue']
       }
-    }
+    })
   })
+
+  async function goHome() {
+    if (!savingStateRef.current) {
+      await poster()
+    }
+    router.push(`/${params.application}/${params.leader}`)
+  }
 
   if (notFound) {
     return <Error statusCode="404" />
@@ -69,28 +86,37 @@ export default function ApplicationClub({
           textAlign: 'left'
         }}
       >
-        <Flex sx={{ alignItems: 'center' }}>
-          <Link href={`/${params.application}/${params.leader}`}>
-            <Icon glyph="home" />
-          </Link>
+        <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
+          <Icon glyph="home" onClick={goHome} />
           <Text
             variant="subheadline"
             sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
             as="div"
           >
-            <Link href={`/${params.application}/${params.leader}`}>
-              <Text sx={{ textDecoration: 'none', color: 'blue' }}>Apply</Text>
-            </Link>
+            <Text sx={{ textDecoration: 'none', color: 'blue' }} onClick={goHome} >Apply</Text>
 
             {' / '}
             <b>{params.type == 'club' ? 'Club' : 'Leader'}</b>
           </Text>
-
-          <Icon
-            glyph={saved ? 'checkmark' : 'important'}
+          <Flex
+            sx={{ alignItems: 'center', cursor: 'pointer' }}
             onClick={() => poster()}
-            color={saved ? '#33d6a6' : '#ff8c37'}
-          />
+          >
+            <Text
+              sx={{
+                color: saved ? '#33d6a6' : '#ff8c37',
+                mr: 2,
+                fontWeight: '800',
+                textTransform: 'uppercase'
+              }}
+            >
+              {saved ? 'Changes Saved' : 'Save Changes'}
+            </Text>
+            <Icon
+              glyph={saved ? 'checkmark' : 'important'}
+              color={saved ? '#33d6a6' : '#ff8c37'}
+            />
+          </Flex>
         </Flex>
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
@@ -126,7 +152,9 @@ export default function ApplicationClub({
                           </Text>
                         </Text>
                       }
-                      disabled={applicationsRecord.fields['Submitted'] ? true : false}
+                      disabled={
+                        applicationsRecord.fields['Submitted'] ? true : false
+                      }
                       onChange={e => {
                         let newData = {}
                         newData[item.key] = e.target.value
@@ -208,26 +236,27 @@ export async function getServerSideProps({ req, params }) {
     prospectiveLeadersAirtable,
     applicationsAirtable
   } = require('../../../lib/airtable')
-  const cookies = nookies.get({req})
+  const cookies = nookies.get({ req })
   if (cookies.authToken) {
-  try {
-    const leaderRecord = await prospectiveLeadersAirtable.find('rec'+ params.leader)
-    const applicationsRecord = await applicationsAirtable.find(
-     'rec'+ params.application
-    )
-    if(leaderRecord.fields["Accepted Tokens"].includes(cookies.authToken)){
-      return { props: { params, applicationsRecord, leaderRecord } }
+    try {
+      const leaderRecord = await prospectiveLeadersAirtable.find(
+        'rec' + params.leader
+      )
+      const applicationsRecord = await applicationsAirtable.find(
+        'rec' + params.application
+      )
+      if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
+        return { props: { params, applicationsRecord, leaderRecord } }
+      } else {
+        res.statusCode = 302
+        res.setHeader('Location', `/`)
+        return
+      }
+    } catch (e) {
+      console.log(e)
+      return { props: { notFound: true } }
     }
-    else{
-      res.statusCode = 302
-      res.setHeader('Location', `/`)
-      return
-    }
-  } catch (e) {
-    console.log(e)
-    return { props: { notFound: true } }
-  }}
-  else{
+  } else {
     res.statusCode = 302
     res.setHeader('Location', `/`)
     return
