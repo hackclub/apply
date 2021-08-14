@@ -38,13 +38,13 @@ export const leaderApplication = [
       {
         key: "gender",
         text: "Gender",
-        hint: "",
+        optional: true,
         type: ["options", { choices: ["Male", "Female", "Other"] }] 
       },
       {
         key: "ethnicity",
         text: "Ethnicity",
-        hint: "",
+        optional: true,
         type: ["options", { choices: ["White", "Black", "Hispanic or Latino", "Native American", "Asian", "Other"] }] 
       },
     ]

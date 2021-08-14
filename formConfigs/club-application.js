@@ -10,7 +10,7 @@ export const clubApplication = [
         type: [
           "textarea", 
           { 
-            words: 40, 
+            words: 50, 
             // placeholder: "" 
           }
         ]
@@ -70,13 +70,13 @@ export const clubApplication = [
         key: "formation_registered",
         text: "What steps have you taken to start your club?",
         hint: "(have you registered with your school, taken interest surveys, identified a sponsor, etc.)",
-        type: ["textarea", { words: 75 }]
+        type: ["textarea", { words: 50 }]
       },
       {
         key: "different",
         text: "Has your school had coding clubs before? What’s going to be new about your Hack Club?",
         hint: "",
-        type: ["textarea", { words: 75 }] 
+        type: ["textarea", { words: 50 }] 
       }
     ]
   },
