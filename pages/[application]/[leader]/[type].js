@@ -36,7 +36,7 @@ const inputType = {
   options: (name, { choices } = { choices: [] }) => <>
     <Select className="options" name={name}>
       <option disabled selected value="">Select One</option>
-      {choices.map( choice => <option value={choice.toLowerCase().replaceAll(" ", "_")}>{choice}</option> )}
+      {choices.map( choice => <option value={choice.toLowerCase().split(" ").join("_")}>{choice}</option> )}
     </Select>
   </>,
   date: (name) => <Input name={name} className="question-input" type="date"/>,
@@ -148,7 +148,7 @@ const formStyle = `
     .form-item-name {
       text-align: left;
       width: 200px;
-      font-size: 27px;
+      font-size: 30px;
       color: #e42d42;
       font-weight: bold;
       line-height: 1.25;
@@ -164,7 +164,7 @@ const formStyle = `
       background: none;
       padding: 10px;
       line-height: 1.375;
-      font-size: 20px;
+      font-size: 24px;
       color: #384046;
     }
 

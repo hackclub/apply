@@ -82,7 +82,7 @@ export const leaderApplication = [
         type: ["textarea", { words: 100 }]
       },
       {
-        name: "different",
+        name: "can_code",
         text: "Do you already know how to code?",
         hint: "(It's okay if not!)",
         type: ["options", { choices: ["yes", "no"] }] 
@@ -93,9 +93,8 @@ export const leaderApplication = [
     sectionName: "Bonus",
     questions: [
       {
-        name: "bonus",
+        name: "logo_program",
         text: "Make something! Our clubs lead Leo McElroy has been deeply influenced by this little drawing tool called the Turtle. You can tell it to move around with these commands. Play around with it and draw a picture.",
-        hint: "",
         type: "textarea"
       }
     ]

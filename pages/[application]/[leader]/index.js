@@ -297,7 +297,7 @@ export default function ApplicationHome({
             )}
 
             <Heading sx={{ flexGrow: 1, color: 'blue', ml: 2 }} as="h1">
-              My Personal Profile
+              Your Personal Profile
             </Heading>
             <Icon glyph="view-forward" />
           </Flex>
