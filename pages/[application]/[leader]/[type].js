@@ -23,27 +23,27 @@ import { clubApplication } from "/formConfigs/club-application.js";
 import { leaderApplication } from "/formConfigs/leader-application.js";
 
 const inputType = {
-  input: (key, { placeholder } = { placeholder: "" }) => (
+  input: (name, { placeholder } = { placeholder: "" }) => (
     <input 
-      name={key} 
+      name={name} 
       placeholder={placeholder} 
       className="question-input">
     </input>
   ),
-  textarea: (key, { words, placeholder } = { words: 0, placeholder: "" }) => (
-    <MyTextarea words={words} keyName={key} placeholder={placeholder} />
+  textarea: (name, { words, placeholder } = { words: 0, placeholder: "" }) => (
+    <MyTextarea words={words} fieldName={name} placeholder={placeholder} />
   ),
-  options: (key, { choices } = { choices: [] }) => <>
-    <Select className="options" name={key}>
+  options: (name, { choices } = { choices: [] }) => <>
+    <Select className="options" name={name}>
       <option disabled selected value="">Select One</option>
       {choices.map( choice => <option value={choice.toLowerCase().replaceAll(" ", "_")}>{choice}</option> )}
     </Select>
   </>,
-  date: (key) => <Input name={key} className="question-input" type="date"/>,
-  jsx: (key, jsxMaker) => jsxMaker(key)
+  date: (name) => <Input name={name} className="question-input" type="date"/>,
+  jsx: (name, jsxMaker) => jsxMaker(name)
 }
 
-const MyTextarea = ({ words, keyName, placeholder }) => { // can't use key as prop
+const MyTextarea = ({ words, fieldName, placeholder }) => { // can't use name as prop
 
   const wordCount = words !== 0;
   let [ numWords, setWords] = useState(0);
@@ -51,7 +51,7 @@ const MyTextarea = ({ words, keyName, placeholder }) => { // can't use key as pr
   return (
     <div className="ta">
       <textarea 
-        name={keyName} 
+        name={fieldName} 
         placeholder={placeholder} 
         className="question-textarea question-input"
         onKeyUp={(e) => {
@@ -70,14 +70,14 @@ const MyTextarea = ({ words, keyName, placeholder }) => { // can't use key as pr
   )
 }
 
-const formQuestion = ({text, hint, type, key, optional}) => (
+const formQuestion = ({text, hint, type, name, optional}) => (
   <div className="question">
     <div className="question-text">
       { text ? text : "" } 
       { optional ? <span className="question-hint">(optional)</span> : ""}
     </div>
     <div className="question-hint">{ hint ? hint : "" }</div>
-    {inputType[Array.isArray(type) ? type[0] : type](key, ...type.slice(1))}
+    {inputType[Array.isArray(type) ? type[0] : type](name, ...type.slice(1))}
   </div>
 )
 
@@ -294,7 +294,6 @@ export default function ApplicationClub({
   function handleFormInput(e) {
     setSavedState(false);
 
-    // losing textarea because react
     const formData = new FormData(e.target.form);
 
     const entries = Object.fromEntries(formData.entries());

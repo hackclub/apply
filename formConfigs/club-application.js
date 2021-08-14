@@ -7,14 +7,14 @@
 
 // question
 // {
-//   key: string = ""
+//   name: string = ""
 //   text: string = ""
 //   hint: string = ""
 //   type: 
 //     [ "input", { placeholder: "" } ] 
 //     [ "options", { choices: [] } 
 //     [ "textarea", { words: 0, placeholder: "" } 
-//     [ "jsx", (key) => <></> ]
+//     [ "jsx", (name) => <></> ]
 // }
 
 export const clubApplication = [
@@ -22,7 +22,7 @@ export const clubApplication = [
     sectionName: "Leaders",
     questions: [
       {
-        key: "leaders_team_origin_story",
+        name: "leaders_team_origin_story",
         text: "How long have you known your other club leaders and how did you meet?",
         type: [ "textarea", { words: 50 } ]
       }
@@ -32,18 +32,18 @@ export const clubApplication = [
     sectionName: "Venue",
     questions: [
       {
-        key: "high_school_name",
+        name: "high_school_name",
         text: "Where are you planning to run your Hack Club?",
         type: "input" 
       },
       {
-        key: "high_school_type",
+        name: "high_school_type",
         text: "What type of venue is it?",
         hint: "(It can be a high school, makerspace, library, or something else.)",
         type: "input" 
       },
       {
-        key: "high_school_address",
+        name: "high_school_address",
         text: "What's the full address?",
         hint: "(Please include city, state/province, country, and postal code.)",
         type: "textarea" 
@@ -54,17 +54,17 @@ export const clubApplication = [
     sectionName: "Idea",
     questions: [
       {
-        key: "idea_why",
+        name: "idea_why",
         text: "Why do you want to start a Hack Club?",
         type: ["textarea", { words: 75 }]
       },
       {
-        key: "idea_other_coding_clubs",
+        name: "idea_other_coding_clubs",
         text: "What will your club do and what would a successful club look like?",
         type: ["textarea", { words: 75 }] 
       },
       {
-        key: "idea_other_general_clubs",
+        name: "idea_hopes",
         text: "What do you personally hope to get out of Hack Club?",
         type: ["textarea", { words: 75 }] 
       }
@@ -74,13 +74,13 @@ export const clubApplication = [
     sectionName: "Formation",
     questions: [
       {
-        key: "formation_registered",
+        name: "formation_registered",
         text: "What steps have you taken to start your club?",
         hint: "(have you registered with your school, taken interest surveys, identified a sponsor, etc.)",
         type: ["textarea", { words: 50 }]
       },
       {
-        key: "different",
+        name: "formation_different",
         text: "Has your school had coding clubs before? What’s going to be new about your Hack Club?",
         type: ["textarea", { words: 50 }] 
       }
@@ -90,7 +90,7 @@ export const clubApplication = [
     sectionName: "Curious",
     questions: [
       {
-        key: "point_of_contact_id",
+        name: "curious_how_find",
         text: "How did you hear about Hack Club?",
         hint: "(i.e. from a friend, event, teacher, website, twitter)",
         type: "textarea" 
