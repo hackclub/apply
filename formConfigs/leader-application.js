@@ -33,6 +33,7 @@ export const leaderApplication = [
   },
   {
     sectionName: "Stats",
+    hint: "Demographic stats are collected to share in aggregate with donors and will not be used as part of application review.",
     questions: [
       {
         key: "gender",
@@ -55,13 +56,13 @@ export const leaderApplication = [
         key: "website",
         text: "Personal Website Link",
         hint: "(optional)",
-        type: ["input"]
+        type: ["input", { placeholder: "https://" }]
       },
       {
         key: "github",
         text: "Github Link",
         hint: "(optional)",
-        type: ["input"]
+        type: ["input", { placeholder: "https://" }]
       },
     ]
   },
@@ -72,6 +73,12 @@ export const leaderApplication = [
         key: "made",
         text: "Tell us about something you made which was personally meaningful to you?",
         hint: "(include links and links to images if possible)",
+        type: ["textarea", { words: 100 }]
+      },
+      {
+        key: "learned",
+        text: "What's something interesting you learned recently?",
+        hint: "(It doesn't have to be about coding!)",
         type: ["textarea", { words: 100 }]
       },
       {

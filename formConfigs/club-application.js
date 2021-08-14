@@ -70,13 +70,13 @@ export const clubApplication = [
         key: "formation_registered",
         text: "What steps have you taken to start your club?",
         hint: "(have you registered with your school, taken interest surveys, identified a sponsor, etc.)",
-        type: ["textarea"]
+        type: ["textarea", { words: 75 }]
       },
       {
         key: "different",
         text: "Has your school had coding clubs before? What’s going to be new about your Hack Club?",
         hint: "",
-        type: ["textarea"] 
+        type: ["textarea", { words: 75 }] 
       }
     ]
   },
@@ -84,16 +84,10 @@ export const clubApplication = [
     sectionName: "Curious",
     questions: [
       {
-        key: "other_surprising_or_amusing_discovery",
-        text: "What is something surprising or amusing you learned recently?",
-        hint: "(have you registered with your school, taken interest surveys, identified a sponsor, etc.)",
-        type: ["textarea"]
-      },
-      {
         key: "point_of_contact_id",
         text: "How did you hear about Hack Club?",
         hint: "(i.e. from a friend, event, teacher, website, twitter)",
-        type: ["textarea", { words: 50 }] 
+        type: ["textarea"] 
       }
     ]
   }

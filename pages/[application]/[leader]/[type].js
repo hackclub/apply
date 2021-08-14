@@ -107,12 +107,14 @@ const formStyle = `
       text-align: left;
       width: 200px;
       font-size: 27px;
-      margin: 0px;
       color: #e42d42;
       font-weight: bold;
       line-height: 1.25;
       padding: 10px;
-      padding-right: 20px;
+    }
+
+    .section-hint {
+      padding-left: 10px;
     }
 
     .form-item-content {
@@ -197,11 +199,12 @@ const formStyle = `
     }
 `
 
-const htmlForm = ({sectionName, questions}) => (
+const htmlForm = ({sectionName, hint, questions}) => (
   <div className="form-item">
     <div className="form-item-name">
       {sectionName}
     </div>
+    <div className="section-hint">{ hint ? hint : "" }</div>
     <div className="form-item-content">
       {formQuestions(questions)}
     </div>
