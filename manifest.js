@@ -1,30 +1,18 @@
 export default {
   clubs: [
     {
-      header: 'School',
+      header: 'Venue',
       items: [
         {
           key: 'School Name',
-          label: 'Name of high school',
+          label: 'Where are you planning to run your Hack Club?',
           type: 'string',
+          sublabel: '(Give us the name and type. It can be a high school, makerspace, or something else.)',
           optional: false
         },
         {
-          key: 'School Website',
-          label: 'Link to your high school’s website, if any',
-          type: 'string',
-          optional: true
-        },
-        {
-          key: 'School Type',
-          label: 'Type of school',
-          type: 'select',
-          optional: false,
-          options: ['Public school', 'Private school', 'Charter school']
-        },
-        {
           key: 'School Address',
-          label: 'High School address',
+          label: `What's the full address?`,
           type: 'paragraph',
           optional: false,
           sublabel:
@@ -37,7 +25,7 @@ export default {
       items: [
         {
           key: 'President',
-          label: 'President / equivalent position',
+          label: 'Who would you like your Point of Contact to be?',
           type: 'select',
           optionsKey: 'Leaders Emails',
           optional: false
@@ -74,30 +62,30 @@ export default {
           characters: [350, 600]
         },
         {
-          key: 'Pre-existing Clubs',
+          key: 'Success',
           label:
-            'What successful clubs exist at your school? What makes them successful? Why will you be just as successful, if not more, than them?',
+            'What will your club do and what would a successful club look like?',
           type: 'paragraph',
           optional: false,
           characters: [350, 600]
-        }
+        },
+        {
+          key: 'Get Out Of HC',
+          label: 'What do you personally hope to get out of Hack Club?',
+          type: 'paragraph',
+          optional: true
+        },
       ]
     },
     {
       header: 'Formation',
       items: [
         {
-          key: 'School Status',
-          label: 'Have you already registered your club with your school?',
-          type: 'string',
-          optional: false
-        },
-        {
-          key: 'School Details',
-          label:
-            'Please provide any other relevant information about your relationship with the school. For example, do you already have a teacher sponsor?',
+          key: 'Status',
+          label: 'What steps have you taken to start your club?',
+          sublabel: '(have you registered with your school, taken interest surveys, identified a sponsor, etc.)',
           type: 'paragraph',
-          optional: true
+          optional: false
         }
       ]
     },
@@ -112,12 +100,6 @@ export default {
           optional: false,
           characters: [50, 400],
           sublabel: `Don't make it about Hack Club! Doesn't have to be about coding.`
-        },
-        {
-          key: 'Get Out Of HC',
-          label: 'What do you hope to get out of Hack Club?',
-          type: 'paragraph',
-          optional: true
         },
         {
           key: 'Hear About HC',
@@ -252,9 +234,10 @@ export default {
         },
         {
           key: 'Achievement',
-          label: `Please tell us in one or two sentences about the most impressive thing you have built or achieved. Include links (and links to images) if possible.`,
+          label: `Tell us about something you made which was personally meaningful to you?`,
           type: 'paragraph',
           optional: false,
+          sublabel:  "(include links and links to images if possible)",
           characters: [150, 250]
         },
         {
@@ -262,6 +245,7 @@ export default {
           label: 'Are you technical? (You are a programmer who can teach without outside assistance)',
           type: 'select',
           optional: false,
+          hint: `(It's okay if not!)`,
           options: ['Yes', 'No']
         },
       ]
