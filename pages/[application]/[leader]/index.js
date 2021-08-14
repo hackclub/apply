@@ -17,7 +17,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import nookies, { destroyCookie } from 'nookies'
-import { validateEmail } from '../../../lib/helpers'
+import { validateEmail, returnLocalizedMessage } from '../../../lib/helpers'
 
 const SubmitStatus = styled(Text)`
   background: transparent url(/underline.svg) bottom left no-repeat;
@@ -51,17 +51,21 @@ export default function ApplicationHome({
     }
   }
   async function deleteLeader(leaderID) {
-    if (window.confirm("Do you really want to delete this leader from your application?" )) {
-    const deleteLeaderCall = await fetch(
-      `/api/remove?id=${params.application}&leaderID=${leaderID}`
-    ).then(r => r.json())
-    if (deleteLeaderCall.success) {
-      alert('✅ Deleted leader from application!')
-      router.replace(router.asPath)
-    } else {
-      alert('❌ Error! Please try again!')
+    if (
+      window.confirm(
+        'Do you really want to delete this leader from your application?'
+      )
+    ) {
+      const deleteLeaderCall = await fetch(
+        `/api/remove?id=${params.application}&leaderID=${leaderID}`
+      ).then(r => r.json())
+      if (deleteLeaderCall.success) {
+        alert('✅ Deleted leader from application!')
+        router.replace(router.asPath)
+      } else {
+        alert('❌ Error! Please try again!')
+      }
     }
-  }
   }
   async function submitApplication() {
     const submissionAPICall = await fetch(
@@ -87,11 +91,11 @@ export default function ApplicationHome({
       >
         <Icon glyph="message" />
         <Text sx={{ ml: 2 }}>
-          Please don’t hesitate to reach out. We’re available to email at{' '}
+          {returnLocalizedMessage(router.locale, 'CONTACT_MESSAGE')}{' '}
           <b>
             <Text
               as="a"
-              href="mailto:applications@hackclub.com"
+              href={`mailto:${returnLocalizedMessage(router.locale, 'EMAIL')}`}
               sx={{
                 color: 'blue',
                 textDecoration: 'none',
@@ -101,7 +105,7 @@ export default function ApplicationHome({
                 }
               }}
             >
-              applications@hackclub.com
+              {returnLocalizedMessage(router.locale, 'EMAIL')}
             </Text>
           </b>
           !
@@ -109,22 +113,22 @@ export default function ApplicationHome({
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
         <Heading sx={{ fontSize: [4, 5] }}>
-          Your application to start a Hack Club{' '}
+        {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE')}{' '}
           {applicationsRecord.fields['All Complete (incl Leaders)'] == 1 ? (
             <>
               {applicationsRecord.fields['Submitted'] ? (
                 <>
-                  <SubmitStatus>has been submitted!</SubmitStatus>
+                  <SubmitStatus>{returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE_APPENDED_HAS_BEEN')} {returnLocalizedMessage(router.locale, 'SUBMITTED')}</SubmitStatus>
                 </>
               ) : (
                 <>
-                  is <SubmitStatus>ready to go!</SubmitStatus>
+                  {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE_APPENDED_IS')} <SubmitStatus>ready to go!</SubmitStatus>
                 </>
               )}
             </>
           ) : (
             <>
-              is <SubmitStatus>still in progress!</SubmitStatus>
+              {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE_APPENDED_IS')} <SubmitStatus>still in progress!</SubmitStatus>
             </>
           )}
         </Heading>
@@ -160,7 +164,7 @@ export default function ApplicationHome({
         <Divider sx={{ color: 'slate', my: 4 }} />
         <Flex sx={{ alignItems: 'center' }}>
           <Heading sx={{ color: 'slate', ml: 1, flexGrow: 1 }}>
-            CO-LEADERS
+            LEADERS
           </Heading>
           <Flex
             sx={{
@@ -226,7 +230,7 @@ export default function ApplicationHome({
               >
                 <Icon glyph={'welcome'} size="40" />
                 <Text ml={3}>
-                  You can read our guide for selecting your team here.
+                  You can read our guide for selecting your team <a href="https://workshops.hackclub.com/leadership_team/">here</a>.
                 </Text>
               </Flex>
               <Flex
@@ -252,12 +256,16 @@ export default function ApplicationHome({
           (leaderEmail, leaderIndex) => (
             <Flex sx={{ alignItems: 'center', mt: 3 }}>
               <Text
-                sx={leaderEmail != leaderRecord["fields"]["Email"] ? {
-                  cursor: 'pointer',
-                  ':hover > .importantIcon': { display: 'none' },
-                  '> .removeIcon': { display: 'none' },
-                  ':hover > .removeIcon': { display: 'inline' }
-                } : {'> .removeIcon': { display: 'none' },}}
+                sx={
+                  leaderEmail != leaderRecord['fields']['Email']
+                    ? {
+                        cursor: 'pointer',
+                        ':hover > .importantIcon': { display: 'none' },
+                        '> .removeIcon': { display: 'none' },
+                        ':hover > .removeIcon': { display: 'inline' }
+                      }
+                    : { '> .removeIcon': { display: 'none' } }
+                }
               >
                 <Icon
                   class="importantIcon"
@@ -275,10 +283,14 @@ export default function ApplicationHome({
                 <Icon
                   class="removeIcon"
                   glyph={'member-remove'}
-                  onClick={() => deleteLeader(applicationsRecord.fields['Prospective Leaders'][leaderIndex])}
-                  color={
-                    '#ec3750'
-                   }
+                  onClick={() =>
+                    deleteLeader(
+                      applicationsRecord.fields['Prospective Leaders'][
+                        leaderIndex
+                      ]
+                    )
+                  }
+                  color={'#ec3750'}
                 />
               </Text>
               <Heading
