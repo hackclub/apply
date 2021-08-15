@@ -352,7 +352,7 @@ export default function ApplicationHome({
   )
 }
 
-export async function getServerSideProps({ req, params }) {
+export async function getServerSideProps({ res, req, params }) {
   const {
     prospectiveLeadersAirtable,
     applicationsAirtable
