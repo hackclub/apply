@@ -22,5 +22,13 @@ export const messageObject = {
   "INVALID_EMAIL_ADDRESS": "Endereço de e-mail inválido",
   "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER": "Você tem certeza que deseja remover este member como um membro de sua equipe?",
   "SUBMITTED": "Submetida!",
-  "REMOVED": "Membro removido!"
+  "REMOVED": "Membro removido!",
+  "WELCOME_TITLE": "Bem-vindo",
+  "WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE":"Mal podemos esperar para receber sua inscrição.",
+  "WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE":"Vamos logar você!",
+  "ENTER_YOUR_EMAIL_LABEL": "Insira seu e-mail:",
+  "WE_JUST_SENT_A_LOGIN_URL": "Nós acabamos de enviar um URL de login para seu e-mail.",
+  "SENDING": "Enviando email!",
+  "CONTINUE": "Continuar",
+  "EMAIL": "Endereço de e-mail"
 }

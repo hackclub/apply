@@ -22,7 +22,15 @@ export const messageObject =  {
   "INVALID_EMAIL_ADDRESS": "Invalid Email Address",
   "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER": "Are you sure you want to remove this member as a team member?",
   "SUBMITTED": "Submitted!",
-  "REMOVED": "Member removed!"
+  "REMOVED": "Member removed!",
+  "WELCOME_TITLE": "Welcome",
+  "WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE":"We can’t wait to see your application.",
+  "WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE":"Let’s get you signed in!",
+  "ENTER_YOUR_EMAIL_LABEL": "Enter your email:",
+  "WE_JUST_SENT_A_LOGIN_URL": "We just sent a login URL to your email.",
+  "SENDING": "Sending email!",
+  "CONTINUE": "Continue",
+  "EMAIL": "Email address"
 }
 
  

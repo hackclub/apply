@@ -1,9 +1,11 @@
 import { Box, Button, Text, Flex, Heading, Input } from 'theme-ui'
 import { useState } from 'react'
 import nookies from 'nookies'
-import {validateEmail} from '../lib/helpers'
+import {validateEmail, returnLocalizedMessage} from '../lib/helpers'
+import { useRouter } from 'next/router'
 
 export default function IndexHome() {
+  const router = useRouter()
   const [status, setStatus] = useState('awaiting')
   const [email, setEmail] = useState('')
   async function handleSubmission() {
@@ -18,7 +20,7 @@ export default function IndexHome() {
         setStatus('error')
       }
     } else {
-      alert('Please input a valid email address!')
+      alert(`❌ ${returnLocalizedMessage(router.locale, "INVALID_EMAIL_ADDRESS")}`)
     }
   }
   return (
@@ -36,23 +38,23 @@ export default function IndexHome() {
         sx={{ borderRadius: 10, width: '100%', maxWidth: '36rem' }}
       >
         <Heading as="h1" sx={{ fontSize: 5 }}>
-          Welcome
+        {returnLocalizedMessage(router.locale, 'WELCOME_TITLE')}
         </Heading>
         <Text as="p" variant="lead">
-          We can’t wait to see your application. <br /> Let’s get you signed in!
+        {returnLocalizedMessage(router.locale, "WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE")} <br /> {returnLocalizedMessage(router.locale, "WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE")}
         </Text>
         <Text as="p" variant="lead">
           {status == 'awaiting'
-            ? 'Enter your email:'
+            ? returnLocalizedMessage(router.locale, "ENTER_YOUR_EMAIL_LABEL")
             : status == 'sent'
-            ? '📬 We just sent a unique URL to sam@sampoder.com.'
+            ? '📬 ' + returnLocalizedMessage(router.locale, "WE_JUST_SENT_A_LOGIN_URL")
             : status == 'loading'
-            ? '✉️ Sending email!'
-            : '⚠️ Something went wrong, please try again.'}
+            ? '✉️ '  + returnLocalizedMessage(router.locale, "SENDING")
+            : '⚠️ '+returnLocalizedMessage(router.locale, 'ERROR')}
         </Text>
         <Input
           className="bg"
-          placeholder="Email Address"
+          placeholder={returnLocalizedMessage(router.locale, 'EMAIL')}
           onChange={e => setEmail(e.target.value)}
           sx={{
             color: 'rgb(56, 64, 70)',
@@ -75,7 +77,7 @@ export default function IndexHome() {
           }}
           onClick={handleSubmission}
         >
-          Continue {'>>'}
+          {returnLocalizedMessage(router.locale, 'CONTINUE')} {'>>'}
         </Button>
       </Box>
     </Flex>
