@@ -42,18 +42,23 @@ export default function ApplicationHome({
       if (loginAPICall.success) {
         alert(`✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`)
         setEmailToInvite('')
-        router.replace(router.asPath, null, {scroll: false})
+        router.replace(router.asPath, null, { scroll: false })
       } else {
         alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
     } else {
-      alert(`❌ ${returnLocalizedMessage(router.locale, "INVALID_EMAIL_ADDRESS")}`)
+      alert(
+        `❌ ${returnLocalizedMessage(router.locale, 'INVALID_EMAIL_ADDRESS')}`
+      )
     }
   }
   async function deleteLeader(leaderID) {
     if (
       window.confirm(
-        returnLocalizedMessage(router.locale, "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER")
+        returnLocalizedMessage(
+          router.locale,
+          'ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER'
+        )
       )
     ) {
       const deleteLeaderCall = await fetch(
@@ -61,7 +66,7 @@ export default function ApplicationHome({
       ).then(r => r.json())
       if (deleteLeaderCall.success) {
         alert(`✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`)
-        router.replace(router.asPath, null, {scroll: false})
+        router.replace(router.asPath, null, { scroll: false })
       } else {
         alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
@@ -74,7 +79,7 @@ export default function ApplicationHome({
     console.log(submissionAPICall)
     if (submissionAPICall.success) {
       alert(`✅ ${returnLocalizedMessage(router.locale, 'SUBMITTED')}`)
-      router.replace(router.asPath, null, {scroll: false})
+      router.replace(router.asPath, null, { scroll: false })
     } else {
       alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
     }
@@ -95,7 +100,10 @@ export default function ApplicationHome({
           <b>
             <Text
               as="a"
-              href={`mailto:${returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}`}
+              href={`mailto:${returnLocalizedMessage(
+                router.locale,
+                'CONTACT_EMAIL'
+              )}`}
               sx={{
                 color: 'blue',
                 textDecoration: 'none',
@@ -220,7 +228,10 @@ export default function ApplicationHome({
                 }}
                 onChange={e => setEmailToInvite(e.target.value)}
                 value={emailToInvite}
-                placeholder={returnLocalizedMessage(router.locale, "NEW_CO_LEADER_EMAIL")}
+                placeholder={returnLocalizedMessage(
+                  router.locale,
+                  'NEW_CO_LEADER_EMAIL'
+                )}
               />
               <Flex
                 sx={{
@@ -239,7 +250,9 @@ export default function ApplicationHome({
                 onClick={() => sendInvite()}
               >
                 <Icon glyph={'send-fill'} />
-                <Text mr={2}>{returnLocalizedMessage(router.locale, "SEND_INVITE")}</Text>
+                <Text mr={2}>
+                  {returnLocalizedMessage(router.locale, 'SEND_INVITE')}
+                </Text>
               </Flex>
             </Flex>
             <Grid columns={[1, 2]} mt={3}>
@@ -255,7 +268,10 @@ export default function ApplicationHome({
               >
                 <Icon glyph={'welcome'} size="40" />
                 <Text ml={3}>
-                {returnLocalizedMessage(router.locale, 'GUIDE_FOR_SELECTING_TEAM')}{' '}
+                  {returnLocalizedMessage(
+                    router.locale,
+                    'GUIDE_FOR_SELECTING_TEAM'
+                  )}{' '}
                   <Text as="b">
                     <a
                       href="https://workshops.hackclub.com/leadership_team/"
@@ -279,7 +295,7 @@ export default function ApplicationHome({
               >
                 <Icon glyph={'leader'} size="40" />
                 <Text ml={3}>
-                {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
+                  {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
                 </Text>
               </Flex>
             </Grid>
@@ -288,7 +304,7 @@ export default function ApplicationHome({
         )}
         {applicationsRecord.fields['Leaders Emails'].map(
           (leaderEmail, leaderIndex) => (
-            <Flex sx={{ alignItems: 'center', mt: 3 }}>
+            <Box sx={{ display: ['block', 'flex'], alignItems: 'center', mt: 3, flexWrap: 1 }}>
               <Text
                 sx={
                   leaderEmail != leaderRecord['fields']['Email']
@@ -296,9 +312,11 @@ export default function ApplicationHome({
                         cursor: 'pointer',
                         ':hover > .importantIcon': { display: 'none' },
                         '> .removeIcon': { display: 'none' },
-                        ':hover > .removeIcon': { display: 'inline' }
+                        ':hover > .removeIcon': { display: ['none', 'inline'] },
+                        display: ['none', 'block']
+                       
                       }
-                    : { '> .removeIcon': { display: 'none' } }
+                    : { '> .removeIcon': { display: 'none' }, display: ['none', 'block'] }
                 }
               >
                 <Icon
@@ -329,16 +347,35 @@ export default function ApplicationHome({
               </Text>
               <Heading
                 sx={{
-                  flexGrow: 1,
                   color: 'placeholder',
                   ml: 2,
-                  transform: 'translateY(-1.5px)'
+                  transform: 'translateY(-4px)'
                 }}
                 as="h2"
               >
                 {leaderEmail}
               </Heading>
-            </Flex>
+              <Box
+                sx={{
+                  ':hover,:focus': { color: 'red' },
+                  cursor: 'pointer',
+
+                  color: 'placeholder',
+                  fontSize: '16px',
+                  ml: 2,
+                  display: ['block', 'none']
+                }}
+                onClick={() =>
+                  deleteLeader(
+                    applicationsRecord.fields['Prospective Leaders'][
+                      leaderIndex
+                    ]
+                  )
+                }
+              >
+                Remove Leader
+              </Box>
+            </Box>
           )
         )}
         <Button
@@ -362,7 +399,7 @@ export default function ApplicationHome({
               : submitApplication()
           }
         >
-          {returnLocalizedMessage(router.locale, "SUBMIT_YOUR_APPLICATION")}!
+          {returnLocalizedMessage(router.locale, 'SUBMIT_YOUR_APPLICATION')}!
         </Button>
         <Button
           sx={{
@@ -376,10 +413,10 @@ export default function ApplicationHome({
             await destroyCookie(null, 'authToken', {
               path: '/'
             })
-            router.push('/', '/', {scroll: false})
+            router.push('/', '/', { scroll: false })
           }}
         >
-          {returnLocalizedMessage(router.locale, "LOGOUT")}
+          {returnLocalizedMessage(router.locale, 'LOGOUT')}
         </Button>
       </Card>
     </Container>
