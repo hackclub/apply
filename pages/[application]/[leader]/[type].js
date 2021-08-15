@@ -34,9 +34,16 @@ const inputType = {
     <MyTextarea words={words} fieldName={name} placeholder={placeholder} />
   ),
   options: (name, { choices } = { choices: [] }) => <>
-    <Select className="options" name={name}>
-      <option disabled selected value="">Select One</option>
-      {choices.map( choice => <option value={choice.toLowerCase().split(" ").join("_")}>{choice}</option> )}
+    <Select className="options" name={name} defaultValue="">
+      <option disabled value="">Select One</option>
+      {choices.map( (choice, i) => (
+        <option 
+          key={`${name} option ${i}`} 
+          value={choice.toLowerCase().split(" ").join("_")}
+          >
+          {choice}
+        </option>
+      ))}
     </Select>
   </>,
   date: (name) => <Input name={name} className="question-input" type="date"/>,
@@ -49,7 +56,7 @@ const MyTextarea = ({ words, fieldName, placeholder }) => { // can't use name as
   let [ numWords, setWords] = useState(0);
 
   return (
-    <div className="ta">
+    <div>
       <textarea 
         name={fieldName} 
         placeholder={placeholder} 
@@ -60,18 +67,19 @@ const MyTextarea = ({ words, fieldName, placeholder }) => { // can't use name as
         }}
         >
       </textarea>
-      { wordCount
-        ? numWords > 0 
-          ? <div className="wordcount question-hint">({numWords} of ~{words})</div>
-          : <div className="wordcount question-hint">(aim for {words} words)</div>   
-        : ""
+      { 
+        wordCount
+          ? numWords > 0 
+            ? <div className="wordcount question-hint">({numWords} of ~{words})</div>
+            : <div className="wordcount question-hint">(aim for {words} words)</div>   
+          : ""
       }
     </div>
   )
 }
 
-const formQuestion = ({text, hint, type, name, optional}) => (
-  <div className="question">
+const formQuestion = ({text, hint, type, name, optional}, i) => (
+  <div key={"fq-" + i} className="question">
     <div className="question-text">
       { text ? text : "" } 
       { optional ? <span className="question-hint">&nbsp;(optional)</span> : ""}
@@ -83,8 +91,8 @@ const formQuestion = ({text, hint, type, name, optional}) => (
 
 const formQuestions = qs => qs.map(formQuestion);
 
-const htmlForm = ({sectionName, hint, questions}) => (
-  <div className="form-item">
+const section = ({sectionName, hint, questions}, i) => (
+  <div key={"section-" + i} className="form-item">
     <div className="form-item-name">
       {sectionName}
     </div>
@@ -103,7 +111,7 @@ const savedInfo = (saved, poster) => (
       right: "10px", 
       bottom: "10px", 
       cursor: 'pointer',
-      "place-items": "center"
+      "placeItems": "center"
     }}
     onClick={poster}
     >
@@ -164,7 +172,7 @@ const formStyle = `
       background: none;
       padding: 10px;
       line-height: 1.375;
-      font-size: 24px;
+      font-size: 22px;
       color: #384046;
     }
 
@@ -181,7 +189,7 @@ const formStyle = `
     }
 
     .question-hint {
-      font-size: 13px;
+      font-size: 15px;
       color: #7a8c97;
     }
 
@@ -320,7 +328,7 @@ export default function ApplicationClub({
             style={{all: "unset", width:"100%"}} 
             disabled={applicationsRecord.fields['Submitted'] ? true : false}
             >
-            {(params.type === "club" ? clubApplication : leaderApplication).map(htmlForm)}
+            {(params.type === "club" ? clubApplication : leaderApplication).map(section)}
           </fieldset>
         </form>
         <Button

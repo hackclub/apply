@@ -95,7 +95,30 @@ export const leaderApplication = [
       {
         name: "logo_program",
         text: "Make something! Our clubs lead Leo McElroy has been deeply influenced by this little drawing tool called the Turtle. You can tell it to move around with these commands. Play around with it and draw a picture.",
-        type: "textarea"
+        type: [ 
+          "textarea", 
+          { 
+            placeholder:
+`forward distance
+right angle
+left angle
+repeat num [ ... ]
+goto x y
+setangle angle
+penup
+pendown
+
+example:
+
+repeat 30 [
+  forward repcount
+  right 91
+]
+
+or
+
+repeat 30 [ forward repcount; right 91 ]
+`
       }
     ]
   }
