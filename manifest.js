@@ -226,16 +226,14 @@ export default {
         },
         {
           key: 'School Year',
-          label: 'Year in school',
-          type: 'select',
+          label: 'Graduation Year',
+          type: 'string',
           optional: false,
           translations: {
             'pt-BR': {
-              label: 'Ano na escola',
-              options: ['9º ano do Ensino Fundamental', '1º ano do Ensino Médio', '2º ano do Ensino Médio', '3º ou 4º ano do Ensino Médio', 'Ensino Superior']
+              label: 'Ano na escola'
             }
           },
-          options: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Other year']
         },
         {
           key: 'Phone',
