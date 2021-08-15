@@ -36,14 +36,16 @@ const inputType = {
   options: (name, { choices } = { choices: [] }) => <>
     <Select className="options" name={name} defaultValue="">
       <option disabled value="">Select One</option>
-      {choices.map( (choice, i) => (
-        <option 
-          key={`${name} option ${i}`} 
-          value={choice.toLowerCase().split(" ").join("_")}
-          >
-          {choice}
-        </option>
-      ))}
+      {
+        choices.map( (choice, i) => (
+          <option 
+            key={`${name} option ${i}`} 
+            value={choice.toLowerCase().split(" ").join("_")}
+            >
+            {choice}
+          </option>
+        ))
+      }
     </Select>
   </>,
   date: (name) => <Input name={name} className="question-input" type="date"/>,
