@@ -119,6 +119,8 @@ or
 
 repeat 30 [ forward repcount; right 91 ]
 `
+          }
+        ]
       }
     ]
   }
