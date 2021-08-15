@@ -76,7 +76,6 @@ export default function ApplicationHome({
     const submissionAPICall = await fetch(
       `/api/submit?id=${params.application}`
     ).then(r => r.json())
-    console.log(submissionAPICall)
     if (submissionAPICall.success) {
       alert(`✅ ${returnLocalizedMessage(router.locale, 'SUBMITTED')}`)
       router.replace(router.asPath, null, { scroll: false })
