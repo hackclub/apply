@@ -40,30 +40,30 @@ export default function ApplicationHome({
         `/api/invite?email=${emailToInvite}&id=${params.application}`
       ).then(r => r.json())
       if (loginAPICall.success) {
-        alert('✅ Invited!')
+        alert(`✅ ${returnLocalizedMessage(router.locale, 'INVITED')}!`)
         setEmailToInvite('')
         router.replace(router.asPath)
       } else {
-        alert('❌ Error! Please try again!')
+        alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
     } else {
-      alert('Please input a valid email address!')
+      alert(`❌ ${returnLocalizedMessage(router.locale, "INVALID_EMAIL_ADDRESS")}`)
     }
   }
   async function deleteLeader(leaderID) {
     if (
       window.confirm(
-        'Do you really want to delete this leader from your application?'
+        returnLocalizedMessage(router.locale, "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER")
       )
     ) {
       const deleteLeaderCall = await fetch(
         `/api/remove?id=${params.application}&leaderID=${leaderID}`
       ).then(r => r.json())
       if (deleteLeaderCall.success) {
-        alert('✅ Deleted leader from application!')
+        alert(`✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`)
         router.replace(router.asPath)
       } else {
-        alert('❌ Error! Please try again!')
+        alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
     }
   }
@@ -73,10 +73,10 @@ export default function ApplicationHome({
     ).then(r => r.json())
     console.log(submissionAPICall)
     if (submissionAPICall.success) {
-      alert('✅ Submitted!')
+      alert(`✅ ${returnLocalizedMessage(router.locale, 'SUBMITTED')}`)
       router.replace(router.asPath)
     } else {
-      alert('❌ Error! Please try again!')
+      alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
     }
   }
   if (notFound) {
@@ -113,22 +113,40 @@ export default function ApplicationHome({
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
         <Heading sx={{ fontSize: [4, 5] }}>
-        {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE')}{' '}
+          {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE')}{' '}
           {applicationsRecord.fields['All Complete (incl Leaders)'] == 1 ? (
             <>
               {applicationsRecord.fields['Submitted'] ? (
                 <>
-                  <SubmitStatus>{returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE_APPENDED_HAS_BEEN')} {returnLocalizedMessage(router.locale, 'SUBMITTED')}</SubmitStatus>
+                  <SubmitStatus>
+                    {returnLocalizedMessage(
+                      router.locale,
+                      'APPLICATION_STATUS_MESSAGE_APPENDED_HAS_BEEN'
+                    )}{' '}
+                    {returnLocalizedMessage(router.locale, 'SUBMITTED')}
+                  </SubmitStatus>
                 </>
               ) : (
                 <>
-                  {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE_APPENDED_IS')} <SubmitStatus>ready to go!</SubmitStatus>
+                  {returnLocalizedMessage(
+                    router.locale,
+                    'APPLICATION_STATUS_MESSAGE_APPENDED_IS'
+                  )}{' '}
+                  <SubmitStatus>
+                    {returnLocalizedMessage(router.locale, 'READY')}
+                  </SubmitStatus>
                 </>
               )}
             </>
           ) : (
             <>
-              {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE_APPENDED_IS')} <SubmitStatus>still in progress!</SubmitStatus>
+              {returnLocalizedMessage(
+                router.locale,
+                'APPLICATION_STATUS_MESSAGE_APPENDED_IS'
+              )}{' '}
+              <SubmitStatus>
+                {returnLocalizedMessage(router.locale, 'IN_PROGRESS')}
+              </SubmitStatus>
             </>
           )}
         </Heading>
@@ -141,7 +159,7 @@ export default function ApplicationHome({
               <Icon glyph="important" color="#ff8c37" />
             )}
             <Heading sx={{ flexGrow: 1, color: 'blue', ml: 2 }} as="h1">
-              Your Club
+              {returnLocalizedMessage(router.locale, 'YOUR_CLUB')}
             </Heading>
             <Icon glyph="view-forward" />
           </Flex>
@@ -156,15 +174,22 @@ export default function ApplicationHome({
             )}
 
             <Heading sx={{ flexGrow: 1, color: 'blue', ml: 2 }} as="h1">
-              My Personal Profile
+              {returnLocalizedMessage(router.locale, 'MY_PERSONAL_PROFILE')}
             </Heading>
             <Icon glyph="view-forward" />
           </Flex>
         </Link>
         <Divider sx={{ color: 'slate', my: 4 }} />
         <Flex sx={{ alignItems: 'center' }}>
-          <Heading sx={{ color: 'slate', ml: 1, flexGrow: 1 }}>
-            LEADERS
+          <Heading
+            sx={{
+              color: 'slate',
+              ml: 1,
+              flexGrow: 1,
+              textTransform: 'uppercase'
+            }}
+          >
+            {returnLocalizedMessage(router.locale, 'LEADERS')}
           </Heading>
           <Flex
             sx={{
@@ -195,7 +220,7 @@ export default function ApplicationHome({
                 }}
                 onChange={e => setEmailToInvite(e.target.value)}
                 value={emailToInvite}
-                placeholder="New co-leader’s email"
+                placeholder={returnLocalizedMessage(router.locale, "NEW_CO_LEADER_EMAIL")}
               />
               <Flex
                 sx={{
@@ -214,7 +239,7 @@ export default function ApplicationHome({
                 onClick={() => sendInvite()}
               >
                 <Icon glyph={'send-fill'} />
-                <Text mr={2}>Send Invite</Text>
+                <Text mr={2}>{returnLocalizedMessage(router.locale, "SEND_INVITE")}</Text>
               </Flex>
             </Flex>
             <Grid columns={[1, 2]} mt={3}>
@@ -230,7 +255,16 @@ export default function ApplicationHome({
               >
                 <Icon glyph={'welcome'} size="40" />
                 <Text ml={3}>
-                  You can read our guide for selecting your team <a href="https://workshops.hackclub.com/leadership_team/">here</a>.
+                {returnLocalizedMessage(router.locale, 'GUIDE_FOR_SELECTING_TEAM')}{' '}
+                  <Text as="b">
+                    <a
+                      href="https://workshops.hackclub.com/leadership_team/"
+                      style={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      {returnLocalizedMessage(router.locale, 'HERE')}
+                    </a>
+                  </Text>
+                  .
                 </Text>
               </Flex>
               <Flex
@@ -245,7 +279,7 @@ export default function ApplicationHome({
               >
                 <Icon glyph={'leader'} size="40" />
                 <Text ml={3}>
-                  Your teacher sponsor does not need to fill out a profile.
+                {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
                 </Text>
               </Flex>
             </Grid>
@@ -328,7 +362,7 @@ export default function ApplicationHome({
               : submitApplication()
           }
         >
-          Submit Your Application!
+          {returnLocalizedMessage(router.locale, "SUBMIT_YOUR_APPLICATION")}!
         </Button>
         <Button
           sx={{
@@ -345,7 +379,7 @@ export default function ApplicationHome({
             router.push('/')
           }}
         >
-          Log Out
+          {returnLocalizedMessage(router.locale, "LOGOUT")}
         </Button>
       </Card>
     </Container>
