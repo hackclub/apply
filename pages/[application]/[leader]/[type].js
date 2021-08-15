@@ -249,6 +249,23 @@ const savedInfo = (saved, poster) => (
   </div>
 )
 
+const isComplete = (record, template) => {
+  let complete = true; 
+  template
+    .map(x => x.questions)
+    .flat()
+    .map(({ name, optional = false }) => [ name, !optional ])
+    .forEach(([name, required]) => {
+
+      if (required && (record[name] === "" || record[name] === undefined)) {
+        complete = false; 
+      }
+    })
+
+  return complete;
+}
+
+
 export default function ApplicationClub({
   notFound,
   applicationsRecord,
@@ -261,7 +278,13 @@ export default function ApplicationClub({
   const [saved, setSaved] = useState(true)
 
   const poster = async () => {
-    const appOrLeader = params.type == 'club' ? params.application : params.leader;
+    const appOrLeader = params.type === 'club' ? params.application : params.leader;
+
+    const templateApp = params.type === 'club' ? clubApplication : leaderApplication;
+    const complete = isComplete(data, templateApp);
+    data._complete = complete; // TODO: update _complete name here
+    console.log(data);
+
     const msg = { body: JSON.stringify(data), method: 'POST' }
     const fetched = await fetch(`/api/save?id=${appOrLeader}&club=${params.type === "club"}`, msg);
     const json = await fetched.json();

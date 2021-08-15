@@ -1,3 +1,4 @@
+/** @jsxImportSource theme-ui */
 import Error from 'next/error'
 import {
   Box,
@@ -184,6 +185,8 @@ const ApplicationStatus = (applicationsRecord, complete, router) => <>
 //   textDecoration: 'underline',
 //   textDecorationStyle: 'wavy'
 // }
+
+// className={"submit-button" + (clubComplete && leaderComplete ? "" : " disabled-submit-button")}
 
 const ContactCard = (router) => (
   <Card

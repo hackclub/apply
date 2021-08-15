@@ -1,9 +1,11 @@
 import { base } from "/lib/airtable"
 
 const updateBaseMaker = (req, res) => async (type) => {
+	const body = JSON.parse(req.body);
+
 	return base(type).update(
 		"rec" + req.query.id,
-		JSON.parse(req.body), 
+		body, 
 		(err, records) => {
 			if (err) {
 			    res.status(504).json({ success: false, err })
