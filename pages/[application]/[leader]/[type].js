@@ -347,7 +347,7 @@ export default function ApplicationClub({
   )
 }
 
-export async function getServerSideProps({ req, params }) {
+export async function getServerSideProps({ req, res, params }) {
   const {
     prospectiveLeadersAirtable,
     applicationsAirtable
