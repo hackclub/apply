@@ -6,6 +6,7 @@ import theme from '@hackclub/theme'
 import { ThemeProvider } from 'theme-ui'
 import ForceTheme from '../components/force-theme'
 import Flag from '../components/flag'
+import NProgress from '../components/nprogress'
 
 export default class App extends NextApp {
   render() {
@@ -13,6 +14,7 @@ export default class App extends NextApp {
     return (
       <ThemeProvider theme={theme}>
         <Flag />
+        <NProgress color={'#ec3750'} />
         <ForceTheme theme="light" />
         <Component {...pageProps} />
       </ThemeProvider>

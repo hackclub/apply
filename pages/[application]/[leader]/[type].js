@@ -112,18 +112,20 @@ export default function ApplicationClub({
             sx={{ alignItems: 'center', cursor: 'pointer' }}
             onClick={() => poster()}
           >
-            <Text
+            <Button
               sx={{
-                color: saved ? '#33d6a6' : '#ff8c37',
+                color: 'white',
                 mr: 2,
                 fontWeight: '800',
-                textTransform: 'uppercase'
+                textTransform: 'uppercase',
+                bg: saved ? '#33d6a6' : '#ff8c37',
+                ':hover,:focus': saved ? { transform: 'none' } : {},
               }}
             >
               {saved
                 ? returnLocalizedMessage(router.locale, 'SAVED')
                 : returnLocalizedMessage(router.locale, 'SAVE')}
-            </Text>
+            </Button>
             <Icon
               glyph={saved ? 'checkmark' : 'important'}
               color={saved ? '#33d6a6' : '#ff8c37'}
