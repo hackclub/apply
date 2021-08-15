@@ -205,6 +205,11 @@ export default {
           key: 'Full Name',
           label: 'Full Name',
           type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Nome Completo'
+            }
+          },
           optional: false
         },
         {
@@ -212,6 +217,11 @@ export default {
           label: 'Birthday',
           type: 'string',
           inputType: 'date',
+          translations: {
+            'pt-BR': {
+              label: 'Data de Aniversário'
+            }
+          },
           optional: false
         },
         {
@@ -219,6 +229,12 @@ export default {
           label: 'Year in school',
           type: 'select',
           optional: false,
+          translations: {
+            'pt-BR': {
+              label: 'Ano na escola',
+              options: ['9º ano do Ensino Fundamental', '1º ano do Ensino Médio', '2º ano do Ensino Médio', '3º ou 4º ano do Ensino Médio', 'Ensino Superior']
+            }
+          },
           options: ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Other year']
         },
         {
@@ -226,12 +242,22 @@ export default {
           label:
             'Phone number (include country code if not in the United States)',
           type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Número de telefone (inclua +55 antes se for do Brasil)'
+            }
+          },
           optional: false
         },
         {
           key: 'Address',
           label: 'Your full address (where we can ship you stickers)',
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Seu endereço completo (onde podemos te enviar figurinhas adesivas)'
+            }
+          },
           optional: false,
           sublabel:
             'Please include city, state / province, country, and postal code.'
@@ -242,17 +268,35 @@ export default {
       header: 'Stats',
       label:
         'Demographic stats are collected to share in aggregate with donors and will not be used as part of application review.',
+        translations: {
+          'pt-BR': {
+            header: 'Estatísticas',
+            label: 'Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição.'
+          }
+        },
       items: [
         {
           key: 'Gender',
           label: 'Gender',
           type: 'select',
+          translations: {
+            'pt-BR': {
+              label: 'Gênero',
+              options: [
+                'Feminino',
+                'Masculino',
+                'Não-binário / genderqueer',
+                'Agênero',
+                'Outro'
+              ]
+            }
+          },
           options: [
             'Female',
             'Male',
             'Non-binary / genderqueer',
             'Agender',
-            'Other'
+            'Other',
           ],
           optional: false
         },
@@ -260,6 +304,18 @@ export default {
           key: 'Ethnicity',
           label: 'Ethnicity',
           type: 'select',
+          translations: {
+            'pt-BR': {
+              label: 'Etnia',
+              options: [
+                'Latino ou hispânico',
+                'Branco',
+                'Não-binário / genderqueer',
+                'Agênero',
+                'Outro'
+              ]
+            }
+          },
           options: [
             'Hispanic or Latino',
             'White',

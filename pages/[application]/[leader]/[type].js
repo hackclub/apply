@@ -142,7 +142,7 @@ export default function ApplicationClub({
               </Box>
               <Box>
                 {sectionItem.label && (
-                  <Box sx={{ color: 'muted', mb: 3 }}>{sectionItem.label}</Box>
+                  <Box sx={{ color: 'muted', mb: 3 }}>{returnLocalizedQuestionText(router.locale, sectionItem,'label')}</Box>
                 )}
                 {sectionItem.items.map((item, index) => (
                   <Box
@@ -200,7 +200,7 @@ export default function ApplicationClub({
                                       'SELECT_ONE'
                                     )}
                                   </option>
-                                  {item.options.map(option => (
+                                  {returnLocalizedQuestionText(router.locale, item,'options').map(option => (
                                     <option>{option}</option>
                                   ))}
                                 </>

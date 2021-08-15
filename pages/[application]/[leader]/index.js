@@ -40,7 +40,7 @@ export default function ApplicationHome({
         `/api/invite?email=${emailToInvite}&id=${params.application}`
       ).then(r => r.json())
       if (loginAPICall.success) {
-        alert(`✅ ${returnLocalizedMessage(router.locale, 'INVITED')}!`)
+        alert(`✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`)
         setEmailToInvite('')
         router.replace(router.asPath)
       } else {
