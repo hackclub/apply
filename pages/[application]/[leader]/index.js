@@ -18,6 +18,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import nookies, { destroyCookie } from 'nookies'
 import { validateEmail, returnLocalizedMessage } from '../../../lib/helpers'
+import { clubApplication } from "/formConfigs/club-application.js";
+import { leaderApplication } from "/formConfigs/leader-application.js";
 
 const SubmitStatus = styled(Text)`
   background: transparent url(/underline.svg) bottom left no-repeat;
@@ -25,7 +27,7 @@ const SubmitStatus = styled(Text)`
   padding-bottom: 0.125rem;
 `
 
-const LeadersEmail = (
+const leadersEmail = (
     leaderEmail, 
     leaderIndex, 
     leaderRecord, 
@@ -150,11 +152,11 @@ const AddingLeader = (setEmailToInvite, emailToInvite, sendInvite) => (
   </Box>
 )
 
-const ApplicationStatus = (applicationsRecord, router) => <>
+const ApplicationStatus = (applicationsRecord, complete, router) => <>
   { returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE') }
   &nbsp;
   {
-    applicationsRecord.fields['All Complete (incl Leaders)'] === 1 
+    complete
       ? 
         applicationsRecord.fields['Submitted'] 
           ?
@@ -265,18 +267,125 @@ export default function ApplicationHome({
     }
   }
 
+  // let clubComplete = true;
+  // let leaderComplete = true;
+  // try {
+
+  let clubComplete = true;
+  const allRequiredFieldsLeader = clubApplication
+    .map(x => x.questions)
+    .flat()
+    .map(({ name, optional = false }) => [ name, !optional ])
+    .forEach(([ name, req ]) => {
+      if (req && (applicationsRecord.fields[name] === "" || applicationsRecord.fields[name] === undefined)) {
+        clubComplete = false; 
+      }
+    })
+
+  let leaderComplete = true;
+  const allRequiredFieldsClub = leaderApplication
+    .map(x => x.questions)
+    .flat()
+    .map(({ name, optional = false }) => [ name, !optional ])
+    .forEach(([name, req]) => {
+      if (req && (leaderRecord.fields[name] === "" || leaderRecord.fields[name] === undefined)) {
+        leaderComplete = false; 
+      }
+    })
+
+
+    console.log(clubComplete, leaderComplete);
+
+  // } catch (err) {
+  //   clubComplete = false;
+  //   leaderComplete = false;
+  //   console.log(err);
+  // }
+
+  // TODO: all leaders complete
+
+  //   ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
+  // applicationsRecord.fields['Submitted']
+  //   ? {
+  //       opacity: 0.7,
+  //       ':hover,:focus': { transform: 'none', boxShadow: 'none' }
+  //     }
+  //   : {})
+
+  // sx={{
+  //   mt: 4,
+  //   width: '100%',
+  //   cursor: "not-allowed",
+  //   opacity: 0.25,
+  //   textTransform: 'uppercase',
+  //   ":hover": none
+  // }}
+  // variant="ctaLg"
+
+
+
   if (notFound) return <Error statusCode="404" />
+
+  const buttonStyle = `
+    .submit-button {
+      font-size: 27px;
+      box-sizing: border-box;
+      margin: 0px;
+      margin-top: 16px;
+      padding: 20px;
+      width: 100%;
+      background-color: rgb(228, 45, 66);
+      color: rgb(255, 255, 255);
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      text-decoration: none;
+      font-family: inherit;
+      font-weight: bold;
+      line-height: 1.125;
+      appearance: none;
+      transition: box-shadow 0.1875s cubic-bezier(0.375, 0, 0.675, 1) 0s;
+      border-radius: 9999px;
+      border: none;
+      opacity: 1;
+      text-transform: uppercase;
+      box-shadow: rgb(0 0 0 / 13%) 0px 2px 12px;
+      background-image: radial-gradient(at left top, rgb(228, 115, 45) 0%, rgb(228, 45, 66) 100%);
+      cursor: pointer;
+      transition: transform .125s ease-in-out,box-shadow .125s ease-in-out;
+    }
+
+    .submit-button:hover {
+      box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 8px 12px rgb(0 0 0 / 13%);
+      -webkit-transform: scale(1.0625);
+      -moz-transform: scale(1.0625);
+      -ms-transform: scale(1.0625);
+      transform: scale(1.0625);
+    }
+
+    .disabled-submit-button {
+      cursor: not-allowed;
+      opacity: 0.25;
+      transition: none;
+    }
+
+    .disabled-submit-button:hover {
+      transform: scale(1);
+      box-shadow: rgb(0 0 0 / 13%) 0px 2px 12px;
+    }
+  `
 
   return (
     <Container py={1} variant="copy">
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
         <Heading sx={{ fontSize: [4, 5] }}>
-        {ApplicationStatus(applicationsRecord, router)}
+        {ApplicationStatus(applicationsRecord, clubComplete && leaderComplete, router)}
         </Heading>
         <Divider sx={{ color: 'slate', my: 4 }} />
         <Link href={`/${params.application}/${params.leader}/club`}>
           <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
-            {applicationsRecord.fields['Completed'] == 1 ? (
+            {clubComplete ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
@@ -290,7 +399,7 @@ export default function ApplicationHome({
         <Divider sx={{ color: 'slate', my: 4 }} />
         <Link href={`/${params.application}/${params.leader}/leader`}>
           <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
-            {leaderRecord.fields['Completed'] == 1 ? (
+            {leaderComplete ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
@@ -326,7 +435,7 @@ export default function ApplicationHome({
         </Flex>
         {addingLeader && AddingLeader(setEmailToInvite, emailToInvite, sendInvite)}
         {
-          applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => LeadersEmail(
+          applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => leadersEmail(
               leaderEmail, 
               leaderIndex, 
               leaderRecord, 
@@ -334,21 +443,10 @@ export default function ApplicationHome({
               deleteLeader
             ))
         }
+        <style jsx>{buttonStyle}</style>
         
-        <Button
-          sx={{
-            mt: 4,
-            width: '100%',
-            textTransform: 'uppercase',
-            ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
-            applicationsRecord.fields['Submitted']
-              ? {
-                  opacity: 0.7,
-                  ':hover,:focus': { transform: 'none', boxShadow: 'none' }
-                }
-              : {})
-          }}
-          variant="ctaLg"
+        <button
+          className={"submit-button" + (clubComplete && leaderComplete ? "" : " disabled-submit-button")}
           onClick={() =>
             applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
             applicationsRecord.fields['Submitted']
@@ -357,7 +455,7 @@ export default function ApplicationHome({
           }
         >
           Submit Your Application!
-        </Button>
+        </button>
         <Button
           sx={{
             mt: 3,
@@ -388,7 +486,7 @@ export async function getServerSideProps({ req, res, params }) {
   } = require('../../../lib/airtable')
 
   const cookies = nookies.get({ req })
-
+  console.log("no token");
   if (cookies.authToken) {
     try {
       console.log("trying");

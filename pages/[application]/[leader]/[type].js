@@ -35,7 +35,7 @@ const inputType = {
     <MyTextarea defaultValue={data[name]} words={words} fieldName={name} placeholder={placeholder} />
   ),
   options: (name, data, { choices } = { choices: [] }) => <>
-    <Select className="options" name={name} defaultValue={data[name]}>
+    <Select className="options" name={name} defaultValue={data[name] || ""}>
       <option disabled value="">Select One</option>
       {
         choices.map( (choice, i) => (
@@ -115,7 +115,11 @@ const savedInfo = (saved, poster) => (
       right: "10px", 
       bottom: "10px", 
       cursor: 'pointer',
-      "placeItems": "center"
+      "placeItems": "center",
+      background: "#00000005",
+      paddingLeft: "5px",
+      paddingRight: "5px",
+      borderRadius: "15px",
     }}
     onClick={poster}
     >
@@ -302,6 +306,8 @@ export default function ApplicationClub({
     setData(data);
   }
 
+  const appType = (params.type === "club" ? clubApplication : leaderApplication);
+
   if (notFound) return <Error statusCode="404" />
 
   return (
@@ -314,7 +320,7 @@ export default function ApplicationClub({
             style={{all: "unset", width:"100%"}} 
             disabled={applicationsRecord.fields['Submitted'] ? true : false}
             >
-            {(params.type === "club" ? clubApplication : leaderApplication).map((formTemplate, i) => section(formTemplate, data, i))}
+            {appType.map((formTemplate, i) => section(formTemplate, data, i))}
           </fieldset>
         </form>
         <Button
