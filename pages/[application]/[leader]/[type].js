@@ -23,18 +23,19 @@ import { clubApplication } from "/formConfigs/club-application.js";
 import { leaderApplication } from "/formConfigs/leader-application.js";
 
 const inputType = {
-  input: (name, { placeholder } = { placeholder: "" }) => (
+  input: (name, data, { placeholder } = { placeholder: "" }) => (
     <input 
       name={name} 
+      defaultValue={data[name]}
       placeholder={placeholder} 
       className="question-input">
     </input>
   ),
-  textarea: (name, { words, placeholder } = { words: 0, placeholder: "" }) => (
-    <MyTextarea words={words} fieldName={name} placeholder={placeholder} />
+  textarea: (name, data, { words, placeholder } = { words: 0, placeholder: "" }) => (
+    <MyTextarea defaultValue={data[name]} words={words} fieldName={name} placeholder={placeholder} />
   ),
-  options: (name, { choices } = { choices: [] }) => <>
-    <Select className="options" name={name} defaultValue="">
+  options: (name, data, { choices } = { choices: [] }) => <>
+    <Select className="options" name={name} defaultValue={data[name]}>
       <option disabled value="">Select One</option>
       {
         choices.map( (choice, i) => (
@@ -48,11 +49,11 @@ const inputType = {
       }
     </Select>
   </>,
-  date: (name) => <Input name={name} className="question-input" type="date"/>,
-  jsx: (name, jsxMaker) => jsxMaker(name)
+  date: (name, data) => <Input name={name} defaultValue={data[name]} className="question-input" type="date"/>,
+  jsx: (name, data, jsxMaker) => jsxMaker(name)
 }
 
-const MyTextarea = ({ words, fieldName, placeholder }) => { // can't use name as prop
+const MyTextarea = ({ words, fieldName, placeholder, defaultValue }) => { // can't use name as prop
 
   const wordCount = words !== 0 && words !== undefined;
   let [ numWords, setWords] = useState(0);
@@ -61,6 +62,7 @@ const MyTextarea = ({ words, fieldName, placeholder }) => { // can't use name as
     <div>
       <textarea 
         name={fieldName} 
+        defaultValue={defaultValue}
         placeholder={placeholder} 
         className="question-textarea question-input"
         onKeyUp={(e) => {
@@ -80,27 +82,27 @@ const MyTextarea = ({ words, fieldName, placeholder }) => { // can't use name as
   )
 }
 
-const formQuestion = ({text, hint, type, name, optional}, i) => (
+const formQuestion = ({text, hint, type, name, optional}, data, i) => (
   <div key={"fq-" + i} className="question">
     <div className="question-text">
       { text ? text : "" } 
       { optional ? <span className="question-hint">&nbsp;(optional)</span> : ""}
     </div>
     <div className="question-hint">{ hint ? hint : "" }</div>
-    {inputType[Array.isArray(type) ? type[0] : type](name, ...type.slice(1))}
+    {inputType[Array.isArray(type) ? type[0] : type](name, data, ...type.slice(1))}
   </div>
 )
 
-const formQuestions = qs => qs.map(formQuestion);
+const formQuestions = (qs, data) => qs.map((q, i) => formQuestion(q, data, i));
 
-const section = ({sectionName, hint, questions}, i) => (
+const section = ({sectionName, hint, questions}, data, i) => (
   <div key={"section-" + i} className="form-item">
     <div className="form-item-name">
       {sectionName}
     </div>
     <div className="section-hint">{ hint ? hint : "" }</div>
     <div className="form-item-content">
-      {formQuestions(questions)}
+      {formQuestions(questions, data)}
     </div>
   </div>
 )
@@ -265,25 +267,18 @@ export default function ApplicationClub({
   const poster = async () => {
     const appOrLeader = params.type == 'club' ? params.application : params.leader;
     const msg = { body: JSON.stringify(data), method: 'POST' }
-    const fetched = await fetch(`/api/${params.type}/save?id=${appOrLeader}`, msg);
+    const fetched = await fetch(`/api/save?id=${appOrLeader}&club=${params.type === "club"}`, msg);
     const json = await fetched.json();
 
-    if (json.success) setSaved(true);
-    else console.error(json);
+    if (json.success) {
+      console.log(json);
+      setSaved(true);
+    } else console.error(json);
 
     return json;
   }
 
   const router = useRouter()
-
-  // useEffect(() => {
-  //   window.addEventListener('beforeunload', function (e) {
-  //     if (saved) return;
-
-  //     const leaveAnyway = confirm("Not saved. Leave anyway?")
-  //     if (leaveAnyway) router.push(`/${params.application}/${params.leader}`);
-  //   })
-  // })
 
   async function goHome() {
     if (!saved) {
@@ -319,7 +314,7 @@ export default function ApplicationClub({
             style={{all: "unset", width:"100%"}} 
             disabled={applicationsRecord.fields['Submitted'] ? true : false}
             >
-            {(params.type === "club" ? clubApplication : leaderApplication).map(section)}
+            {(params.type === "club" ? clubApplication : leaderApplication).map((formTemplate, i) => section(formTemplate, data, i))}
           </fieldset>
         </form>
         <Button

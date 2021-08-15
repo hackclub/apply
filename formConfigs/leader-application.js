@@ -3,28 +3,28 @@ export const leaderApplication = [
     sectionName: "Leader",
     questions: [
       {
-        name: "name",
+        name: "_name",
         text: "Full Name",
         type: "input"
       },
       {
-        name: "birthday",
+        name: "_birthday",
         text: "Birthday",
         type: "date" 
       },
       {
-        name: "class_year",
+        name: "_class_year",
         text: "Year in School",
         type: ["options", { choices: ["Freshman", "Sophomore", "Junior", "Senior"] }] 
       },
       {
-        name: "phone",
+        name: "_phone",
         text: "Phone Number",
         hint: "(Include country code if not in the United States)",
         type: "input" 
       },
       {
-        name: "address",
+        name: "_address",
         text: "Your full address",
         hint: "(for stickers!)",
         type: "textarea"
@@ -36,13 +36,13 @@ export const leaderApplication = [
     hint: "Demographic stats are collected to share in aggregate with donors and will not be used as part of application review.",
     questions: [
       {
-        name: "gender",
+        name: "_gender",
         text: "Gender",
         optional: true,
         type: ["options", { choices: ["Male", "Female", "Other"] }] 
       },
       {
-        name: "ethnicity",
+        name: "_ethnicity",
         text: "Ethnicity",
         optional: true,
         type: ["options", { choices: ["White", "Black", "Hispanic or Latino", "Native American", "Asian", "Other"] }] 
@@ -53,13 +53,13 @@ export const leaderApplication = [
     sectionName: "Presence",
     questions: [
       {
-        name: "website",
+        name: "_website",
         optional: true,
         text: "Personal Website Link",
         type: ["input", { placeholder: "https://" }]
       },
       {
-        name: "github",
+        name: "_github",
         optional: true,
         text: "Github Link",
         type: ["input", { placeholder: "https://" }]
