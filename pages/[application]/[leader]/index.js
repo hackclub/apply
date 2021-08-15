@@ -409,7 +409,9 @@ export async function getServerSideProps({ res, req, params }) {
       }
     } catch (e) {
       console.log(e)
-      return { props: { notFound: true } }
+      res.statusCode = 302
+      res.setHeader('Location', `/`)
+      return
     }
   } else {
     res.statusCode = 302
