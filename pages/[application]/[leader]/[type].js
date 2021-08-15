@@ -22,6 +22,116 @@ import { useRouter } from 'next/router'
 import { clubApplication } from "/formConfigs/club-application.js";
 import { leaderApplication } from "/formConfigs/leader-application.js";
 
+const formStyle = `
+  .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
+  .form-item {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .form-item-name {
+    text-align: left;
+    width: 200px;
+    font-size: 30px;
+    color: #e42d42;
+    font-weight: bold;
+    line-height: 1.25;
+    padding: 10px;
+  }
+
+  .section-hint {
+    padding-left: 10px;
+  }
+
+  .form-item-content {
+    width: 100%;
+    background: none;
+    padding: 10px;
+    line-height: 1.375;
+    font-size: 22px;
+    color: #384046;
+  }
+
+  .form-item-content textarea,
+  .form-item-content input,
+  .form-item-content select {
+    background: white;
+  }
+
+  .question {
+    margin: auto;
+    padding-bottom: 12px;
+    max-width: 32rem;
+  }
+
+  .question-hint {
+    font-size: 15px;
+    color: #7a8c97;
+  }
+
+  .question-textarea {
+    resize: vertical;
+  }
+
+  .question-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    vertical-align: middle;
+    min-height: 36px;
+    line-height: inherit;
+    font-family: inherit;
+    color: inherit;
+    background-color: transparent;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dde1e4;
+    font-size: inherit;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: transparent;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .options {
+    display: block;
+    vertical-align: middle;
+    max-width: 32rem;
+    min-height: 36px;
+    line-height: inherit;
+    font-family: inherit;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 225, 228);
+    transition: box-shadow 0.1875s cubic-bezier(0.375, 0, 0.675, 1) 0s;
+    font-size: 18px;
+    margin: 0px;
+    padding: 6px 12px;
+    width: 100%;
+    background-color: transparent;
+    color: inherit;
+  }
+`
+
 const inputType = {
   input: (name, { placeholder } = { placeholder: "" }) => data => (
     <input 
@@ -35,7 +145,7 @@ const inputType = {
     <MyTextarea defaultValue={data[name]} words={words} fieldName={name} placeholder={placeholder} />
   ),
   options: (name, { choices } = { choices: [] }) => data => <>
-    <Select className="options" name={name} defaultValue={data[name] || ""}>
+    <Select className="options question-input" name={name} defaultValue={data[name] || ""}>
       <option disabled value="">Select One</option>
       {
         choices.map( (choice, i) => (
@@ -194,7 +304,7 @@ export default function ApplicationClub({
 
   return (
     <Container py={4} variant="copy">
-    {/*<style jsx>{formStyle}</style>*/}
+    <style jsx>{formStyle}</style>
       {savedInfo(saved, poster)}
       <Card>
         <form onInput={handleFormInput}>

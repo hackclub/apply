@@ -268,10 +268,6 @@ export default function ApplicationHome({
     }
   }
 
-  // let clubComplete = true;
-  // let leaderComplete = true;
-  // try {
-
   let clubComplete = true;
   const allRequiredFieldsLeader = clubApplication
     .map(x => x.questions)
@@ -297,66 +293,7 @@ export default function ApplicationHome({
 
     console.log(clubComplete, leaderComplete);
 
-  // } catch (err) {
-  //   clubComplete = false;
-  //   leaderComplete = false;
-  //   console.log(err);
-  // }
-
-  // TODO: all leaders complete
-
-  //   ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
-  // applicationsRecord.fields['Submitted']
-  //   ? {
-  //       opacity: 0.7,
-  //       ':hover,:focus': { transform: 'none', boxShadow: 'none' }
-  //     }
-  //   : {})
-
-  // sx={{
-  //   mt: 4,
-  //   width: '100%',
-  //   cursor: "not-allowed",
-  //   opacity: 0.25,
-  //   textTransform: 'uppercase',
-  //   ":hover": none
-  // }}
-  // variant="ctaLg"
-
   if (notFound) return <Error statusCode="404" />
-
-  // <Flex sx={{ alignItems: 'center' }}>
-  //   <Heading sx={{ color: 'slate', ml: 1, flexGrow: 1 }}>
-  //     LEADERS
-  //   </Heading>
-  //   <Flex
-  //     sx={{
-  //       bg: !addingLeader ? 'green' : 'muted',
-  //       borderRadius: '999px',
-  //       alignItems: 'center',
-  //       justifyContent: 'center',
-  //       p: 1,
-  //       color: 'white',
-  //       boxShadow: 'card',
-  //       transform: !addingLeader ? 'none' : 'rotate(180deg)',
-  //       transition: 'transform ease-in-out 0.2s'
-  //     }}
-  //     onClick={() => setAddingLeader(!addingLeader)}
-  //   >
-  //     <Icon glyph={!addingLeader ? 'member-add' : 'view-close'} />
-  //   </Flex>
-  // </Flex>
-
-  // {addingLeader && AddingLeader(setEmailToInvite, emailToInvite, sendInvite)}
-  // {
-  //   applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => leadersEmail(
-  //       leaderEmail, 
-  //       leaderIndex, 
-  //       leaderRecord, 
-  //       applicationsRecord,
-  //       deleteLeader
-  //     ))
-  // }
 
   return (
     <Container py={1} variant="copy">
