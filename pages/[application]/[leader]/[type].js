@@ -260,54 +260,51 @@ export default function ApplicationClub({
   const [data, setData] = useState(
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
-  const [saved, setSavedState] = useState(true)
-  const poster = () => {
-    fetch(
-      `/api/${params.type}/save?id=${
-        params.type == 'club' ? params.application : params.leader
-      }`,
-      { body: JSON.stringify(data), method: 'POST' }
-    )
-      .then(res => res.json())
-      .then(res => {
-        if (!res.success) {
-          alert(`Error encounted when autosaving! ${res.error}`)
-        } else {
-          setSaved(true)
-        }
-      })
+  const [saved, setSaved] = useState(true)
+
+  const poster = async () => {
+    const appOrLeader = params.type == 'club' ? params.application : params.leader;
+    const msg = { body: JSON.stringify(data), method: 'POST' }
+    const fetched = await fetch(`/api/${params.type}/save?id=${appOrLeader}`, msg);
+    const json = await fetched.json();
+
+    if (json.success) setSaved(true);
+    else console.error(json);
+
+    return json;
   }
 
-  const savingStateRef = useRef(saved)
   const router = useRouter()
-  const setSaved = data => {
-    savingStateRef.current = data
-    setSavedState(data)
-  }
 
-  useEffect(() => {
-    window.addEventListener('beforeunload', function (e) {
-      if (!savingStateRef.current) {
-        e.preventDefault()
-        e.returnValue = ''
-      } else {
-        delete e['returnValue']
-      }
-    })
-  })
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', function (e) {
+  //     if (saved) return;
+
+  //     const leaveAnyway = confirm("Not saved. Leave anyway?")
+  //     if (leaveAnyway) router.push(`/${params.application}/${params.leader}`);
+  //   })
+  // })
 
   async function goHome() {
-    if (!savingStateRef.current) await poster();
-    router.push(`/${params.application}/${params.leader}`)
+    if (!saved) {
+      const res = await poster();
+      if (res.success) router.push(`/${params.application}/${params.leader}`)
+      else {
+        console.error(res);
+        const leaveAnyway = confirm("Couldn't save. Leave anyway?")
+        if (leaveAnyway) router.push(`/${params.application}/${params.leader}`);
+      }
+    } else {
+      router.push(`/${params.application}/${params.leader}`);
+    }
+    
   }
 
   function handleFormInput(e) {
-    setSavedState(false);
-
+    setSaved(false);
     const formData = new FormData(e.target.form);
-
-    const entries = Object.fromEntries(formData.entries());
-    console.log("data:", entries);
+    const data = Object.fromEntries(formData.entries());
+    setData(data);
 
     // asList = [...formData.entries()]
 
@@ -355,7 +352,8 @@ export async function getServerSideProps({ req, res, params }) {
     applicationsAirtable
   } = require('../../../lib/airtable')
   const cookies = nookies.get({ req })
-  if (cookies.authToken) {
+  // if (cookies.authToken) { // HACK
+  if (true) {
     try {
       const leaderRecord = await prospectiveLeadersAirtable.find(
         'rec' + params.leader
@@ -363,6 +361,9 @@ export async function getServerSideProps({ req, res, params }) {
       const applicationsRecord = await applicationsAirtable.find(
         'rec' + params.application
       )
+
+      return { props: { params, applicationsRecord, leaderRecord } } // HACK
+
       if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
         return { props: { params, applicationsRecord, leaderRecord } }
       } else {

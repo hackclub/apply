@@ -43,10 +43,10 @@ const LeadersEmail = (
             : { '> .removeIcon': { display: 'none' } }
 
   return (
-    <Flex sx={{ alignItems: 'center', mt: 3 }}>
+    <Flex sx={{ alignItems: 'center', mt: 3 }} key={`leader-${leaderIndex}`}>
       <Text sx={textSx} >
         <Icon
-          class="importantIcon"
+          className="importantIcon"
           glyph={
             applicationsRecord.fields['Leaders Complete?'][leaderIndex]
               ? 'checkmark'
@@ -59,7 +59,7 @@ const LeadersEmail = (
           }
         />
         <Icon
-          class="removeIcon"
+          className="removeIcon"
           glyph={'member-remove'}
           onClick={ () => deleteLeader(applicationsRecord.fields['Prospective Leaders'][leaderIndex]) }
           color={'#ec3750'}
@@ -389,17 +389,24 @@ export async function getServerSideProps({ req, res, params }) {
 
   const cookies = nookies.get({ req })
   
-  console.log("req", req);
+  console.log(prospectiveLeadersAirtable)
+  // console.log(applicationsAirtable)
+  // console.log("req", req);
   console.log("authToken", cookies.authToken);
 
-  if (cookies.authToken) {
+  // if (cookies.authToken) { // HACK
+  if (true) {
     try {
+      console.log("trying");
       const leaderRecord = await prospectiveLeadersAirtable.find(
         'rec' + params.leader
       )
       const applicationsRecord = await applicationsAirtable.find(
         'rec' + params.application
       )
+
+      return { props: { params, applicationsRecord, leaderRecord } } // HACK
+
       if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
         return { props: { params, applicationsRecord, leaderRecord } }
       } else {
@@ -412,6 +419,7 @@ export async function getServerSideProps({ req, res, params }) {
       return { props: { notFound: true } }
     }
   } else {
+    console.log("didn't try")
     res.statusCode = 302
     res.setHeader('Location', `/`)
     return
