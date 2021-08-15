@@ -388,14 +388,8 @@ export async function getServerSideProps({ req, res, params }) {
   } = require('../../../lib/airtable')
 
   const cookies = nookies.get({ req })
-  
-  console.log(prospectiveLeadersAirtable)
-  // console.log(applicationsAirtable)
-  // console.log("req", req);
-  console.log("authToken", cookies.authToken);
 
-  // if (cookies.authToken) { // HACK
-  if (true) {
+  if (cookies.authToken) {
     try {
       console.log("trying");
       const leaderRecord = await prospectiveLeadersAirtable.find(
@@ -404,8 +398,6 @@ export async function getServerSideProps({ req, res, params }) {
       const applicationsRecord = await applicationsAirtable.find(
         'rec' + params.application
       )
-
-      return { props: { params, applicationsRecord, leaderRecord } } // HACK
 
       if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
         return { props: { params, applicationsRecord, leaderRecord } }

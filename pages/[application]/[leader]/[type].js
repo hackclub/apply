@@ -305,14 +305,6 @@ export default function ApplicationClub({
     const formData = new FormData(e.target.form);
     const data = Object.fromEntries(formData.entries());
     setData(data);
-
-    // asList = [...formData.entries()]
-
-    // const data = {};
-    // for (const field of Object.values(e.target.form)) {
-    //   if (field.name && field.value) data[field.name] = field.value;
-    // };
-    // console.log(data);
   }
 
   if (notFound) return <Error statusCode="404" />
@@ -352,8 +344,7 @@ export async function getServerSideProps({ req, res, params }) {
     applicationsAirtable
   } = require('../../../lib/airtable')
   const cookies = nookies.get({ req })
-  // if (cookies.authToken) { // HACK
-  if (true) {
+  if (cookies.authToken) {
     try {
       const leaderRecord = await prospectiveLeadersAirtable.find(
         'rec' + params.leader
@@ -361,8 +352,6 @@ export async function getServerSideProps({ req, res, params }) {
       const applicationsRecord = await applicationsAirtable.find(
         'rec' + params.application
       )
-
-      return { props: { params, applicationsRecord, leaderRecord } } // HACK
 
       if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
         return { props: { params, applicationsRecord, leaderRecord } }
