@@ -358,63 +358,6 @@ export default function ApplicationHome({
   //     ))
   // }
 
-  const buttonStyle = `
-    .submit-button {
-      font-size: 27px;
-      box-sizing: border-box;
-      margin: 0px;
-      margin-top: 16px;
-      padding: 20px;
-      width: 100%;
-      background-color: rgb(228, 45, 66);
-      color: rgb(255, 255, 255);
-      -webkit-font-smoothing: antialiased;
-      display: inline-block;
-      vertical-align: middle;
-      text-align: center;
-      text-decoration: none;
-      font-family: inherit;
-      font-weight: bold;
-      line-height: 1.125;
-      appearance: none;
-      transition: box-shadow 0.1875s cubic-bezier(0.375, 0, 0.675, 1) 0s;
-      border-radius: 9999px;
-      border: none;
-      opacity: 1;
-      text-transform: uppercase;
-      box-shadow: rgb(0 0 0 / 13%) 0px 2px 12px;
-      background-image: radial-gradient(at left top, rgb(228, 115, 45) 0%, rgb(228, 45, 66) 100%);
-      cursor: pointer;
-      transition: transform .125s ease-in-out,box-shadow .125s ease-in-out;
-    }
-
-    .submit-button:hover {
-      box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 8px 12px rgb(0 0 0 / 13%);
-      -webkit-transform: scale(1.0625);
-      -moz-transform: scale(1.0625);
-      -ms-transform: scale(1.0625);
-      transform: scale(1.0625);
-    }
-
-    .disabled-submit-button {
-      cursor: not-allowed;
-      opacity: 0.25;
-      transition: none;
-    }
-
-    .disabled-submit-button:hover {
-      transform: scale(1);
-      box-shadow: rgb(0 0 0 / 13%) 0px 2px 12px;
-    }
-
-    .tip a {
-      color: var(--theme-ui-colors-blue);
-      appearance:  none;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  `
-
   return (
     <Container py={1} variant="copy">
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
@@ -484,9 +427,6 @@ export default function ApplicationHome({
             deleteLeader
           ))
       }
-
-
-        <style jsx>{buttonStyle}</style>
         <button
           className={"submit-button" + (clubComplete && leaderComplete ? "" : " disabled-submit-button")}
           onClick={() =>
