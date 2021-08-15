@@ -95,7 +95,7 @@ export default function ApplicationHome({
           <b>
             <Text
               as="a"
-              href={`mailto:${returnLocalizedMessage(router.locale, 'EMAIL')}`}
+              href={`mailto:${returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}`}
               sx={{
                 color: 'blue',
                 textDecoration: 'none',
@@ -105,7 +105,7 @@ export default function ApplicationHome({
                 }
               }}
             >
-              {returnLocalizedMessage(router.locale, 'EMAIL')}
+              {returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}
             </Text>
           </b>
           !

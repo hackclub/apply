@@ -20,6 +20,7 @@ import Link from 'next/link'
 import manifest from '../../../manifest'
 import nookies from 'nookies'
 import { useRouter } from 'next/router'
+import { returnLocalizedMessage } from '../../../lib/helpers'
 
 export default function ApplicationClub({
   notFound,
@@ -27,6 +28,7 @@ export default function ApplicationClub({
   leaderRecord,
   params
 }) {
+  const router = useRouter()
   const [data, setData] = useState(
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
@@ -41,7 +43,7 @@ export default function ApplicationClub({
       .then(res => res.json())
       .then(res => {
         if (!res.success) {
-          alert(`Error encounted when autosaving! ${res.error}`)
+          alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
         } else {
           setSaved(true)
         }
@@ -49,7 +51,6 @@ export default function ApplicationClub({
   }
 
   const savingStateRef = useRef(saved)
-  const router = useRouter()
   const setSaved = data => {
     savingStateRef.current = data
     setSavedState(data)
@@ -93,10 +94,10 @@ export default function ApplicationClub({
             sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
             as="div"
           >
-            <Text sx={{ textDecoration: 'none', color: 'blue' }} onClick={goHome} >Apply</Text>
+            <Text sx={{ textDecoration: 'none', color: 'blue' }} onClick={goHome}>{returnLocalizedMessage(router.locale, 'APPLY')}</Text>
 
             {' / '}
-            <b>{params.type == 'club' ? 'Club' : 'Leader'}</b>
+            <b>{params.type == 'club' ? returnLocalizedMessage(router.locale, 'CLUB') : returnLocalizedMessage(router.locale, 'LEADER')}</b>
           </Text>
           <Flex
             sx={{ alignItems: 'center', cursor: 'pointer' }}
@@ -110,7 +111,7 @@ export default function ApplicationClub({
                 textTransform: 'uppercase'
               }}
             >
-              {saved ? 'Changes Saved' : 'Save Changes'}
+              {saved ? returnLocalizedMessage(router.locale, 'SAVED') : returnLocalizedMessage(router.locale, 'SAVE')}
             </Text>
             <Icon
               glyph={saved ? 'checkmark' : 'important'}
@@ -235,7 +236,7 @@ export default function ApplicationClub({
           variant="ctaLg"
           onClick={goHome}
         >
-          {'<<'} Save & Go Back
+          {'<<'} {returnLocalizedMessage(router.locale, 'GO_BACK')}
         </Button>
       </Card>
     </Container>

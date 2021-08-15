@@ -1,5 +1,5 @@
 export const messageObject =  {
-  "EMAIL": "applications@hackclub.com",
+  "CONTACT_EMAIL": "applications@hackclub.com",
   "CONTACT_MESSAGE": "Please don’t hesitate to reach out. We’re available to email at",
   "APPLICATION_STATUS_MESSAGE": "Your application to start a Hack Club",
   "APPLICATION_STATUS_MESSAGE_APPENDED_IS": "is",
@@ -30,7 +30,13 @@ export const messageObject =  {
   "WE_JUST_SENT_A_LOGIN_URL": "We just sent a login URL to your email.",
   "SENDING": "Sending email!",
   "CONTINUE": "Continue",
-  "EMAIL": "Email address"
+  "EMAIL": "Email address",
+  "APPLY":"Apply",
+  "LEADER": "Leader",
+  "CLUB": "Club",
+  "SAVED": "Changes saved!",
+  "SAVE": "Save changes",
+  "GO_BACK": "Save & Go Back"
 }
 
  
