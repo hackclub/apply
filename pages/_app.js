@@ -1,6 +1,7 @@
 import * as React from 'react'
 import NextApp from 'next/app'
 import '../styles/app.css'
+import "../styles/ApplicationClub.css";
 import '@hackclub/theme/fonts/reg-bold.css'
 import theme from '@hackclub/theme'
 import { ThemeProvider } from 'theme-ui'

@@ -128,7 +128,7 @@ const AddingLeader = (setEmailToInvite, emailToInvite, sendInvite) => (
         }}
       >
         <Icon glyph={'welcome'} size="40" />
-        <Text ml={3}>
+        <Text className="tip" ml={3}>
           You can read our guide for selecting your team <a href="https://workshops.hackclub.com/leadership_team/">here</a>.
         </Text>
       </Flex>
@@ -180,6 +180,11 @@ const ApplicationStatus = (applicationsRecord, complete, router) => <>
   }
 </>
 
+// '&:hover': {
+//   textDecoration: 'underline',
+//   textDecorationStyle: 'wavy'
+// }
+
 const ContactCard = (router) => (
   <Card
     px={[4, 4]}
@@ -197,10 +202,6 @@ const ContactCard = (router) => (
           sx={{
             color: 'blue',
             textDecoration: 'none',
-            '&:hover': {
-              textDecoration: 'underline',
-              textDecorationStyle: 'wavy'
-            }
           }}
         >
           {returnLocalizedMessage(router.locale, 'EMAIL')}
@@ -322,9 +323,40 @@ export default function ApplicationHome({
   // }}
   // variant="ctaLg"
 
-
-
   if (notFound) return <Error statusCode="404" />
+
+  // <Flex sx={{ alignItems: 'center' }}>
+  //   <Heading sx={{ color: 'slate', ml: 1, flexGrow: 1 }}>
+  //     LEADERS
+  //   </Heading>
+  //   <Flex
+  //     sx={{
+  //       bg: !addingLeader ? 'green' : 'muted',
+  //       borderRadius: '999px',
+  //       alignItems: 'center',
+  //       justifyContent: 'center',
+  //       p: 1,
+  //       color: 'white',
+  //       boxShadow: 'card',
+  //       transform: !addingLeader ? 'none' : 'rotate(180deg)',
+  //       transition: 'transform ease-in-out 0.2s'
+  //     }}
+  //     onClick={() => setAddingLeader(!addingLeader)}
+  //   >
+  //     <Icon glyph={!addingLeader ? 'member-add' : 'view-close'} />
+  //   </Flex>
+  // </Flex>
+
+  // {addingLeader && AddingLeader(setEmailToInvite, emailToInvite, sendInvite)}
+  // {
+  //   applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => leadersEmail(
+  //       leaderEmail, 
+  //       leaderIndex, 
+  //       leaderRecord, 
+  //       applicationsRecord,
+  //       deleteLeader
+  //     ))
+  // }
 
   const buttonStyle = `
     .submit-button {
@@ -374,6 +406,13 @@ export default function ApplicationHome({
       transform: scale(1);
       box-shadow: rgb(0 0 0 / 13%) 0px 2px 12px;
     }
+
+    .tip a {
+      color: var(--theme-ui-colors-blue);
+      appearance:  none;
+      text-decoration: none;
+      font-weight: bold;
+    }
   `
 
   return (
@@ -412,39 +451,42 @@ export default function ApplicationHome({
           </Flex>
         </Link>
         <Divider sx={{ color: 'slate', my: 4 }} />
+
         <Flex sx={{ alignItems: 'center' }}>
-          <Heading sx={{ color: 'slate', ml: 1, flexGrow: 1 }}>
-            LEADERS
-          </Heading>
-          <Flex
-            sx={{
-              bg: !addingLeader ? 'green' : 'muted',
-              borderRadius: '999px',
-              alignItems: 'center',
-              justifyContent: 'center',
-              p: 1,
-              color: 'white',
-              boxShadow: 'card',
-              transform: !addingLeader ? 'none' : 'rotate(180deg)',
-              transition: 'transform ease-in-out 0.2s'
-            }}
-            onClick={() => setAddingLeader(!addingLeader)}
-          >
-            <Icon glyph={!addingLeader ? 'member-add' : 'view-close'} />
-          </Flex>
+        <Heading sx={{ color: 'slate', ml: 1, flexGrow: 1 }}>
+          LEADERS
+        </Heading>
+        <Flex
+          sx={{
+            bg: !addingLeader ? 'green' : 'muted',
+            borderRadius: '999px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            p: 1,
+            color: 'white',
+            boxShadow: 'card',
+            transform: !addingLeader ? 'none' : 'rotate(180deg)',
+            transition: 'transform ease-in-out 0.2s'
+          }}
+          onClick={() => setAddingLeader(!addingLeader)}
+        >
+          <Icon glyph={!addingLeader ? 'member-add' : 'view-close'} />
         </Flex>
-        {addingLeader && AddingLeader(setEmailToInvite, emailToInvite, sendInvite)}
-        {
-          applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => leadersEmail(
-              leaderEmail, 
-              leaderIndex, 
-              leaderRecord, 
-              applicationsRecord,
-              deleteLeader
-            ))
-        }
+      </Flex>
+
+      {addingLeader && AddingLeader(setEmailToInvite, emailToInvite, sendInvite)}
+      {
+        applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => leadersEmail(
+            leaderEmail, 
+            leaderIndex, 
+            leaderRecord, 
+            applicationsRecord,
+            deleteLeader
+          ))
+      }
+
+
         <style jsx>{buttonStyle}</style>
-        
         <button
           className={"submit-button" + (clubComplete && leaderComplete ? "" : " disabled-submit-button")}
           onClick={() =>

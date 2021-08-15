@@ -23,7 +23,7 @@ import { clubApplication } from "/formConfigs/club-application.js";
 import { leaderApplication } from "/formConfigs/leader-application.js";
 
 const inputType = {
-  input: (name, data, { placeholder } = { placeholder: "" }) => (
+  input: (name, { placeholder } = { placeholder: "" }) => data => (
     <input 
       name={name} 
       defaultValue={data[name]}
@@ -31,10 +31,10 @@ const inputType = {
       className="question-input">
     </input>
   ),
-  textarea: (name, data, { words, placeholder } = { words: 0, placeholder: "" }) => (
+  textarea: (name, { words, placeholder } = { words: 0, placeholder: "" }) => data => (
     <MyTextarea defaultValue={data[name]} words={words} fieldName={name} placeholder={placeholder} />
   ),
-  options: (name, data, { choices } = { choices: [] }) => <>
+  options: (name, { choices } = { choices: [] }) => data => <>
     <Select className="options" name={name} defaultValue={data[name] || ""}>
       <option disabled value="">Select One</option>
       {
@@ -49,11 +49,11 @@ const inputType = {
       }
     </Select>
   </>,
-  date: (name, data) => <Input name={name} defaultValue={data[name]} className="question-input" type="date"/>,
-  jsx: (name, data, jsxMaker) => jsxMaker(name)
+  date: (name) => data => <Input name={name} defaultValue={data[name]} className="question-input" type="date"/>,
+  jsx: (name, jsxMaker) => data => jsxMaker(name)
 }
 
-const MyTextarea = ({ words, fieldName, placeholder, defaultValue }) => { // can't use name as prop
+const MyTextarea = ({ words, fieldName, placeholder, defaultValue }) => {
 
   const wordCount = words !== 0 && words !== undefined;
   let [ numWords, setWords] = useState(0);
@@ -82,27 +82,27 @@ const MyTextarea = ({ words, fieldName, placeholder, defaultValue }) => { // can
   )
 }
 
-const formQuestion = ({text, hint, type, name, optional}, data, i) => (
+const formQuestion = ({text, hint, type, name, optional}, i) => data => (
   <div key={"fq-" + i} className="question">
     <div className="question-text">
       { text ? text : "" } 
       { optional ? <span className="question-hint">&nbsp;(optional)</span> : ""}
     </div>
     <div className="question-hint">{ hint ? hint : "" }</div>
-    {inputType[Array.isArray(type) ? type[0] : type](name, data, ...type.slice(1))}
+    {inputType[Array.isArray(type) ? type[0] : type](name, ...type.slice(1))(data)}
   </div>
 )
 
-const formQuestions = (qs, data) => qs.map((q, i) => formQuestion(q, data, i));
+const formQuestions = qs => data => qs.map((q, i) => formQuestion(q, i)(data));
 
-const section = ({sectionName, hint, questions}, data, i) => (
+const section = ({sectionName, hint, questions}, i) => (data) => (
   <div key={"section-" + i} className="form-item">
     <div className="form-item-name">
       {sectionName}
     </div>
     <div className="section-hint">{ hint ? hint : "" }</div>
     <div className="form-item-content">
-      {formQuestions(questions, data)}
+      {formQuestions(questions)(data)}
     </div>
   </div>
 )
@@ -138,124 +138,6 @@ const savedInfo = (saved, poster) => (
       />
   </div>
 )
-
-const formStyle = `
-    * {
-      font-family: "Phantom Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    }
-
-    .noselect {
-      -webkit-touch-callout: none; /* iOS Safari */
-        -webkit-user-select: none; /* Safari */
-         -khtml-user-select: none; /* Konqueror HTML */
-           -moz-user-select: none; /* Old versions of Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-                user-select: none; /* Non-prefixed version, currently
-                                      supported by Chrome, Edge, Opera and Firefox */
-    }
-
-    .form-item {
-      display: flex;
-      width: 100%;
-      height: auto;
-      flex-direction: column;
-    }
-
-    .form-item-name {
-      text-align: left;
-      width: 200px;
-      font-size: 30px;
-      color: #e42d42;
-      font-weight: bold;
-      line-height: 1.25;
-      padding: 10px;
-    }
-
-    .section-hint {
-      padding-left: 10px;
-    }
-
-    .form-item-content {
-      width: 100%;
-      background: none;
-      padding: 10px;
-      line-height: 1.375;
-      font-size: 22px;
-      color: #384046;
-    }
-
-    .form-item-content textarea,
-    .form-item-content input,
-    .form-item-content select {
-      background: white;
-    }
-
-    .question {
-      margin: auto;
-      padding-bottom: 12px;
-      max-width: 32rem;
-    }
-
-    .question-hint {
-      font-size: 15px;
-      color: #7a8c97;
-    }
-
-    .question-textarea {
-      resize: vertical;
-    }
-
-    .question-input {
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      vertical-align: middle;
-      min-height: 36px;
-      line-height: inherit;
-      font-family: inherit;
-      color: inherit;
-      background-color: transparent;
-      border-radius: 4px;
-      border-width: 1px;
-      border-style: solid;
-      border-color: #dde1e4;
-      font-size: inherit;
-      padding-left: 12px;
-      padding-right: 12px;
-      padding-top: 6px;
-      padding-bottom: 6px;
-      background-color: transparent;
-      margin-top: 5px;
-      margin-bottom: 5px;
-    }
-
-    .options {
-      display: block;
-      vertical-align: middle;
-      max-width: 32rem;
-      min-height: 36px;
-      line-height: inherit;
-      font-family: inherit;
-      border-radius: 4px;
-      border-width: 1px;
-      border-style: solid;
-      border-color: rgb(221, 225, 228);
-      transition: box-shadow 0.1875s cubic-bezier(0.375, 0, 0.675, 1) 0s;
-      font-size: 18px;
-      margin: 0px;
-      padding: 6px 12px;
-      width: 100%;
-      background-color: transparent;
-      color: inherit;
-    }
-
-    .options[type="select"] {
-      background: url(data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23606e77' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E) right 0.75rem center / 0.5rem no-repeat rgb(255, 255, 255);
-    }
-`
 
 export default function ApplicationClub({
   notFound,
@@ -312,7 +194,7 @@ export default function ApplicationClub({
 
   return (
     <Container py={4} variant="copy">
-      <style jsx>{formStyle}</style>
+    {/*<style jsx>{formStyle}</style>*/}
       {savedInfo(saved, poster)}
       <Card>
         <form onInput={handleFormInput}>
@@ -320,7 +202,7 @@ export default function ApplicationClub({
             style={{all: "unset", width:"100%"}} 
             disabled={applicationsRecord.fields['Submitted'] ? true : false}
             >
-            {appType.map((formTemplate, i) => section(formTemplate, data, i))}
+            {appType.map((formTemplate, i) => section(formTemplate, i)(data))}
           </fieldset>
         </form>
         <Button
