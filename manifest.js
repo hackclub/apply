@@ -242,6 +242,7 @@ export default {
           label:
             'Phone number (include country code if not in the United States)',
           type: 'string',
+          inputType: 'tel',
           translations: {
             'pt-BR': {
               label: 'Número de telefone (inclua +55 antes se for do Brasil)'
