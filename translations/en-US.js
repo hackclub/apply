@@ -36,7 +36,14 @@ export const messageObject =  {
   "CLUB": "Club",
   "SAVED": "Changes saved!",
   "SAVE": "Save changes",
-  "GO_BACK": "Save & Go Back"
+  "GO_BACK": "Save & Go Back",
+  "OPTIONAL": "optional",
+  "SELECT_ONE":"Select One",
+  "AIM_FOR_BETWEEN": "Aim for between",
+  "AND": "and",
+  "CHARS": "characters",
+  "CHAR": "character",
+  "SO_FAR": "so far"
 }
 
  

@@ -94,10 +94,19 @@ export default function ApplicationClub({
             sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
             as="div"
           >
-            <Text sx={{ textDecoration: 'none', color: 'blue' }} onClick={goHome}>{returnLocalizedMessage(router.locale, 'APPLY')}</Text>
+            <Text
+              sx={{ textDecoration: 'none', color: 'blue' }}
+              onClick={goHome}
+            >
+              {returnLocalizedMessage(router.locale, 'APPLY')}
+            </Text>
 
             {' / '}
-            <b>{params.type == 'club' ? returnLocalizedMessage(router.locale, 'CLUB') : returnLocalizedMessage(router.locale, 'LEADER')}</b>
+            <b>
+              {params.type == 'club'
+                ? returnLocalizedMessage(router.locale, 'CLUB')
+                : returnLocalizedMessage(router.locale, 'LEADER')}
+            </b>
           </Text>
           <Flex
             sx={{ alignItems: 'center', cursor: 'pointer' }}
@@ -111,7 +120,9 @@ export default function ApplicationClub({
                 textTransform: 'uppercase'
               }}
             >
-              {saved ? returnLocalizedMessage(router.locale, 'SAVED') : returnLocalizedMessage(router.locale, 'SAVE')}
+              {saved
+                ? returnLocalizedMessage(router.locale, 'SAVED')
+                : returnLocalizedMessage(router.locale, 'SAVE')}
             </Text>
             <Icon
               glyph={saved ? 'checkmark' : 'important'}
@@ -149,7 +160,8 @@ export default function ApplicationClub({
                               display: item.optional ? 'inline' : 'none'
                             }}
                           >
-                            (optional)
+                            ({returnLocalizedMessage(router.locale, 'OPTIONAL')}
+                            )
                           </Text>
                         </Text>
                       }
@@ -183,7 +195,10 @@ export default function ApplicationClub({
                               children: (
                                 <>
                                   <option value="" disabled>
-                                    Select One
+                                    {returnLocalizedMessage(
+                                      router.locale,
+                                      'SELECT_ONE'
+                                    )}
                                   </option>
                                   {item.options.map(option => (
                                     <option>{option}</option>
@@ -195,7 +210,10 @@ export default function ApplicationClub({
                               children: (
                                 <>
                                   <option value="" disabled>
-                                    Select One
+                                    {returnLocalizedMessage(
+                                      router.locale,
+                                      'SELECT_ONE'
+                                    )}
                                   </option>
                                   {applicationsRecord.fields[
                                     item.optionsKey
@@ -212,8 +230,23 @@ export default function ApplicationClub({
                         sx={{ fontSize: '18px', color: 'muted', mt: 1 }}
                         as="p"
                       >
-                        (Aim for between {item.characters[0]} and{' '}
-                        {item.characters[1]} characters)
+                        (
+                        {returnLocalizedMessage(
+                          router.locale,
+                          'AIM_FOR_BETWEEN'
+                        )}{' '}
+                        {item.characters[0]}{' '}
+                        {returnLocalizedMessage(router.locale, 'AND')}{' '}
+                        {item.characters[1]}{' '}
+                        {returnLocalizedMessage(router.locale, 'CHARS')}
+                        {data[item.key] &&
+                          ', ' +
+                            data[item.key].split(' ').join('').length +
+                            ' ' +
+                            returnLocalizedMessage(router.locale, data[item.key].split(' ').join('').length == 1 ? 'CHAR' : 'CHARS') +
+                            ' ' +
+                            returnLocalizedMessage(router.locale, 'SO_FAR')}
+                        )
                       </Text>
                     )}
                     {item.sublabel && (
