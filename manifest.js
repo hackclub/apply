@@ -53,22 +53,35 @@ export default {
           label: 'Who would you like your Point of Contact to be?',
           type: 'select',
           optionsKey: 'Leaders Emails',
-          optional: false
+          optional: false,
+          translations: {
+            'pt-BR': {
+              label: 'Quem você gostaria do seu ponto de contato para ser?'
+            }
+          }
         },
         {
           key: 'Leaders Relationship',
           label:
             'How long have you known your other club leaders and how did you meet?',
+          translations: {
+            'pt-BR': {
+              label: 'Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?'
+            }
+          },
           type: 'paragraph',
           optional: false,
-          characters: [350, 600],
-          sublabel:
-            'Please include city, state / province, country, and postal code.'
+          characters: [350, 600]
         }
       ]
     },
     {
       header: 'Idea',
+      translations: {
+        'pt-BR': {
+          header: 'Ideia'
+        }
+      },
       items: [
         {
           key: 'Why',
@@ -76,6 +89,11 @@ export default {
             'Why are you planning to start a Hack Club? Have you run anything like a Hack Club before? Why do you think the club is going to work?',
           type: 'paragraph',
           optional: false,
+          translations: {
+            'pt-BR': {
+              label: 'Por que você deseja iniciar um Hack Club? Você já fez algo parecido com o Hack Club antes? Por que você acha que seu clube vai funcionar?'
+            }
+          },
           characters: [350, 600]
         },
         {
@@ -83,6 +101,11 @@ export default {
           label:
             'Has your school had coding clubs before? What’s going to be new about your Hack Club?',
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Sua escola já teve clubes de programação antes? O que vai ser diferente no seu Hack Club?'
+            }
+          },
           optional: false,
           characters: [350, 600]
         },
@@ -91,6 +114,11 @@ export default {
           label:
             'What will your club do and what would a successful club look like?',
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Como será o seu clube e como seria um clube de sucesso?'
+            }
+          },
           optional: false,
           characters: [350, 600]
         },
@@ -98,12 +126,22 @@ export default {
           key: 'Get Out Of HC',
           label: 'What do you personally hope to get out of Hack Club?',
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'O que você pessoalmente espera sair do Hack Club?'
+            }
+          },
           optional: true
         }
       ]
     },
     {
       header: 'Formation',
+      translations: {
+        'pt-BR': {
+          header: 'Organização'
+        }
+      },
       items: [
         {
           key: 'Status',
@@ -111,18 +149,35 @@ export default {
           sublabel:
             '(have you registered with your school, taken interest surveys, identified a sponsor, etc.)',
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Que passos você fez para começar seu clube?',
+              sublabel: '(você se registrou com sua escola, levando pesquisas de interesse, identificou um patrocinador, etc.)',
+            }
+          },
           optional: false
         }
       ]
     },
     {
       header: 'Curious',
+      translations: {
+        'pt-BR': {
+          header: 'Curiosidades'
+        }
+      },
       items: [
         {
           key: 'New Fact',
           label:
             'What is something surprising or amusing you learned recently?',
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Nos fale sobre algo que você e/ou seus co-líderes aprenderam recentemente?',
+              sublabel: '(não faça essa pergunta ser sobre o Hack Club! Não precisa ter relação com programação)',
+            }
+          },
           optional: false,
           characters: [50, 400],
           sublabel: `Don't make it about Hack Club! Doesn't have to be about coding.`
@@ -132,6 +187,11 @@ export default {
           label:
             'How did you hear about Hack Club? If you heard about us at an event or on a website, mention it here.',
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Como você ouviu falar do Hack Club? Se você ouviu falar de nós por meio de um evento ou website, mencione ele aqui.'
+            }
+          },
           optional: true
         }
       ]
