@@ -42,7 +42,7 @@ export default function ApplicationHome({
       if (loginAPICall.success) {
         alert(`✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`)
         setEmailToInvite('')
-        router.replace(router.asPath)
+        router.replace(router.asPath, null, {scroll: false})
       } else {
         alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
@@ -61,7 +61,7 @@ export default function ApplicationHome({
       ).then(r => r.json())
       if (deleteLeaderCall.success) {
         alert(`✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`)
-        router.replace(router.asPath)
+        router.replace(router.asPath, null, {scroll: false})
       } else {
         alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
@@ -74,7 +74,7 @@ export default function ApplicationHome({
     console.log(submissionAPICall)
     if (submissionAPICall.success) {
       alert(`✅ ${returnLocalizedMessage(router.locale, 'SUBMITTED')}`)
-      router.replace(router.asPath)
+      router.replace(router.asPath, null, {scroll: false})
     } else {
       alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
     }
@@ -376,7 +376,7 @@ export default function ApplicationHome({
             await destroyCookie(null, 'authToken', {
               path: '/'
             })
-            router.push('/')
+            router.push('/', '/', {scroll: false})
           }}
         >
           {returnLocalizedMessage(router.locale, "LOGOUT")}
