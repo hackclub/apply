@@ -20,7 +20,7 @@ import Link from 'next/link'
 import manifest from '../../../manifest'
 import nookies from 'nookies'
 import { useRouter } from 'next/router'
-import { returnLocalizedMessage } from '../../../lib/helpers'
+import { returnLocalizedMessage, returnLocalizedQuestionText } from '../../../lib/helpers'
 
 export default function ApplicationClub({
   notFound,
@@ -137,7 +137,7 @@ export default function ApplicationClub({
             <Box>
               <Box sx={{ textAlign: 'left' }}>
                 <Text sx={{ color: 'red', fontSize: '27px', fontWeight: 800 }}>
-                  {sectionItem.header}
+                  {returnLocalizedQuestionText(router.locale, sectionItem, 'header')}
                 </Text>
               </Box>
               <Box>
@@ -153,7 +153,7 @@ export default function ApplicationClub({
                     <Field
                       label={
                         <Text>
-                          {item.label}{' '}
+                          {returnLocalizedQuestionText(router.locale, item, 'label')}{' '}
                           <Text
                             sx={{
                               color: 'muted',
@@ -251,7 +251,7 @@ export default function ApplicationClub({
                     )}
                     {item.sublabel && (
                       <Text sx={{ fontSize: '16px', color: 'muted' }} as="p">
-                        {item.sublabel}
+                        {returnLocalizedQuestionText(router.locale, item, 'sublabel')}
                       </Text>
                     )}
                   </Box>

@@ -2,18 +2,38 @@ export default {
   clubs: [
     {
       header: 'Venue',
+      translations: {
+        'pt-BR': {
+          header: 'Local'
+        }
+      },
       items: [
         {
           key: 'School Name',
           label: 'Where are you planning to run your Hack Club?',
+          translations: {
+            'pt-BR': {
+              label: 'Onde você está planejando executar seu Hack Club?',
+              sublabel:
+                '(Dê-nos o nome e o tipo. Pode ser uma escola secundária, fabricante ou outra coisa.)'
+            }
+          },
           type: 'string',
-          sublabel: '(Give us the name and type. It can be a high school, makerspace, or something else.)',
+          sublabel:
+            '(Give us the name and type. It can be a high school, makerspace, or something else.)',
           optional: false
         },
         {
           key: 'School Address',
           label: `What's the full address?`,
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Qual é o endereço completo?',
+              sublabel:
+                'Por favor inclua cidade, estado / província, país, e CEP.'
+            }
+          },
           optional: false,
           sublabel:
             'Please include city, state / province, country, and postal code.'
@@ -22,6 +42,11 @@ export default {
     },
     {
       header: 'Leaders',
+      translations: {
+        'pt-BR': {
+          header: 'Líderes'
+        }
+      },
       items: [
         {
           key: 'President',
@@ -74,7 +99,7 @@ export default {
           label: 'What do you personally hope to get out of Hack Club?',
           type: 'paragraph',
           optional: true
-        },
+        }
       ]
     },
     {
@@ -83,7 +108,8 @@ export default {
         {
           key: 'Status',
           label: 'What steps have you taken to start your club?',
-          sublabel: '(have you registered with your school, taken interest surveys, identified a sponsor, etc.)',
+          sublabel:
+            '(have you registered with your school, taken interest surveys, identified a sponsor, etc.)',
           type: 'paragraph',
           optional: false
         }
@@ -227,7 +253,8 @@ export default {
               .
             </>
           ),
-          plainText: 'Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.',
+          plainText:
+            'Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.',
           type: 'paragraph',
           optional: false,
           characters: [450, 1200]
@@ -237,17 +264,18 @@ export default {
           label: `Tell us about something you made which was personally meaningful to you?`,
           type: 'paragraph',
           optional: false,
-          sublabel:  "(include links and links to images if possible)",
+          sublabel: '(include links and links to images if possible)',
           characters: [150, 250]
         },
         {
           key: 'Technicality',
-          label: 'Are you technical? (You are a programmer who can teach without outside assistance)',
+          label:
+            'Are you technical? (You are a programmer who can teach without outside assistance)',
           type: 'select',
           optional: false,
           hint: `(It's okay if not!)`,
           options: ['Yes', 'No']
-        },
+        }
       ]
     }
   ]
