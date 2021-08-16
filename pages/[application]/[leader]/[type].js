@@ -191,7 +191,8 @@ export default function ApplicationClub({
                       value={data[item.key] !== undefined ? data[item.key] : ''}
                       sx={{
                         border: '1px solid',
-                        borderColor: 'rgb(221, 225, 228)'
+                        borderColor: 'rgb(221, 225, 228)',
+                        resize: 'vertical'
                       }}
                       {...(item.type == 'select'
                         ? item.options
