@@ -25,6 +25,12 @@ const SubmitStatus = styled(Text)`
   padding-bottom: 0.125rem;
 `
 
+const GreenSubmitStatus = styled(Text)`
+  background: transparent url(/underline-green.svg) bottom left no-repeat;
+  background-size: 100% 0.75rem;
+  padding-bottom: 0.125rem;
+`
+
 export default function ApplicationHome({
   notFound,
   params,
@@ -125,13 +131,13 @@ export default function ApplicationHome({
             <>
               {applicationsRecord.fields['Submitted'] ? (
                 <>
-                  <SubmitStatus>
+                  <GreenSubmitStatus>
                     {returnLocalizedMessage(
                       router.locale,
                       'APPLICATION_STATUS_MESSAGE_APPENDED_HAS_BEEN'
                     )}{' '}
                     {returnLocalizedMessage(router.locale, 'SUBMITTED')}
-                  </SubmitStatus>
+                  </GreenSubmitStatus>
                 </>
               ) : (
                 <>
