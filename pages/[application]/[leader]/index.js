@@ -390,7 +390,7 @@ export default function ApplicationHome({
             ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
             applicationsRecord.fields['Submitted']
               ? {
-                  opacity: 0.7,
+                  opacity: 0.3,
                   ':hover,:focus': { transform: 'none', boxShadow: 'none' }
                 }
               : {})
