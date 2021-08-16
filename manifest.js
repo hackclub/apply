@@ -389,7 +389,7 @@ export default {
               label: (
                 <>
                   Por favor nos conte alguma vez que você hackeou com sucesso algum sistema (não computacional) para obter alguma vantagem.
-                  <a href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage">
+                  <a href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage" style={{color: '#338eda'}}>
                   Aqui estão alguns exemplos do que estamos buscando.
                   </a>
                   .
