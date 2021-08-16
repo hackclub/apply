@@ -79,6 +79,7 @@ export default function ApplicationClub({
   }
   return (
     <Container py={4} variant="copy">
+      <SavedInfo saved={saved} poster={poster}/>
       <Card
         px={[4, 4]}
         py={[3, 3]}
@@ -114,24 +115,6 @@ export default function ApplicationClub({
             sx={{ alignItems: 'center', cursor: 'pointer', '> svg': {display: ['none', 'inline']}, mt: [2, 0] }}
             onClick={() => poster()}
           >
-            <Button
-              sx={{
-                color: 'white',
-                mr: 2,
-                fontWeight: '800',
-                textTransform: 'uppercase',
-                bg: saved ? '#33d6a6' : '#ff8c37',
-                ':hover,:focus': saved ? { transform: 'none' } : {},
-              }}
-            >
-              {saved
-                ? returnLocalizedMessage(router.locale, 'SAVED')
-                : returnLocalizedMessage(router.locale, 'SAVE')}
-            </Button>
-            <Icon
-              glyph={saved ? 'checkmark' : 'important'}
-              color={saved ? '#33d6a6' : '#ff8c37'}
-            />
           </Flex>
         </Box>
       </Card>
@@ -278,6 +261,38 @@ export default function ApplicationClub({
     </Container>
   )
 }
+
+const SavedInfo = ({ saved, poster }) => (
+  <div
+    style={{ 
+      display: "flex",
+      position: "fixed", 
+      right: "10px", 
+      bottom: "10px", 
+      cursor: 'pointer',
+      "placeItems": "center",
+      background: "#00000005",
+      paddingLeft: "5px",
+      paddingRight: "5px",
+      borderRadius: "15px",
+    }}
+    onClick={poster}
+    >
+    <Text
+      sx={{
+        color: saved ? '#33d6a6' : '#ff8c37',
+        fontWeight: '800',
+        textTransform: 'uppercase',
+      }}
+      >
+      {saved ? 'Saved' : 'Click to Save'}
+    </Text>
+    <Icon
+      glyph={saved ? 'checkmark' : 'important'}
+      color={saved ? '#33d6a6' : '#ff8c37'}
+      />
+  </div>
+)
 
 export async function getServerSideProps({ res, req, params }) {
   const {
