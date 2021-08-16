@@ -65,9 +65,9 @@ export default function ApplicationClub({
     })
   })
 
-  async function goHome() {
+  async function goHome(autoSave = true) {
     if (!saved) {
-      if (
+      if (autoSave ||
         window.confirm(
           returnLocalizedMessage(
             router.locale,
@@ -100,7 +100,7 @@ export default function ApplicationClub({
             <Text
               sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
             >
-              <Icon glyph="home" onClick={goHome} />
+              <Icon glyph="home" onClick={() => goHome(false)} />
             </Text>
             <Text
               variant="subheadline"
@@ -113,7 +113,7 @@ export default function ApplicationClub({
                   color: 'blue',
                   cursor: 'pointer'
                 }}
-                onClick={goHome}
+                onClick={() => goHome(false)}
               >
                 {returnLocalizedMessage(router.locale, 'APPLY')}
               </Text>
@@ -319,7 +319,7 @@ export default function ApplicationClub({
             textTransform: 'uppercase'
           }}
           variant="ctaLg"
-          onClick={goHome}
+          onClick={() => goHome(true)}
         >
           {'<<'} {returnLocalizedMessage(router.locale, 'GO_BACK')}
         </Button>
