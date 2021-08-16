@@ -1,5 +1,5 @@
 import { Box, Button, Text, Flex, Heading, Input } from 'theme-ui'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import nookies from 'nookies'
 import {validateEmail, returnLocalizedMessage} from '../lib/helpers'
 import { useRouter } from 'next/router'
@@ -8,7 +8,8 @@ export default function IndexHome() {
   const router = useRouter()
   const [status, setStatus] = useState('awaiting')
   const [email, setEmail] = useState('')
-  async function handleSubmission() {
+  async function handleSubmission(e) {
+    e.preventDefault();
     if (validateEmail(email)) {
       setStatus('loading')
       const loginAPICall = await fetch(`/api/login?email=${email}`).then(r =>
@@ -35,6 +36,8 @@ export default function IndexHome() {
       <Box
         bg="slate"
         p={4}
+        as="form"
+        onSubmit={handleSubmission}
         sx={{ borderRadius: 10, width: '100%', maxWidth: '36rem' }}
       >
         <Heading as="h1" sx={{ fontSize: 5 }}>
@@ -75,7 +78,6 @@ export default function IndexHome() {
             display:
               status == 'awaiting' || status == 'error' ? 'block' : 'none'
           }}
-          onClick={handleSubmission}
         >
           {returnLocalizedMessage(router.locale, 'CONTINUE')} {'>>'}
         </Button>
