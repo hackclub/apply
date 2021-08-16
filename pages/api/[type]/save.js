@@ -28,7 +28,7 @@ export default async function handler(req, res) {
         const { key, optional = false } = cur;
         acc[key] = requestBody[key];
 
-        if (!optional && (requestBody[key] === "" || requestBody[key] === undefined)) {
+        if (!optional && requestBody[key] && (requestBody[key].trim() === "" || requestBody[key] === undefined)) {
           acc.Completed = false; 
         }
 
