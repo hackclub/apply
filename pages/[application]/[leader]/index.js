@@ -271,30 +271,8 @@ export default function ApplicationHome({
     }
   }
 
-  let clubComplete = true;
-  const allRequiredFieldsLeader = clubApplication
-    .map(x => x.questions)
-    .flat()
-    .map(({ name, optional = false }) => [ name, !optional ])
-    .forEach(([ name, req ]) => {
-      if (req && (applicationsRecord.fields[name] === "" || applicationsRecord.fields[name] === undefined)) {
-        clubComplete = false; 
-      }
-    })
-
-  let leaderComplete = true;
-  const allRequiredFieldsClub = leaderApplication
-    .map(x => x.questions)
-    .flat()
-    .map(({ name, optional = false }) => [ name, !optional ])
-    .forEach(([name, req]) => {
-      if (req && (leaderRecord.fields[name] === "" || leaderRecord.fields[name] === undefined)) {
-        leaderComplete = false; 
-      }
-    })
-
-
-    console.log(clubComplete, leaderComplete);
+  const clubComplete = applicationsRecord.fields["_complete"] !== undefined;
+  const leaderComplete = leaderRecord.fields["_complete"] !== undefined;
 
   if (notFound) return <Error statusCode="404" />
 
