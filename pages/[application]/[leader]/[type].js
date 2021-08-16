@@ -25,43 +25,38 @@ import {
   returnLocalizedQuestionText
 } from '../../../lib/helpers'
 
+
 export default function ApplicationClub({
   notFound,
   applicationsRecord,
   leaderRecord,
   params
 }) {
-  const router = useRouter()
   const [data, setData] = useState(
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
-  const [saved, setSavedState] = useState(true)
-  const poster = () => {
-    fetch(
-      `/api/${params.type}/save?id=${
-        params.type == 'club' ? params.application : params.leader
-      }`,
-      { body: JSON.stringify(data), method: 'POST' }
-    )
-      .then(res => res.json())
-      .then(res => {
-        if (!res.success) {
-          alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
-        } else {
-          setSaved(true)
-        }
-      })
+  const [ saved, setSaved ] = useState(true);
+
+  const poster = async () => {
+    const appOrLeader = params.type === 'club' ? params.application : params.leader;
+
+    const msg = { body: JSON.stringify(data), method: 'POST' }
+    const fetched = await fetch(`/api/${params.type}/save?id=${appOrLeader}`, msg);
+    const json = await fetched.json();
+
+    if (json.success) {
+      console.log(json);
+      setSaved(true);
+    } else console.error(json);
+
+    return json;
   }
 
-  const savingStateRef = useRef(saved)
-  const setSaved = data => {
-    savingStateRef.current = data
-    setSavedState(data)
-  }
+  const router = useRouter()
 
   useEffect(() => {
     window.addEventListener('beforeunload', function (e) {
-      if (!savingStateRef.current) {
+      if (!saved) {
         e.preventDefault()
         e.returnValue = ''
       } else {
@@ -71,7 +66,7 @@ export default function ApplicationClub({
   })
 
   async function goHome() {
-    if (!savingStateRef.current) {
+    if (!saved) {
       if (
         window.confirm(
           returnLocalizedMessage(
