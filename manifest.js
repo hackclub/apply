@@ -1,5 +1,40 @@
 export default {
   clubs: [
+     {
+      header: 'Leaders',
+      translations: {
+        'pt-BR': {
+          header: 'Líderes'
+        }
+      },
+      items: [
+        {
+          key: 'President',
+          label: 'Who would you like your Point of Contact to be?',
+          type: 'select',
+          optionsKey: 'Leaders Emails',
+          optional: false,
+          translations: {
+            'pt-BR': {
+              label: 'Quem você gostaria do seu ponto de contato para ser?'
+            }
+          }
+        },
+        {
+          key: 'Leaders Relationship',
+          label:
+            'How long have you known your other club leaders and how did you meet?',
+          translations: {
+            'pt-BR': {
+              label: 'Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?'
+            }
+          },
+          type: 'paragraph',
+          optional: false,
+          characters: [350, 600]
+        }
+      ]
+    },
     {
       header: 'Venue',
       translations: {
@@ -37,41 +72,6 @@ export default {
           optional: false,
           sublabel:
             'Please include city, state / province, country, and postal code.'
-        }
-      ]
-    },
-    {
-      header: 'Leaders',
-      translations: {
-        'pt-BR': {
-          header: 'Líderes'
-        }
-      },
-      items: [
-        {
-          key: 'President',
-          label: 'Who would you like your Point of Contact to be?',
-          type: 'select',
-          optionsKey: 'Leaders Emails',
-          optional: false,
-          translations: {
-            'pt-BR': {
-              label: 'Quem você gostaria do seu ponto de contato para ser?'
-            }
-          }
-        },
-        {
-          key: 'Leaders Relationship',
-          label:
-            'How long have you known your other club leaders and how did you meet?',
-          translations: {
-            'pt-BR': {
-              label: 'Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?'
-            }
-          },
-          type: 'paragraph',
-          optional: false,
-          characters: [350, 600]
         }
       ]
     },
@@ -167,21 +167,6 @@ export default {
         }
       },
       items: [
-        {
-          key: 'New Fact',
-          label:
-            'What is something surprising or amusing you learned recently?',
-          type: 'paragraph',
-          translations: {
-            'pt-BR': {
-              label: 'Nos fale sobre algo que você e/ou seus co-líderes aprenderam recentemente?',
-              sublabel: '(não faça essa pergunta ser sobre o Hack Club! Não precisa ter relação com programação)',
-            }
-          },
-          optional: false,
-          characters: [50, 400],
-          sublabel: `Don't make it about Hack Club! Doesn't have to be about coding.`
-        },
         {
           key: 'Hear About HC',
           label:
@@ -415,6 +400,21 @@ export default {
           optional: false,
           sublabel: '(include links and links to images if possible)',
           characters: [150, 250]
+        },
+        {
+          key: 'New Fact',
+          label:
+            'What is something surprising or amusing you learned recently?',
+          type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Nos fale sobre algo que você e/ou seus co-líderes aprenderam recentemente?',
+              sublabel: '(não faça essa pergunta ser sobre o Hack Club! Não precisa ter relação com programação)',
+            }
+          },
+          optional: false,
+          characters: [50, 400],
+          sublabel: `Don't make it about Hack Club! Doesn't have to be about coding.`
         },
         {
           key: 'Technicality',
