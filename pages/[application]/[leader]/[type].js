@@ -87,7 +87,8 @@ export default function ApplicationClub({
           textAlign: 'left'
         }}
       >
-        <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
+        <Box sx={{ display: ['block', 'flex'],  alignItems: 'center' }}>
+        <Flex sx={{ alignItems: 'center' }}>
           <Icon glyph="home" onClick={goHome} />
           <Text
             variant="subheadline"
@@ -108,8 +109,9 @@ export default function ApplicationClub({
                 : returnLocalizedMessage(router.locale, 'LEADER')}
             </b>
           </Text>
+          </Flex>
           <Flex
-            sx={{ alignItems: 'center', cursor: 'pointer' }}
+            sx={{ alignItems: 'center', cursor: 'pointer', '> svg': {display: ['none', 'inline']}, mt: [2, 0] }}
             onClick={() => poster()}
           >
             <Button
@@ -131,7 +133,7 @@ export default function ApplicationClub({
               color={saved ? '#33d6a6' : '#ff8c37'}
             />
           </Flex>
-        </Flex>
+        </Box>
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
         {(params.type == 'club' ? manifest.clubs : manifest.leaders).map(

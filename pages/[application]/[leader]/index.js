@@ -91,7 +91,7 @@ export default function ApplicationHome({
       <Card
         px={[4, 4]}
         py={[3, 3]}
-        sx={{ color: 'blue', display: 'flex', alignItems: 'center' }}
+        sx={{ color: 'blue', display: 'flex', alignItems: 'center', '> svg': {display: ['none', 'inline']} }}
       >
         <Icon glyph="message" />
         <Text sx={{ ml: 2 }}>
@@ -157,36 +157,36 @@ export default function ApplicationHome({
             </>
           )}
         </Heading>
-        <Divider sx={{ color: 'slate', my: 4 }} />
+        <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Link href={`/${params.application}/${params.leader}/club`}>
-          <Flex sx={{ alignItems: 'center', cursor: 'pointer' }}>
+          <Flex sx={{ alignItems: 'center', cursor: 'pointer', '> svg': {display: ['none', 'inline']} }}>
             {applicationsRecord.fields['Completed'] == 1 ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
             )}
-            <Heading sx={{ flexGrow: 1, color: 'blue', ml: 2 }} as="h1">
+            <Heading sx={{ flexGrow: 1, color: [applicationsRecord.fields['Completed'] == 1 ?"#33d6a6" :"#ff8c37" ,'blue'], ml: [0, 2] }} as="h1">
               {returnLocalizedMessage(router.locale, 'YOUR_CLUB')}
             </Heading>
             <Icon glyph="view-forward" />
           </Flex>
         </Link>
-        <Divider sx={{ color: 'slate', my: 4 }} />
+        <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Link href={`/${params.application}/${params.leader}/leader`}>
-          <Flex sx={{ alignItems: 'center' }}>
+          <Flex sx={{ alignItems: 'center', '> svg': {display: ['none', 'inline']} }}>
             {leaderRecord.fields['Completed'] == 1 ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
             )}
 
-            <Heading sx={{ flexGrow: 1, color: 'blue', ml: 2 }} as="h1">
+            <Heading sx={{ flexGrow: 1, color: [leaderRecord.fields['Completed'] == 1 ?"#33d6a6" :"#ff8c37" ,'blue'], ml: [0, 2] }} as="h1">
               {returnLocalizedMessage(router.locale, 'MY_PERSONAL_PROFILE')}
             </Heading>
             <Icon glyph="view-forward" />
           </Flex>
         </Link>
-        <Divider sx={{ color: 'slate', my: 4 }} />
+        <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Flex sx={{ alignItems: 'center' }}>
           <Heading
             sx={{
@@ -217,13 +217,14 @@ export default function ApplicationHome({
         </Flex>
         {addingLeader && (
           <Box>
-            <Flex mt={3} sx={{ alignItems: 'center' }}>
+            <Box mt={3} sx={{ display: ['block', 'flex'],alignItems: 'center' }}>
               <Input
                 sx={{
                   border: '0.5px solid',
                   fontSize: 1,
                   borderColor: 'rgb(221, 225, 228)',
-                  mr: 3
+                  mr: [0, 3],
+                  mb: [3, 0]
                 }}
                 onChange={e => setEmailToInvite(e.target.value)}
                 value={emailToInvite}
@@ -253,7 +254,7 @@ export default function ApplicationHome({
                   {returnLocalizedMessage(router.locale, 'SEND_INVITE')}
                 </Text>
               </Flex>
-            </Flex>
+            </Box>
             <Grid columns={[1, 2]} mt={3}>
               <Flex
                 sx={{
@@ -262,11 +263,12 @@ export default function ApplicationHome({
                   borderRadius: 4,
                   px: 3,
                   py: 2,
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  '> svg': {display: ['none', 'inline']}
                 }}
               >
                 <Icon glyph={'welcome'} size="40" />
-                <Text ml={3}>
+                <Text ml={[0, 3]}>
                   {returnLocalizedMessage(
                     router.locale,
                     'GUIDE_FOR_SELECTING_TEAM'
@@ -289,11 +291,12 @@ export default function ApplicationHome({
                   borderRadius: 4,
                   px: 3,
                   py: 2,
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  '> svg': {display: ['none', 'inline']}
                 }}
               >
                 <Icon glyph={'leader'} size="40" />
-                <Text ml={3}>
+                <Text ml={[0, 3]}>
                   {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
                 </Text>
               </Flex>
@@ -346,8 +349,10 @@ export default function ApplicationHome({
               </Text>
               <Heading
                 sx={{
-                  color: 'placeholder',
-                  ml: 2,
+                  color: [applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+                  ? '#33d6a6'
+                  : '#ff8c37', 'placeholder'],
+                  ml: [0, 2],
                   transform: 'translateY(-4px)'
                 }}
                 as="h2"
@@ -361,7 +366,7 @@ export default function ApplicationHome({
 
                   color: 'placeholder',
                   fontSize: '16px',
-                  ml: 2,
+                  ml: [0, 2],
                   display: ['block', 'none']
                 }}
                 onClick={() =>
