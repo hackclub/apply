@@ -173,7 +173,7 @@ export default function ApplicationHome({
         </Link>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Link href={`/${params.application}/${params.leader}/leader`}>
-          <Flex sx={{ alignItems: 'center', '> svg': {display: ['none', 'inline']} }}>
+          <Flex sx={{ alignItems: 'center', cursor: 'pointer', '> svg': {display: ['none', 'inline']} }}>
             {leaderRecord.fields['Completed'] == 1 ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
