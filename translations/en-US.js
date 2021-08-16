@@ -43,7 +43,8 @@ export const messageObject =  {
   "AND": "and",
   "WORDS": "words",
   "WORD": "word",
-  "SO_FAR": "so far"
+  "SO_FAR": "so far",
+  'ARE_YOU_SURE_YOU_WANT_TO_SAVE': "Would you like to save? Click Cancel to skip saving."
 }
 
  

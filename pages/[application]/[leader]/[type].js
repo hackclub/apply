@@ -20,7 +20,10 @@ import Link from 'next/link'
 import manifest from '../../../manifest'
 import nookies from 'nookies'
 import { useRouter } from 'next/router'
-import { returnLocalizedMessage, returnLocalizedQuestionText } from '../../../lib/helpers'
+import {
+  returnLocalizedMessage,
+  returnLocalizedQuestionText
+} from '../../../lib/helpers'
 
 export default function ApplicationClub({
   notFound,
@@ -69,7 +72,16 @@ export default function ApplicationClub({
 
   async function goHome() {
     if (!savingStateRef.current) {
-      await poster()
+      if (
+        window.confirm(
+          returnLocalizedMessage(
+            router.locale,
+            'ARE_YOU_SURE_YOU_WANT_TO_SAVE'
+          )
+        )
+      ) {
+        await poster()
+      }
     }
     router.push(`/${params.application}/${params.leader}`)
   }
@@ -79,7 +91,7 @@ export default function ApplicationClub({
   }
   return (
     <Container py={4} variant="copy">
-      <SavedInfo saved={saved} poster={poster}/>
+      <SavedInfo saved={saved} poster={poster} router={router} />
       <Card
         px={[4, 4]}
         py={[3, 3]}
@@ -88,34 +100,66 @@ export default function ApplicationClub({
           textAlign: 'left'
         }}
       >
-        <Box sx={{ display: ['block', 'flex'],  alignItems: 'center' }}>
-        <Flex sx={{ alignItems: 'center', flexGrow: 1 }}>
-          <Text sx={{cursor: 'pointer', display: 'flex', alignItems: 'center'}}><Icon glyph="home" onClick={goHome} /></Text>
-          <Text
-            variant="subheadline"
-            sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
-            as="div"
-          >
+        <Box sx={{ display: ['block', 'flex'], alignItems: 'center' }}>
+          <Flex sx={{ alignItems: 'center', flexGrow: 1 }}>
             <Text
-              sx={{ textDecoration: 'none', color: 'blue', cursor: 'pointer' }}
-              onClick={goHome}
+              sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
             >
-              {returnLocalizedMessage(router.locale, 'APPLY')}
+              <Icon glyph="home" onClick={goHome} />
             </Text>
+            <Text
+              variant="subheadline"
+              sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
+              as="div"
+            >
+              <Text
+                sx={{
+                  textDecoration: 'none',
+                  color: 'blue',
+                  cursor: 'pointer'
+                }}
+                onClick={goHome}
+              >
+                {returnLocalizedMessage(router.locale, 'APPLY')}
+              </Text>
 
-            {' / '}
-            <b>
-              {params.type == 'club'
-                ? returnLocalizedMessage(router.locale, 'CLUB')
-                : returnLocalizedMessage(router.locale, 'LEADER')}
-            </b>
-          </Text>
+              {' / '}
+              <b>
+                {params.type == 'club'
+                  ? returnLocalizedMessage(router.locale, 'CLUB')
+                  : returnLocalizedMessage(router.locale, 'LEADER')}
+              </b>
+            </Text>
           </Flex>
-          <Flex
-            sx={{ alignItems: 'center', cursor: 'pointer', '> svg': {display: ['none', 'inline']}, mt: [2, 0] }}
+          <Box
+            sx={{
+              alignItems: 'center',
+              display: 'flex',
+              cursor: 'pointer',
+              '> svg': { display: ['none', 'inline'] },
+              mt: [2, 0]
+            }}
             onClick={() => poster()}
           >
-          </Flex>
+            <Button
+              sx={{
+                color: 'white',
+                mr: 2,
+                fontWeight: '800',
+                textTransform: 'uppercase',
+                bg: saved ? '#33d6a6' : '#ff8c37',
+                ':hover,:focus': saved ? { transform: 'none' } : {}
+              }}
+            >
+              {saved
+                ? returnLocalizedMessage(router.locale, 'SAVED')
+                : returnLocalizedMessage(router.locale, 'SAVE')}
+            </Button>
+            <Icon
+              glyph={saved ? 'checkmark' : 'important'}
+              color={saved ? '#33d6a6' : '#ff8c37'}
+            />
+          </Box>
         </Box>
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
@@ -124,12 +168,22 @@ export default function ApplicationClub({
             <Box>
               <Box sx={{ textAlign: 'left' }}>
                 <Text sx={{ color: 'red', fontSize: '27px', fontWeight: 800 }}>
-                  {returnLocalizedQuestionText(router.locale, sectionItem, 'header')}
+                  {returnLocalizedQuestionText(
+                    router.locale,
+                    sectionItem,
+                    'header'
+                  )}
                 </Text>
               </Box>
               <Box>
                 {sectionItem.label && (
-                  <Box sx={{ color: 'muted', mb: 3 }}>{returnLocalizedQuestionText(router.locale, sectionItem,'label')}</Box>
+                  <Box sx={{ color: 'muted', mb: 3 }}>
+                    {returnLocalizedQuestionText(
+                      router.locale,
+                      sectionItem,
+                      'label'
+                    )}
+                  </Box>
                 )}
                 {sectionItem.items.map((item, index) => (
                   <Box
@@ -140,7 +194,11 @@ export default function ApplicationClub({
                     <Field
                       label={
                         <Text>
-                          {returnLocalizedQuestionText(router.locale, item, 'label')}{' '}
+                          {returnLocalizedQuestionText(
+                            router.locale,
+                            item,
+                            'label'
+                          )}{' '}
                           <Text
                             sx={{
                               color: 'muted',
@@ -188,7 +246,11 @@ export default function ApplicationClub({
                                       'SELECT_ONE'
                                     )}
                                   </option>
-                                  {returnLocalizedQuestionText(router.locale, item,'options').map(option => (
+                                  {returnLocalizedQuestionText(
+                                    router.locale,
+                                    item,
+                                    'options'
+                                  ).map(option => (
                                     <option>{option}</option>
                                   ))}
                                 </>
@@ -229,7 +291,12 @@ export default function ApplicationClub({
                           ', ' +
                             data[item.key].split(' ').length +
                             ' ' +
-                            returnLocalizedMessage(router.locale, data[item.key].split(' ').length == 1 ? 'WORD' : 'WORDS') +
+                            returnLocalizedMessage(
+                              router.locale,
+                              data[item.key].split(' ').length == 1
+                                ? 'WORD'
+                                : 'WORDS'
+                            ) +
                             ' ' +
                             returnLocalizedMessage(router.locale, 'SO_FAR')}
                         )
@@ -237,7 +304,11 @@ export default function ApplicationClub({
                     )}
                     {item.sublabel && (
                       <Text sx={{ fontSize: '16px', color: 'muted' }} as="p">
-                        {returnLocalizedQuestionText(router.locale, item, 'sublabel')}
+                        {returnLocalizedQuestionText(
+                          router.locale,
+                          item,
+                          'sublabel'
+                        )}
                       </Text>
                     )}
                   </Box>
@@ -262,36 +333,37 @@ export default function ApplicationClub({
   )
 }
 
-const SavedInfo = ({ saved, poster }) => (
-  <div
-    style={{ 
-      display: "flex",
-      position: "fixed", 
-      right: "10px", 
-      bottom: "10px", 
+const SavedInfo = ({ saved, poster, router }) => (
+  <Box
+    sx={{
+      display: ['none', 'flex'],
+      position: 'fixed',
+      right: '10px',
+      bottom: '10px',
       cursor: 'pointer',
-      "placeItems": "center",
-      background: "#00000005",
-      paddingLeft: "5px",
-      paddingRight: "5px",
-      borderRadius: "15px",
+      placeItems: 'center',
+      background: '#00000005',
+      px: 2,
+      borderRadius: '15px'
     }}
     onClick={poster}
-    >
+  >
     <Text
       sx={{
         color: saved ? '#33d6a6' : '#ff8c37',
         fontWeight: '800',
-        textTransform: 'uppercase',
+        textTransform: 'uppercase'
       }}
-      >
-      {saved ? 'Saved' : 'Click to Save'}
+    >
+      {saved
+        ? returnLocalizedMessage(router.locale, 'SAVED')
+        : returnLocalizedMessage(router.locale, 'SAVE')}
     </Text>
     <Icon
       glyph={saved ? 'checkmark' : 'important'}
       color={saved ? '#33d6a6' : '#ff8c37'}
-      />
-  </div>
+    />
+  </Box>
 )
 
 export async function getServerSideProps({ res, req, params }) {

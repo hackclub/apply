@@ -43,5 +43,6 @@ export const messageObject = {
   "AND": "a",
   "WORDS": "palavras",
   "WORD": "palavra",
-  "SO_FAR": "até aqui"
+  "SO_FAR": "até aqui",
+  'ARE_YOU_SURE_YOU_WANT_TO_SAVE': "Você gostaria de salvar? Clique em Cancelar para pular o salvamento."
 }
