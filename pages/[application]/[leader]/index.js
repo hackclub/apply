@@ -334,7 +334,7 @@ export default function ApplicationHome({
                 }}
               >
                 <Icon
-                  class="importantIcon"
+                  className="importantIcon"
                   glyph={
                     applicationsRecord.fields['Leaders Complete?'][leaderIndex]
                       ? 'checkmark'
