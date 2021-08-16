@@ -86,27 +86,14 @@ export default {
         {
           key: 'Why',
           label:
-            'Why are you planning to start a Hack Club? Have you run anything like a Hack Club before? Why do you think the club is going to work?',
+            'Why are you planning to start a Hack Club?',
           type: 'paragraph',
           optional: false,
           translations: {
             'pt-BR': {
-              label: 'Por que você deseja iniciar um Hack Club? Você já fez algo parecido com o Hack Club antes? Por que você acha que seu clube vai funcionar?'
+              label: 'Por que você deseja iniciar um Hack Club?'
             }
           },
-          characters: [350, 600]
-        },
-        {
-          key: 'What Is New',
-          label:
-            'Has your school had coding clubs before? What’s going to be new about your Hack Club?',
-          type: 'paragraph',
-          translations: {
-            'pt-BR': {
-              label: 'Sua escola já teve clubes de programação antes? O que vai ser diferente no seu Hack Club?'
-            }
-          },
-          optional: false,
           characters: [350, 600]
         },
         {
@@ -156,7 +143,20 @@ export default {
             }
           },
           optional: false
-        }
+        },
+        {
+          key: 'What Is New',
+          label:
+            'Has your school had coding clubs before? What’s going to be new about your Hack Club?',
+          type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Sua escola já teve clubes de programação antes? O que vai ser diferente no seu Hack Club?'
+            }
+          },
+          optional: false,
+          characters: [350, 600]
+        },
       ]
     },
     {
@@ -192,7 +192,7 @@ export default {
               label: 'Como você ouviu falar do Hack Club? Se você ouviu falar de nós por meio de um evento ou website, mencione ele aqui.'
             }
           },
-          optional: true
+          optional: false
         }
       ]
     }
