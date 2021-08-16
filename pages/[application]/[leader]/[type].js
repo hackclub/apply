@@ -88,7 +88,7 @@ export default function ApplicationClub({
         }}
       >
         <Box sx={{ display: ['block', 'flex'],  alignItems: 'center' }}>
-        <Flex sx={{ alignItems: 'center' }}>
+        <Flex sx={{ alignItems: 'center', flexGrow: 1 }}>
           <Icon glyph="home" onClick={goHome} />
           <Text
             variant="subheadline"
