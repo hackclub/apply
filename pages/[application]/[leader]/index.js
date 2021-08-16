@@ -97,7 +97,12 @@ export default function ApplicationHome({
       <Card
         px={[4, 4]}
         py={[3, 3]}
-        sx={{ color: 'blue', display: 'flex', alignItems: 'center', '> svg': {display: ['none', 'inline']} }}
+        sx={{
+          color: 'blue',
+          display: 'flex',
+          alignItems: 'center',
+          '> svg': { display: ['none', 'inline'] }
+        }}
       >
         <Icon glyph="message" />
         <Text sx={{ ml: 2 }}>
@@ -165,13 +170,31 @@ export default function ApplicationHome({
         </Heading>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Link href={`/${params.application}/${params.leader}/club`}>
-          <Flex sx={{ alignItems: 'center', cursor: 'pointer', '> svg': {display: ['none', 'inline']} }}>
+          <Flex
+            sx={{
+              alignItems: 'center',
+              cursor: 'pointer',
+              '> svg': { display: ['none', 'inline'] }
+            }}
+          >
             {applicationsRecord.fields['Completed'] == 1 ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
             )}
-            <Heading sx={{ flexGrow: 1, color: [applicationsRecord.fields['Completed'] == 1 ?"#33d6a6" :"#ff8c37" ,'blue'], ml: [0, 2] }} as="h1">
+            <Heading
+              sx={{
+                flexGrow: 1,
+                color: [
+                  applicationsRecord.fields['Completed'] == 1
+                    ? '#33d6a6'
+                    : '#ff8c37',
+                  'blue'
+                ],
+                ml: [0, 2]
+              }}
+              as="h1"
+            >
               {returnLocalizedMessage(router.locale, 'YOUR_CLUB')}
             </Heading>
             <Icon glyph="view-forward" />
@@ -179,14 +202,30 @@ export default function ApplicationHome({
         </Link>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Link href={`/${params.application}/${params.leader}/leader`}>
-          <Flex sx={{ alignItems: 'center', cursor: 'pointer', '> svg': {display: ['none', 'inline']} }}>
+          <Flex
+            sx={{
+              alignItems: 'center',
+              cursor: 'pointer',
+              '> svg': { display: ['none', 'inline'] }
+            }}
+          >
             {leaderRecord.fields['Completed'] == 1 ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
             )}
 
-            <Heading sx={{ flexGrow: 1, color: [leaderRecord.fields['Completed'] == 1 ?"#33d6a6" :"#ff8c37" ,'blue'], ml: [0, 2] }} as="h1">
+            <Heading
+              sx={{
+                flexGrow: 1,
+                color: [
+                  leaderRecord.fields['Completed'] == 1 ? '#33d6a6' : '#ff8c37',
+                  'blue'
+                ],
+                ml: [0, 2]
+              }}
+              as="h1"
+            >
               {returnLocalizedMessage(router.locale, 'MY_PERSONAL_PROFILE')}
             </Heading>
             <Icon glyph="view-forward" />
@@ -223,7 +262,10 @@ export default function ApplicationHome({
         </Flex>
         {addingLeader && (
           <Box>
-            <Box mt={3} sx={{ display: ['block', 'flex'],alignItems: 'center' }}>
+            <Box
+              mt={3}
+              sx={{ display: ['block', 'flex'], alignItems: 'center' }}
+            >
               <Input
                 sx={{
                   border: '0.5px solid',
@@ -270,7 +312,7 @@ export default function ApplicationHome({
                   px: 3,
                   py: 2,
                   alignItems: 'center',
-                  '> svg': {display: ['none', 'inline']}
+                  '> svg': { display: ['none', 'inline'] }
                 }}
               >
                 <Icon glyph={'welcome'} size="40" />
@@ -298,7 +340,7 @@ export default function ApplicationHome({
                   px: 3,
                   py: 2,
                   alignItems: 'center',
-                  '> svg': {display: ['none', 'inline']}
+                  '> svg': { display: ['none', 'inline'] }
                 }}
               >
                 <Icon glyph={'leader'} size="40" />
@@ -312,20 +354,18 @@ export default function ApplicationHome({
         )}
         {applicationsRecord.fields['Leaders Emails'].map(
           (leaderEmail, leaderIndex) => (
-            <Box sx={{ display: ['block', 'flex'], alignItems: 'center', mt: 3, flexWrap: 1 }}>
+            <Box
+              sx={{
+                display: ['block', 'flex'],
+                alignItems: 'center',
+                mt: 3,
+                flexWrap: 1
+              }}
+            >
               <Text
-                sx={
-                  leaderEmail != leaderRecord['fields']['Email']
-                    ? {
-                        cursor: 'pointer',
-                        ':hover > .importantIcon': { display: 'none' },
-                        '> .removeIcon': { display: 'none' },
-                        ':hover > .removeIcon': { display: ['none', 'inline'] },
-                        display: ['none', 'block']
-                       
-                      }
-                    : { '> .removeIcon': { display: 'none' }, display: ['none', 'block'] }
-                }
+                sx={{
+                  display: ['none', 'block']
+                }}
               >
                 <Icon
                   class="importantIcon"
@@ -340,31 +380,42 @@ export default function ApplicationHome({
                       : '#ff8c37'
                   }
                 />
-                <Icon
-                  class="removeIcon"
-                  glyph={'member-remove'}
-                  onClick={() =>
-                    deleteLeader(
-                      applicationsRecord.fields['Prospective Leaders'][
-                        leaderIndex
-                      ]
-                    )
-                  }
-                  color={'#ec3750'}
-                />
               </Text>
               <Heading
                 sx={{
-                  color: [applicationsRecord.fields['Leaders Complete?'][leaderIndex]
-                  ? '#33d6a6'
-                  : '#ff8c37', 'placeholder'],
+                  color: [
+                    applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+                      ? '#33d6a6'
+                      : '#ff8c37',
+                    'placeholder'
+                  ],
                   ml: [0, 2],
-                  transform: 'translateY(-4px)'
+                  transform: 'translateY(-4px)',
+                  flexGrow: 1
                 }}
                 as="h2"
               >
                 {leaderEmail}
               </Heading>
+              <Text
+                sx={{
+                  cursor: 'pointer',
+                  color: 'placeholder',
+                  ':hover': { color: 'red' },
+                  display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
+                  transform: 'translateY(-0.2px)',
+                  mr: '5px'
+                }}
+                onClick={() =>
+                  deleteLeader(
+                    applicationsRecord.fields['Prospective Leaders'][
+                      leaderIndex
+                    ]
+                  )
+                }
+              >
+                <Icon glyph="member-remove" />
+              </Text>
               <Box
                 sx={{
                   ':hover,:focus': { color: 'red' },
