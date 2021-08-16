@@ -181,7 +181,7 @@ export default {
         {
           key: 'Hear About HC',
           label:
-            'How did you hear about Hack Club? If you heard about us at an event or on a website, mention it here.',
+            'How did you hear about Hack Club? (i.e. from a friend, an event, a teacher, a website or twitter)',
           type: 'paragraph',
           translations: {
             'pt-BR': {
