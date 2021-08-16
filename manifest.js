@@ -309,9 +309,10 @@ export default {
               options: [
                 'Latino ou hispânico',
                 'Branco',
-                'Não-binário / genderqueer',
-                'Agênero',
-                'Outro'
+                'Preto',
+                'Americano Nativo ou Indígena Americano',
+                'Asiático ou das Ilhas do Pacífico',
+                'Outra etnia'
               ]
             }
           },
@@ -335,6 +336,11 @@ export default {
           label: 'Personal website link',
           placeholder: 'https://',
           type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Link do site pessoal'
+            },
+          },
           optional: true
         },
         {
@@ -342,6 +348,11 @@ export default {
           label: 'Twitter link',
           placeholder: 'https://',
           type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Link do Twitter',
+            }
+          },
           optional: true
         },
         {
@@ -349,6 +360,11 @@ export default {
           label: 'GitHub link',
           placeholder: 'https://',
           type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Link do GitHub',
+            }
+          },
           optional: true
         }
       ]
@@ -368,6 +384,19 @@ export default {
               .
             </>
           ),
+          translations: {
+            'pt-BR': {
+              label: (
+                <>
+                  Por favor nos conte alguma vez que você hackeou com sucesso algum sistema (não computacional) para obter alguma vantagem.
+                  <a href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage">
+                  Aqui estão alguns exemplos do que estamos buscando.
+                  </a>
+                  .
+                </>
+              ),
+            }
+          },
           plainText:
             'Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.',
           type: 'paragraph',
@@ -378,6 +407,11 @@ export default {
           key: 'Achievement',
           label: `Tell us about something you made which was personally meaningful to you?`,
           type: 'paragraph',
+          translations: {
+            'pt-BR': {
+              label: 'Conte-nos sobre algo que você fez que foi pessoalmente significativo para você.',
+            }
+          },
           optional: false,
           sublabel: '(include links and links to images if possible)',
           characters: [150, 250]
@@ -388,7 +422,13 @@ export default {
             'Are you technical? (You are a programmer who can teach without outside assistance)',
           type: 'select',
           optional: false,
-          hint: `(It's okay if not!)`,
+          translations: {
+            'pt-BR': {
+              label: 'Você tem habilidades técnicas? (Você é um programador que consegue ensinar sem assistência externa)',
+              sublabel: `(Tudo bem se não!)`,
+            }
+          },
+          sublabel: `(It's okay if not!)`,
           options: ['Yes', 'No']
         }
       ]
