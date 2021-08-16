@@ -320,6 +320,7 @@ export default function ApplicationHome({
         {applicationsRecord.fields['Leaders Emails'].map(
           (leaderEmail, leaderIndex) => (
             <Box
+              key={leaderIndex}
               sx={{
                 display: ['block', 'flex'],
                 alignItems: 'center',

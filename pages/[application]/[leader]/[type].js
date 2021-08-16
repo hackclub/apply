@@ -160,7 +160,7 @@ export default function ApplicationClub({
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
         {(params.type == 'club' ? manifest.clubs : manifest.leaders).map(
           (sectionItem, sectionIndex) => (
-            <Box>
+            <Box key={sectionIndex}>
               <Box sx={{ textAlign: 'left' }}>
                 <Text sx={{ color: 'red', fontSize: '27px', fontWeight: 800 }}>
                   {returnLocalizedQuestionText(
@@ -246,7 +246,7 @@ export default function ApplicationClub({
                                     item,
                                     'options'
                                   ).map(option => (
-                                    <option>{option}</option>
+                                    <option key={option}>{option}</option>
                                   ))}
                                 </>
                               )
@@ -263,7 +263,7 @@ export default function ApplicationClub({
                                   {applicationsRecord.fields[
                                     item.optionsKey
                                   ].map(option => (
-                                    <option>{option}</option>
+                                    <option key={option}>{option}</option>
                                   ))}
                                 </>
                               )
