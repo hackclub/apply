@@ -94,42 +94,7 @@ export default function ApplicationHome({
   }
   return (
     <Container py={4} variant="copy">
-      <Card
-        px={[4, 4]}
-        py={[3, 3]}
-        sx={{
-          color: 'blue',
-          display: 'flex',
-          alignItems: 'center',
-          '> svg': { display: ['none', 'inline'] }
-        }}
-      >
-        <Icon glyph="message" />
-        <Text sx={{ ml: 2 }}>
-          {returnLocalizedMessage(router.locale, 'CONTACT_MESSAGE')}{' '}
-          <b>
-            <Text
-              as="a"
-              href={`mailto:${returnLocalizedMessage(
-                router.locale,
-                'CONTACT_EMAIL'
-              )}`}
-              sx={{
-                color: 'blue',
-                textDecoration: 'none',
-                '&:hover': {
-                  textDecoration: 'underline',
-                  textDecorationStyle: 'wavy'
-                }
-              }}
-            >
-              {returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}
-            </Text>
-          </b>
-          !
-        </Text>
-      </Card>
-      <Card px={[4, 4]} py={[4, 4]} mt={4}>
+      <Card px={[4, 4]} py={[4, 4]} mt={1}>
         <Heading sx={{ fontSize: [4, 5] }}>
           {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE')}{' '}
           {applicationsRecord.fields['All Complete (incl Leaders)'] == 1 ? (
@@ -480,9 +445,49 @@ export default function ApplicationHome({
           {returnLocalizedMessage(router.locale, 'LOGOUT')}
         </Button>
       </Card>
+      <ContactCard router={router}/>
     </Container>
   )
 }
+
+const ContactCard = ({ router }) => (
+  <Card
+    px={[4, 4]}
+    py={[3, 3]}
+    mt={3}
+    sx={{
+      color: 'blue',
+      display: 'flex',
+      alignItems: 'center',
+      '> svg': { display: ['none', 'inline'] }
+    }}
+    >
+    <Icon glyph="message" />
+    <Text sx={{ ml: 2 }}>
+      {returnLocalizedMessage(router.locale, 'CONTACT_MESSAGE')}{' '}
+      <b>
+        <Text
+          as="a"
+          href={`mailto:${returnLocalizedMessage(
+            router.locale,
+            'CONTACT_EMAIL'
+          )}`}
+          sx={{
+            color: 'blue',
+            textDecoration: 'none',
+            '&:hover': {
+              textDecoration: 'underline',
+              textDecorationStyle: 'wavy'
+            }
+          }}
+        >
+          {returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}
+        </Text>
+      </b>
+      !
+    </Text>
+  </Card>
+)
 
 export async function getServerSideProps({ res, req, params }) {
   const {
