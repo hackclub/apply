@@ -89,14 +89,14 @@ export default function ApplicationClub({
       >
         <Box sx={{ display: ['block', 'flex'],  alignItems: 'center' }}>
         <Flex sx={{ alignItems: 'center', flexGrow: 1 }}>
-          <Icon glyph="home" onClick={goHome} />
+          <Text sx={{cursor: 'pointer', display: 'flex', alignItems: 'center'}}><Icon glyph="home" onClick={goHome} /></Text>
           <Text
             variant="subheadline"
             sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
             as="div"
           >
             <Text
-              sx={{ textDecoration: 'none', color: 'blue' }}
+              sx={{ textDecoration: 'none', color: 'blue', cursor: 'pointer' }}
               onClick={goHome}
             >
               {returnLocalizedMessage(router.locale, 'APPLY')}
