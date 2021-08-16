@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     ).map(sectionItem =>
       sectionItem.items.map(item => {
         newData[item.key] = requestBody[item.key]
-        if (requestBody[item.key] === undefined && item.optional == false) {
+        if ((requestBody[item.key] === undefined || requestBody[item.key].trim() === "") && item.optional == false) {
           complete = false
         }
       })
