@@ -49,13 +49,24 @@ export default {
           translations: {
             'pt-BR': {
               label: 'Onde você está planejando executar seu Hack Club?',
+            }
+          },
+          type: 'string',
+          optional: false
+        },
+        {
+          key: 'Venue Type',
+          label: 'What type of venue is this?',
+          translations: {
+            'pt-BR': {
+              label: 'Que tipo de local é este?',
               sublabel:
-                '(Dê-nos o nome e o tipo. Pode ser uma escola secundária, fabricante ou outra coisa.)'
+                '(Pode ser uma escola secundária, fabricante ou outra coisa.)'
             }
           },
           type: 'string',
           sublabel:
-            '(Give us the name and type. It can be a high school, makerspace, or something else.)',
+            '(It can be a high school, makerspace, or something else.)',
           optional: false
         },
         {
