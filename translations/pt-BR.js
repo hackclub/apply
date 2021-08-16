@@ -41,7 +41,7 @@ export const messageObject = {
   "SELECT_ONE":"Selecione Um",
   "AIM_FOR_BETWEEN": "Tente utilizar de",
   "AND": "a",
-  "CHARS": "caracteres",
-  "CHAR": "caractere",
+  "WORDS": "palavras",
+  "WORD": "palavra",
   "SO_FAR": "até aqui"
 }

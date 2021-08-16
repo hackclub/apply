@@ -230,7 +230,7 @@ export default function ApplicationClub({
                             }
                         : {})}
                     />
-                    {item.characters && (
+                    {item.words && (
                       <Text
                         sx={{ fontSize: '18px', color: 'muted', mt: 1 }}
                         as="p"
@@ -240,15 +240,13 @@ export default function ApplicationClub({
                           router.locale,
                           'AIM_FOR_BETWEEN'
                         )}{' '}
-                        {item.characters[0]}{' '}
-                        {returnLocalizedMessage(router.locale, 'AND')}{' '}
-                        {item.characters[1]}{' '}
-                        {returnLocalizedMessage(router.locale, 'CHARS')}
+                        {item.words}{' '}
+                        {returnLocalizedMessage(router.locale, 'WORDS')}
                         {data[item.key] &&
                           ', ' +
-                            data[item.key].split(' ').join('').length +
+                            data[item.key].split(' ').length +
                             ' ' +
-                            returnLocalizedMessage(router.locale, data[item.key].split(' ').join('').length == 1 ? 'CHAR' : 'CHARS') +
+                            returnLocalizedMessage(router.locale, data[item.key].split(' ').length == 1 ? 'WORD' : 'WORDS') +
                             ' ' +
                             returnLocalizedMessage(router.locale, 'SO_FAR')}
                         )

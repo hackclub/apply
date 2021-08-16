@@ -31,7 +31,7 @@ export default {
           },
           type: 'paragraph',
           optional: false,
-          characters: [350, 600]
+          words: 50
         }
       ]
     },
@@ -105,7 +105,7 @@ export default {
               label: 'Por que você deseja iniciar um Hack Club?'
             }
           },
-          characters: [350, 600]
+          words: 75
         },
         {
           key: 'Success',
@@ -118,7 +118,7 @@ export default {
             }
           },
           optional: false,
-          characters: [350, 600]
+          words: 75
         },
         {
           key: 'Get Out Of HC',
@@ -129,7 +129,8 @@ export default {
               label: 'O que você pessoalmente espera sair do Hack Club?'
             }
           },
-          optional: true
+          optional: true,
+          words: 75
         }
       ]
     },
@@ -153,7 +154,8 @@ export default {
               sublabel: '(você se registrou com sua escola, levando pesquisas de interesse, identificou um patrocinador, etc.)',
             }
           },
-          optional: false
+          optional: false,
+          words: 50
         },
         {
           key: 'What Is New',
@@ -166,7 +168,7 @@ export default {
             }
           },
           optional: false,
-          characters: [350, 600]
+          words: 50
         },
       ]
     },
