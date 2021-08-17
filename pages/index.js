@@ -96,7 +96,7 @@ export async function getServerSideProps(ctx) {
     )
     let res = ctx.res
     res.statusCode = 302
-    res.setHeader('Location', `/${tokenRecord.fields["Path"]}`)
+    res.setHeader('Location', `/${tokenRecord.fields['Locale with a slash'] ? tokenRecord.fields['Locale with a slash'] : ''}${tokenRecord.fields["Path"]}`)
     }
     catch{
       nookies.destroy(ctx, 'authToken')
