@@ -35,7 +35,12 @@ export default function ApplicationClub({
   const [data, setData] = useState(
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
-  const [ saved, setSaved ] = useState(true);
+  const [ saved, setSavedState ] = useState(true);
+  const savingStateRef = useRef(saved)
+  const setSaved = data => {
+    savingStateRef.current = data
+    setSavedState(data)
+  }
 
   const poster = async () => {
     const appOrLeader = params.type === 'club' ? params.application : params.leader;
@@ -55,7 +60,7 @@ export default function ApplicationClub({
 
   useEffect(() => {
     window.addEventListener('beforeunload', function (e) {
-      if (!saved) {
+      if (!savingStateRef.current) {
         e.preventDefault()
         e.returnValue = ''
       } else {
