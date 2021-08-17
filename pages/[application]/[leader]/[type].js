@@ -45,9 +45,8 @@ export default function ApplicationClub({
     const json = await fetched.json();
 
     if (json.success) {
-      console.log(json);
       setSaved(true);
-    } else console.error(json);
+    } else alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`);
 
     return json;
   }
