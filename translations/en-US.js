@@ -39,7 +39,7 @@ export const messageObject =  {
   "GO_BACK": "Save & Go Back",
   "OPTIONAL": "optional",
   "SELECT_ONE":"Select One",
-  "AIM_FOR_BETWEEN": "Aim for",
+  "AIM_FOR_BETWEEN": "Aim for about",
   "AND": "and",
   "WORDS": "words",
   "WORD": "word",
