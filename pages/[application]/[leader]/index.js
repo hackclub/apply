@@ -210,17 +210,18 @@ export default function ApplicationHome({
           </Heading>
           <Flex
             sx={{
-              bg: !addingLeader ? 'green' : 'muted',
+              bg: (!addingLeader && !applicationsRecord.fields['Submitted']) ? 'green' : 'muted',
               borderRadius: '999px',
               alignItems: 'center',
               justifyContent: 'center',
               p: 1,
               color: 'white',
               boxShadow: 'card',
+              cursor: !applicationsRecord.fields['Submitted'] ? 'pointer' : 'not-allowed',
               transform: !addingLeader ? 'none' : 'rotate(180deg)',
               transition: 'transform ease-in-out 0.2s'
             }}
-            onClick={() => setAddingLeader(!addingLeader)}
+            onClick={() => applicationsRecord.fields['Submitted'] ? console.log('Already complete'):setAddingLeader(!addingLeader)}
           >
             <Icon glyph={!addingLeader ? 'member-add' : 'view-close'} />
           </Flex>
