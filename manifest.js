@@ -30,6 +30,7 @@ export default {
             }
           },
           type: 'paragraph',
+          sublabel: ("(It's also okay if you are running the club by yourself.)"),
           optional: false,
           words: 50
         }
