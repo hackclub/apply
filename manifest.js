@@ -53,6 +53,7 @@ export default {
             }
           },
           sublabel: ("(Give us the name.)"),
+          placeholder: 'Happy Hack High School',
           type: 'string',
           optional: false
         },
