@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         path: '/',
       })
     }
-    res.redirect(`/${tokenRecord.fields['Path'] ? tokenRecord.fields['Path'] : ''}`)
+    res.redirect(`/${tokenRecord.fields['Locale with a slash'] ? tokenRecord.fields['Locale with a slash'] : ''}${tokenRecord.fields['Path'] ? tokenRecord.fields['Path'] : ''}`)
   } catch {
     res.redirect('/')
   }
