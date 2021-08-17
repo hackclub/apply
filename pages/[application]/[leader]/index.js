@@ -385,9 +385,8 @@ export default function ApplicationHome({
               </Text>
               <Box
                 sx={{
-                  ':hover,:focus': { color: 'red' },
-                  cursor: 'pointer',
-
+                  ':hover,:focus': applicationsRecord.fields['Submitted'] ? {} : { color: 'red' },
+                  cursor: applicationsRecord.fields['Submitted'] ?"not-allowed" : 'pointer',
                   color: 'placeholder',
                   fontSize: '16px',
                   ml: [0, 2],
