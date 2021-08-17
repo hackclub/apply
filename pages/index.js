@@ -12,7 +12,7 @@ export default function IndexHome() {
     e.preventDefault();
     if (validateEmail(email)) {
       setStatus('loading')
-      const loginAPICall = await fetch(`/api/login?email=${email}`).then(r =>
+      const loginAPICall = await fetch(`/api/login?email=${email}&locale=${router.locale}`).then(r =>
         r.json()
       )
       if (loginAPICall.success) {

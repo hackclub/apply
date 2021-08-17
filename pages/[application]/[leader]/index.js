@@ -43,7 +43,7 @@ export default function ApplicationHome({
   async function sendInvite() {
     if (validateEmail(emailToInvite)) {
       const loginAPICall = await fetch(
-        `/api/invite?email=${emailToInvite}&id=${params.application}`
+        `/api/invite?email=${emailToInvite}&id=${params.application}&locale=${router.locale}`
       ).then(r => r.json())
       if (loginAPICall.success) {
         alert(`✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`)
