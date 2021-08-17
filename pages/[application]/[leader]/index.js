@@ -413,7 +413,7 @@ export default function ApplicationHome({
             applicationsRecord.fields['Submitted']
               ? {
                   opacity: 0.3,
-                  ':hover,:focus': { transform: 'none', boxShadow: 'none' }
+                  ':hover,:focus': { transform: 'none', boxShadow: 'none', cursor: "not-allowed" }
                 }
               : {})
           }}
