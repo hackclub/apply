@@ -51,6 +51,7 @@ export default {
               label: 'Onde você está planejando executar seu Hack Club?',
             }
           },
+          sublabel: ("(Give use the name.)"),
           type: 'string',
           optional: false
         },
