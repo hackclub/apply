@@ -101,11 +101,11 @@ export default function ApplicationHome({
             <>
               {applicationsRecord.fields['Submitted'] ? (
                 <>
-                  <GreenSubmitStatus>
                     {returnLocalizedMessage(
                       router.locale,
                       'APPLICATION_STATUS_MESSAGE_APPENDED_HAS_BEEN'
                     )}{' '}
+                  <GreenSubmitStatus>
                     {returnLocalizedMessage(router.locale, 'SUBMITTED')}
                   </GreenSubmitStatus>
                 </>
