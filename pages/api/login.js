@@ -10,7 +10,8 @@ export default async function handler(req, res) {
     if (firstAirtableCall.length > 0) {
       const prospectiveLeadersRecord = firstAirtableCall[0]
       const loginRecord = await loginsAirtable.create({
-        'Relevant User': [prospectiveLeadersRecord.id]
+        'Relevant User': [prospectiveLeadersRecord.id],
+        "Locale": req.query.locale
       })
       res.json({ success: true, id: loginRecord.id })
     } else {
