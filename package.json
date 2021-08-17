@@ -1,37 +1,27 @@
 {
-  "name": "@hackclub/apply",
-  "description": "Apply to Hack Club at apply.hackclub.com",
-  "version": "0.1.0",
+  "name": "@hackclub/theme-starter",
+  "version": "0.0.1",
   "author": "Lachlan Campbell <lachlan@hackclub.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "compile": "formatjs compile",
+    "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "dev": "next dev",
-    "fmt": "npx prettier \"{src/**,}/*.js\" --single-quote --no-semi --write"
+    "start": "next start"
   },
   "dependencies": {
-    "@babel/runtime": "^7.14.0",
-    "@hackclub/design-system": "^0.0.1-18",
-    "@hackclub/icons": "^0.0.3",
-    "@hackclub/season": "^0.0.3",
-    "babel-helpers": "^6.24.1",
-    "babel-plugin-styled-components": "^1.10.0",
-    "formik": "^1.5.1",
-    "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.21",
-    "next": "^11.1",
-    "prop-types": "^15.7.2",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-helmet": "^5.2.0",
-    "react-intl": "^5.20.1",
-    "styled-components": "3.4.10",
-    "yup": "^0.27.0"
-  },
-  "devDependencies": {
-    "@formatjs/cli": "^4.2.19"
+    "@hackclub/icons": "^0.0.9",
+    "@hackclub/meta": "^1.1.0",
+    "@hackclub/theme": "^0.3.1",
+    "@mdx-js/loader": "^1.6.22",
+    "@next/mdx": "^10.0.4",
+    "airtable-plus": "^1.0.4",
+    "next": "^11.0.0",
+    "nookies": "^2.5.2",
+    "nprogress": "^0.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "swr": "^0.5.6",
+    "theme-ui": "^0.10.0"
   }
 }
