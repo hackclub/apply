@@ -320,6 +320,7 @@ export default function ApplicationHome({
         {applicationsRecord.fields['Leaders Emails'].map(
           (leaderEmail, leaderIndex) => (
             <Box
+              key={leaderIndex}
               sx={{
                 display: ['block', 'flex'],
                 alignItems: 'center',
@@ -333,7 +334,7 @@ export default function ApplicationHome({
                 }}
               >
                 <Icon
-                  class="importantIcon"
+                  className="importantIcon"
                   glyph={
                     applicationsRecord.fields['Leaders Complete?'][leaderIndex]
                       ? 'checkmark'
