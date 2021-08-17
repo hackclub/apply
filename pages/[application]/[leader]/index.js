@@ -226,185 +226,10 @@ export default function ApplicationHome({
             <Icon glyph={!addingLeader ? 'member-add' : 'view-close'} />
           </Flex>
         </Flex>
-        {addingLeader && (
-          <Box>
-            <Box
-              mt={3}
-              sx={{ display: ['block', 'flex'], alignItems: 'center' }}
-            >
-              <Input
-                sx={{
-                  border: '0.5px solid',
-                  fontSize: 1,
-                  borderColor: 'rgb(221, 225, 228)',
-                  mr: [0, 3],
-                  mb: [3, 0]
-                }}
-                onChange={e => setEmailToInvite(e.target.value)}
-                value={emailToInvite}
-                placeholder={returnLocalizedMessage(
-                  router.locale,
-                  'NEW_CO_LEADER_EMAIL'
-                )}
-              />
-              <Flex
-                sx={{
-                  bg: 'blue',
-                  borderRadius: '999px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  p: 1,
-                  color: 'white',
-                  boxShadow: 'card',
-                  height: '40px',
-                  minWidth: '150px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
-                onClick={() => sendInvite()}
-              >
-                <Icon glyph={'send-fill'} />
-                <Text mr={2}>
-                  {returnLocalizedMessage(router.locale, 'SEND_INVITE')}
-                </Text>
-              </Flex>
-            </Box>
-            <Grid columns={[1, 2]} mt={3}>
-              <Flex
-                sx={{
-                  color: 'blue',
-                  bg: 'rgb(230, 244, 252)',
-                  borderRadius: 4,
-                  px: 3,
-                  py: 2,
-                  alignItems: 'center',
-                  '> svg': { display: ['none', 'inline'] }
-                }}
-              >
-                <Icon glyph={'welcome'} size="40" />
-                <Text ml={[0, 3]}>
-                  {returnLocalizedMessage(
-                    router.locale,
-                    'GUIDE_FOR_SELECTING_TEAM'
-                  )}{' '}
-                  <Text as="b">
-                    <a
-                      href="https://workshops.hackclub.com/leadership_team/"
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      {returnLocalizedMessage(router.locale, 'HERE')}
-                    </a>
-                  </Text>
-                  .
-                </Text>
-              </Flex>
-              <Flex
-                sx={{
-                  color: 'blue',
-                  bg: 'rgb(230, 244, 252)',
-                  borderRadius: 4,
-                  px: 3,
-                  py: 2,
-                  alignItems: 'center',
-                  '> svg': { display: ['none', 'inline'] }
-                }}
-              >
-                <Icon glyph={'leader'} size="40" />
-                <Text ml={[0, 3]}>
-                  {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
-                </Text>
-              </Flex>
-            </Grid>
-            <Divider sx={{ color: 'slate', my: 4 }} />
-          </Box>
-        )}
-        {applicationsRecord.fields['Leaders Emails'].map(
-          (leaderEmail, leaderIndex) => (
-            <Box
-              key={leaderIndex}
-              sx={{
-                display: ['block', 'flex'],
-                alignItems: 'center',
-                mt: 3,
-                flexWrap: 1
-              }}
-            >
-              <Text
-                sx={{
-                  display: ['none', 'block']
-                }}
-              >
-                <Icon
-                  className="importantIcon"
-                  glyph={
-                    applicationsRecord.fields['Leaders Complete?'][leaderIndex]
-                      ? 'checkmark'
-                      : 'important'
-                  }
-                  color={
-                    applicationsRecord.fields['Leaders Complete?'][leaderIndex]
-                      ? '#33d6a6'
-                      : '#ff8c37'
-                  }
-                />
-              </Text>
-              <Heading
-                sx={{
-                  color: [
-                    applicationsRecord.fields['Leaders Complete?'][leaderIndex]
-                      ? '#33d6a6'
-                      : '#ff8c37',
-                    'placeholder'
-                  ],
-                  ml: [0, 2],
-                  transform: 'translateY(-4px)',
-                  flexGrow: 1
-                }}
-                as="h2"
-              >
-                {leaderEmail}
-              </Heading>
-              <Text
-                sx={{
-                  cursor: 'pointer',
-                  color: 'placeholder',
-                  ':hover': { color: 'red' },
-                  display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
-                  transform: 'translateY(-0.2px)',
-                  mr: '5px'
-                }}
-                onClick={() =>
-                  deleteLeader(
-                    applicationsRecord.fields['Prospective Leaders'][
-                      leaderIndex
-                    ]
-                  )
-                }
-              >
-                <Icon glyph="member-remove" />
-              </Text>
-              <Box
-                sx={{
-                  ':hover,:focus': applicationsRecord.fields['Submitted'] ? {} : { color: 'red' },
-                  cursor: applicationsRecord.fields['Submitted'] ?"not-allowed" : 'pointer',
-                  color: 'placeholder',
-                  fontSize: '16px',
-                  ml: [0, 2],
-                  display: ['block', 'none']
-                }}
-                onClick={() =>
-                  deleteLeader(
-                    applicationsRecord.fields['Prospective Leaders'][
-                      leaderIndex
-                    ]
-                  )
-                }
-              >
-                Remove Leader
-              </Box>
-            </Box>
-          )
-        )}
+        { addingLeader && <AddingLeaderBox {...{ setEmailToInvite, emailToInvite, sendInvite, router }} /> }
+        {applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => (
+          <LeadersEmails {...{ leaderIndex, applicationsRecord, leaderRecord, leaderEmail,deleteLeader }} />
+         ))}
         <Button
           sx={{
             mt: 4,
@@ -450,6 +275,186 @@ export default function ApplicationHome({
     </Container>
   )
 }
+
+const AddingLeaderBox = ({ setEmailToInvite, emailToInvite, sendInvite, router }) => (
+   <Box>
+    <Box
+      mt={3}
+      sx={{ display: ['block', 'flex'], alignItems: 'center' }}
+    >
+      <Input
+        sx={{
+          border: '0.5px solid',
+          fontSize: 1,
+          borderColor: 'rgb(221, 225, 228)',
+          mr: [0, 3],
+          mb: [3, 0]
+        }}
+        onChange={e => setEmailToInvite(e.target.value)}
+        value={emailToInvite}
+        placeholder={returnLocalizedMessage(
+          router.locale,
+          'NEW_CO_LEADER_EMAIL'
+        )}
+      />
+      <Flex
+        sx={{
+          bg: 'blue',
+          borderRadius: '999px',
+          alignItems: 'center',
+          justifyContent: 'center',
+          p: 1,
+          color: 'white',
+          boxShadow: 'card',
+          height: '40px',
+          minWidth: '150px',
+          fontWeight: 'bold',
+          cursor: 'pointer'
+        }}
+        onClick={() => sendInvite()}
+      >
+        <Icon glyph={'send-fill'} />
+        <Text mr={2}>
+          {returnLocalizedMessage(router.locale, 'SEND_INVITE')}
+        </Text>
+      </Flex>
+    </Box>
+    <Grid columns={[1, 2]} mt={3}>
+      <Flex
+        sx={{
+          color: 'blue',
+          bg: 'rgb(230, 244, 252)',
+          borderRadius: 4,
+          px: 3,
+          py: 2,
+          alignItems: 'center',
+          '> svg': { display: ['none', 'inline'] }
+        }}
+      >
+        <Icon glyph={'welcome'} size="40" />
+        <Text ml={[0, 3]}>
+          {returnLocalizedMessage(
+            router.locale,
+            'GUIDE_FOR_SELECTING_TEAM'
+          )}{' '}
+          <Text as="b">
+            <a
+              href="https://workshops.hackclub.com/leadership_team/"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              {returnLocalizedMessage(router.locale, 'HERE')}
+            </a>
+          </Text>
+          .
+        </Text>
+      </Flex>
+      <Flex
+        sx={{
+          color: 'blue',
+          bg: 'rgb(230, 244, 252)',
+          borderRadius: 4,
+          px: 3,
+          py: 2,
+          alignItems: 'center',
+          '> svg': { display: ['none', 'inline'] }
+        }}
+      >
+        <Icon glyph={'leader'} size="40" />
+        <Text ml={[0, 3]}>
+          {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
+        </Text>
+      </Flex>
+    </Grid>
+    <Divider sx={{ color: 'slate', my: 4 }} />
+  </Box>
+
+)
+
+const LeadersEmails = ({ leaderIndex, applicationsRecord, leaderEmail, deleteLeader, leaderRecord }) => (
+  <Box
+    key={leaderIndex}
+    sx={{
+      display: ['block', 'flex'],
+      alignItems: 'center',
+      mt: 3,
+      flexWrap: 1
+    }}
+  >
+    <Text
+      sx={{
+        display: ['none', 'block']
+      }}
+    >
+      <Icon
+        className="importantIcon"
+        glyph={
+          applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+            ? 'checkmark'
+            : 'important'
+        }
+        color={
+          applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+            ? '#33d6a6'
+            : '#ff8c37'
+        }
+      />
+    </Text>
+    <Heading
+      sx={{
+        color: [
+          applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+            ? '#33d6a6'
+            : '#ff8c37',
+          'placeholder'
+        ],
+        ml: [0, 2],
+        transform: 'translateY(-4px)',
+        flexGrow: 1
+      }}
+      as="h2"
+    >
+      {leaderEmail}
+    </Heading>
+    <Text
+      sx={{
+        cursor: 'pointer',
+        color: 'placeholder',
+        ':hover': { color: 'red' },
+        display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
+        transform: 'translateY(-0.2px)',
+        mr: '5px'
+      }}
+      onClick={() =>
+        deleteLeader(
+          applicationsRecord.fields['Prospective Leaders'][
+            leaderIndex
+          ]
+        )
+      }
+    >
+      <Icon glyph="member-remove" />
+    </Text>
+    <Box
+      sx={{
+        ':hover,:focus': applicationsRecord.fields['Submitted'] ? {} : { color: 'red' },
+        cursor: applicationsRecord.fields['Submitted'] ?"not-allowed" : 'pointer',
+        color: 'placeholder',
+        fontSize: '16px',
+        ml: [0, 2],
+        display: ['block', 'none']
+      }}
+      onClick={() =>
+        deleteLeader(
+          applicationsRecord.fields['Prospective Leaders'][
+            leaderIndex
+          ]
+        )
+      }
+    >
+      Remove Leader
+    </Box>
+  </Box>
+)
 
 const ContactCard = ({ router }) => (
   <Card
