@@ -112,7 +112,7 @@ export default {
         {
           key: 'Success',
           label:
-            'What will your club do and what would a successful club look like?',
+            'What will your club do? What would a successful club look like?',
           type: 'paragraph',
           translations: {
             'pt-BR': {
