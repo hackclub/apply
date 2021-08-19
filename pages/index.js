@@ -10,6 +10,7 @@ export default function IndexHome() {
   const [email, setEmail] = useState('')
   async function handleSubmission(e) {
     e.preventDefault();
+    console.log("loading")
     if (validateEmail(email)) {
       setStatus('loading')
       const loginAPICall = await fetch(`/api/login?email=${email}`).then(r =>
@@ -18,6 +19,7 @@ export default function IndexHome() {
       if (loginAPICall.success) {
         setStatus('sent')
       } else {
+
         setStatus('error')
       }
     } else {
@@ -87,13 +89,11 @@ export default function IndexHome() {
 }
 
 export async function getServerSideProps(ctx) {
-  const { loginsAirtable } = require('../lib/airtable')
+  const { base } = require('../lib/airtable')
   const cookies = nookies.get(ctx)
   if (cookies.authToken) {
     try{
-    const tokenRecord = await loginsAirtable.find(
-      'rec' + cookies.authToken
-    )
+    const tokenRecord = await base("Logins").find('rec' + cookies.authToken)
     let res = ctx.res
     res.statusCode = 302
     res.setHeader('Location', `/${tokenRecord.fields["Path"]}`)

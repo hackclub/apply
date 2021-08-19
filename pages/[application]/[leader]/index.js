@@ -97,9 +97,9 @@ export default function ApplicationHome({
       <Card px={[4, 4]} py={[4, 4]} mt={1}>
         <Heading sx={{ fontSize: [4, 5] }}>
           {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE')}{' '}
-          {applicationsRecord.fields['All Complete (incl Leaders)'] == 1 ? (
+          {applicationsRecord['All Complete (incl Leaders)'] == 1 ? (
             <>
-              {applicationsRecord.fields['Submitted'] ? (
+              {applicationsRecord['Submitted'] ? (
                 <>
                     {returnLocalizedMessage(
                       router.locale,
@@ -142,7 +142,7 @@ export default function ApplicationHome({
               '> svg': { display: ['none', 'inline'] }
             }}
           >
-            {applicationsRecord.fields['Completed'] == 1 ? (
+            {applicationsRecord['Completed'] == 1 ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
@@ -151,7 +151,7 @@ export default function ApplicationHome({
               sx={{
                 flexGrow: 1,
                 color: [
-                  applicationsRecord.fields['Completed'] == 1
+                  applicationsRecord['Completed'] == 1
                     ? '#33d6a6'
                     : '#ff8c37',
                   'blue'
@@ -174,7 +174,7 @@ export default function ApplicationHome({
               '> svg': { display: ['none', 'inline'] }
             }}
           >
-            {leaderRecord.fields['Completed'] == 1 ? (
+            {leaderRecord['Completed'] == 1 ? (
               <Icon glyph="checkmark" color="#33d6a6" />
             ) : (
               <Icon glyph="important" color="#ff8c37" />
@@ -184,7 +184,7 @@ export default function ApplicationHome({
               sx={{
                 flexGrow: 1,
                 color: [
-                  leaderRecord.fields['Completed'] == 1 ? '#33d6a6' : '#ff8c37',
+                  leaderRecord['Completed'] == 1 ? '#33d6a6' : '#ff8c37',
                   'blue'
                 ],
                 ml: [0, 2]
@@ -210,24 +210,24 @@ export default function ApplicationHome({
           </Heading>
           <Flex
             sx={{
-              bg: (!addingLeader && !applicationsRecord.fields['Submitted']) ? 'green' : 'muted',
+              bg: (!addingLeader && !applicationsRecord['Submitted']) ? 'green' : 'muted',
               borderRadius: '999px',
               alignItems: 'center',
               justifyContent: 'center',
               p: 1,
               color: 'white',
               boxShadow: 'card',
-              cursor: !applicationsRecord.fields['Submitted'] ? 'pointer' : 'not-allowed',
+              cursor: !applicationsRecord['Submitted'] ? 'pointer' : 'not-allowed',
               transform: !addingLeader ? 'none' : 'rotate(180deg)',
               transition: 'transform ease-in-out 0.2s'
             }}
-            onClick={() => applicationsRecord.fields['Submitted'] ? console.log('Already complete'):setAddingLeader(!addingLeader)}
+            onClick={() => applicationsRecord['Submitted'] ? console.log('Already complete'):setAddingLeader(!addingLeader)}
           >
             <Icon glyph={!addingLeader ? 'member-add' : 'view-close'} />
           </Flex>
         </Flex>
         { addingLeader && <AddingLeaderBox {...{ setEmailToInvite, emailToInvite, sendInvite, router }} /> }
-        {applicationsRecord.fields['Leaders Emails'].map((leaderEmail, leaderIndex) => (
+        {applicationsRecord['Leaders Emails'].map((leaderEmail, leaderIndex) => (
           <LeadersEmails {...{ leaderIndex, applicationsRecord, leaderRecord, leaderEmail,deleteLeader }} />
          ))}
         <Button
@@ -235,8 +235,8 @@ export default function ApplicationHome({
             mt: 4,
             width: '100%',
             textTransform: 'uppercase',
-            ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
-            applicationsRecord.fields['Submitted']
+            ...(applicationsRecord['All Complete (incl Leaders)'] != 1 ||
+            applicationsRecord['Submitted']
               ? {
                   opacity: 0.3,
                   ':hover,:focus': { transform: 'none', boxShadow: 'none', cursor: "not-allowed" }
@@ -245,8 +245,8 @@ export default function ApplicationHome({
           }}
           variant="ctaLg"
           onClick={() =>
-            applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
-            applicationsRecord.fields['Submitted']
+            applicationsRecord['All Complete (incl Leaders)'] != 1 ||
+            applicationsRecord['Submitted']
               ? console.log(`You're not done hacker.`)
               : submitApplication()
           }
@@ -388,12 +388,12 @@ const LeadersEmails = ({ leaderIndex, applicationsRecord, leaderEmail, deleteLea
       <Icon
         className="importantIcon"
         glyph={
-          applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+          applicationsRecord['Leaders Complete?'][leaderIndex]
             ? 'checkmark'
             : 'important'
         }
         color={
-          applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+          applicationsRecord['Leaders Complete?'][leaderIndex]
             ? '#33d6a6'
             : '#ff8c37'
         }
@@ -402,7 +402,7 @@ const LeadersEmails = ({ leaderIndex, applicationsRecord, leaderEmail, deleteLea
     <Heading
       sx={{
         color: [
-          applicationsRecord.fields['Leaders Complete?'][leaderIndex]
+          applicationsRecord['Leaders Complete?'][leaderIndex]
             ? '#33d6a6'
             : '#ff8c37',
           'placeholder'
@@ -420,13 +420,13 @@ const LeadersEmails = ({ leaderIndex, applicationsRecord, leaderEmail, deleteLea
         cursor: 'pointer',
         color: 'placeholder',
         ':hover': { color: 'red' },
-        display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
+        display: ['none', leaderEmail != leaderRecord['Email'] ? 'block' : 'none'],
         transform: 'translateY(-0.2px)',
         mr: '5px'
       }}
       onClick={() =>
         deleteLeader(
-          applicationsRecord.fields['Prospective Leaders'][
+          applicationsRecord['Prospective Leaders'][
             leaderIndex
           ]
         )
@@ -436,8 +436,8 @@ const LeadersEmails = ({ leaderIndex, applicationsRecord, leaderEmail, deleteLea
     </Text>
     <Box
       sx={{
-        ':hover,:focus': applicationsRecord.fields['Submitted'] ? {} : { color: 'red' },
-        cursor: applicationsRecord.fields['Submitted'] ?"not-allowed" : 'pointer',
+        ':hover,:focus': applicationsRecord['Submitted'] ? {} : { color: 'red' },
+        cursor: applicationsRecord['Submitted'] ?"not-allowed" : 'pointer',
         color: 'placeholder',
         fontSize: '16px',
         ml: [0, 2],
@@ -445,7 +445,7 @@ const LeadersEmails = ({ leaderIndex, applicationsRecord, leaderEmail, deleteLea
       }}
       onClick={() =>
         deleteLeader(
-          applicationsRecord.fields['Prospective Leaders'][
+          applicationsRecord['Prospective Leaders'][
             leaderIndex
           ]
         )
@@ -496,20 +496,17 @@ const ContactCard = ({ router }) => (
 )
 
 export async function getServerSideProps({ res, req, params }) {
-  const {
-    prospectiveLeadersAirtable,
-    applicationsAirtable
-  } = require('../../../lib/airtable')
+  const { base } = require('../../../lib/airtable')
+
   const cookies = nookies.get({ req })
   if (cookies.authToken) {
     try {
-      const leaderRecord = await prospectiveLeadersAirtable.find(
-        'rec' + params.leader
-      )
-      const applicationsRecord = await applicationsAirtable.find(
-        'rec' + params.application
-      )
-      if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
+
+      const leaderRecord = (await base("Prospective Leaders").find('rec' + params.leader)).fields;
+      const applicationsRecord = (await base("Applications").find('rec' + params.application)).fields;
+
+
+      if (leaderRecord['Accepted Tokens'].includes(cookies.authToken)) {
         return { props: { params, applicationsRecord, leaderRecord } }
       } else {
         res.statusCode = 302

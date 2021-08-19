@@ -33,7 +33,7 @@ export default function ApplicationClub({
   params
 }) {
   const [data, setData] = useState(
-    params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
+    params.type == 'club' ? applicationsRecord : leaderRecord
   )
   const [ saved, setSaved ] = useState(true);
 
@@ -205,7 +205,7 @@ export default function ApplicationClub({
                         </Text>
                       }
                       disabled={
-                        applicationsRecord.fields['Submitted'] ? true : false
+                        applicationsRecord['Submitted'] ? true : false
                       }
                       onChange={e => {
                         let newData = {}
@@ -259,7 +259,7 @@ export default function ApplicationClub({
                                       'SELECT_ONE'
                                     )}
                                   </option>
-                                  {applicationsRecord.fields[
+                                  {applicationsRecord[
                                     item.optionsKey
                                   ].map(option => (
                                     <option key={option}>{option}</option>
@@ -361,20 +361,16 @@ const SavedInfo = ({ saved, poster, router }) => (
 )
 
 export async function getServerSideProps({ res, req, params }) {
-  const {
-    prospectiveLeadersAirtable,
-    applicationsAirtable
-  } = require('../../../lib/airtable')
+  const { base } = require('../../../lib/airtable')
   const cookies = nookies.get({ req })
   if (cookies.authToken) {
     try {
-      const leaderRecord = await prospectiveLeadersAirtable.find(
-        'rec' + params.leader
-      )
-      const applicationsRecord = await applicationsAirtable.find(
-        'rec' + params.application
-      )
-      if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
+      const leaderRecord = (await base("Prospective Leaders").find('rec' + params.leader)).fields;
+
+    
+      const applicationsRecord = (await base("Applications").find('rec' + params.application)).fields;
+
+      if (leaderRecord['Accepted Tokens'].includes(cookies.authToken)) {
         return { props: { params, applicationsRecord, leaderRecord } }
       } else {
         res.statusCode = 302
