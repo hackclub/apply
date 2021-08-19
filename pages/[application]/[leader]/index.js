@@ -496,7 +496,7 @@ const ContactCard = ({ router }) => (
 )
 
 export async function getServerSideProps({ res, req, params }) {
-  const { base } = require('../../../lib/airtable')
+  const { base } = require('/lib/base')
 
   const cookies = nookies.get({ req })
   if (cookies.authToken) {

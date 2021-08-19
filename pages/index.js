@@ -89,7 +89,7 @@ export default function IndexHome() {
 }
 
 export async function getServerSideProps(ctx) {
-  const { base } = require('/lib/airtable')
+  const { base } = require('/lib/base')
   const cookies = nookies.get(ctx)
   if (cookies.authToken) {
     try{
