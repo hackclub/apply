@@ -1,6 +1,6 @@
 export default {
   clubs: [
-     {
+    {
       header: 'Leaders',
       translations: {
         'pt-BR': {
@@ -16,7 +16,7 @@ export default {
           optional: false,
           translations: {
             'pt-BR': {
-              label: 'Quem você gostaria do seu ponto de contato para ser?'
+              label: 'Quem você gostaria que fosse seu ponto de contato?'
             }
           }
         },
@@ -26,11 +26,14 @@ export default {
             'How long have you known your other club leaders and how did you meet?',
           translations: {
             'pt-BR': {
-              label: 'Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?'
+              label:
+                'Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?',
+              sublabel:
+                '(Não tem problema se for liderar seu clube sozinho.)'
             }
           },
           type: 'paragraph',
-          sublabel: ("(It's also okay if you are running the club by yourself.)"),
+          sublabel: "(It's also okay if you are running the club by yourself.)",
           optional: false,
           words: 50
         }
@@ -49,10 +52,12 @@ export default {
           label: 'Where are you planning to run your Hack Club?',
           translations: {
             'pt-BR': {
-              label: 'Onde você está planejando executar seu Hack Club?',
+              label: 'Onde você está planejando criar seu Hack Club?',
+              sublabel: '(Coloque o nome do local.)',
+              placeholder: 'Escola Hacker Feliz'
             }
           },
-          sublabel: ("(Give us the name.)"),
+          sublabel: '(Give us the name.)',
           placeholder: 'Happy Hack High School',
           type: 'string',
           optional: false
@@ -64,12 +69,11 @@ export default {
             'pt-BR': {
               label: 'Que tipo de local é este?',
               sublabel:
-                '(Pode ser uma escola secundária, fabricante ou outra coisa.)'
+                '(Pode ser uma escola, espaço maker ou qualquer outro lugar.)'
             }
           },
           type: 'string',
-          sublabel:
-            '(It can be a high school, makerspace, or something else.)',
+          sublabel: '(It can be a high school, makerspace, or something else.)',
           optional: false
         },
         {
@@ -79,8 +83,7 @@ export default {
           translations: {
             'pt-BR': {
               label: 'Qual é o endereço completo?',
-              sublabel:
-                'Por favor inclua cidade, estado / província, país, e CEP.'
+              sublabel: 'Por favor inclua cidade, estado, país e CEP.'
             }
           },
           optional: false,
@@ -99,8 +102,7 @@ export default {
       items: [
         {
           key: 'Why',
-          label:
-            'Why are you planning to start a Hack Club?',
+          label: 'Why are you planning to start a Hack Club?',
           type: 'paragraph',
           optional: false,
           translations: {
@@ -117,7 +119,7 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Como será o seu clube e como seria um clube de sucesso?'
+              label: 'Como será o seu clube?'
             }
           },
           optional: false,
@@ -129,7 +131,7 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'O que você pessoalmente espera sair do Hack Club?'
+              label: 'O que você espera aprender com o seu Hack Club?'
             }
           },
           optional: true,
@@ -154,7 +156,8 @@ export default {
           translations: {
             'pt-BR': {
               label: 'Que passos você fez para começar seu clube?',
-              sublabel: '(você se registrou com sua escola, levando pesquisas de interesse, identificou um patrocinador, etc.)',
+              sublabel:
+                '(Você se registrou com sua escola, fez formulários de interesse, etc.)'
             }
           },
           optional: false,
@@ -167,12 +170,13 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Sua escola já teve clubes de programação antes? O que vai ser diferente no seu Hack Club?'
+              label:
+                'Sua escola já teve clubes de programação antes? O que vai ser diferente no seu Hack Club?'
             }
           },
           optional: false,
           words: 50
-        },
+        }
       ]
     },
     {
@@ -190,7 +194,8 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Como você ouviu falar do Hack Club? Se você ouviu falar de nós por meio de um evento ou website, mencione ele aqui.'
+              label:
+                'Como você ouviu falar do Hack Club? Se você ouviu falar de nós por meio de um evento ou website, mencione ele aqui.'
             }
           },
           optional: false
@@ -201,6 +206,11 @@ export default {
   leaders: [
     {
       header: 'Leader',
+      translations: {
+        'pt-BR': {
+          header: 'Líder'
+        }
+      },
       items: [
         {
           key: 'Full Name',
@@ -208,7 +218,8 @@ export default {
           type: 'string',
           translations: {
             'pt-BR': {
-              label: 'Nome Completo'
+              label: 'Nome Completo',
+              header: 'Líder'
             }
           },
           optional: false
@@ -234,7 +245,7 @@ export default {
             'pt-BR': {
               label: 'Ano na escola'
             }
-          },
+          }
         },
         {
           key: 'Phone',
@@ -255,7 +266,9 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Seu endereço completo (onde podemos te enviar figurinhas adesivas)'
+              label:
+                'Seu endereço completo (onde podemos te enviar figurinhas adesivas)',
+              sublabel: 'Por favor inclua cidade, estado, país e CEP.'
             }
           },
           optional: false,
@@ -268,12 +281,13 @@ export default {
       header: 'Stats',
       label:
         'Demographic stats are collected to share in aggregate with donors and will not be used as part of application review.',
-        translations: {
-          'pt-BR': {
-            header: 'Estatísticas',
-            label: 'Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição.'
-          }
-        },
+      translations: {
+        'pt-BR': {
+          header: 'Estatísticas',
+          label:
+            'Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição.'
+        }
+      },
       items: [
         {
           key: 'Gender',
@@ -285,7 +299,7 @@ export default {
               options: [
                 'Feminino',
                 'Masculino',
-                'Não-binário / genderqueer',
+                'Não-binário',
                 'Agênero',
                 'Outro'
               ]
@@ -296,7 +310,7 @@ export default {
             'Male',
             'Non-binary / genderqueer',
             'Agender',
-            'Other',
+            'Other'
           ],
           optional: false
         },
@@ -308,11 +322,11 @@ export default {
             'pt-BR': {
               label: 'Etnia',
               options: [
-                'Latino ou hispânico',
+                'Hispânico',
                 'Branco',
                 'Preto',
-                'Americano Nativo ou Indígena Americano',
-                'Asiático ou das Ilhas do Pacífico',
+                'Indígena',
+                'Asiático',
                 'Outra etnia'
               ]
             }
@@ -331,6 +345,11 @@ export default {
     },
     {
       header: 'Presence',
+      translations: {
+        'pt-BR': {
+          header: 'Links'
+        }
+      },
       items: [
         {
           key: 'Website',
@@ -340,7 +359,7 @@ export default {
           translations: {
             'pt-BR': {
               label: 'Link do site pessoal'
-            },
+            }
           },
           optional: true
         },
@@ -351,7 +370,7 @@ export default {
           type: 'string',
           translations: {
             'pt-BR': {
-              label: 'Link do Twitter',
+              label: 'Link do Twitter'
             }
           },
           optional: true
@@ -363,7 +382,7 @@ export default {
           type: 'string',
           translations: {
             'pt-BR': {
-              label: 'Link do GitHub',
+              label: 'Link do GitHub'
             }
           },
           optional: true
@@ -372,6 +391,12 @@ export default {
     },
     {
       header: 'Skills',
+      header: 'Presence',
+      translations: {
+        'pt-BR': {
+          header: 'Habilidades'
+        }
+      },
       items: [
         {
           key: 'Hacker Story',
@@ -379,7 +404,10 @@ export default {
             <>
               Please tell us about the time you most successfully hacked some
               (non-computer) system to your advantage.{' '}
-              <a href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage" style={{color: '#338eda'}}>
+              <a
+                href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
+                style={{ color: '#338eda' }}
+              >
                 Here are examples of what we’re looking for
               </a>
               .
@@ -389,13 +417,17 @@ export default {
             'pt-BR': {
               label: (
                 <>
-                  Por favor nos conte alguma vez que você hackeou com sucesso algum sistema (não computacional) para obter alguma vantagem.
-                  <a href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage" style={{color: '#338eda'}}>
-                  Aqui estão alguns exemplos do que estamos buscando.
+                  Por favor nos conte alguma vez que você hackeou com sucesso
+                  algum sistema (não computacional) para obter alguma vantagem.
+                  <a
+                    href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
+                    style={{ color: '#338eda' }}
+                  >
+                    {' '}Aqui estão alguns exemplos do que estamos buscando
                   </a>
                   .
                 </>
-              ),
+              )
             }
           },
           plainText:
@@ -410,7 +442,9 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Conte-nos sobre algo que você fez que foi pessoalmente significativo para você.',
+              label:
+                'Conte-nos sobre algo que você fez que foi pessoalmente significativo para você.',
+                sublabel: '(coloque links, se possível)'
             }
           },
           optional: false,
@@ -424,8 +458,10 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Nos fale sobre algo que você e/ou seus co-líderes aprenderam recentemente?',
-              sublabel: '(não faça essa pergunta ser sobre o Hack Club! Não precisa ter relação com programação)',
+              label:
+                'O que você aprendeu recentemente?',
+              sublabel:
+                'Não precisa ser relacionado ao Hack Club nem ter relação com programação. :)'
             }
           },
           optional: false,
@@ -440,8 +476,10 @@ export default {
           optional: false,
           translations: {
             'pt-BR': {
-              label: 'Você tem habilidades técnicas? (Você é um programador que consegue ensinar sem assistência externa)',
+              label:
+                'Você tem habilidades técnicas? (Você é um programador que consegue ensinar sem assistência externa)',
               sublabel: `(Tudo bem se não!)`,
+              options: ['Sim', 'Não']
             }
           },
           sublabel: `(It's okay if not!)`,

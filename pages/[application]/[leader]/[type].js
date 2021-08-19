@@ -218,7 +218,11 @@ export default function ApplicationClub({
                         setData({ ...data, ...newData })
                         setSaved(false)
                       }}
-                      placeholder={item.placeholder}
+                      placeholder={returnLocalizedQuestionText(
+                        router.locale,
+                        item,
+                        'placeholder'
+                      )}
                       as={
                         item.type == 'string'
                           ? Input
