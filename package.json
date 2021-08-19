@@ -16,7 +16,6 @@
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^10.0.4",
     "airtable": "^0.11.1",
-    "airtable-plus": "^1.0.4",
     "next": "^11.0.0",
     "nookies": "^2.5.2",
     "nprogress": "^0.2.0",

@@ -227,8 +227,8 @@ export default function ApplicationHome({
           </Flex>
         </Flex>
         { addingLeader && <AddingLeaderBox {...{ setEmailToInvite, emailToInvite, sendInvite, router }} /> }
-        {applicationsRecord['Leaders Emails'].map((leaderEmail, leaderIndex) => (
-          <LeadersEmails {...{ leaderIndex, applicationsRecord, leaderRecord, leaderEmail,deleteLeader }} />
+        {applicationsRecord['Leaders Emails'].map((leaderEmail, leaderIndex, i) => (
+          <LeadersEmails {...{ leaderIndex, applicationsRecord, leaderRecord, leaderEmail, deleteLeader, key:`le-${i}` }} />
          ))}
         <Button
           sx={{
