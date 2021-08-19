@@ -1,24 +1,21 @@
-import {
-  prospectiveLeadersAirtable,
-  loginsAirtable,
-} from '../../lib/airtable'
+import { base } from '/lib/base'
 import nookies from 'nookies'
 
 export default async function handler(req, res) {
   const cookies = nookies.get({req})
   try {
-    const tokenRecord = await loginsAirtable.find(
+    const tokenRecord = await base("Logins").find(
       'rec' + cookies.authToken
     )
     if(!tokenRecord.fields['Path'][0].includes(req.query.id)){
       res.redirect('/')
       return
     }
-    const prospectiveLeadersRecord = await prospectiveLeadersAirtable.create({
+    const prospectiveLeadersRecord = await base("Prospective Leaders").create({
       Email: req.query.email,
       Application: ['rec'+ req.query.id]
     })
-    const loginRecord = await loginsAirtable.create({
+    const loginRecord = await base("Logins").create({
       'Relevant User': [prospectiveLeadersRecord.id],
       "New Invite": true
     })

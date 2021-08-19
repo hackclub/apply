@@ -1,15 +1,11 @@
-import {
-  applicationsAirtable,
-  prospectiveLeadersAirtable,
-  loginsAirtable
-} from '../../../lib/airtable'
+import { base } from '/lib/base'
 import manifest from '../../../manifest'
 import nookies from 'nookies'
 
 export default async function handler(req, res) {
   const cookies = nookies.get({req})
   try {
-    const tokenRecord = await loginsAirtable.find(
+    const tokenRecord = await base("Logins").find(
       'rec' + cookies.authToken
     )
     console.log(tokenRecord.fields['Path'])
@@ -37,7 +33,7 @@ export default async function handler(req, res) {
 
 
 
-    const table = req.query.type == 'club' ? applicationsAirtable : prospectiveLeadersAirtable;
+    const table = req.query.type == 'club' ? base("Applications") : base("Prospective Leaders");
     const updateCall = await table.update('rec'+ req.query.id, newData);
 
     res.status(200).json({ success: true, id: updateCall.id, newData })
