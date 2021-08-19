@@ -24,7 +24,6 @@ export default class App extends NextApp {
           image="https://apply.hackclub.com/card_1.png" // large summary card image URL
           color="#ec3750" // theme color
         />
-        <Fullstory />
         <Flag />
         <NProgress color={'#ec3750'} />
         <ForceTheme theme="light" />
