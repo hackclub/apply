@@ -134,7 +134,7 @@ export default {
               label: 'O que você espera aprender com o seu Hack Club?'
             }
           },
-          optional: true,
+          optional: false,
           words: 75
         }
       ]
