@@ -50,6 +50,7 @@ export default function ApplicationHome({
         setEmailToInvite('')
         router.replace(router.asPath, null, { scroll: false })
       } else {
+        console.error(loginAPICall)
         alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
     } else {
@@ -74,6 +75,7 @@ export default function ApplicationHome({
         alert(`✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`)
         router.replace(router.asPath, null, { scroll: false })
       } else {
+        console.error(deleteLeaderCall)
         alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
     }
@@ -86,6 +88,7 @@ export default function ApplicationHome({
       alert(`✅ ${returnLocalizedMessage(router.locale, 'SUBMITTED')}`)
       router.replace(router.asPath, null, { scroll: false })
     } else {
+      console.error(submissionAPICall)
       alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
     }
   }

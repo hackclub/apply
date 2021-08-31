@@ -51,7 +51,10 @@ export default function ApplicationClub({
 
     if (json.success) {
       setSaved(true);
-    } else alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`);
+    } else {
+      console.error(json);
+      alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
+    };
 
     return json;
   }
