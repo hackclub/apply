@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       return
     }
     const prospectiveLeadersRecord = await prospectiveLeadersAirtable.create({
-      Email: decodeURI(req.query.email),
+      Email: decodeURIComponent(req.query.email),
       Application: ['rec'+ req.query.id]
     })
     const loginRecord = await loginsAirtable.create({
