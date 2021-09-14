@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   try {
     const firstAirtableCall = await prospectiveLeadersAirtable.read({
       maxRecords: 1,
-      filterByFormula: `Email = "${req.query.email}"`
+      filterByFormula: `Email = "${decodeURI(req.query.email)}"`
     })
 
     if (firstAirtableCall.length > 0) {
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     } else {
       const applicationsRecord = await applicationsAirtable.create({})
       const prospectiveLeadersRecord = await prospectiveLeadersAirtable.create({
-        Email: req.query.email,
+        Email: decodeURI(req.query.email),
         Application: [applicationsRecord.id]
       })
       const loginRecord = await loginsAirtable.create({
