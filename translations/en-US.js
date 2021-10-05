@@ -21,7 +21,7 @@ export const messageObject =  {
   "ERROR": "Error! Please try again!",
   "INVALID_EMAIL_ADDRESS": "Invalid Email Address",
   "ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER": "Are you sure you want to remove this member as a team member?",
-  "SUBMITTED": "Submitted!",
+  "SUBMITTED": "submitted!",
   "REMOVED": "Member removed!",
   "WELCOME_TITLE": "Welcome",
   "WELCOME_SUBTITLE": "We can’t wait to see your application to start a Hack Club. Let’s get you signed in!",
