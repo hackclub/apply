@@ -44,7 +44,7 @@ export default function IndexHome() {
         {returnLocalizedMessage(router.locale, 'WELCOME_TITLE')}
         </Heading>
         <Text as="p" variant="lead">
-        {returnLocalizedMessage(router.locale, "WELCOME_WE_CANT_WAIT_TO_SEE_MESSAGE")} <br /> {returnLocalizedMessage(router.locale, "WELCOME_LETS_GET_YOU_SIGNED_IN_MESSAGE")}
+        {returnLocalizedMessage(router.locale, "WELCOME_SUBTITLE")}
         </Text>
         <Text as="p" variant="lead">
           {status == 'awaiting'
