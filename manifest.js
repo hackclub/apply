@@ -29,7 +29,7 @@ export default {
               label:
                 'Há quanto tempo você e seus co-líderes se conhecem e como vocês se conheceram?',
               sublabel:
-                '(Não tem problema se for liderar seu clube sozinho.)'
+                '(Não tem problema se for liderar seu clube sozinho!)'
             }
           },
           type: 'paragraph',
@@ -53,7 +53,7 @@ export default {
           translations: {
             'pt-BR': {
               label: 'Onde você está planejando criar seu Hack Club?',
-              sublabel: '(Coloque o nome do local.)',
+              sublabel: '(Coloque o nome do local. Exemplo: "Escola Hacker Feliz")',
               placeholder: 'Escola Hacker Feliz'
             }
           },
@@ -82,7 +82,7 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Qual é o endereço completo?',
+              label: 'Qual é o endereço do clube?',
               sublabel: 'Por favor inclua cidade, estado, país e CEP.'
             }
           },
@@ -478,7 +478,7 @@ export default {
             'pt-BR': {
               label:
                 'Você tem habilidades técnicas? (Você é um programador que consegue ensinar sem assistência externa)',
-              sublabel: `(Tudo bem se não!)`,
+              sublabel: `(Tudo bem se não! Estamos aqui para ajudar você!)`,
               options: ['Sim', 'Não']
             }
           },

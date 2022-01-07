@@ -9,6 +9,7 @@ export const messageObject =  {
   "READY": "ready to go!",
   "YOUR_CLUB": "Your Club",
   "MY_PERSONAL_PROFILE": "My Personal Profile",
+  "LANG_INFO": "",
   "LEADERS": "Leaders",
   "GUIDE_FOR_SELECTING_TEAM":  "You can read our guide for selecting your team",
   "HERE": "here",

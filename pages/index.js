@@ -30,7 +30,8 @@ export default function IndexHome() {
         minHeight: '100vh',
         alignItems: 'center',
         justifyContent: 'center',
-        color: 'white'
+        color: 'white',
+        marginTop: '-50px'
       }}
     >
       <Box

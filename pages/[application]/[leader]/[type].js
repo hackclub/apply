@@ -165,6 +165,9 @@ export default function ApplicationClub({
         </Box>
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
+        <Text sx={{ fontSize: '20px', color: 'black' }}>
+          {returnLocalizedMessage(router.locale, 'LANG_INFO')}
+        </Text>
         {(params.type == 'club' ? manifest.clubs : manifest.leaders).map(
           (sectionItem, sectionIndex) => (
             <Box key={sectionIndex}>
