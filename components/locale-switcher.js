@@ -3,15 +3,22 @@ import { Select, Flex } from 'theme-ui'
 
 const LocaleSwitcher = props => {
   const router = useRouter()
+
+  const languages = {
+    "en-US": "English",
+    "pt-BR": "Português",
+  }
+
   return (
     <Flex
       sx={{
         bg: 'none',
-        width: '100px',
+        width: '120px',
         marginLeft: 'auto',
         marginRight: '15px',
         display: 'inline-block',
-        paddingTop: '10px'
+        paddingTop: '10px',
+        height: '50px',
       }}
     >
       <Select
@@ -22,7 +29,7 @@ const LocaleSwitcher = props => {
         }}
         sx={{
           bg: 'white',
-          width: '100px',
+          width: '120px',
           boxShadow: '0 4px 8px rgb(0 0 0 / 13%)',
           ':focus': { outline: 'none !important' }
         }}
@@ -30,7 +37,7 @@ const LocaleSwitcher = props => {
       >
         {router.locales.map(locale => (
           <option key={locale} value={locale}>
-            {locale}
+            {languages[locale]}
           </option>
         ))}
       </Select>
