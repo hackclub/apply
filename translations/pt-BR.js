@@ -8,6 +8,7 @@ export const messageObject = {
   "READY": "pronta para enviar!",
   "YOUR_CLUB": "Seu Clube",
   "MY_PERSONAL_PROFILE": "Meu Perfil Pessoal",
+  "LANG_INFO": "Você pode preencher sua inscrição tanto em português quanto em inglês! :)",
   "LEADERS": "Líderes",
   "GUIDE_FOR_SELECTING_TEAM":  "Você pode ler nosso guia de como escolher sua equipe",
   "HERE": "aqui",

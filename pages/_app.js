@@ -6,6 +6,7 @@ import theme from '@hackclub/theme'
 import { ThemeProvider } from 'theme-ui'
 import ForceTheme from '../components/force-theme'
 import Flag from '../components/flag'
+import LocaleSwitcher from '../components/locale-switcher'
 import NProgress from '../components/nprogress'
 import Fullstory from '../components/fullstory'
 import Meta from '@hackclub/meta'
@@ -26,6 +27,7 @@ export default class App extends NextApp {
         />
         <Fullstory />
         <Flag />
+        <LocaleSwitcher />
         <NProgress color={'#ec3750'} />
         <ForceTheme theme="light" />
         <Component {...pageProps} />

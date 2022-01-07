@@ -25,7 +25,6 @@ import {
   returnLocalizedQuestionText
 } from '../../../lib/helpers'
 
-
 export default function ApplicationClub({
   notFound,
   applicationsRecord,
@@ -35,7 +34,7 @@ export default function ApplicationClub({
   const [data, setData] = useState(
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
-  const [ saved, setSavedState ] = useState(true);
+  const [saved, setSavedState] = useState(true)
   const savingStateRef = useRef(saved)
   const setSaved = data => {
     savingStateRef.current = data
@@ -43,20 +42,24 @@ export default function ApplicationClub({
   }
 
   const poster = async () => {
-    const appOrLeader = params.type === 'club' ? params.application : params.leader;
+    const appOrLeader =
+      params.type === 'club' ? params.application : params.leader
 
     const msg = { body: JSON.stringify(data), method: 'POST' }
-    const fetched = await fetch(`/api/${params.type}/save?id=${appOrLeader}`, msg);
-    const json = await fetched.json();
+    const fetched = await fetch(
+      `/api/${params.type}/save?id=${appOrLeader}`,
+      msg
+    )
+    const json = await fetched.json()
 
     if (json.success) {
-      setSaved(true);
+      setSaved(true)
     } else {
-      console.error(json);
+      console.error(json)
       alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
-    };
+    }
 
-    return json;
+    return json
   }
 
   const router = useRouter()
@@ -74,12 +77,10 @@ export default function ApplicationClub({
 
   async function goHome(autoSave = true) {
     if (!saved) {
-      if (autoSave ||
+      if (
+        autoSave ||
         window.confirm(
-          returnLocalizedMessage(
-            router.locale,
-            'ARE_YOU_SURE_YOU_WANT_TO_SAVE'
-          )
+          returnLocalizedMessage(router.locale, 'ARE_YOU_SURE_YOU_WANT_TO_SAVE')
         )
       ) {
         await poster()
@@ -165,6 +166,9 @@ export default function ApplicationClub({
         </Box>
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
+        <Text sx={{ fontSize: '20px', color: 'black' }}>
+          {returnLocalizedMessage(router.locale, 'LANG_INFO')}
+        </Text>
         {(params.type == 'club' ? manifest.clubs : manifest.leaders).map(
           (sectionItem, sectionIndex) => (
             <Box key={sectionIndex}>
