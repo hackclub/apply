@@ -312,7 +312,8 @@ export default {
             'Non-binary / genderqueer',
             'Agender',
             'Other'
-          ]
+          ],
+          optional: true
         },
         {
           key: 'Ethnicity',
