@@ -292,6 +292,7 @@ export default {
         {
           key: 'Gender',
           label: 'Gender',
+          optional: true,
           type: 'select',
           translations: {
             'pt-BR': {
