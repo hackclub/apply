@@ -339,7 +339,7 @@ export default {
             'Asian or Pacific Islander',
             'Other Ethnicity'
           ],
-          optional: false
+          optional: true
         }
       ]
     },
