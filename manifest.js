@@ -226,12 +226,12 @@ export default {
         },
         {
           key: 'Birthday',
-          label: 'Birthday',
+          label: 'Birthday (maximum age is 17 years)',
           type: 'string',
           inputType: 'date',
           translations: {
             'pt-BR': {
-              label: 'Data de Aniversário'
+              label: 'Data de Aniversário (idade máxima é 17 anos)'
             }
           },
           optional: false
