@@ -22,7 +22,8 @@ import nookies from 'nookies'
 import { useRouter } from 'next/router'
 import {
   returnLocalizedMessage,
-  returnLocalizedQuestionText
+  returnLocalizedQuestionText,
+  calculateMinDate
 } from '../../../lib/helpers'
 
 
@@ -239,6 +240,9 @@ export default function ApplicationClub({
                       type={item.inputType}
                       name="email"
                       value={data[item.key] !== undefined ? data[item.key] : ''}
+                      min={
+                        item.inputType === 'date' ? calculateMinDate() : null
+                      }
                       sx={{
                         border: '1px solid',
                         borderColor: 'rgb(221, 225, 228)',
