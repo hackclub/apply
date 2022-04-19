@@ -226,12 +226,14 @@ export default {
         },
         {
           key: 'Birthday',
-          label: 'Birthday (maximum age is 17 years)',
+          label:
+            "Birthday (FYI: we don't accept Hack Club applications from universities or from teachers)",
           type: 'string',
           inputType: 'date',
           translations: {
             'pt-BR': {
-              label: 'Data de Aniversário (idade máxima é 17 anos)'
+              label:
+                'Data de Aniversário ( FYI: não aceitamos inscrições do Hack Club de universidades ou de professores)'
             }
           },
           optional: false
@@ -490,6 +492,6 @@ export default {
     }
   ],
   metaData: {
-    maximumAge: 17 /**IN YEARS*/
+    maximumAge: 18 /**IN YEARS*/
   }
 }
