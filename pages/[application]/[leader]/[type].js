@@ -23,7 +23,7 @@ import { useRouter } from 'next/router'
 import {
   returnLocalizedMessage,
   returnLocalizedQuestionText,
-  calculateMinDate
+  handleChangeInDate
 } from '../../../lib/helpers'
 
 export default function ApplicationClub({
@@ -36,6 +36,8 @@ export default function ApplicationClub({
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
   const [saved, setSavedState] = useState(true)
+  const [showFYI, setShowFYI] = useState(false)
+
   const savingStateRef = useRef(saved)
   const setSaved = data => {
     savingStateRef.current = data
@@ -225,6 +227,7 @@ export default function ApplicationClub({
                         newData[item.key] = e.target.value
                         setData({ ...data, ...newData })
                         setSaved(false)
+
                       }}
                       placeholder={returnLocalizedQuestionText(
                         router.locale,
@@ -241,12 +244,9 @@ export default function ApplicationClub({
                       type={item.inputType}
                       name="email"
                       value={data[item.key] !== undefined ? data[item.key] : ''}
-                      min={
-                        item.inputType === 'date' ? calculateMinDate() : null
+                      onInput={
+                        item.inputType === 'date' ? (e) => {handleChangeInDate(e.target.value, setShowFYI)} : null
                       }
-                      onInput={() => {
-                        item.inputType === 'date' ? calculateMinDate() : null
-                      }}
                       sx={{
                         border: '1px solid',
                         borderColor: 'rgb(221, 225, 228)',
@@ -301,8 +301,10 @@ export default function ApplicationClub({
                         }}
                         as="p"
                       >
-                        (FYI: we don't accept Hack Club applications from
-                        universities or from teachers)
+                        { showFYI? `(${returnLocalizedMessage(
+                          router.locale,
+                          'FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS'
+                        )})`: null}
                       </Text>
                     ) : null}
                     {item.words && (
