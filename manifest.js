@@ -490,6 +490,6 @@ export default {
     }
   ],
   metaData: {
-    maximumAge: 18 /**IN YEARS*/
+    maximumAge: 20 /**IN YEARS*/
   }
 }
