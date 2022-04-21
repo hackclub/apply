@@ -43,5 +43,6 @@ export const messageObject = {
   "WORDS": "palavras",
   "WORD": "palavra",
   "SO_FAR": "até aqui",
-  'ARE_YOU_SURE_YOU_WANT_TO_SAVE': "Você gostaria de salvar? Clique em Cancelar para pular o salvamento."
+  "ARE_YOU_SURE_YOU_WANT_TO_SAVE": "Você gostaria de salvar? Clique em Cancelar para pular o salvamento.",
+  "FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS": "FYI: não aceitamos inscrições do Hack Club de universidades ou de professores"
 }

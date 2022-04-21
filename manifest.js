@@ -226,14 +226,12 @@ export default {
         },
         {
           key: 'Birthday',
-          label:
-            "Birthday (FYI: we don't accept Hack Club applications from universities or from teachers)",
+          label: 'Birthday',
           type: 'string',
           inputType: 'date',
           translations: {
             'pt-BR': {
-              label:
-                'Data de Aniversário ( FYI: não aceitamos inscrições do Hack Club de universidades ou de professores)'
+              label: 'Data de Aniversário'
             }
           },
           optional: false

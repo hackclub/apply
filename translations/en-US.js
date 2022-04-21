@@ -44,7 +44,8 @@ export const messageObject =  {
   "WORDS": "words",
   "WORD": "word",
   "SO_FAR": "so far",
-  'ARE_YOU_SURE_YOU_WANT_TO_SAVE': "Would you like to save? Click Cancel to skip saving."
+  "ARE_YOU_SURE_YOU_WANT_TO_SAVE": "Would you like to save? Click Cancel to skip saving.",
+  "FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS":"(FYI: we don't accept Hack Club applications from universities or from teachers)"
 }
 
  
