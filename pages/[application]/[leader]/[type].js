@@ -22,9 +22,9 @@ import nookies from 'nookies'
 import { useRouter } from 'next/router'
 import {
   returnLocalizedMessage,
-  returnLocalizedQuestionText
+  returnLocalizedQuestionText,
+  handleChangeInDate
 } from '../../../lib/helpers'
-
 
 export default function ApplicationClub({
   notFound,
@@ -35,7 +35,9 @@ export default function ApplicationClub({
   const [data, setData] = useState(
     params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
   )
-  const [ saved, setSavedState ] = useState(true);
+  const [saved, setSavedState] = useState(true)
+  const [showFYI, setShowFYI] = useState(false)
+
   const savingStateRef = useRef(saved)
   const setSaved = data => {
     savingStateRef.current = data
@@ -43,20 +45,24 @@ export default function ApplicationClub({
   }
 
   const poster = async () => {
-    const appOrLeader = params.type === 'club' ? params.application : params.leader;
+    const appOrLeader =
+      params.type === 'club' ? params.application : params.leader
 
     const msg = { body: JSON.stringify(data), method: 'POST' }
-    const fetched = await fetch(`/api/${params.type}/save?id=${appOrLeader}`, msg);
-    const json = await fetched.json();
+    const fetched = await fetch(
+      `/api/${params.type}/save?id=${appOrLeader}`,
+      msg
+    )
+    const json = await fetched.json()
 
     if (json.success) {
-      setSaved(true);
+      setSaved(true)
     } else {
-      console.error(json);
+      console.error(json)
       alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
-    };
+    }
 
-    return json;
+    return json
   }
 
   const router = useRouter()
@@ -74,12 +80,10 @@ export default function ApplicationClub({
 
   async function goHome(autoSave = true) {
     if (!saved) {
-      if (autoSave ||
+      if (
+        autoSave ||
         window.confirm(
-          returnLocalizedMessage(
-            router.locale,
-            'ARE_YOU_SURE_YOU_WANT_TO_SAVE'
-          )
+          returnLocalizedMessage(router.locale, 'ARE_YOU_SURE_YOU_WANT_TO_SAVE')
         )
       ) {
         await poster()
@@ -223,6 +227,7 @@ export default function ApplicationClub({
                         newData[item.key] = e.target.value
                         setData({ ...data, ...newData })
                         setSaved(false)
+
                       }}
                       placeholder={returnLocalizedQuestionText(
                         router.locale,
@@ -239,6 +244,9 @@ export default function ApplicationClub({
                       type={item.inputType}
                       name="email"
                       value={data[item.key] !== undefined ? data[item.key] : ''}
+                      onInput={
+                        item.inputType === 'date' ? (e) => {handleChangeInDate(e.target.value, setShowFYI)} : null
+                      }
                       sx={{
                         border: '1px solid',
                         borderColor: 'rgb(221, 225, 228)',
@@ -284,6 +292,21 @@ export default function ApplicationClub({
                             }
                         : {})}
                     />
+                    {item.inputType === 'date' ? (
+                      <Text
+                        sx={{
+                          color: 'orange',
+                          fontWeight: 'bold',
+                          marginTop: [2]
+                        }}
+                        as="p"
+                      >
+                        { showFYI? `(${returnLocalizedMessage(
+                          router.locale,
+                          'FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS'
+                        )})`: null}
+                      </Text>
+                    ) : null}
                     {item.words && (
                       <Text
                         sx={{ fontSize: '18px', color: 'muted', mt: 1 }}
