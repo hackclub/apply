@@ -1,8 +1,9 @@
 import Head from 'next/head'
+import Script from 'next/script'
 
 const Fullstory = () => (
   <Head>
-    <script src="/fullstory.js" />
+    <Script src="/fullstory.js" />
   </Head>
 )
 

@@ -10,7 +10,7 @@ export default {
       items: [
         {
           key: 'President',
-          label: 'Who would you like your Point of Contact to be?',
+          label: 'Who should we reach out to?',
           type: 'select',
           optionsKey: 'Leaders Emails',
           optional: false,
@@ -22,8 +22,7 @@ export default {
         },
         {
           key: 'Leaders Relationship',
-          label:
-            'How long have you known your other club leaders and how did you meet?',
+          label: 'How long have you known your other club leaders and how did you meet?',
           translations: {
             'pt-BR': {
               label:
@@ -32,8 +31,8 @@ export default {
             }
           },
           type: 'paragraph',
-          sublabel: "(It's also okay if you are running the club by yourself.)",
-          optional: false,
+          display: 'depends',
+          optional: true,
           words: 50
         }
       ]
@@ -48,7 +47,7 @@ export default {
       items: [
         {
           key: 'School Name',
-          label: 'Where are you planning to run your Hack Club?',
+          label: 'Where will your club meet?',
           translations: {
             'pt-BR': {
               label: 'Onde você está planejando criar seu Hack Club?',
@@ -88,7 +87,7 @@ export default {
           },
           optional: false,
           sublabel:
-            'Please include city, state / province, country, and postal code.'
+            'City, State / Province, Postal Code, Country'
         }
       ]
     },
@@ -115,7 +114,7 @@ export default {
         {
           key: 'Success',
           label:
-            'What will your club do? What would a successful club look like?',
+            'Describe what your club meetings will look like.',
           type: 'paragraph',
           translations: {
             'pt-BR': {
@@ -249,8 +248,11 @@ export default {
         },
         {
           key: 'Phone',
-          label:
-            'Phone number (include country code if not in the United States)',
+          label: 'Phone number (include country code if not in the United States)',
+          sublabel: (<>
+            <a href="https://www.nationsonline.org/oneworld/international-calling-codes.htm" style={{ cursor: 'pointer', color: 'gray'}}>Find your country code here</a>
+          </>
+          ),
           type: 'string',
           inputType: 'tel',
           translations: {
@@ -273,74 +275,7 @@ export default {
           },
           optional: false,
           sublabel:
-            'Please include city, state / province, country, and postal code.'
-        }
-      ]
-    },
-    {
-      header: 'Stats',
-      label:
-        'Demographic stats are collected to share in aggregate with donors and will not be used as part of application review.',
-      translations: {
-        'pt-BR': {
-          header: 'Estatísticas',
-          label:
-            'Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição.'
-        }
-      },
-      items: [
-        {
-          key: 'Gender',
-          label: 'Gender',
-          optional: true,
-          type: 'select',
-          translations: {
-            'pt-BR': {
-              label: 'Gênero',
-              options: [
-                'Feminino',
-                'Masculino',
-                'Não-binário',
-                'Agênero',
-                'Outro'
-              ]
-            }
-          },
-          options: [
-            'Female',
-            'Male',
-            'Non-binary / genderqueer',
-            'Agender',
-            'Other'
-          ],
-          optional: true
-        },
-        {
-          key: 'Ethnicity',
-          label: 'Ethnicity',
-          type: 'select',
-          translations: {
-            'pt-BR': {
-              label: 'Etnia',
-              options: [
-                'Hispânico',
-                'Branco',
-                'Preto',
-                'Indígena',
-                'Asiático',
-                'Outra etnia'
-              ]
-            }
-          },
-          options: [
-            'Hispanic or Latino',
-            'White',
-            'Black',
-            'Native American or American Indian',
-            'Asian or Pacific Islander',
-            'Other Ethnicity'
-          ],
-          optional: true
+            'City, State / Province, Postal Code, Country'
         }
       ]
     },
@@ -365,6 +300,18 @@ export default {
           optional: true
         },
         {
+          key: 'GitHub',
+          label: 'GitHub link',
+          placeholder: 'https://',
+          type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Link do GitHub'
+            }
+          },
+          optional: true
+        },
+        {
           key: 'Twitter',
           label: 'Twitter link',
           placeholder: 'https://',
@@ -377,67 +324,34 @@ export default {
           optional: true
         },
         {
-          key: 'GitHub',
-          label: 'GitHub link',
+          key: 'Other',
+          label: 'Other Technical Links',
           placeholder: 'https://',
           type: 'string',
+          sublabel: '(Gitlab, Sourcehut, other site where your code lives)',
           translations: {
             'pt-BR': {
-              label: 'Link do GitHub'
+              label: 'Link do Other'
             }
           },
           optional: true
-        }
+        },
       ]
     },
     {
       header: 'Skills',
-      header: 'Presence',
+      header: 'Hacker Details',
+      label: (
+        <>
+          <span style={{ fontSize: '17px'}}>We want to get to know you! Please answer these questions like you’re telling them to a friend</span>
+        </>
+      ),
       translations: {
         'pt-BR': {
           header: 'Habilidades'
         }
       },
       items: [
-        {
-          key: 'Hacker Story',
-          label: (
-            <>
-              Please tell us about the time you most successfully hacked some
-              (non-computer) system to your advantage.{' '}
-              <a
-                href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
-                style={{ color: '#338eda' }}
-              >
-                Here are examples of what we’re looking for
-              </a>
-              .
-            </>
-          ),
-          translations: {
-            'pt-BR': {
-              label: (
-                <>
-                  Por favor nos conte alguma vez que você hackeou com sucesso
-                  algum sistema (não computacional) para obter alguma vantagem.
-                  <a
-                    href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
-                    style={{ color: '#338eda' }}
-                  >
-                    {' '}
-                    Aqui estão alguns exemplos do que estamos buscando
-                  </a>
-                  .
-                </>
-              )
-            }
-          },
-          plainText:
-            'Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.',
-          type: 'paragraph',
-          optional: false,
-          characters: [450, 1200]
-        },
         {
           key: 'Achievement',
           label: `Tell us about something you made which was personally meaningful to you?`,
@@ -470,6 +384,45 @@ export default {
           sublabel: `Don't make it about Hack Club! Doesn't have to be about coding.`
         },
         {
+          key: 'Hacker Story',
+          label: (
+            <>
+              Please tell us about the time you most successfully hacked some
+              (non-computer) system to your advantage.{' '}
+              <a
+                href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
+                style={{ color: '#338eda' }}
+              >
+                Here are examples of what we&#39;re looking for
+              </a>
+              .
+            </>
+          ),
+          translations: {
+            'pt-BR': {
+              label: (
+                <>
+                  Por favor nos conte alguma vez que você hackeou com sucesso
+                  algum sistema (não computacional) para obter alguma vantagem.
+                  <a
+                    href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
+                    style={{ color: '#338eda' }}
+                  >
+                    {' '}
+                    Aqui estão alguns exemplos do que estamos buscando
+                  </a>
+                  .
+                </>
+              )
+            }
+          },
+          plainText:
+            'Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.',
+          type: 'paragraph',
+          optional: false,
+          characters: [450, 1200]
+        },
+       /* {
           key: 'Technicality',
           label:
             'Are you technical? (You are a programmer who can teach without outside assistance)',
@@ -485,9 +438,65 @@ export default {
           },
           sublabel: `(It's okay if not!)`,
           options: ['Yes', 'No']
+        } */
+      ]
+    },
+    {
+      header: 'Optional Stats',
+      label:
+        'We care about being as inclusive as possible. Sharing this information helps us achieve that goal.',
+      translations: {
+        'pt-BR': {
+          header: 'Estatísticas',
+          label:
+            'Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição.'
+        }
+      },
+      items: [
+        {
+          key: 'Gender',
+          label: 'Pronouns',
+          optional: true,
+          type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Gênero',
+            }
+          },
+          optional: true
+        },
+        {
+          key: 'Ethnicity',
+          label: 'Ethnicity',
+          type: 'select',
+          translations: {
+            'pt-BR': {
+              label: 'Etnia',
+              options: [
+                'Hispânico',
+                'Branco',
+                'Preto',
+                'Indígena',
+                'Asiático',
+                'Outra etnia'
+              ]
+            }
+          },
+          options: [
+            'Hispanic, Latino or Spanish origin',
+            'White',
+            'Black, African American',
+            'American Indian or Alaska native',
+            'Asian',
+            'Asian Indian',
+            'Native Hawaiian or Other Pacific Islander',
+            'Other Ethnicity',
+            'Prefer not to say'
+          ],
+          optional: true
         }
       ]
-    }
+    },
   ],
   metaData: {
     maximumAge: 20 /**IN YEARS*/

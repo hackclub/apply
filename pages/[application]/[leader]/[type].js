@@ -2,17 +2,14 @@ import Error from 'next/error'
 import {
   Box,
   Input,
-  Divider,
   Card,
   Container,
   Text,
   Button,
-  Heading,
   Flex,
   Select,
   Textarea,
   Field,
-  Grid
 } from 'theme-ui'
 import Icon from '@hackclub/icons'
 import { useState, useEffect, useRef } from 'react'
@@ -25,24 +22,29 @@ import {
   returnLocalizedQuestionText,
   handleChangeInDate
 } from '../../../lib/helpers'
+import TimelineCard from '../../../components/Timeline'
 
 export default function ApplicationClub({
   notFound,
   applicationsRecord,
   leaderRecord,
+  trackerRecord,
   params
 }) {
-  const [data, setData] = useState(
-    params.type == 'club' ? applicationsRecord.fields : leaderRecord.fields
-  )
+  const [data, setData] = useState( params.type === 'club' ? applicationsRecord.fields : leaderRecord.fields )
   const [saved, setSavedState] = useState(true)
   const [showFYI, setShowFYI] = useState(false)
+  const [count, setCount] = useState(0)
 
   const savingStateRef = useRef(saved)
   const setSaved = data => {
     savingStateRef.current = data
     setSavedState(data)
   }
+
+  const router = useRouter()
+  // const slug = router?.asPath.split('/')[3]
+
 
   const poster = async () => {
     const appOrLeader =
@@ -65,7 +67,11 @@ export default function ApplicationClub({
     return json
   }
 
-  const router = useRouter()
+  useEffect(() => {
+    console.log(Math.floor(count / 3))
+    setCount(0)
+    poster();
+  }, [Math.floor(count / 3)])
 
   useEffect(() => {
     window.addEventListener('beforeunload', function (e) {
@@ -89,7 +95,8 @@ export default function ApplicationClub({
         await poster()
       }
     }
-    router.push(`/${params.application}/${params.leader}`)
+    { leaderRecord.fields['Email'] != applicationsRecord.fields['Leaders Emails'][0] || params.type === 'club' ? router.push(`/${params.application}/${params.leader}/review`) : router.push(`/${params.application}/${params.leader}/register`)}
+    
   }
 
   if (notFound) {
@@ -97,6 +104,7 @@ export default function ApplicationClub({
   }
   return (
     <Container py={4} variant="copy">
+      <TimelineCard router={router} applicationsRecord={applicationsRecord} leaderRecord={leaderRecord} data={data} params={params} count={count} saved={saved} trackerRecord={trackerRecord}/>
       <SavedInfo saved={saved} poster={poster} router={router} />
       <Card
         px={[4, 4]}
@@ -169,6 +177,7 @@ export default function ApplicationClub({
         </Box>
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
+        {params.type === 'club' ? <Box sx={{ fontSize: [1, 2], mb: '20px', color: 'placeholder'}}><Text>Answer these questions so we can personalize your club experience.</Text></Box> : (null)}
         <Text sx={{ fontSize: '20px', color: 'black' }}>
           {returnLocalizedMessage(router.locale, 'LANG_INFO')}
         </Text>
@@ -194,12 +203,14 @@ export default function ApplicationClub({
                     )}
                   </Box>
                 )}
-                {sectionItem.items.map((item, index) => (
+                {sectionItem.items.map((item, index) => ( 
                   <Box
                     mt={1}
                     mb={3}
                     key={'form-item-' + sectionIndex + '-' + index}
                   >
+                    {item.key === 'Leaders Relationship' && applicationsRecord.fields['Prospective Leaders'].length === 1 ? (null) : (<>
+                    
                     <Field
                       label={
                         <Text>
@@ -226,6 +237,7 @@ export default function ApplicationClub({
                         let newData = {}
                         newData[item.key] = e.target.value
                         setData({ ...data, ...newData })
+                        setCount(count + 1)
                         setSaved(false)
 
                       }}
@@ -292,6 +304,7 @@ export default function ApplicationClub({
                             }
                         : {})}
                     />
+                    {/* HERE HERE */}
                     {item.inputType === 'date' ? (
                       <Text
                         sx={{
@@ -301,12 +314,28 @@ export default function ApplicationClub({
                         }}
                         as="p"
                       >
-                        { showFYI? `(${returnLocalizedMessage(
+                        { showFYI? <Text>{returnLocalizedMessage(
                           router.locale,
                           'FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS'
-                        )})`: null}
+                        )} <Text
+                        as="a"
+                        href={`mailto:${returnLocalizedMessage(
+                          router.locale,
+                          'CONTACT_EMAIL'
+                        )}`}
+                        sx={{
+                          color: 'orange',
+                          textDecoration: 'none',
+                          '&:hover': {
+                            textDecoration: 'underline',
+                            textDecorationStyle: 'wavy'
+                          }
+                        }}
+                      >{returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}</Text> {returnLocalizedMessage(router.locale, 'FOR_MORE_DETAILS')} </Text>: null}
+                        
                       </Text>
                     ) : null}
+                    
                     {item.words && (
                       <Text
                         sx={{ fontSize: '18px', color: 'muted', mt: 1 }}
@@ -343,9 +372,12 @@ export default function ApplicationClub({
                         )}
                       </Text>
                     )}
+                  </>)}
                   </Box>
                 ))}
+                
               </Box>
+              
             </Box>
           )
         )}
@@ -358,9 +390,50 @@ export default function ApplicationClub({
           variant="ctaLg"
           onClick={() => goHome(true)}
         >
-          {'<<'} {returnLocalizedMessage(router.locale, 'GO_BACK')}
+          {returnLocalizedMessage(router.locale, 'CONTINUE')}
         </Button>
       </Card>
+      <Box
+  sx={{
+    display: ['none', 'flex'],
+    position: 'fixed',
+    left: '10px',
+    bottom: '10px',
+    cursor: 'pointer',
+    placeItems: 'center',
+    background: '#00000002',
+    px: 2,
+    borderRadius: '15px'
+  }}
+  onClick={async () => {
+    await destroyCookie(null, 'authToken', {
+      path: '/'
+    })
+    router.push('/', '/', { scroll: false })
+  }}
+>
+<Icon glyph="door-leave" style={{
+    color: '#000000',
+    opacity: 0.8,
+  }}/>
+<Text
+    sx={{
+      color: '#000000',
+      fontWeight: '800',
+      textTransform: 'uppercase',
+      opacity: 1,
+      transition: '0.5s ease-in-out',
+      mx: '5px',
+      ':hover,:focus': {
+        opacity: 1,
+        transition: '0.5s ease-in-out',
+        color: '#ec3750',
+      }
+    }}
+  >
+    logout
+  </Text>
+  </Box>
     </Container>
   )
 }
@@ -395,13 +468,15 @@ const SavedInfo = ({ saved, poster, router }) => (
       glyph={saved ? 'checkmark' : 'important'}
       color={saved ? '#33d6a6' : '#ff8c37'}
     />
+   
   </Box>
 )
 
 export async function getServerSideProps({ res, req, params }) {
   const {
     prospectiveLeadersAirtable,
-    applicationsAirtable
+    applicationsAirtable,
+    trackerAirtable
   } = require('../../../lib/airtable')
   const cookies = nookies.get({ req })
   if (cookies.authToken) {
@@ -412,8 +487,12 @@ export async function getServerSideProps({ res, req, params }) {
       const applicationsRecord = await applicationsAirtable.find(
         'rec' + params.application
       )
+      const trackerRecord = await trackerAirtable.read({
+          filterByFormula: `{App ID} = "rec${params.application}"`,
+          maxRecords: 1,
+    })
       if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
-        return { props: { params, applicationsRecord, leaderRecord } }
+        return { props: { params, applicationsRecord, leaderRecord, trackerRecord } }
       } else {
         res.statusCode = 302
         res.setHeader('Location', `/`)

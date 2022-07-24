@@ -80,7 +80,7 @@ export default function IndexHome() {
               status == 'awaiting' || status == 'error' ? 'block' : 'none'
           }}
         >
-          {returnLocalizedMessage(router.locale, 'CONTINUE')} {'>>'}
+          {returnLocalizedMessage(router.locale, 'CONTINUE')}
         </Button>
       </Box>
     </Flex>
