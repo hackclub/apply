@@ -6,9 +6,10 @@ import {
   } from 'theme-ui'
   import Icon from '@hackclub/icons'
   import { useState, useEffect } from 'react'
+  import { useRouter } from 'next/router'
+  import { returnLocalizedMessage } from '../lib/helpers'
   
   export default function TimelineCard ({ 
-      router,
       params,
       applicationsRecord,
       leaderRecord,
@@ -20,6 +21,7 @@ import {
       const [status, setStatus] = useState(0)
       const [submission, setSubmission] = useState(0)
       const applicationStatus = trackerRecord[0]?.fields.Status
+      const router = useRouter()
   
       useEffect(() => {
           if (leaderProgress > 1) {
@@ -60,7 +62,7 @@ import {
               'color': '#33d6a6',
               'icon': 'home',
               'progress': null,
-              'value': 'Home',
+              'value': returnLocalizedMessage(router.locale, 'HOME'),
               'slug': ''
           },
           {
@@ -68,7 +70,7 @@ import {
               'color': '#33d6a6',
               'icon': 'profile',
               'progress': `${leaderProgress * 100}%`,
-              'value': 'Leader Profile',
+              'value': returnLocalizedMessage(router.locale, 'LEADER_PROFILE'),
               'slug': 'leader'
           },
           {
@@ -76,7 +78,7 @@ import {
               'color': '#33d6a6',
               'icon': 'flag',
               'progress': `${clubProgress * 100}%`,
-              'value': 'Your Club',
+              'value': returnLocalizedMessage(router.locale, 'YOUR_CLUB'),
               'slug': 'club'
           },
           {
@@ -84,7 +86,7 @@ import {
               'color': '#33d6a6',
               'icon': 'checkmark',
               'progress': `${submission}%`,
-              'value': 'Review',
+              'value': returnLocalizedMessage(router.locale, 'REVIEW'),
               'slug': 'review'
           },
           {
@@ -92,7 +94,7 @@ import {
               'color': `${applicationStatus != 'rejected' ? '#33d6a6' : '#ec3750'}`,
               'icon': 'emoji',
               'progress': `${status}%`,
-              'value': 'Status',
+              'value': returnLocalizedMessage(router.locale, 'STATUS'),
               'slug': 'status'
           },
         ]
@@ -163,10 +165,10 @@ import {
                         borderRadius: '999999px',
                         px: '10px',
                         py: '1px',
-                        ml: `${item.value === 'Leader Profile' ? '-50px' : item.value === 'Your Club' ? '-40px' : '-30px'}`,
+                        ml: `${item.value === returnLocalizedMessage(router.locale, "LEADER_PROFILE") ? '-50px' : item.value === returnLocalizedMessage(router.locale, "YOUR_CLUB") ? '-40px' : '-30px'}`,
                         boxSizing: 'border-box',
                         position: ['relative', 'absolute']
-                      }}>{item.value}</Text>
+                      }} onClick={() => {router.push(item.href)}}>{item.value}</Text>
                   </div>
                   </Box>
                   

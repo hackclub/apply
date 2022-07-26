@@ -13,9 +13,8 @@ import {
 } from 'theme-ui'
 import Icon from '@hackclub/icons'
 import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
 import manifest from '../../../manifest'
-import nookies from 'nookies'
+import nookies, { destroyCookie } from 'nookies'
 import { useRouter } from 'next/router'
 import {
   returnLocalizedMessage,
@@ -23,6 +22,7 @@ import {
   handleChangeInDate
 } from '../../../lib/helpers'
 import TimelineCard from '../../../components/Timeline'
+import { countryCodeData, flags } from '../../../lib/countrycodes'
 
 export default function ApplicationClub({
   notFound,
@@ -35,6 +35,7 @@ export default function ApplicationClub({
   const [saved, setSavedState] = useState(true)
   const [showFYI, setShowFYI] = useState(false)
   const [count, setCount] = useState(0)
+  const [phoneCode, setPhoneCode] = useState('')
 
   const savingStateRef = useRef(saved)
   const setSaved = data => {
@@ -68,7 +69,7 @@ export default function ApplicationClub({
   }
 
   useEffect(() => {
-    console.log(Math.floor(count / 3))
+    // console.log(Math.floor(count / 3))
     setCount(0)
     poster();
   }, [Math.floor(count / 3)])
@@ -177,7 +178,7 @@ export default function ApplicationClub({
         </Box>
       </Card>
       <Card px={[4, 4]} py={[4, 4]} mt={4}>
-        {params.type === 'club' ? <Box sx={{ fontSize: [1, 2], mb: '20px', color: 'placeholder'}}><Text>Answer these questions so we can personalize your club experience.</Text></Box> : (null)}
+        {params.type === 'club' ? <Box sx={{ fontSize: [1, 2], mb: '20px', color: 'placeholder'}}><Text>{returnLocalizedMessage(router.locale, "ANSWER_QUESTIONS_PERSONALIZE")}</Text></Box> : (null)}
         <Text sx={{ fontSize: '20px', color: 'black' }}>
           {returnLocalizedMessage(router.locale, 'LANG_INFO')}
         </Text>
@@ -209,8 +210,57 @@ export default function ApplicationClub({
                     mb={3}
                     key={'form-item-' + sectionIndex + '-' + index}
                   >
-                    {item.key === 'Leaders Relationship' && applicationsRecord.fields['Prospective Leaders'].length === 1 ? (null) : (<>
-                    
+                    {item.key === 'Leaders Relationship' && applicationsRecord.fields['Prospective Leaders'].length === 1 ? (null) : item.key === 'Code' ? (null) : (<>
+                
+               {item.key === 'Phone' ? <Text sx={{ fontSize: '20px' }}>Phone number</Text> : (null)}
+                
+                <Box sx={{
+                  display: `${item.key === 'Phone' ? "flex" : "grid"}`,
+                  flexDirection: ['column', 'row'],
+                  gap: '15px',
+                }}>
+                {item.key === 'Phone' ? (<>   
+                    <Field
+                      disabled={
+                        applicationsRecord.fields['Submitted'] ? true : false
+                      }
+                      as={Select}
+                      onChange={e => {
+                        let newData = {}
+                        newData['Code'] = e.target.value
+                        setPhoneCode(newData['Code'].toString().split(' ')[2])
+                        setData({ ...data, ...newData })
+                        setCount(count + 1)
+                        setSaved(false)
+                      }}
+                      type={'select'}
+                      name="code"
+                      value={data['Code'] !== undefined ? data['Code'] : ''}
+                      sx={{
+                        border: '1px solid',
+                        borderColor: 'rgb(221, 225, 228)',
+                        resize: 'vertical',
+                        display: 'grid',
+                      }}
+                      children={(
+                        <>
+                          <option value="" disabled>
+                          {returnLocalizedMessage(
+                          router.locale,
+                          'SELECT_ONE'
+                          )}
+                        </option>
+                        {countryCodeData.map((country, index) => {
+                          return (
+                            <option key={index} >{flags[`${country.iso}`]?.emoji} {country.iso} +{country.code}</option>
+                           )
+                          })}
+                        </>
+                        )
+                       }
+                     
+                    />
+                    </>) : (null)}
                     <Field
                       label={
                         <Text>
@@ -235,11 +285,11 @@ export default function ApplicationClub({
                       }
                       onChange={e => {
                         let newData = {}
-                        newData[item.key] = e.target.value
+                        newData[item.key] = (e.target.value)
+                        console.log(newData)
                         setData({ ...data, ...newData })
                         setCount(count + 1)
                         setSaved(false)
-
                       }}
                       placeholder={returnLocalizedQuestionText(
                         router.locale,
@@ -262,7 +312,9 @@ export default function ApplicationClub({
                       sx={{
                         border: '1px solid',
                         borderColor: 'rgb(221, 225, 228)',
-                        resize: 'vertical'
+                        resize: 'vertical',
+                        width: `${item.key === 'Phone' ? '40rem' : '100%'}`,
+                        maxWidth: '100%'
                       }}
                       {...(item.type == 'select'
                         ? item.options
@@ -303,8 +355,9 @@ export default function ApplicationClub({
                               )
                             }
                         : {})}
+                        
                     />
-                    {/* HERE HERE */}
+                </Box>
                     {item.inputType === 'date' ? (
                       <Text
                         sx={{
@@ -381,6 +434,9 @@ export default function ApplicationClub({
             </Box>
           )
         )}
+
+        
+        
         <Button
           sx={{
             mt: 3,
@@ -390,7 +446,7 @@ export default function ApplicationClub({
           variant="ctaLg"
           onClick={() => goHome(true)}
         >
-          {returnLocalizedMessage(router.locale, 'CONTINUE')}
+          {returnLocalizedMessage(router.locale, 'CONTINUE')}<Icon glyph="view-forward" />
         </Button>
       </Card>
       <Box
@@ -431,7 +487,7 @@ export default function ApplicationClub({
       }
     }}
   >
-    logout
+    {returnLocalizedMessage(router.locale, "LOGOUT")}
   </Text>
   </Box>
     </Container>

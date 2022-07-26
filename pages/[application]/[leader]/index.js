@@ -20,6 +20,18 @@ import nookies, { destroyCookie } from 'nookies'
 import { validateEmail, returnLocalizedMessage } from '../../../lib/helpers'
 import TimelineCard from '../../../components/Timeline'
 
+const SubmitStatus = styled(Text)`
+  background: transparent url(/underline.svg) bottom left no-repeat;
+  background-size: 100% 0.75rem;
+  padding-bottom: 0.125rem;
+`
+
+const GreenSubmitStatus = styled(Text)`
+  background: transparent url(/underline-green.svg) bottom left no-repeat;
+  background-size: 100% 0.75rem;
+  padding-bottom: 0.125rem;
+`
+
 export default function ApplicationHome({
   notFound,
   params,
@@ -28,10 +40,11 @@ export default function ApplicationHome({
   trackerRecord
 }) {
   const [inviteMessage, setInviteMessage] = useState([])
-  const [warning, setWarning] = useState('')
+  const [warning, setWarning] = useState(false)
   const [errorMessage, setErrorMessage] = useState()
   const [emailToInvite, setEmailToInvite] = useState('')
   const router = useRouter()
+  
   async function sendInvite() {
     if (validateEmail(emailToInvite)) {
       const loginAPICall = await fetch(
@@ -87,7 +100,7 @@ export default function ApplicationHome({
               >
                 <Text sx={{ alignItems: 'center', textAlign: 'center' }}>{returnLocalizedMessage(router.locale, 'LEARN_MORE_ABOUT_YOU')}</Text>
                 <ol>
-                  <li>Invite your co-leads to fill out the application with you.</li>
+                  <li>{returnLocalizedMessage(router.locale, "INVITE_COLEADS")}</li>
                   <li>{returnLocalizedMessage(router.locale, "COMPLETE_THE")} <b>{returnLocalizedMessage(router.locale, "5_MINUTE_LEADER")}</b> {returnLocalizedMessage(router.locale, "GET_TO_KNOW_YOU")}</li>
                   <li>{returnLocalizedMessage(router.locale, "FILL_OUT_THE")} <b>{returnLocalizedMessage(router.locale, "5_MINUTE_CLUB")}</b> {returnLocalizedMessage(router.locale, "PERSONALIZE_CLUB")}</li>
                   <li>{returnLocalizedMessage(router.locale, "WAIT_24_HOURS")} <b>{returnLocalizedMessage(router.locale, "30_MINUTE_CHAT")}</b> {returnLocalizedMessage(router.locale, "PLAN_OUT_NEXT_YEAR")}</li>
@@ -151,7 +164,6 @@ export default function ApplicationHome({
               >
                 {leaderEmail}
               </Heading>
-
               {warning ? (<>
               <Text
                 sx={{
@@ -171,9 +183,9 @@ export default function ApplicationHome({
                 }
               >
                 {applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] || inviteMessage[0] === null ? `${inviteMessage[1]}` : null}
-      
               </Text>
               </>) : (null)}
+              
               <Text
                 sx={{
                   cursor: 'pointer',
@@ -182,20 +194,20 @@ export default function ApplicationHome({
                   display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
                   transform: 'translateY(-0.2px)',
                   mr: '5px',
-                  mb: `${warning ? '-8px' : '0px'}`
+                  mb: `${warning && applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] ? '-8px' : '0px'}`
                 }}
                 onClick={() => (
-                  setInviteMessage([applicationsRecord.fields['Prospective Leaders'][leaderIndex], 'Are You Sure?']),
+                  setInviteMessage([applicationsRecord.fields['Prospective Leaders'][leaderIndex], returnLocalizedMessage(router.locale, "ARE_YOU_SURE")]),
                   setWarning(!warning)
                 )
             }
               >
-                  <Icon glyph={warning ? "menu" : "member-remove"}  />
+                  <Icon glyph={warning && applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] ? "menu" : "member-remove"}  />
               </Text>
               <Box
                 sx={{
                   ':hover,:focus': applicationsRecord.fields['Submitted'] ? {} : { color: 'red' },
-                  cursor: applicationsRecord.fields['Submitted'] ?"not-allowed" : 'pointer',
+                  cursor: applicationsRecord.fields['Submitted'] ? "not-allowed" : 'pointer',
                   color: 'placeholder',
                   fontSize: '16px',
                   ml: [0, 2],
@@ -368,10 +380,10 @@ export default function ApplicationHome({
       }
     }}
   >
-    logout
+    {returnLocalizedMessage(router.locale, "LOGOUT")}
   </Text>
   </Box>
-      <OpenSourceCard />
+      <OpenSourceCard router={router} />
     </Container>
   )
 }
@@ -455,7 +467,7 @@ export async function getServerSideProps({ res, req, params }) {
   }
 }
 
-const OpenSourceCard = () => {
+const OpenSourceCard = ({ router }) => {
 return (
   <Box
   sx={{
@@ -497,7 +509,7 @@ return (
           transition: '0.2s ease-in-out',
         }
       }}>
-      proudly open source
+      {returnLocalizedMessage(router.locale, "PROUDLY_OPEN_SOURCE")}
     </Text>
     </a>
   </Text>

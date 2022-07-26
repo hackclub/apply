@@ -50,7 +50,7 @@ export default function ApplicationRegister({
       <Card px={[4, 4]} py={[4, 4]} mt={1}>
         
         <Heading sx={{ fontSize: [3, 4] }}>
-          { leaderRecord.fields['Full Name'] ? <Text>Looks good {leaderRecord.fields['Full Name'].split(' ')[0]}!</Text> : <Text>Looks Good!</Text>}
+          { leaderRecord.fields['Full Name'] ? <Text>{returnLocalizedMessage(router.locale, 'LOOKS_GOOD')} {leaderRecord.fields['Full Name'].split(' ')[0]}!</Text> : <Text>{returnLocalizedMessage(router.locale, 'LOOKS_GOOD')}!</Text>}
         </Heading>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Box>
@@ -67,11 +67,11 @@ export default function ApplicationRegister({
           variant="ctaLg"
           onClick={() => router.push(`/${params.application}/${params.leader}/club`)}
         >
-          Continue to Club Setup <Icon glyph="view-forward" />
+          {returnLocalizedMessage(router.locale, "CONTINUE")}<Icon glyph="view-forward" />
         </Button>
       </Card>
       <ContactCard router={router}/>
-      <OpenSourceCard />
+      <OpenSourceCard router={router} />
       <Box
   sx={{
     display: ['none', 'flex'],
@@ -110,7 +110,7 @@ export default function ApplicationRegister({
       }
     }}
   >
-    logout
+    {returnLocalizedMessage(router.locale, 'LOGOUT')}
   </Text>
   </Box>
     </Container>
@@ -196,7 +196,7 @@ export async function getServerSideProps({ res, req, params }) {
   }
 
 
-  const OpenSourceCard = () => {
+  const OpenSourceCard = ({ router }) => {
     return (
       <Box
       sx={{
@@ -238,7 +238,7 @@ export async function getServerSideProps({ res, req, params }) {
               transition: '0.2s ease-in-out',
             }
           }}>
-          proudly open source
+          {returnLocalizedMessage(router.locale, 'PROUDLY_OPEN_SOURCE')}
         </Text>
         </a>
       </Text>

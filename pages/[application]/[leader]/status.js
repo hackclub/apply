@@ -12,65 +12,64 @@ import {
   Grid
 } from 'theme-ui'
 import Icon from '@hackclub/icons'
-import styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import nookies, { destroyCookie } from 'nookies'
-import { validateEmail, returnLocalizedMessage } from '../../../lib/helpers'
+import { returnLocalizedMessage } from '../../../lib/helpers'
 import TimelineCard from '../../../components/Timeline'
 import ConfettiOnSuccess from '../../../components/ConfettiOnSuccess'
-
-const SubmitStatus = styled(Text)`
-  background: transparent url(/underline.svg) bottom left no-repeat;
-  background-size: 100% 0.75rem;
-  padding-bottom: 0.125rem;
-`
-
-const GreenSubmitStatus = styled(Text)`
-  background: transparent url(/underline-green.svg) bottom left no-repeat;
-  background-size: 100% 0.75rem;
-  padding-bottom: 0.125rem;
-`
 
 export default function ApplicationOnboarding({
   notFound,
   params,
   applicationsRecord,
   leaderRecord,
-  trackerRecord
+  trackerRecord,
 }) {
-  const [applicationMessage, setApplicationMessage] = useState('is processing...')
-  const [messageColor, setMessageColor] = useState('#000000')
-  const applicationStatus = trackerRecord[0]?.fields.Status
-  const router = useRouter()
+    const router = useRouter()
+    const [applicationMessage, setApplicationMessage] = useState(returnLocalizedMessage(router.locale, 'PROCESSING'))
+    const [messageColor, setMessageColor] = useState('#000000')
+    const applicationStatus = trackerRecord[0]?.fields.Status
   if (notFound) {
     return <Error statusCode="404" />
   }
   console.log(applicationStatus)
   useEffect(() => {
     {   applicationStatus === 'applied' ? (
-        setApplicationMessage('is being reviewed.'),
+        setApplicationMessage(`${returnLocalizedMessage(router.locale, 'IS_BEING_REVIEWED')}`),
         setMessageColor('#000000')
     ) : applicationStatus === 'rejected' ? (
-        setApplicationMessage('has not been accepted.'),
+        setApplicationMessage(`${returnLocalizedMessage(router.locale, 'REJECTED')}`),
         setMessageColor('#ec3750')
     ) : applicationStatus === 'awaiting onboarding' ? (
-        setApplicationMessage('has been accepted!'),
+        setApplicationMessage(`${returnLocalizedMessage(router.locale, 'ACCEPTED')}`),
         setMessageColor('#33d6a6')
     ) : applicationStatus === 'onboarded' ? (
-        setApplicationMessage('has been accepted!'),
+        setApplicationMessage(`${returnLocalizedMessage(router.locale, 'ACCEPTED')}`),
         setMessageColor('#33d6a6')
     ) : (
-        setApplicationMessage('is processing...'),
+        setApplicationMessage(`${returnLocalizedMessage(router.locale, 'PROCESSING')}`),
         setMessageColor('#000000')
     )}
   }, [])
 
+  console.log(trackerRecord[0]?.fields['Status'])
+
   useEffect(() => {
-    if (applicationStatus === null || applicationStatus === undefined) {
+    if (applicationsRecord.fields['Submitted'] === undefined || applicationsRecord.fields['Submitted'] === null) {
+      if (applicationsRecord.fields['All Complete (incl Leaders)'] === 1) {
+        setApplicationMessage('Incomplete. Redirecting...')
+        setTimeout(() => {
+        router.push(`/${params.application}/${params.leader}/review`)
+        }, 1000)
+      }
+    } else if (trackerRecord[0]?.fields.Status === undefined && applicationsRecord.fields['Submitted']) {
+      setTimeout(() => {
         router.reload();
+      }, 500)
     }
+    
   }, [])
 
   return (
@@ -88,44 +87,44 @@ export default function ApplicationOnboarding({
             color: messageColor,
             textAlign: 'center', 
             alignItems: 'center'
-          }}>Your application {applicationMessage}</Text>
+          }}>{returnLocalizedMessage(router.locale, 'YOUR_APPLICATION')} {applicationMessage}</Text>
         </Heading>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
 
         {applicationStatus === 'applied' ? (<>
                 <Box sx={{ fontSize: [1, 2], mb: '30px' }}>
-                <Text>Keep an eye on your email! We’ll be reaching out in 24-48 hours to let you know.</Text>
+                <Text>{returnLocalizedMessage(router.locale, "EYE_ON_EMAIL")}</Text>
                 </Box>
                 <Heading sx={{ fontSize: [2, 3] }} as="h4">
-                <Text>Here are a few things you can check out while you wait!</Text>
+                <Text>{returnLocalizedMessage(router.locale, "WHILE_YOU_WAIT")}</Text>
                 </Heading>
-                <div style={{
+                <Box style={{
                     marginTop: '1rem',
                 }}>
-                  <Text>In Summer '21, Hack Clubbers chartered a train across the United States. <b><a href="https://zephyr.hackclub.com" target="_blank" style={{ textDecoration: 'none'}}><Text sx={{ textDecoration: 'underline', color: 'black', '&:hover': { textDecorationStyle: 'underline'} }}>The Hacker Zephyr</Text></a></b> was the longest hackathon on land, travelling 3,502 miles from Hack Club HQ in Burlington, Vermont to SpaceX in San Francisco, California.</Text>
+                  <Text>{returnLocalizedMessage(router.locale, "ZEPHYR_DETAILS")}</Text>
                  <Box sx={{ my: '15px'}}>
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/2BID8_pGuqA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </Box> 
-                </div>
+                </Box>
       
-                <div style={{
+                <Box style={{
                     marginTop: '1rem',
                 }}>
-                <Text>Check out our <Link href="https://hackclub.com/slack">Hack Club Slack</Link>, with 16000+ members worldwide!</Text>
+                <Text>{returnLocalizedMessage(router.locale, "SLACK_DETAILS_FRONT")} <Link href="https://hackclub.com/slack">{returnLocalizedMessage(router.locale, "SLACK_DETAILS_MIDDLE")}</Link> {returnLocalizedMessage(router.locale, "SLACK_DETAILS_END")}</Text>
                 <video autoPlay muted width="560" height="250" >
                     <source src="https://cdn.glitch.me/2d637c98-ed35-417a-bf89-cecc165d7398%2Foutput-no-duplicate-frames.hecv.mp4" type="video/mp4" />
                 </video>
-                </div>
+                </Box>
         </>) : applicationStatus === 'rejected' ? (<>
                 <Heading sx={{ fontSize: [2, 3] }} as="h4">
-                <Text>Please reach out to clubs@hackclub.com for more information concerning your application status.</Text>
+                <Text>{returnLocalizedMessage(router.locale, "PLEASE_REACH_OUT_REJECTION")}</Text>
                 </Heading>
         </>) : applicationStatus === 'awaiting onboarding' ? (<>
                 <Heading sx={{ fontSize: [2, 3], mb: '30px' }} as="h3">
-                <Text>We're excited to have you in the Hack Club community!</Text>
+                <Text>{returnLocalizedMessage(router.locale, 'EXCITED_TO_HAVE_YOU')}</Text>
                 </Heading>
                 <Box sx={{ fontSize: [1, 2], mb: '30px' }}>
-                <Text>We've scheduled your onboarding with <b>{trackerRecord[0].fields['Ambassador'] === 'HQ' ? 'Holly from HQ' : trackerRecord[0].fields['Ambassador'] === 'APAC' ? 'Anna and Harsh from Hack Club APAC' : 'Hack Club HQ'}</b>. Check your email for more information. Please come prepared to talk about your club and your goals for the following year!</Text>
+                <Text>{returnLocalizedMessage(router.locale, 'SCHEDULED_ONBOARDING')} <b>{trackerRecord[0].fields['Ambassador'] === 'HQ' ? 'Holly from HQ.' : trackerRecord[0].fields['Ambassador'] === 'APAC' ? 'Anna and Harsh from Hack Club APAC.' : 'Hack Club HQ.'}</b> {returnLocalizedMessage(router.locale, "CHECK_YOUR_EMAIL_ONBOARDING")}</Text>
                 </Box>
                 <Box sx={{ mb: '30px' }}>
                 <img width="70%" height="100%" src="https://telltaletv.com/wp-content/uploads/2016/08/picture-of-seinfeld-group-jumping-at-the-door-gif.gif" />
@@ -133,35 +132,16 @@ export default function ApplicationOnboarding({
         
         </>) : applicationStatus === 'onboarded' ? (<>
                 <Heading sx={{ fontSize: [2, 3], mb: '30px' }} as="h3">
-                <Text>We're excited to have you in the Hack Club community!</Text>
+                <Text>{returnLocalizedMessage(router.locale, "EXCITED_TO_HAVE_YOU")}</Text>
                 </Heading>
                 <Box sx={{ fontSize: [1, 2], mb: '30px' }}>
-                <Text>Congratulations on completing your club onboarding! Now, the club is what you make of it. You'll have a check-in call in one month from your onboarding, please your email for more information. We're excited to get your club up and running!</Text>
+                <Text>{returnLocalizedMessage(router.locale, "COMPLETE_MESSAGE")}</Text>
                 </Box>
                 <Box sx={{ mb: '30px' }}>
                 <img width="60%" height="100%" src="https://media-exp1.licdn.com/dms/image/C4E22AQG_keow32-aVQ/feedshare-shrink_2048_1536/0/1632869420418?e=2147483647&v=beta&t=245AFJt0i_YVl5VibSxjuHRGMIWt7Z5J14Gr0vA_DlA" />
                 </Box>
         </>) : (<>
-                <Link href={`/${params.application}/${params.leader}/review`}>
-                <Flex
-                    sx={{
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                    '> svg': { display: ['none', 'inline'] }
-                    }}
-                >
-                <Heading
-                    sx={{
-                    flexGrow: 1,
-                    color: 'blue'
-                    }}
-                    as="h1"
-                >
-                <Text>Continue your application</Text>
-                </Heading>
-                <Icon glyph="view-forward" />
-                </Flex>
-                </Link>
+               {returnLocalizedMessage(router.locale, "ONE_MOMENT")}
         </>)} 
       </Card>
       <Box
@@ -202,11 +182,11 @@ export default function ApplicationOnboarding({
       }
     }}
   >
-    logout
+    {returnLocalizedMessage(router.locale, "LOGOUT")}
   </Text>
   </Box>
       <ContactCard router={router}/>
-      <OpenSourceCard />
+      <OpenSourceCard router={router} />
     </Container>
   )
 }
@@ -289,7 +269,7 @@ export async function getServerSideProps({ res, req, params }) {
     }
   }
 
-  const OpenSourceCard = () => {
+  const OpenSourceCard = ({ router }) => {
     return (
       <Box
       sx={{
@@ -331,7 +311,7 @@ export async function getServerSideProps({ res, req, params }) {
               transition: '0.2s ease-in-out',
             }
           }}>
-          proudly open source
+          {returnLocalizedMessage(router.locale, "PROUDLY_OPEN_SOURCE")}
         </Text>
         </a>
       </Text>

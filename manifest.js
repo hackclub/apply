@@ -247,17 +247,25 @@ export default {
           }
         },
         {
-          key: 'Phone',
-          label: 'Phone number (include country code if not in the United States)',
-          sublabel: (<>
-            <a href="https://www.nationsonline.org/oneworld/international-calling-codes.htm" style={{ cursor: 'pointer', color: 'gray'}}>Find your country code here</a>
-          </>
-          ),
+          key: 'Code',
+          // label: 'Phone number (include country code if not in the United States)',
           type: 'string',
           inputType: 'tel',
           translations: {
             'pt-BR': {
-              label: 'Número de telefone (inclua +55 antes se for do Brasil)'
+              // label: 'Número de telefone (inclua +55 antes se for do Brasil)'
+            }
+          },
+          optional: false
+        },
+        {
+          key: 'Phone',
+          // label: 'Phone number (include country code if not in the United States)',
+          type: 'string',
+          inputType: 'tel',
+          translations: {
+            'pt-BR': {
+              // label: 'Número de telefone (inclua +55 antes se for do Brasil)'
             }
           },
           optional: false
@@ -331,7 +339,8 @@ export default {
           sublabel: '(Gitlab, Sourcehut, other site where your code lives)',
           translations: {
             'pt-BR': {
-              label: 'Link do Other'
+              label: 'Link do ',
+              sublabel: '(Gitlab, Sourcehut, outro site onde seu código reside)',
             }
           },
           optional: true
@@ -341,14 +350,11 @@ export default {
     {
       header: 'Skills',
       header: 'Hacker Details',
-      label: (
-        <>
-          <span style={{ fontSize: '17px'}}>We want to get to know you! Please answer these questions like you’re telling them to a friend</span>
-        </>
-      ),
+      label: 'We want to get to know you! Please answer these questions like you’re telling them to a friend',
       translations: {
         'pt-BR': {
-          header: 'Habilidades'
+          header: 'Habilidades',
+          label: 'Queremos te conhecer! Por favor responda essas perguntas como se estivesse contando-as para um amigo'
         }
       },
       items: [
@@ -358,8 +364,7 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label:
-                'Conte-nos sobre algo que você fez que foi pessoalmente significativo para você.',
+              label: 'Conte-nos sobre algo que você fez que foi pessoalmente significativo para você.',
               sublabel: '(coloque links, se possível)'
             }
           },
@@ -392,6 +397,7 @@ export default {
               <a
                 href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
                 style={{ color: '#338eda' }}
+                target="_blank"
               >
                 Here are examples of what we&#39;re looking for
               </a>
@@ -407,6 +413,7 @@ export default {
                   <a
                     href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
                     style={{ color: '#338eda' }}
+                    target="_blank"
                   >
                     {' '}
                     Aqui estão alguns exemplos do que estamos buscando
@@ -422,23 +429,6 @@ export default {
           optional: false,
           characters: [450, 1200]
         },
-       /* {
-          key: 'Technicality',
-          label:
-            'Are you technical? (You are a programmer who can teach without outside assistance)',
-          type: 'select',
-          optional: false,
-          translations: {
-            'pt-BR': {
-              label:
-                'Você tem habilidades técnicas? (Você é um programador que consegue ensinar sem assistência externa)',
-              sublabel: `(Tudo bem se não! Estamos aqui para ajudar você!)`,
-              options: ['Sim', 'Não']
-            }
-          },
-          sublabel: `(It's okay if not!)`,
-          options: ['Yes', 'No']
-        } */
       ]
     },
     {
@@ -449,7 +439,7 @@ export default {
         'pt-BR': {
           header: 'Estatísticas',
           label:
-            'Estatísticas demográficas são coletadas apenas para compartilharmos com nossos doadores e não vão influenciar a análise de sua inscrição.'
+            'Nós nos importamos em ser o mais inclusivos possíveis. Compartilhando essas informações, você nos ajuda a tornar isso possível'
         }
       },
       items: [
@@ -460,7 +450,7 @@ export default {
           type: 'string',
           translations: {
             'pt-BR': {
-              label: 'Gênero',
+              label: 'Pronomes',
             }
           },
           optional: true

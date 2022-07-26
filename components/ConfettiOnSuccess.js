@@ -29,7 +29,7 @@ export default function ConfettiOnSuccess({ applicationStatus }) {
       particleCount: 30,
       origin: {
         x: randomInRange(originXA, originXB),
-        y: Math.random() - 0.2
+        y: Math.random()
       }
     };
   }
@@ -41,7 +41,7 @@ export default function ConfettiOnSuccess({ applicationStatus }) {
 
   const nextFireworkTickAnimation = useCallback(() => {
     if (refAnimationInstance.current) {
-      refAnimationInstance.current(getFireworkAnimationSettings(0.1, 0.3));
+      refAnimationInstance.current(getFireworkAnimationSettings(0.2, 0.3));
       refAnimationInstance.current(getFireworkAnimationSettings(0.7, 0.9));
     }
   }, []);
@@ -55,9 +55,7 @@ export default function ConfettiOnSuccess({ applicationStatus }) {
 
   useEffect(() => {
     if (!intervalId) {
-      if (applicationStatus === 'applied') {
-        setIntervalId(setInterval(nextFireworkTickAnimation, 1800));
-      } else {
+      if (applicationStatus !== 'rejected') {
         setIntervalId(setInterval(nextFireworkTickAnimation, 1400));
       }
     }

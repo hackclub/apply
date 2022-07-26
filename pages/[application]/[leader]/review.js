@@ -12,26 +12,12 @@ import {
   Grid
 } from 'theme-ui'
 import Icon from '@hackclub/icons'
-import styled from '@emotion/styled'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import nookies, { destroyCookie } from 'nookies'
-import { validateEmail, returnLocalizedMessage } from '../../../lib/helpers'
+import { returnLocalizedMessage, validateEmail } from '../../../lib/helpers'
 import TimelineCard from '../../../components/Timeline'
-
-const SubmitStatus = styled(Text)`
-  background: transparent url(/underline.svg) bottom left no-repeat;
-  background-size: 100% 0.75rem;
-  padding-bottom: 0.125rem;
-`
-
-const GreenSubmitStatus = styled(Text)`
-  background: transparent url(/underline-green.svg) bottom left no-repeat;
-  background-size: 100% 0.75rem;
-  padding-bottom: 0.125rem;
-`
-
 
 export default function ApplicationReview({
   notFound,
@@ -40,11 +26,13 @@ export default function ApplicationReview({
   leaderRecord,
   trackerRecord
 }) {
+  const router = useRouter()
   const [inviteMessage, setInviteMessage] = useState('')
+  const [submitButton, setSubmitButton] = useState(`${returnLocalizedMessage(router.locale, 'SUBMIT_YOUR_APPLICATION')}`)
   const [emailToInvite, setEmailToInvite] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const [warning, setWarning] = useState(false)
   const [acceptCOC, setAcceptCOC] = useState(false)
-  const router = useRouter()
 
   async function sendInvite() {
     if (validateEmail(emailToInvite)) {
@@ -52,50 +40,42 @@ export default function ApplicationReview({
         `/api/invite?email=${encodeURIComponent(emailToInvite)}&id=${params.application}&locale=${router.locale}`
       ).then(r => r.json())
       if (loginAPICall.success) {
-        alert(`✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`)
+        setInviteMessage([applicationsRecord.fields['Prospective Leaders'][applicationsRecord.fields['Prospective Leaders'].length + 1], `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`])
         setEmailToInvite('')
+        setErrorMessage(null)
         router.replace(router.asPath, null, { scroll: false })
       } else {
         console.error(loginAPICall)
-        alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
+        setInviteMessage([applicationsRecord.fields['Prospective Leaders'][applicationsRecord.fields['Prospective Leaders'].length + 1], `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`])
+        setErrorMessage(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
     } else {
-      alert(
-        `❌ ${returnLocalizedMessage(router.locale, 'INVALID_EMAIL_ADDRESS')}`
-      )
+      setErrorMessage(`❌ ${returnLocalizedMessage(router.locale, 'INVALID_EMAIL_ADDRESS')}`)
     }
   }
+
   async function deleteLeader(leaderID) {
-    if (
-      window.confirm(
-        returnLocalizedMessage(
-          router.locale,
-          'ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER'
-        )
-      )
-    ) {
       const deleteLeaderCall = await fetch(
         `/api/remove?id=${params.application}&leaderID=${leaderID}`
       ).then(r => r.json())
       if (deleteLeaderCall.success) {
-        alert(`✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`)
+        setInviteMessage(`✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`)
         router.replace(router.asPath, null, { scroll: false })
       } else {
         console.error(deleteLeaderCall)
-        alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
+        setInviteMessage(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
-    }
   }
   async function submitApplication() {
     const submissionAPICall = await fetch(
       `/api/submit?id=${params.application}`
     ).then(r => r.json())
     if (submissionAPICall.success) {
-      alert(`✅ ${returnLocalizedMessage(router.locale, 'SUBMITTED')}`)
+      setSubmitButton(`✅ ${returnLocalizedMessage(router.locale, 'SUBMITTED')}`)
       router.push(`/${params.application}/${params.leader}/status`)
     } else {
       console.error(submissionAPICall)
-      alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
+      setSubmitButton(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
     }
   }
 
@@ -108,7 +88,7 @@ export default function ApplicationReview({
       <Card px={[4, 4]} py={[4, 4]} mt={1}>
         
         <Heading sx={{ fontSize: [3, 4] }}>
-          <Text>{applicationsRecord.fields['Submitted'] ? <Text>You've submitted! <Link href={`/${params.application}/${params.leader}/status`}>Check out your club's status.</Link></Text> : <Text>Let's review everything so far.</Text>}
+          <Text>{applicationsRecord.fields['Submitted'] ? <Text>{returnLocalizedMessage(router.locale, "YOUVE_SUBMITTED")} <Link href={`/${params.application}/${params.leader}/status`}>{returnLocalizedMessage(router.locale, "CHECK_CLUB_STATUS")}</Link></Text> : <Text>{returnLocalizedMessage(router.locale, "LETS_REVIEW_EVERYTHING")}</Text>}
             </Text>
         </Heading>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
@@ -198,15 +178,15 @@ export default function ApplicationReview({
                   display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
                   transform: 'translateY(-0.2px)',
                   mr: '5px',
-                  mb: `${warning ? '-8px' : '0px'}`
+                  mb: `${warning && applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] ? '-8px' : '0px'}`
                 }}
                 onClick={() => (
-                  setInviteMessage([applicationsRecord.fields['Prospective Leaders'][leaderIndex], 'Are You Sure?']),
+                  setInviteMessage([applicationsRecord.fields['Prospective Leaders'][leaderIndex], returnLocalizedMessage(router.locale, "ARE_YOU_SURE")]),
                   setWarning(!warning)
                 )
             }
               >
-                  <Icon glyph={warning ? "menu" : "member-remove"}  />
+                  <Icon glyph={warning && applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] ? "menu" : "member-remove"}  />
               </Text>
               <Box
                 sx={{
@@ -225,11 +205,54 @@ export default function ApplicationReview({
                   )
                 }
               >
-                Remove Leader
               </Box>
             </Box>
           )
         )}
+        <Box
+              mt={4}
+              sx={{ display: ['block', 'flex'], alignItems: 'center' }}
+            >
+              <Input
+                sx={{
+                  border: '0.5px solid',
+                  fontSize: 1,
+                  borderColor: 'rgb(221, 225, 228)',
+                  mr: [0, 3],
+                  mb: [3, 0]
+                }}
+                disabled={
+                  applicationsRecord.fields['Submitted'] ? true : false
+                }
+                onChange={e => setEmailToInvite(e.target.value)}
+                value={emailToInvite}
+                placeholder={returnLocalizedMessage(
+                  router.locale,
+                  'NEW_CO_LEADER_EMAIL'
+                )}
+              />
+              <Flex
+                sx={{
+                  bg: 'blue',
+                  borderRadius: '999px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  p: 1,
+                  color: 'white',
+                  boxShadow: 'card',
+                  height: '40px',
+                  minWidth: '150px',
+                  fontWeight: 'bold',
+                  cursor: `${applicationsRecord.fields['Submitted'] ? 'not-allowed' : 'pointer'}`
+                }}
+                onClick={() => sendInvite()}
+              >
+                <Icon glyph={'send-fill'} />
+                <Text mr={2}>
+                  {returnLocalizedMessage(router.locale, 'SEND_INVITE')}
+                </Text>
+              </Flex>
+            </Box>
          <Divider sx={{ color: 'slate', my: [3, 4] }} />
          <Link href={`/${params.application}/${params.leader}/leader`}>
           <Flex
@@ -267,7 +290,7 @@ export default function ApplicationReview({
           <Flex
             sx={{
               alignItems: 'center',
-              cursor: 'pointer',
+              cursor: `${applicationsRecord.fields['Submitted'] ? 'pointer' : 'not-allowed'}`,
               '> svg': { display: ['none', 'inline'] }
             }}
           >
@@ -301,7 +324,7 @@ export default function ApplicationReview({
             cursor: 'pointer',
             textDecoration: 'underline', 
             '&:hover': { textDecorationStyle: 'wavy'}
-          }}>Hack Club Code of Conduct</Text></a>
+          }}>{returnLocalizedMessage(router.locale, "HACK_CLUB_CODE_OF_CONDUCT")}</Text></a>
         </Heading>
 
         <Flex
@@ -331,7 +354,7 @@ export default function ApplicationReview({
               }}
               as="h3"
             >
-              The team agrees to the <a target="_blank" href="https://hackclub.com/conduct" style={{ textDecoration: 'none'  }}><Text sx={{ color: 'blue', cursor: 'pointer', textDecoration: 'underline', '&:hover' : { textDecorationStyle: 'wavy'}}}>Hack Club Code of Conduct</Text></a>
+              <Text onClick={() => setAcceptCOC(!acceptCOC)}>{returnLocalizedMessage(router.locale, "THE_TEAM_AGREES")}</Text> <a target="_blank" href="https://hackclub.com/conduct" style={{ textDecoration: 'none'  }}><Text sx={{ color: 'blue', cursor: 'pointer', textDecoration: 'underline', '&:hover' : { textDecorationStyle: 'wavy'}}}>{returnLocalizedMessage(router.locale, "HACK_CLUB_CODE_OF_CONDUCT")}</Text></a>
             </Heading>
           </Flex>
 
@@ -359,7 +382,7 @@ export default function ApplicationReview({
               : submitApplication()
           }
         >
-          {returnLocalizedMessage(router.locale, 'SUBMIT_YOUR_APPLICATION')}!
+          {submitButton}
         </Button>
       </Card>
       <Box
@@ -400,11 +423,11 @@ export default function ApplicationReview({
       }
     }}
   >
-    logout
+    {returnLocalizedMessage(router.locale, "LOGOUT")}
   </Text>
   </Box>
       <ContactCard router={router}/>
-      <OpenSourceCard />
+      <OpenSourceCard router={router} />
     </Container>
   )
 }
@@ -450,44 +473,8 @@ const ContactCard = ({ router }) => (
     </Card>
   )
 
-  export async function getServerSideProps({ res, req, params }) {
-    const {
-      prospectiveLeadersAirtable,
-      applicationsAirtable,
-      trackerAirtable
-    } = require('../../../lib/airtable')
-    const cookies = nookies.get({ req })
-    if (cookies.authToken) {
-      try {
-        const leaderRecord = await prospectiveLeadersAirtable.find(
-          'rec' + params.leader
-        )
-        const applicationsRecord = await applicationsAirtable.find(
-          'rec' + params.application
-        )
-        const trackerRecord = await trackerAirtable.read({
-            filterByFormula: `{App ID} = "rec${params.application}"`,
-            maxRecords: 1,
-      })
-        if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
-          return { props: { params, applicationsRecord, leaderRecord, trackerRecord } }
-        } else {
-          res.statusCode = 302
-          res.setHeader('Location', `/`)
-          return
-        }
-      } catch (e) {
-        res.statusCode = 302
-        res.setHeader('Location', `/`)
-        return
-      }
-    } else {
-      res.statusCode = 302
-      res.setHeader('Location', `/`)
-      return
-    }
-  }
-  const OpenSourceCard = () => {
+
+  const OpenSourceCard = ({ router }) => {
     return (
       <Box
       sx={{
@@ -529,7 +516,7 @@ const ContactCard = ({ router }) => (
               transition: '0.2s ease-in-out',
             }
           }}>
-          proudly open source
+          {returnLocalizedMessage(router.locale, "PROUDLY_OPEN_SOURCE")}
         </Text>
         </a>
       </Text>
@@ -543,3 +530,41 @@ const ContactCard = ({ router }) => (
       </Box>
     )
     }
+
+  export async function getServerSideProps({ res, req, params }) {
+    const {
+      prospectiveLeadersAirtable,
+      applicationsAirtable,
+      trackerAirtable
+    } = require('../../../lib/airtable')
+    const cookies = nookies.get({ req })
+    if (cookies.authToken) {
+      try {
+        const leaderRecord = await prospectiveLeadersAirtable.find(
+          'rec' + params.leader
+        )
+        const applicationsRecord = await applicationsAirtable.find(
+          'rec' + params.application
+        )
+        const trackerRecord = await trackerAirtable.read({
+            filterByFormula: `{App ID} = "rec${params.application}"`,
+            maxRecords: 1,
+      })
+        if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
+          return { props: { params, applicationsRecord, leaderRecord, trackerRecord } }
+        } else {
+          res.statusCode = 302
+          res.setHeader('Location', `/`)
+          return
+        }
+      } catch (e) {
+        res.statusCode = 302
+        res.setHeader('Location', `/`)
+        return
+      }
+    } else {
+      res.statusCode = 302
+      res.setHeader('Location', `/`)
+      return
+    }
+  }
