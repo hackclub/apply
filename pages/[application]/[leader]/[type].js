@@ -32,10 +32,9 @@ export default function ApplicationClub({
   params
 }) {
   const [data, setData] = useState( params.type === 'club' ? applicationsRecord.fields : leaderRecord.fields )
+  const [lastData, setLastData] = useState({})
   const [saved, setSavedState] = useState(true)
   const [showFYI, setShowFYI] = useState(false)
-  const [count, setCount] = useState(0)
-  const [phoneCode, setPhoneCode] = useState('')
 
   const savingStateRef = useRef(saved)
   const setSaved = data => {
@@ -44,8 +43,14 @@ export default function ApplicationClub({
   }
 
   const router = useRouter()
-  // const slug = router?.asPath.split('/')[3]
+  const slug = router.asPath.split('/')[3]
 
+  useEffect(() => {
+    const type = slug === 'club' ? applicationsRecord.fields : leaderRecord.fields 
+    if (data !== type) {
+      router.reload();
+    }
+  }, [slug || params.type])
 
   const poster = async () => {
     const appOrLeader =
@@ -60,6 +65,7 @@ export default function ApplicationClub({
 
     if (json.success) {
       setSaved(true)
+      setLastData(json)
     } else {
       console.error(json)
       alert(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
@@ -69,10 +75,14 @@ export default function ApplicationClub({
   }
 
   useEffect(() => {
-    // console.log(Math.floor(count / 3))
-    setCount(0)
-    poster();
-  }, [Math.floor(count / 3)])
+    const timer = setTimeout(() => {
+    if (lastData !== data) {
+      poster();
+      setLastData(data)
+    }
+  }, 1000)
+  return () => clearTimeout(timer);
+  }, [data])
 
   useEffect(() => {
     window.addEventListener('beforeunload', function (e) {
@@ -96,7 +106,7 @@ export default function ApplicationClub({
         await poster()
       }
     }
-    { leaderRecord.fields['Email'] != applicationsRecord.fields['Leaders Emails'][0] || params.type === 'club' ? router.push(`/${params.application}/${params.leader}/review`) : router.push(`/${params.application}/${params.leader}/register`)}
+    { leaderRecord.fields['Email'] != applicationsRecord.fields['Leaders Emails'][0] || params.type === 'club' ? router.push(`/${params.application}/${params.leader}/review`) : router.push(`/${params.application}/${params.leader}/club`)}
     
   }
 
@@ -105,7 +115,7 @@ export default function ApplicationClub({
   }
   return (
     <Container py={4} variant="copy">
-      <TimelineCard router={router} applicationsRecord={applicationsRecord} leaderRecord={leaderRecord} data={data} params={params} count={count} saved={saved} trackerRecord={trackerRecord}/>
+      <TimelineCard router={router} applicationsRecord={applicationsRecord} leaderRecord={leaderRecord} data={data} params={params} saved={saved} trackerRecord={trackerRecord}/>
       <SavedInfo saved={saved} poster={poster} router={router} />
       <Card
         px={[4, 4]}
@@ -228,9 +238,7 @@ export default function ApplicationClub({
                       onChange={e => {
                         let newData = {}
                         newData['Code'] = e.target.value
-                        setPhoneCode(newData['Code'].toString().split(' ')[2])
                         setData({ ...data, ...newData })
-                        setCount(count + 1)
                         setSaved(false)
                       }}
                       type={'select'}
@@ -286,9 +294,7 @@ export default function ApplicationClub({
                       onChange={e => {
                         let newData = {}
                         newData[item.key] = (e.target.value)
-                        console.log(newData)
                         setData({ ...data, ...newData })
-                        setCount(count + 1)
                         setSaved(false)
                       }}
                       placeholder={returnLocalizedQuestionText(

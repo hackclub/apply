@@ -70,7 +70,7 @@ export default function ApplicationOnboarding({
       }, 500)
     }
     
-  }, [])
+  }, [applicationStatus])
 
   return (
     <Container py={4} variant="copy" sx={{

@@ -290,7 +290,7 @@ export default function ApplicationReview({
           <Flex
             sx={{
               alignItems: 'center',
-              cursor: `${applicationsRecord.fields['Submitted'] ? 'pointer' : 'not-allowed'}`,
+              cursor: 'pointer',
               '> svg': { display: ['none', 'inline'] }
             }}
           >
