@@ -100,7 +100,7 @@ export default function ApplicationHome({
       {applicationsRecord.fields['Submitted'] ? (<>
       <Card px={[4, 4]} py={[3, 3]} mt={1} mb={3}>
         <Text sx={{ fontSize: [1, 2], textAlign: 'center', alignItems: 'center' }} >
-          Congratulations! We'll get back to you within 1 week to let you know if you're in.
+          {returnLocalizedMessage(router.locale, "CONGRATULATIONS_ONE_WEEK")}
         </Text>
       </Card>
       </>) : (null)}

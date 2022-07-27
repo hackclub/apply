@@ -44,5 +44,7 @@ export const messageObject = {
   "WORD": "palavra",
   "SO_FAR": "até aqui",
   "ARE_YOU_SURE_YOU_WANT_TO_SAVE": "Você gostaria de salvar? Clique em Cancelar para pular o salvamento.",
-  "FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS": "FYI: não aceitamos inscrições do Hack Club de universidades ou de professores"
+  "FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS": "FYI: não aceitamos inscrições do Hack Club de universidades ou de professores",
+  "CONGRATULATIONS_ONE_WEEK": "Parabéns! Entraremos em contato com você dentro de 1 semana para informá-lo se você estiver dentro."
+
 }

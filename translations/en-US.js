@@ -45,7 +45,8 @@ export const messageObject =  {
   "WORD": "word",
   "SO_FAR": "so far",
   "ARE_YOU_SURE_YOU_WANT_TO_SAVE": "Would you like to save? Click Cancel to skip saving.",
-  "FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS":"FYI: we don't accept Hack Club applications from universities or from teachers"
+  "FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS":"FYI: we don't accept Hack Club applications from universities or from teachers",
+  "CONGRATULATIONS_ONE_WEEK": "Congratulations! We'll get back to you within 1 week to let you know if you're in."
 }
 
  
