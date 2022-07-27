@@ -97,6 +97,13 @@ export default function ApplicationHome({
   }
   return (
     <Container py={4} variant="copy">
+      {applicationsRecord.fields['Submitted'] ? (<>
+      <Card px={[4, 4]} py={[3, 3]} mt={1} mb={3}>
+        <Text sx={{ fontSize: [1, 2], textAlign: 'center', alignItems: 'center' }} >
+          Congratulations! We'll get back to you within 1 week to let you know if you're in.
+        </Text>
+      </Card>
+      </>) : (null)}
       <Card px={[4, 4]} py={[4, 4]} mt={1}>
         <Heading sx={{ fontSize: [4, 5] }}>
           {returnLocalizedMessage(router.locale, 'APPLICATION_STATUS_MESSAGE')}{' '}
