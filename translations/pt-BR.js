@@ -89,5 +89,6 @@ export const messageObject = {
   "CHECK_CLUB_STATUS": "Confira o status do seu clube.",
   "LETS_REVIEW_EVERYTHING": "Vamos rever tudo até agora.",
   "ARE_YOU_SURE": "Tem certeza?",
-  "LOOKS_GOOD": "Parece bom"
+  "LOOKS_GOOD": "Parece bom",
+  "PHONE_NUMBER": "Número de telefone",
 }

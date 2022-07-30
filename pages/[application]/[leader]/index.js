@@ -12,9 +12,7 @@ import {
   Grid
 } from 'theme-ui'
 import Icon from '@hackclub/icons'
-import styled from '@emotion/styled'
-import { useState } from 'react'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import nookies, { destroyCookie } from 'nookies'
 import { validateEmail, returnLocalizedMessage } from '../../../lib/helpers'
@@ -439,6 +437,7 @@ export default function ApplicationHome({
             fontWeight: '800',
             textTransform: 'uppercase',
             opacity: 1,
+            display: ['none', 'none', 'none', 'grid'],
             transition: '0.5s ease-in-out',
             mx: '5px',
             ':hover,:focus': {
@@ -563,6 +562,7 @@ const OpenSourceCard = ({ router }) => {
           fontWeight: '800',
           textTransform: 'uppercase',
           opacity: 1,
+          display: ['none', 'none', 'none', 'grid'],
           transition: '0.5s ease-in-out',
           mx: '5px',
           ':hover,:focus': {

@@ -17,16 +17,15 @@ const canvasStyles = {
 
 export default function ConfettiOnSuccess({ applicationStatus }) {
   const refAnimationInstance = useRef(null)
-  const [intervalId, setIntervalId] = useState()
   const router = useRouter()
 
   function getFireworkAnimationSettings(originXA, originXB) {
     return {
-      startVelocity: 30,
+      startVelocity: 35,
       spread: 360,
-      ticks: 60,
+      ticks: 100,
       zIndex: 0,
-      particleCount: 30,
+      particleCount: 100,
       origin: {
         x: randomInRange(originXA, originXB),
         y: Math.random()
@@ -46,16 +45,12 @@ export default function ConfettiOnSuccess({ applicationStatus }) {
   }, [])
 
   useEffect(() => {
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [intervalId])
-
-  useEffect(() => {
-    if (!intervalId) {
-      if (applicationStatus !== 'rejected') {
-        setIntervalId(setInterval(nextFireworkTickAnimation, 1400))
-      }
+    if (applicationStatus !== 'rejected') {
+      setTimeout(nextFireworkTickAnimation, 1000)
+      setTimeout(nextFireworkTickAnimation, 1800)
+      setTimeout(nextFireworkTickAnimation, 2600)
+      setTimeout(nextFireworkTickAnimation, 3400)
+      setTimeout(nextFireworkTickAnimation, 4200)
     }
   }, [])
 

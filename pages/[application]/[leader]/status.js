@@ -110,10 +110,7 @@ export default function ApplicationOnboarding({
         params={params}
       />
       <Card px={[4, 4]} py={[4, 4]} mt={1}>
-        <Heading
-          sx={{ fontSize: [3, 4], textAlign: 'center', alignItems: 'center' }}
-          as="h2"
-        >
+        <Heading sx={{ fontSize: [3, 4] }} as="h2">
           <Text
             sx={{
               color: messageColor,
@@ -140,16 +137,78 @@ export default function ApplicationOnboarding({
               </Text>
             </Heading>
             <Box
+              sx={{
+                marginTop: '1rem'
+              }}
+            >
+              <Text>
+                {returnLocalizedMessage(router.locale, 'SLACK_DETAILS_FRONT')}{' '}
+                <a
+                  style={{ textDecoration: 'none', color: 'black' }}
+                  href="https://hackclub.com/slack"
+                  target="_blank"
+                >
+                  <Text
+                    sx={{
+                      color: 'black',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                        textDecorationStyle: 'wavy'
+                      }
+                    }}
+                    as="b"
+                  >
+                    {returnLocalizedMessage(
+                      router.locale,
+                      'SLACK_DETAILS_MIDDLE'
+                    )}
+                  </Text>
+                </a>{' '}
+                {returnLocalizedMessage(router.locale, 'SLACK_DETAILS_END')}
+              </Text>
+              <Box
+                sx={{
+                  marginTop: ['0.5rem', '1rem']
+                }}
+              >
+                <a href="https://hackclub.com/slack" target="_blank">
+                  <video autoPlay muted width="80%" height="auto">
+                    <source
+                      src="https://cdn.glitch.me/2d637c98-ed35-417a-bf89-cecc165d7398%2Foutput-no-duplicate-frames.hecv.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                </a>
+              </Box>
+            </Box>
+            <Box
               style={{
                 marginTop: '1rem'
               }}
             >
               <Text>
+                <a
+                  style={{ textDecoration: 'none' }}
+                  href="https://www.youtube.com/embed/2BID8_pGuqA"
+                  target="_blank"
+                >
+                  <Text
+                    sx={{
+                      color: 'black',
+                      '&:hover': {
+                        textDecoration: 'underline',
+                        textDecorationStyle: 'wavy'
+                      }
+                    }}
+                  >
+                    <b>{returnLocalizedMessage(router.locale, 'ZEPHYR')}</b>
+                  </Text>
+                </a>{' '}
                 {returnLocalizedMessage(router.locale, 'ZEPHYR_DETAILS')}
               </Text>
-              <Box sx={{ my: '15px' }}>
+              <Box sx={{ my: '1rem' }}>
                 <iframe
-                  width="560"
+                  width="80%"
                   height="315"
                   src="https://www.youtube.com/embed/2BID8_pGuqA"
                   title="YouTube video player"
@@ -158,29 +217,6 @@ export default function ApplicationOnboarding({
                   allowfullscreen
                 ></iframe>
               </Box>
-            </Box>
-
-            <Box
-              style={{
-                marginTop: '1rem'
-              }}
-            >
-              <Text>
-                {returnLocalizedMessage(router.locale, 'SLACK_DETAILS_FRONT')}{' '}
-                <Link href="https://hackclub.com/slack">
-                  {returnLocalizedMessage(
-                    router.locale,
-                    'SLACK_DETAILS_MIDDLE'
-                  )}
-                </Link>{' '}
-                {returnLocalizedMessage(router.locale, 'SLACK_DETAILS_END')}
-              </Text>
-              <video autoPlay muted width="560" height="250">
-                <source
-                  src="https://cdn.glitch.me/2d637c98-ed35-417a-bf89-cecc165d7398%2Foutput-no-duplicate-frames.hecv.mp4"
-                  type="video/mp4"
-                />
-              </video>
             </Box>
           </>
         ) : applicationStatus === 'rejected' ? (
@@ -245,9 +281,7 @@ export default function ApplicationOnboarding({
               />
             </Box>
           </>
-        ) : (
-          <>{returnLocalizedMessage(router.locale, 'ONE_MOMENT')}</>
-        )}
+        ) : null}
       </Card>
       <Box
         sx={{
@@ -270,17 +304,19 @@ export default function ApplicationOnboarding({
       >
         <Icon
           glyph="door-leave"
-          style={{
+          sx={{
             color: '#000000',
             opacity: 0.8
           }}
         />
         <Text
           sx={{
-            color: '#000000',
+            color: 'slate',
+            opacity: 0.9,
             fontWeight: '800',
             textTransform: 'uppercase',
             opacity: 1,
+            display: ['none', 'none', 'none', 'grid'],
             transition: '0.5s ease-in-out',
             mx: '5px',
             ':hover,:focus': {
@@ -392,14 +428,22 @@ const OpenSourceCard = ({ router }) => {
         px: 2,
         borderRadius: '15px'
       }}
+      onClick={async () => {
+        await destroyCookie(null, 'authToken', {
+          path: '/'
+        })
+        router.push('/', '/', { scroll: false })
+      }}
     >
       <Text
         sx={{
-          color: '#ec3750',
+          color: 'slate',
+          opacity: 0.9,
           fontWeight: '800',
           textTransform: 'uppercase',
-          transition: '0.5s ease-in-out',
           opacity: 1,
+          display: ['none', 'none', 'none', 'grid'],
+          transition: '0.5s ease-in-out',
           mx: '5px',
           ':hover,:focus': {
             opacity: 1,
@@ -408,40 +452,15 @@ const OpenSourceCard = ({ router }) => {
           }
         }}
       >
-        <a
-          target="_blank"
-          href="https://github.com/hackclub/apply"
-          style={{ textDecoration: 'none' }}
-        >
-          <Text
-            sx={{
-              textDecoration: 'none',
-              color: '#ec3750',
-              opacity: 0.8,
-              transition: '0.2s ease-in-out',
-              '&:hover': {
-                opacity: 1,
-                transition: '0.2s ease-in-out'
-              }
-            }}
-          >
-            {returnLocalizedMessage(router.locale, 'PROUDLY_OPEN_SOURCE')}
-          </Text>
-        </a>
+        {returnLocalizedMessage(router.locale, 'PROUDLY_OPEN_SOURCE')}
       </Text>
-      <a
-        target="_blank"
-        href="https://github.com/hackclub/apply"
-        style={{ textDecoration: 'none' }}
-      >
-        <Icon
-          glyph="github"
-          style={{
-            color: '#000000',
-            opacity: 0.8
-          }}
-        />
-      </a>
+      <Icon
+        glyph="github"
+        sx={{
+          color: '#000000',
+          opacity: 0.8
+        }}
+      />
     </Box>
   )
 }

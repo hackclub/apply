@@ -528,17 +528,19 @@ export default function ApplicationReview({
       >
         <Icon
           glyph="door-leave"
-          style={{
+          sx={{
             color: '#000000',
             opacity: 0.8
           }}
         />
         <Text
           sx={{
-            color: '#000000',
+            color: 'slate',
+            opacity: 0.9,
             fontWeight: '800',
             textTransform: 'uppercase',
             opacity: 1,
+            display: ['none', 'none', 'none', 'grid'],
             transition: '0.5s ease-in-out',
             mx: '5px',
             ':hover,:focus': {
@@ -610,14 +612,22 @@ const OpenSourceCard = ({ router }) => {
         px: 2,
         borderRadius: '15px'
       }}
+      onClick={async () => {
+        await destroyCookie(null, 'authToken', {
+          path: '/'
+        })
+        router.push('/', '/', { scroll: false })
+      }}
     >
       <Text
         sx={{
-          color: '#ec3750',
+          color: 'slate',
+          opacity: 0.9,
           fontWeight: '800',
           textTransform: 'uppercase',
-          transition: '0.5s ease-in-out',
           opacity: 1,
+          display: ['none', 'none', 'none', 'grid'],
+          transition: '0.5s ease-in-out',
           mx: '5px',
           ':hover,:focus': {
             opacity: 1,
@@ -626,40 +636,15 @@ const OpenSourceCard = ({ router }) => {
           }
         }}
       >
-        <a
-          target="_blank"
-          href="https://github.com/hackclub/apply"
-          style={{ textDecoration: 'none' }}
-        >
-          <Text
-            sx={{
-              textDecoration: 'none',
-              color: '#ec3750',
-              opacity: 0.8,
-              transition: '0.2s ease-in-out',
-              '&:hover': {
-                opacity: 1,
-                transition: '0.2s ease-in-out'
-              }
-            }}
-          >
-            {returnLocalizedMessage(router.locale, 'PROUDLY_OPEN_SOURCE')}
-          </Text>
-        </a>
+        {returnLocalizedMessage(router.locale, 'PROUDLY_OPEN_SOURCE')}
       </Text>
-      <a
-        target="_blank"
-        href="https://github.com/hackclub/apply"
-        style={{ textDecoration: 'none' }}
-      >
-        <Icon
-          glyph="github"
-          style={{
-            color: '#000000',
-            opacity: 0.8
-          }}
-        />
-      </a>
+      <Icon
+        glyph="github"
+        sx={{
+          color: '#000000',
+          opacity: 0.8
+        }}
+      />
     </Box>
   )
 }

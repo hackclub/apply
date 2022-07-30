@@ -168,7 +168,13 @@ export default function TimelineCard({
                         display: 'flex',
                         flexDirection: 'row',
                         alignItems: 'center',
-                        cursor: 'pointer',
+                        cursor: `${
+                          item.icon === 'emoji'
+                            ? applicationsRecord.fields['Submitted'] === true
+                              ? 'pointer'
+                              : 'not-allowed'
+                            : 'pointer'
+                        }`,
                         marginTop: '5px'
                       }}
                     >
@@ -178,7 +184,14 @@ export default function TimelineCard({
                       <div>
                         <Box
                           onClick={() => {
-                            router.push(item.href)
+                            {
+                              item.slug === 'status'
+                                ? applicationsRecord.fields['Submitted'] ===
+                                  true
+                                  ? router.push(item.href)
+                                  : null
+                                : router.push(item.href)
+                            }
                           }}
                         >
                           <Icon
@@ -233,7 +246,14 @@ export default function TimelineCard({
                             position: ['relative', 'absolute']
                           }}
                           onClick={() => {
-                            router.push(item.href)
+                            {
+                              item.slug === 'status'
+                                ? applicationsRecord.fields['Submitted'] ===
+                                  true
+                                  ? router.push(item.href)
+                                  : null
+                                : router.push(item.href)
+                            }
                           }}
                         >
                           {item.value}
@@ -247,12 +267,15 @@ export default function TimelineCard({
           )
         })}
       </Flex>
+
+      {/* mobile timeline */}
+
       <Flex
         sx={{
           flexDirection: ['column', 'row'],
           alignItems: 'left',
           textAlign: 'left',
-          flexGrow: 1
+          mt: '0.5rem'
         }}
       >
         {timelineRouting.map((item, idx) => {
@@ -261,7 +284,7 @@ export default function TimelineCard({
               key={idx}
               sx={{
                 display: ['inline', 'none'],
-                mb: '1rem'
+                mb: '0.5rem'
               }}
             >
               <Box
@@ -269,14 +292,26 @@ export default function TimelineCard({
                   display: 'flex',
                   flexDirection: 'row',
                   alignItems: 'center',
-                  cursor: 'pointer',
+                  cursor: `${
+                    item.icon === 'emoji'
+                      ? applicationsRecord.fields['Submitted'] === true
+                        ? 'pointer'
+                        : 'not-allowed'
+                      : 'pointer'
+                  }`,
                   marginTop: '3px'
                 }}
               >
                 <div>
                   <Box
                     onClick={() => {
-                      router.push(item), router.reload(item.href)
+                      {
+                        item.slug === 'status'
+                          ? applicationsRecord.fields['Submitted'] === true
+                            ? router.push(item.href)
+                            : null
+                          : router.push(item.href)
+                      }
                     }}
                   >
                     <Icon
@@ -310,8 +345,15 @@ export default function TimelineCard({
                     color: 'white',
                     borderRadius: '999999px',
                     px: '10px',
-                    py: '1px',
+                    py: '2px',
                     ml: '12px',
+                    minWidth: `${
+                      item.slug === 'leader'
+                        ? '115px'
+                        : item.slug === 'club'
+                        ? '90px'
+                        : 'none'
+                    }`,
                     alignItems: 'right',
                     textAlign: 'right',
                     boxSizing: 'border-box',

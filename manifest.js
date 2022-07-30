@@ -46,8 +46,34 @@ export default {
       },
       items: [
         {
+          key: 'Venue Type',
+          label: 'What type of venue will your Hack Club take place in?',
+          translations: {
+            'pt-BR': {
+              label: 'Que tipo de local é este?',
+              options: [
+                'Ensino médio',
+                'Faculdade/Universidade',
+                'Espaço Maker',
+                'Algo mais'
+              ],
+              sublabel:
+                '(Pode ser uma escola, espaço maker ou qualquer outro lugar.)'
+            }
+          },
+          type: 'select',
+          placeholder: 'Happy Hack High School',
+          options: [
+            'High School',
+            'College/University',
+            'Makerspace',
+            'Something Else'
+          ],
+          optional: false
+        },
+        {
           key: 'School Name',
-          label: 'Where will your club meet?',
+          label: "What's the name of your venue?",
           translations: {
             'pt-BR': {
               label: 'Onde você está planejando criar seu Hack Club?',
@@ -56,23 +82,10 @@ export default {
               placeholder: 'Escola Hacker Feliz'
             }
           },
-          sublabel: '(Give us the name.)',
+          sublabel:
+            "(It doesn't have to be a high school! Instead, you can also add the name of your makerspace here)",
           placeholder: 'Happy Hack High School',
           type: 'string',
-          optional: false
-        },
-        {
-          key: 'Venue Type',
-          label: 'What type of venue is this?',
-          translations: {
-            'pt-BR': {
-              label: 'Que tipo de local é este?',
-              sublabel:
-                '(Pode ser uma escola, espaço maker ou qualquer outro lugar.)'
-            }
-          },
-          type: 'string',
-          sublabel: '(It can be a high school, makerspace, or something else.)',
           optional: false
         },
         {
@@ -92,6 +105,11 @@ export default {
     },
     {
       header: 'Idea',
+      label: (
+        <span style={{ fontSize: '20px' }}>
+          Answer these questions so we can personalize your club experience.
+        </span>
+      ),
       translations: {
         'pt-BR': {
           header: 'Ideia'
@@ -445,12 +463,26 @@ export default {
       items: [
         {
           key: 'Gender',
-          label: 'Pronouns',
+          label: 'Gender',
           optional: true,
-          type: 'string',
+          type: 'select',
+          options: [
+            'Male',
+            'Female',
+            'Transgender',
+            'Non-binary/non-conforming',
+            'Prefer not to respond'
+          ],
           translations: {
             'pt-BR': {
-              label: 'Pronomes'
+              label: 'Pronomes',
+              options: [
+                'Macho',
+                'Fêmea',
+                'Transgênero',
+                'Não binário/não conforme',
+                'Prefiro não responder'
+              ]
             }
           },
           optional: true
@@ -463,12 +495,15 @@ export default {
             'pt-BR': {
               label: 'Etnia',
               options: [
-                'Hispânico',
+                'Origem hispânica, latina ou espanhola',
                 'Branco',
-                'Preto',
-                'Indígena',
+                'Afro-americano',
+                'índio americano ou nativo do Alasca',
                 'Asiático',
-                'Outra etnia'
+                'índio asiático',
+                'Nativo havaiano ou outro ilhéu do Pacífico',
+                'Outra etnia',
+                'Prefiro não dizer'
               ]
             }
           },

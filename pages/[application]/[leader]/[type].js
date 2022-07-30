@@ -83,7 +83,7 @@ export default function ApplicationClub({
         poster()
         setLastData(data)
       }
-    }, 1000)
+    }, 3500)
     return () => clearTimeout(timer)
   }, [data])
 
@@ -132,24 +132,24 @@ export default function ApplicationClub({
         trackerRecord={trackerRecord}
       />
       <SavedInfo saved={saved} poster={poster} router={router} />
-      <Card
-        px={[4, 4]}
-        py={[3, 3]}
-        sx={{
-          color: 'blue',
-          textAlign: 'left'
-        }}
-      >
-        <Box sx={{ display: ['block', 'flex'], alignItems: 'center' }}>
+      <Card px={[4, 4]} py={[4, 4]} mt={2}>
+        <Box
+          sx={{ display: ['block', 'flex'], alignItems: 'center', mb: '2rem' }}
+        >
           <Flex sx={{ alignItems: 'center', flexGrow: 1 }}>
             <Text
-              sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+              sx={{
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                color: 'blue'
+              }}
             >
               <Icon glyph="home" onClick={() => goHome(false)} />
             </Text>
             <Text
               variant="subheadline"
-              sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2 }}
+              sx={{ fontWeight: 400, mb: 0, flexGrow: 1, ml: 2, color: 'blue' }}
               as="div"
             >
               <Text
@@ -201,18 +201,6 @@ export default function ApplicationClub({
             />
           </Box>
         </Box>
-      </Card>
-      <Card px={[4, 4]} py={[4, 4]} mt={4}>
-        {params.type === 'club' ? (
-          <Box sx={{ fontSize: [1, 2], mb: '20px', color: 'placeholder' }}>
-            <Text>
-              {returnLocalizedMessage(
-                router.locale,
-                'ANSWER_QUESTIONS_PERSONALIZE'
-              )}
-            </Text>
-          </Box>
-        ) : null}
         <Text sx={{ fontSize: '20px', color: 'black' }}>
           {returnLocalizedMessage(router.locale, 'LANG_INFO')}
         </Text>
@@ -428,7 +416,7 @@ export default function ApplicationClub({
                         {item.inputType === 'date' ? (
                           <Text
                             sx={{
-                              color: 'blue',
+                              color: 'orange',
                               marginTop: [2]
                             }}
                             as="p"
@@ -550,19 +538,19 @@ export default function ApplicationClub({
       >
         <Icon
           glyph="door-leave"
-          style={{
+          sx={{
             color: '#000000',
             opacity: 0.8
           }}
         />
         <Text
           sx={{
-            color: '#000000',
-            opacity: 0.8,
+            color: 'slate',
+            opacity: 0.9,
             fontWeight: '800',
             textTransform: 'uppercase',
-            display: ['none', 'none', 'none', 'grid'],
             opacity: 1,
+            display: ['none', 'none', 'none', 'grid'],
             transition: '0.5s ease-in-out',
             mx: '5px',
             ':hover,:focus': {
