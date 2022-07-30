@@ -20,18 +20,6 @@ import nookies, { destroyCookie } from 'nookies'
 import { validateEmail, returnLocalizedMessage } from '../../../lib/helpers'
 import TimelineCard from '../../../components/Timeline'
 
-const SubmitStatus = styled(Text)`
-  background: transparent url(/underline.svg) bottom left no-repeat;
-  background-size: 100% 0.75rem;
-  padding-bottom: 0.125rem;
-`
-
-const GreenSubmitStatus = styled(Text)`
-  background: transparent url(/underline-green.svg) bottom left no-repeat;
-  background-size: 100% 0.75rem;
-  padding-bottom: 0.125rem;
-`
-
 export default function ApplicationHome({
   notFound,
   params,
@@ -44,33 +32,49 @@ export default function ApplicationHome({
   const [errorMessage, setErrorMessage] = useState()
   const [emailToInvite, setEmailToInvite] = useState('')
   const router = useRouter()
-  
+
   async function sendInvite() {
     if (validateEmail(emailToInvite)) {
       const loginAPICall = await fetch(
-        `/api/invite?email=${encodeURIComponent(emailToInvite)}&id=${params.application}&locale=${router.locale}`
+        `/api/invite?email=${encodeURIComponent(emailToInvite)}&id=${
+          params.application
+        }&locale=${router.locale}`
       ).then(r => r.json())
       if (loginAPICall.success) {
-        setInviteMessage([applicationsRecord.fields['Prospective Leaders'][applicationsRecord.fields['Prospective Leaders'].length + 1], `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`])
+        setInviteMessage([
+          applicationsRecord.fields['Prospective Leaders'][
+            applicationsRecord.fields['Prospective Leaders'].length + 1
+          ],
+          `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`
+        ])
         setEmailToInvite('')
         setErrorMessage(null)
         router.replace(router.asPath, null, { scroll: false })
       } else {
         console.error(loginAPICall)
-        setInviteMessage([applicationsRecord.fields['Prospective Leaders'][applicationsRecord.fields['Prospective Leaders'].length + 1], `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`])
+        setInviteMessage([
+          applicationsRecord.fields['Prospective Leaders'][
+            applicationsRecord.fields['Prospective Leaders'].length + 1
+          ],
+          `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`
+        ])
         setErrorMessage(`❌ ${returnLocalizedMessage(router.locale, 'ERROR')}`)
       }
     } else {
-      setErrorMessage(`❌ ${returnLocalizedMessage(router.locale, 'INVALID_EMAIL_ADDRESS')}`)
+      setErrorMessage(
+        `❌ ${returnLocalizedMessage(router.locale, 'INVALID_EMAIL_ADDRESS')}`
+      )
     }
   }
   async function deleteLeader(leaderID) {
-  {
+    {
       const deleteLeaderCall = await fetch(
         `/api/remove?id=${params.application}&leaderID=${leaderID}`
       ).then(r => r.json())
       if (deleteLeaderCall.success) {
-        setInviteMessage(`✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`)
+        setInviteMessage(
+          `✅ ${returnLocalizedMessage(router.locale, 'REMOVED')}`
+        )
         setErrorMessage(null)
         router.replace(router.asPath, null, { scroll: false })
       } else {
@@ -85,39 +89,58 @@ export default function ApplicationHome({
   }
   return (
     <Container py={4} variant="copy">
-      <TimelineCard router={router} applicationsRecord={applicationsRecord} leaderRecord={leaderRecord} trackerRecord={trackerRecord} params={params} />
+      <TimelineCard
+        router={router}
+        applicationsRecord={applicationsRecord}
+        leaderRecord={leaderRecord}
+        trackerRecord={trackerRecord}
+        params={params}
+      />
       <Card px={[4, 4]} py={[4, 4]} mt={1}>
-        
-        <Heading sx={{ fontSize: [3, 4], alignItems: 'center', textAlign: 'center' }}>
+        <Heading sx={{ fontSize: [3, 4] }}>
           <Text>{returnLocalizedMessage(router.locale, 'UP_AND_RUNNING')}</Text>
         </Heading>
         <Box
-                sx={{
-                  color: 'black',
-                  fontSize: '16px',
-                  mt: [3],
-                }}
-              >
-                <Text sx={{ alignItems: 'center', textAlign: 'center' }}>{returnLocalizedMessage(router.locale, 'LEARN_MORE_ABOUT_YOU')}</Text>
-                <ol>
-                  <li>{returnLocalizedMessage(router.locale, "INVITE_COLEADS")}</li>
-                  <li>{returnLocalizedMessage(router.locale, "COMPLETE_THE")} <b>{returnLocalizedMessage(router.locale, "5_MINUTE_LEADER")}</b> {returnLocalizedMessage(router.locale, "GET_TO_KNOW_YOU")}</li>
-                  <li>{returnLocalizedMessage(router.locale, "FILL_OUT_THE")} <b>{returnLocalizedMessage(router.locale, "5_MINUTE_CLUB")}</b> {returnLocalizedMessage(router.locale, "PERSONALIZE_CLUB")}</li>
-                  <li>{returnLocalizedMessage(router.locale, "WAIT_24_HOURS")} <b>{returnLocalizedMessage(router.locale, "30_MINUTE_CHAT")}</b> {returnLocalizedMessage(router.locale, "PLAN_OUT_NEXT_YEAR")}</li>
-                  <li>{returnLocalizedMessage(router.locale, "FIRST_MEETING")}</li>
-                </ol>
-              </Box>
+          sx={{
+            color: 'black',
+            fontSize: '16px',
+            mt: [3]
+          }}
+        >
+          <Text sx={{ alignItems: 'center', textAlign: 'center' }}>
+            {returnLocalizedMessage(router.locale, 'LEARN_MORE_ABOUT_YOU')}
+          </Text>
+          <ol>
+            <li>{returnLocalizedMessage(router.locale, 'INVITE_COLEADS')}</li>
+            <li>
+              {returnLocalizedMessage(router.locale, 'COMPLETE_THE')}{' '}
+              <b>{returnLocalizedMessage(router.locale, '5_MINUTE_LEADER')}</b>{' '}
+              {returnLocalizedMessage(router.locale, 'GET_TO_KNOW_YOU')}
+            </li>
+            <li>
+              {returnLocalizedMessage(router.locale, 'FILL_OUT_THE')}{' '}
+              <b>{returnLocalizedMessage(router.locale, '5_MINUTE_CLUB')}</b>{' '}
+              {returnLocalizedMessage(router.locale, 'PERSONALIZE_CLUB')}
+            </li>
+            <li>
+              {returnLocalizedMessage(router.locale, 'WAIT_24_HOURS')}{' '}
+              <b>{returnLocalizedMessage(router.locale, '30_MINUTE_CHAT')}</b>{' '}
+              {returnLocalizedMessage(router.locale, 'PLAN_OUT_NEXT_YEAR')}
+            </li>
+            <li>{returnLocalizedMessage(router.locale, 'FIRST_MEETING')}</li>
+          </ol>
+        </Box>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
         <Heading
-            sx={{
-              color: 'slate',
-              ml: 1,
-              flexGrow: 1,
-              textTransform: 'uppercase',
-            }}
-          >
-            {returnLocalizedMessage(router.locale, 'LEADERS')}
-          </Heading>
+          sx={{
+            color: 'slate',
+            ml: 1,
+            flexGrow: 1,
+            textTransform: 'uppercase'
+          }}
+        >
+          {returnLocalizedMessage(router.locale, 'LEADERS')}
+        </Heading>
         {applicationsRecord.fields['Leaders Emails'].map(
           (leaderEmail, leaderIndex) => (
             <Box
@@ -126,7 +149,7 @@ export default function ApplicationHome({
                 display: ['block', 'flex'],
                 alignItems: 'center',
                 mt: 3,
-                flexWrap: 1,
+                flexWrap: 1
               }}
             >
               <Text
@@ -164,50 +187,90 @@ export default function ApplicationHome({
               >
                 {leaderEmail}
               </Heading>
-              {warning ? (<>
-              <Text
-                sx={{
-                  cursor: 'pointer',
-                  color: 'placeholder',
-                  ':hover': { color: 'red' },
-                  display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
-                  transform: 'translateY(-0.2px)',
-                  mr: '5px'
-                }}
-                onClick={() =>
-                  deleteLeader(
-                    applicationsRecord.fields['Prospective Leaders'][
+              {warning ? (
+                <>
+                  <Text
+                    sx={{
+                      cursor: 'pointer',
+                      color: 'placeholder',
+                      ':hover': { color: 'red' },
+                      display: [
+                        'none',
+                        leaderEmail != leaderRecord['fields']['Email']
+                          ? 'block'
+                          : 'none'
+                      ],
+                      transform: 'translateY(-0.2px)',
+                      mr: '5px'
+                    }}
+                    onClick={() =>
+                      deleteLeader(
+                        applicationsRecord.fields['Prospective Leaders'][
+                          leaderIndex
+                        ]
+                      )
+                    }
+                  >
+                    {applicationsRecord.fields['Prospective Leaders'][
                       leaderIndex
-                    ]
-                  )
-                }
-              >
-                {applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] || inviteMessage[0] === null ? `${inviteMessage[1]}` : null}
-              </Text>
-              </>) : (null)}
-              
+                    ] === inviteMessage[0] || inviteMessage[0] === null
+                      ? `${inviteMessage[1]}`
+                      : null}
+                  </Text>
+                </>
+              ) : null}
+
               <Text
                 sx={{
                   cursor: 'pointer',
                   color: 'placeholder',
                   ':hover': { color: 'slate' },
-                  display: ['none', leaderEmail != leaderRecord['fields']['Email'] ? 'block' : 'none'],
+                  display: [
+                    'none',
+                    leaderEmail != leaderRecord['fields']['Email']
+                      ? 'block'
+                      : 'none'
+                  ],
                   transform: 'translateY(-0.2px)',
                   mr: '5px',
-                  mb: `${warning && applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] ? '-8px' : '0px'}`
+                  mb: `${
+                    warning &&
+                    applicationsRecord.fields['Prospective Leaders'][
+                      leaderIndex
+                    ] === inviteMessage[0]
+                      ? '-8px'
+                      : '0px'
+                  }`
                 }}
                 onClick={() => (
-                  setInviteMessage([applicationsRecord.fields['Prospective Leaders'][leaderIndex], returnLocalizedMessage(router.locale, "ARE_YOU_SURE")]),
+                  setInviteMessage([
+                    applicationsRecord.fields['Prospective Leaders'][
+                      leaderIndex
+                    ],
+                    returnLocalizedMessage(router.locale, 'ARE_YOU_SURE')
+                  ]),
                   setWarning(!warning)
-                )
-            }
+                )}
               >
-                  <Icon glyph={warning && applicationsRecord.fields['Prospective Leaders'][leaderIndex] === inviteMessage[0] ? "menu" : "member-remove"}  />
+                <Icon
+                  glyph={
+                    warning &&
+                    applicationsRecord.fields['Prospective Leaders'][
+                      leaderIndex
+                    ] === inviteMessage[0]
+                      ? 'menu'
+                      : 'member-remove'
+                  }
+                />
               </Text>
               <Box
                 sx={{
-                  ':hover,:focus': applicationsRecord.fields['Submitted'] ? {} : { color: 'red' },
-                  cursor: applicationsRecord.fields['Submitted'] ? "not-allowed" : 'pointer',
+                  ':hover,:focus': applicationsRecord.fields['Submitted']
+                    ? {}
+                    : { color: 'red' },
+                  cursor: applicationsRecord.fields['Submitted']
+                    ? 'not-allowed'
+                    : 'pointer',
                   color: 'placeholder',
                   fontSize: '16px',
                   ml: [0, 2],
@@ -226,168 +289,172 @@ export default function ApplicationHome({
             </Box>
           )
         )}
-    {errorMessage ? (<>
-      <Box sx={{
-        pt: 4,
-      }}>
-        <Text as="b">
-        {errorMessage}
-        </Text>
-        </Box>    
-        </>) : (null)}
-          <Box>
+        {errorMessage ? (
+          <>
             <Box
-              mt={4}
-              sx={{ display: ['block', 'flex'], alignItems: 'center' }}
+              sx={{
+                pt: 4
+              }}
             >
-              <Input
-                sx={{
-                  border: '0.5px solid',
-                  fontSize: 1,
-                  borderColor: 'rgb(221, 225, 228)',
-                  mr: [0, 3],
-                  mb: [3, 0]
-                }}
-                onChange={e => setEmailToInvite(e.target.value)}
-                value={emailToInvite}
-                placeholder={returnLocalizedMessage(
-                  router.locale,
-                  'NEW_CO_LEADER_EMAIL'
-                )}
-              />
-              <Flex
-                sx={{
-                  bg: 'blue',
-                  borderRadius: '999px',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  p: 1,
-                  color: 'white',
-                  boxShadow: 'card',
-                  height: '40px',
-                  minWidth: '150px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer'
-                }}
-                onClick={() => sendInvite()}
-              >
-                <Icon glyph={'send-fill'} />
-                <Text mr={2}>
-                  {returnLocalizedMessage(router.locale, 'SEND_INVITE')}
-                </Text>
-              </Flex>
+              <Text as="b">{errorMessage}</Text>
             </Box>
-
-            <Grid columns={[1, 2]} mt={3}>
-              <Flex
-                sx={{
-                  color: 'blue',
-                  bg: 'rgb(230, 244, 252)',
-                  borderRadius: 4,
-                  px: 3,
-                  py: 2,
-                  alignItems: 'center',
-                  '> svg': { display: ['none', 'inline'] },
-                }}
-              >
-                <Icon glyph={'welcome'} size="40" />
-                <Text ml={[0, 3]}>
-                  {returnLocalizedMessage(
-                    router.locale,
-                    'GUIDE_FOR_SELECTING_TEAM'
-                  )}{' '}
-                  <Text as="b">
-                    <a
-                      href="https://workshops.hackclub.com/leadership_team/"
-                      target="_blank"
-                      style={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      {returnLocalizedMessage(router.locale, 'HERE')}
-                    </a>
-                  </Text>
-                  .
-                </Text>
-              </Flex>
-              <Flex
-                sx={{
-                  color: 'blue',
-                  bg: 'rgb(230, 244, 252)',
-                  borderRadius: 4,
-                  px: 3,
-                  py: 2,
-                  alignItems: 'center',
-                  '> svg': { display: ['inline'] }
-                }}
-              >
-                <Icon glyph={'leader'} size="40" />
-                <Text ml={[0, 3]}>
-                  {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
-                </Text>
-              </Flex>
-            </Grid>
+          </>
+        ) : null}
+        <Box>
+          <Box mt={3} sx={{ display: ['block', 'flex'], alignItems: 'center' }}>
+            <Input
+              sx={{
+                border: '0.5px solid',
+                fontSize: 1,
+                borderColor: 'rgb(221, 225, 228)',
+                mr: [0, 3],
+                mb: [3, 0]
+              }}
+              onChange={e => setEmailToInvite(e.target.value)}
+              value={emailToInvite}
+              placeholder={returnLocalizedMessage(
+                router.locale,
+                'NEW_CO_LEADER_EMAIL'
+              )}
+            />
+            <Flex
+              sx={{
+                bg: 'blue',
+                borderRadius: '999px',
+                alignItems: 'center',
+                justifyContent: 'center',
+                p: 1,
+                color: 'white',
+                boxShadow: 'card',
+                height: '40px',
+                minWidth: '150px',
+                fontWeight: 'bold',
+                cursor: 'pointer'
+              }}
+              onClick={() => sendInvite()}
+            >
+              <Icon glyph={'send-fill'} />
+              <Text mr={2}>
+                {returnLocalizedMessage(router.locale, 'SEND_INVITE')}
+              </Text>
+            </Flex>
           </Box>
+
+          <Grid columns={[1, 2]} mt={3}>
+            <Flex
+              sx={{
+                color: 'blue',
+                bg: 'rgb(230, 244, 252)',
+                borderRadius: 4,
+                px: 3,
+                py: 2,
+                alignItems: 'center',
+                '> svg': { display: ['none', 'inline'] }
+              }}
+            >
+              <Icon glyph={'welcome'} size="40" />
+              <Text ml={[0, 3]}>
+                {returnLocalizedMessage(
+                  router.locale,
+                  'GUIDE_FOR_SELECTING_TEAM'
+                )}{' '}
+                <Text as="b">
+                  <a
+                    href="https://workshops.hackclub.com/leadership_team/"
+                    target="_blank"
+                    style={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    {returnLocalizedMessage(router.locale, 'HERE')}
+                  </a>
+                </Text>
+                .
+              </Text>
+            </Flex>
+            <Flex
+              sx={{
+                color: 'blue',
+                bg: 'rgb(230, 244, 252)',
+                borderRadius: 4,
+                px: 3,
+                py: 2,
+                alignItems: 'center',
+                '> svg': { display: ['inline'] }
+              }}
+            >
+              <Icon glyph={'leader'} size="40" />
+              <Text ml={[0, 3]}>
+                {returnLocalizedMessage(router.locale, 'TEACHER_SPONSOR')}
+              </Text>
+            </Flex>
+          </Grid>
+        </Box>
 
         <Button
           sx={{
             mt: 4,
             width: '100%',
-            textTransform: 'uppercase',}}
+            textTransform: 'uppercase'
+          }}
           variant="ctaLg"
           onClick={() =>
             router.push(`/${params.application}/${params.leader}/leader`)
           }
         >
-          {returnLocalizedMessage(router.locale, "LETS_GET_TO_KNOW_YOU")} <Icon glyph="view-forward" />
-        </Button>  
+          {returnLocalizedMessage(router.locale, 'LETS_GET_TO_KNOW_YOU')}{' '}
+          <Icon glyph="view-forward" />
+        </Button>
       </Card>
-      
-      <ContactCard router={router}/>
+
+      <ContactCard router={router} />
       <Box
-  sx={{
-    display: ['none', 'flex'],
-    position: 'fixed',
-    left: '10px',
-    bottom: '10px',
-    cursor: 'pointer',
-    placeItems: 'center',
-    background: '#00000002',
-    px: 2,
-    borderRadius: '15px'
-  }}
-  onClick={async () => {
-    await destroyCookie(null, 'authToken', {
-      path: '/'
-    })
-    router.push('/', '/', { scroll: false })
-  }}
->
-<Icon glyph="door-leave" style={{
-    color: '#000000',
-    opacity: 0.8,
-  }}/>
-<Text
-    sx={{
-      color: '#000000',
-      fontWeight: '800',
-      textTransform: 'uppercase',
-      opacity: 1,
-      transition: '0.5s ease-in-out',
-      mx: '5px',
-      ':hover,:focus': {
-        opacity: 1,
-        transition: '0.5s ease-in-out',
-        color: '#ec3750',
-      }
-    }}
-  >
-    {returnLocalizedMessage(router.locale, "LOGOUT")}
-  </Text>
-  </Box>
+        sx={{
+          display: ['none', 'flex'],
+          position: 'fixed',
+          left: '10px',
+          bottom: '10px',
+          cursor: 'pointer',
+          placeItems: 'center',
+          background: '#00000002',
+          px: 2,
+          borderRadius: '15px'
+        }}
+        onClick={async () => {
+          await destroyCookie(null, 'authToken', {
+            path: '/'
+          })
+          router.push('/', '/', { scroll: false })
+        }}
+      >
+        <Icon
+          glyph="door-leave"
+          sx={{
+            color: '#000000',
+            opacity: 0.8
+          }}
+        />
+        <Text
+          sx={{
+            color: 'slate',
+            opacity: 0.9,
+            fontWeight: '800',
+            textTransform: 'uppercase',
+            opacity: 1,
+            transition: '0.5s ease-in-out',
+            mx: '5px',
+            ':hover,:focus': {
+              opacity: 1,
+              transition: '0.5s ease-in-out',
+              color: '#ec3750'
+            }
+          }}
+        >
+          {returnLocalizedMessage(router.locale, 'LOGOUT')}
+        </Text>
+      </Box>
       <OpenSourceCard router={router} />
     </Container>
   )
 }
-
 
 const ContactCard = ({ router }) => (
   <Card
@@ -400,7 +467,7 @@ const ContactCard = ({ router }) => (
       alignItems: 'center',
       '> svg': { display: ['none', 'inline'] }
     }}
-    >
+  >
     <Icon glyph="message" />
     <Text sx={{ ml: 2 }}>
       {returnLocalizedMessage(router.locale, 'CONTACT_MESSAGE_FRONT')}{' '}
@@ -422,9 +489,8 @@ const ContactCard = ({ router }) => (
         >
           {returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}
         </Text>
-        
-      </b>
-      {' '}{returnLocalizedMessage(router.locale, 'CONTACT_MESSAGE_BACK')}
+      </b>{' '}
+      {returnLocalizedMessage(router.locale, 'CONTACT_MESSAGE_BACK')}
     </Text>
   </Card>
 )
@@ -445,11 +511,13 @@ export async function getServerSideProps({ res, req, params }) {
         'rec' + params.application
       )
       const trackerRecord = await trackerAirtable.read({
-          filterByFormula: `{App ID} = "rec${params.application}"`,
-          maxRecords: 1,
-    })
+        filterByFormula: `{App ID} = "rec${params.application}"`,
+        maxRecords: 1
+      })
       if (leaderRecord.fields['Accepted Tokens'].includes(cookies.authToken)) {
-        return { props: { params, applicationsRecord, leaderRecord, trackerRecord } }
+        return {
+          props: { params, applicationsRecord, leaderRecord, trackerRecord }
+        }
       } else {
         res.statusCode = 302
         res.setHeader('Location', `/`)
@@ -468,58 +536,51 @@ export async function getServerSideProps({ res, req, params }) {
 }
 
 const OpenSourceCard = ({ router }) => {
-return (
-  <Box
-  sx={{
-    display: ['none', 'flex'],
-    position: 'fixed',
-    right: '10px',
-    bottom: '10px',
-    cursor: 'pointer',
-    placeItems: 'center',
-    background: '#00000002',
-    px: 2,
-    borderRadius: '15px'
-  }}
->
-  
-  <Text
-    sx={{
-      color: '#ec3750',
-      fontWeight: '800',
-      textTransform: 'uppercase',
-      transition: '0.5s ease-in-out',
-      opacity: 1,
-      mx: '5px',
-      ':hover,:focus': {
-        opacity: 1,
-        transition: '0.5s ease-in-out',
-        color: '#ec3750',
-      }
-    }}
-  >
-    <a target="_blank" href="https://github.com/hackclub/apply" style={{ textDecoration: 'none'}}>
-      <Text sx={{
-        textDecoration: 'none',
-        color: '#ec3750',
-        opacity: 0.8,
-        transition: '0.2s ease-in-out',
-        '&:hover': {
+  return (
+    <Box
+      sx={{
+        display: ['none', 'flex'],
+        position: 'fixed',
+        right: '10px',
+        bottom: '10px',
+        cursor: 'pointer',
+        placeItems: 'center',
+        background: '#00000002',
+        px: 2,
+        borderRadius: '15px'
+      }}
+      onClick={async () => {
+        await destroyCookie(null, 'authToken', {
+          path: '/'
+        })
+        router.push('/', '/', { scroll: false })
+      }}
+    >
+      <Text
+        sx={{
+          color: 'slate',
+          opacity: 0.9,
+          fontWeight: '800',
+          textTransform: 'uppercase',
           opacity: 1,
-          transition: '0.2s ease-in-out',
-        }
-      }}>
-      {returnLocalizedMessage(router.locale, "PROUDLY_OPEN_SOURCE")}
-    </Text>
-    </a>
-  </Text>
-  <a target="_blank" href="https://github.com/hackclub/apply" style={{ textDecoration: 'none'}}>
-  <Icon glyph="github" style={{
-    color: '#000000',
-    opacity: 0.8,
-  }}/>
-  </a>
-  
-  </Box>
-)
+          transition: '0.5s ease-in-out',
+          mx: '5px',
+          ':hover,:focus': {
+            opacity: 1,
+            transition: '0.5s ease-in-out',
+            color: '#ec3750'
+          }
+        }}
+      >
+        {returnLocalizedMessage(router.locale, 'PROUDLY_OPEN_SOURCE')}
+      </Text>
+      <Icon
+        glyph="github"
+        sx={{
+          color: '#000000',
+          opacity: 0.8
+        }}
+      />
+    </Box>
+  )
 }

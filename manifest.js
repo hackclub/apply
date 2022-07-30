@@ -22,7 +22,8 @@ export default {
         },
         {
           key: 'Leaders Relationship',
-          label: 'How long have you known your other club leaders and how did you meet?',
+          label:
+            'How long have you known your other club leaders and how did you meet?',
           translations: {
             'pt-BR': {
               label:
@@ -31,7 +32,6 @@ export default {
             }
           },
           type: 'paragraph',
-          display: 'depends',
           optional: true,
           words: 50
         }
@@ -86,8 +86,7 @@ export default {
             }
           },
           optional: false,
-          sublabel:
-            'City, State / Province, Postal Code, Country'
+          sublabel: 'City, State / Province, Postal Code, Country'
         }
       ]
     },
@@ -113,8 +112,7 @@ export default {
         },
         {
           key: 'Success',
-          label:
-            'Describe what your club meetings will look like.',
+          label: 'Describe what your club meetings will look like.',
           type: 'paragraph',
           translations: {
             'pt-BR': {
@@ -282,8 +280,7 @@ export default {
             }
           },
           optional: false,
-          sublabel:
-            'City, State / Province, Postal Code, Country'
+          sublabel: 'City, State / Province, Postal Code, Country'
         }
       ]
     },
@@ -340,21 +337,23 @@ export default {
           translations: {
             'pt-BR': {
               label: 'Link do ',
-              sublabel: '(Gitlab, Sourcehut, outro site onde seu código reside)',
+              sublabel: '(Gitlab, Sourcehut, outro site onde seu código reside)'
             }
           },
           optional: true
-        },
+        }
       ]
     },
     {
       header: 'Skills',
       header: 'Hacker Details',
-      label: 'We want to get to know you! Please answer these questions like you’re telling them to a friend',
+      label:
+        'We want to get to know you! Please answer these questions like you’re telling them to a friend',
       translations: {
         'pt-BR': {
           header: 'Habilidades',
-          label: 'Queremos te conhecer! Por favor responda essas perguntas como se estivesse contando-as para um amigo'
+          label:
+            'Queremos te conhecer! Por favor responda essas perguntas como se estivesse contando-as para um amigo'
         }
       },
       items: [
@@ -364,7 +363,8 @@ export default {
           type: 'paragraph',
           translations: {
             'pt-BR': {
-              label: 'Conte-nos sobre algo que você fez que foi pessoalmente significativo para você.',
+              label:
+                'Conte-nos sobre algo que você fez que foi pessoalmente significativo para você.',
               sublabel: '(coloque links, se possível)'
             }
           },
@@ -428,7 +428,7 @@ export default {
           type: 'paragraph',
           optional: false,
           characters: [450, 1200]
-        },
+        }
       ]
     },
     {
@@ -450,7 +450,7 @@ export default {
           type: 'string',
           translations: {
             'pt-BR': {
-              label: 'Pronomes',
+              label: 'Pronomes'
             }
           },
           optional: true
@@ -486,7 +486,7 @@ export default {
           optional: true
         }
       ]
-    },
+    }
   ],
   metaData: {
     maximumAge: 20 /**IN YEARS*/

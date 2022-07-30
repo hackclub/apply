@@ -77,7 +77,7 @@ export const messageObject =  {
   "ZEPHYR_DETAILS": "In Summer '21, Hack Club chartered a train across the United States. The Hacker Zephyr was the longest hackathon on land, travelling 3,502 miles from Hack Club HQ in Burlington, Vermont to SpaceX in San Francisco, California.",
   "SLACK_DETAILS_FRONT": "Check out our",
   "SLACK_DETAILS_MIDDLE": "Hack Club Slack",
-  "SLACK_DETAILS_END": "with 12000+ members worldwide!",
+  "SLACK_DETAILS_END": "with 16,000+ members worldwide!",
   "PLEASE_REACH_OUT_REJECTION": "Please reach out to clubs@hackclub.com for more information concerning your application status.",
   "EXCITED_TO_HAVE_YOU": "We're excited to have you in the Hack Club community!",
   "SCHEDULED_ONBOARDING" : "We've scheduled your onboarding with",
@@ -85,6 +85,7 @@ export const messageObject =  {
   "COMPLETE_MESSAGE": "Congratulations on completing your club onboarding! Now, the club is what you make of it. You'll have a check-in call in one month from your onboarding, please your email for more information. We're excited to get your club up and running!",
   "PROUDLY_OPEN_SOURCE": "Proudly Open Source",
   "HACK_CLUB_CODE_OF_CONDUCT": "Hack Club Code of Conduct",
+  "CODE_OF_CONDUCT": "Code of Conduct",
   "THE_TEAM_AGREES": "The team agrees to the",
   "ANSWER_QUESTIONS_PERSONALIZE": "Answer these questions so we can personalize your club experience.",
   "YOUVE_SUBMITTED": "You've submitted!",
@@ -92,5 +93,6 @@ export const messageObject =  {
   "LETS_REVIEW_EVERYTHING": "Let's review everything so far.",
   "ARE_YOU_SURE": "Are you sure?",
   "LOOKS_GOOD": "Looks good",
-  "ONE_MOMENT": "One moment please."
+  "ONE_MOMENT": "One moment please.",
+  "PHONE_NUMBER": "Phone Number"
 }

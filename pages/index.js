@@ -1,7 +1,7 @@
 import { Box, Button, Text, Flex, Heading, Input } from 'theme-ui'
 import { useState, useRef, useEffect } from 'react'
 import nookies from 'nookies'
-import {validateEmail, returnLocalizedMessage} from '../lib/helpers'
+import { validateEmail, returnLocalizedMessage } from '../lib/helpers'
 import { useRouter } from 'next/router'
 
 export default function IndexHome() {
@@ -9,19 +9,21 @@ export default function IndexHome() {
   const [status, setStatus] = useState('awaiting')
   const [email, setEmail] = useState('')
   async function handleSubmission(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (validateEmail(email)) {
       setStatus('loading')
-      const loginAPICall = await fetch(`/api/login?email=${encodeURIComponent(email)}&locale=${router.locale}`).then(r =>
-        r.json()
-      )
+      const loginAPICall = await fetch(
+        `/api/login?email=${encodeURIComponent(email)}&locale=${router.locale}`
+      ).then(r => r.json())
       if (loginAPICall.success) {
         setStatus('sent')
       } else {
         setStatus('error')
       }
     } else {
-      alert(`❌ ${returnLocalizedMessage(router.locale, "INVALID_EMAIL_ADDRESS")}`)
+      alert(
+        `❌ ${returnLocalizedMessage(router.locale, 'INVALID_EMAIL_ADDRESS')}`
+      )
     }
   }
   return (
@@ -42,19 +44,20 @@ export default function IndexHome() {
         sx={{ borderRadius: 10, width: '100%', maxWidth: '36rem' }}
       >
         <Heading as="h1" sx={{ fontSize: 5 }}>
-        {returnLocalizedMessage(router.locale, 'WELCOME_TITLE')}
+          {returnLocalizedMessage(router.locale, 'WELCOME_TITLE')}
         </Heading>
         <Text as="p" variant="lead">
-        {returnLocalizedMessage(router.locale, "WELCOME_SUBTITLE")}
+          {returnLocalizedMessage(router.locale, 'WELCOME_SUBTITLE')}
         </Text>
         <Text as="p" variant="lead">
           {status == 'awaiting'
-            ? returnLocalizedMessage(router.locale, "ENTER_YOUR_EMAIL_LABEL")
+            ? returnLocalizedMessage(router.locale, 'ENTER_YOUR_EMAIL_LABEL')
             : status == 'sent'
-            ? '📬 ' + returnLocalizedMessage(router.locale, "WE_JUST_SENT_A_LOGIN_URL")
+            ? '📬 ' +
+              returnLocalizedMessage(router.locale, 'WE_JUST_SENT_A_LOGIN_URL')
             : status == 'loading'
-            ? '✉️ '  + returnLocalizedMessage(router.locale, "SENDING")
-            : '⚠️ '+returnLocalizedMessage(router.locale, 'ERROR')}
+            ? '✉️ ' + returnLocalizedMessage(router.locale, 'SENDING')
+            : '⚠️ ' + returnLocalizedMessage(router.locale, 'ERROR')}
         </Text>
         <Input
           className="bg"
@@ -91,17 +94,21 @@ export async function getServerSideProps(ctx) {
   const { loginsAirtable } = require('../lib/airtable')
   const cookies = nookies.get(ctx)
   if (cookies.authToken) {
-    try{
-    const tokenRecord = await loginsAirtable.find(
-      'rec' + cookies.authToken
-    )
-    let res = ctx.res
-    res.statusCode = 302
-    res.setHeader('Location', `/${tokenRecord.fields['Locale with a slash'] ? tokenRecord.fields['Locale with a slash'] : ''}${tokenRecord.fields["Path"]}`)
-    }
-    catch{
+    try {
+      const tokenRecord = await loginsAirtable.find('rec' + cookies.authToken)
+      let res = ctx.res
+      res.statusCode = 302
+      res.setHeader(
+        'Location',
+        `/${
+          tokenRecord.fields['Locale with a slash']
+            ? tokenRecord.fields['Locale with a slash']
+            : ''
+        }${tokenRecord.fields['Path']}`
+      )
+    } catch {
       nookies.destroy(ctx, 'authToken')
     }
   }
-  return {props: {}}
+  return { props: {} }
 }
