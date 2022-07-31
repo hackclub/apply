@@ -425,9 +425,9 @@ export default function ApplicationHome({
       >
         <Icon
           glyph="door-leave"
-          sx={{
-            color: '#000000',
-            opacity: 0.8
+          style={{
+            color: 'placeholder',
+            opacity: 0.9,
           }}
         />
         <Text

@@ -95,5 +95,6 @@ export const messageObject =  {
   "ARE_YOU_SURE": "Are you sure?",
   "LOOKS_GOOD": "Looks good",
   "ONE_MOMENT": "One moment please.",
-  "PHONE_NUMBER": "Phone Number"
+  "PHONE_NUMBER": "Phone Number",
+  "IS_INCOMPLETE": "is incomplete. Redirecting..."
 }

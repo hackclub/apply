@@ -91,4 +91,6 @@ export const messageObject = {
   "ARE_YOU_SURE": "Tem certeza?",
   "LOOKS_GOOD": "Parece bom",
   "PHONE_NUMBER": "Número de telefone",
+  "IS_INCOMPLETE": "está incompleto. Redirecionando...",
+  "CODE_OF_CONDUCT": "Código de Conduta",
 }

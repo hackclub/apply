@@ -1,19 +1,14 @@
 import Error from 'next/error'
 import {
   Box,
-  Input,
   Divider,
   Card,
   Container,
   Text,
-  Button,
   Heading,
-  Flex,
-  Grid
 } from 'theme-ui'
 import Icon from '@hackclub/icons'
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import nookies, { destroyCookie } from 'nookies'
 import { returnLocalizedMessage } from '../../../lib/helpers'
@@ -74,10 +69,8 @@ export default function ApplicationOnboarding({
       applicationsRecord.fields['Submitted'] === null
     ) {
       if (applicationsRecord.fields['All Complete (incl Leaders)'] === 1) {
-        setApplicationMessage('Incomplete. Redirecting...')
-        setTimeout(() => {
-          router.push(`/${params.application}/${params.leader}/review`)
-        }, 1000)
+        setApplicationMessage(returnLocalizedMessage(router.locale, "IS_INCOMPLETE"))
+        router.push(`/${params.application}/${params.leader}/review`)
       }
     } else if (
       trackerRecord[0]?.fields.Status === undefined &&
@@ -304,9 +297,9 @@ export default function ApplicationOnboarding({
       >
         <Icon
           glyph="door-leave"
-          sx={{
-            color: '#000000',
-            opacity: 0.8
+          style={{
+            color: 'placeholder',
+            opacity: 0.9,
           }}
         />
         <Text

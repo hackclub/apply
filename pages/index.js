@@ -91,11 +91,14 @@ export default function IndexHome() {
 }
 
 export async function getServerSideProps(ctx) {
-  const { loginsAirtable } = require('../lib/airtable')
+  const { loginsAirtable, applicationsAirtable } = require('../lib/airtable')
   const cookies = nookies.get(ctx)
   if (cookies.authToken) {
     try {
       const tokenRecord = await loginsAirtable.find('rec' + cookies.authToken)
+      const applicationsRecord = await applicationsAirtable.find(
+        'rec' + params.application
+      )
       let res = ctx.res
       res.statusCode = 302
       res.setHeader(
@@ -104,7 +107,12 @@ export async function getServerSideProps(ctx) {
           tokenRecord.fields['Locale with a slash']
             ? tokenRecord.fields['Locale with a slash']
             : ''
-        }${tokenRecord.fields['Path']}`
+        }${tokenRecord.fields['Path']
+        }${
+          applicationsRecord.fields['Submitted'] === true 
+            ? `/status` 
+            : '/'
+        }`
       )
     } catch {
       nookies.destroy(ctx, 'authToken')
