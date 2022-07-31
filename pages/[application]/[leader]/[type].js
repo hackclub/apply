@@ -207,6 +207,7 @@ export default function ApplicationClub({
         {(params.type == 'club' ? manifest.clubs : manifest.leaders).map(
           (sectionItem, sectionIndex) => (
             <Box key={sectionIndex}>
+              {sectionItem.header === 'Leaders' && applicationsRecord.fields['Leaders Emails'].length === 1 ? null : (<>
               <Box sx={{ textAlign: 'left' }}>
                 <Text sx={{ color: 'red', fontSize: '27px', fontWeight: 800 }}>
                   {returnLocalizedQuestionText(
@@ -216,6 +217,7 @@ export default function ApplicationClub({
                   )}
                 </Text>
               </Box>
+              </>)}
               <Box>
                 {sectionItem.label && (
                   <Box sx={{ color: 'muted', mb: 3 }}>
@@ -232,7 +234,7 @@ export default function ApplicationClub({
                     mb={3}
                     key={'form-item-' + sectionIndex + '-' + index}
                   >
-                    {item.key === 'Leaders Relationship' &&
+                    {(item.key === 'Leaders Relationship' || item.key === 'President') &&
                     applicationsRecord.fields['Prospective Leaders'].length ===
                       1 ? null : item.key === 'Code' ? null : (
                       <>
@@ -332,7 +334,8 @@ export default function ApplicationClub({
                             }
                             onChange={e => {
                               let newData = {}
-                              newData[item.key] = e.target.value
+                              newData['President'] = `${applicationsRecord.fields['Leaders Emails'].length > 1 ? data['President'] : applicationsRecord.fields['Leaders Emails'][0]}`
+                              newData[item.key] = `${item.key === 'President' ? newData['President'] : e.target.value}`
                               setData({ ...data, ...newData })
                               setSaved(false)
                             }}
@@ -351,7 +354,7 @@ export default function ApplicationClub({
                             type={item.inputType}
                             name="email"
                             value={
-                              data[item.key] !== undefined ? data[item.key] : ''
+                              item.key === 'President' ? applicationsRecord.fields['Leaders Emails'][0] : data[item.key] !== undefined ? data[item.key] : ''
                             }
                             onInput={
                               item.inputType === 'date'
