@@ -356,7 +356,7 @@ export default function ApplicationReview({
             >
               {returnLocalizedMessage(router.locale, 'MY_PERSONAL_PROFILE')}
             </Heading>
-            <Icon glyph="view-forward" />
+            <Icon glyph="post" />
           </Flex>
         </Link>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
@@ -388,7 +388,7 @@ export default function ApplicationReview({
             >
               {returnLocalizedMessage(router.locale, 'YOUR_CLUB')}
             </Heading>
-            <Icon glyph="view-forward" />
+            <Icon glyph="post" />
           </Flex>
         </Link>
         <Divider sx={{ color: 'slate', my: [3, 4] }} />
@@ -530,7 +530,7 @@ export default function ApplicationReview({
           glyph="door-leave"
           style={{
             color: 'placeholder',
-            opacity: 0.9,
+            opacity: 0.9
           }}
         />
         <Text
