@@ -10,6 +10,18 @@ body {
   animation: backgroundAnimation 48s linear infinite;
 }
 
+.flashing {
+  animation: flashingAnimation 5s infinite;
+  animation-timing-function: ease-in-out;
+-webkit-animation-timing-function: ease-in-out;
+}
+
+.bg-flashing {
+  animation: backgroundFlashingAnimation 5s infinite;
+  animation-timing-function: ease-in-out;
+-webkit-animation-timing-function: ease-in-out;
+}
+
 .bg {
   background-color: #e6f4fc;
   background-image: linear-gradient(
@@ -59,5 +71,67 @@ body {
   }
   100% {
     background-color: rgb(230, 244, 252);
+  }
+}
+
+@keyframes flashingAnimation {
+  0% {
+    color: #ec3750;
+    filter: brightness(1);
+  }
+  20% {
+    color: #ff8c37;
+    filter: brightness(1.2);
+  }
+  40% {
+    color: #33d6a6;
+    filter: brightness(1);
+  }
+  60% {
+    color: #a633d6;
+    filter: brightness(1.2);
+  }
+  80% {
+    color: #338eda;
+    filter: brightness(1);
+  }
+  96% {
+    color: #ec3750;
+    filter: brightness(1);
+  }
+  100% {
+    color: #ec3750;
+    filter: brightness(1);
+  }
+}
+
+@keyframes backgroundFlashingAnimation {
+  0% {
+    background-color: #ec3750;
+    filter: brightness(1);
+  }
+  20% {
+    background-color: #ff8c37;
+    filter: brightness(1.2);
+  }
+  40% {
+    background-color: #33d6a6;
+    filter: brightness(1);
+  }
+  60% {
+    background-color: #a633d6;
+    filter: brightness(1.2);
+  }
+  80% {
+    background-color: #338eda;
+    filter: brightness(1);
+  }
+  96% {
+    background-color: #ec3750;
+    filter: brightness(1);
+  }
+  100% {
+    background-color: #ec3750;
+    filter: brightness(1);
   }
 }

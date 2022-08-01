@@ -1,12 +1,5 @@
 import Error from 'next/error'
-import {
-  Box,
-  Divider,
-  Card,
-  Container,
-  Text,
-  Heading,
-} from 'theme-ui'
+import { Box, Divider, Card, Container, Text, Heading } from 'theme-ui'
 import Icon from '@hackclub/icons'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
@@ -54,6 +47,11 @@ export default function ApplicationOnboarding({
             `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
           ),
           setMessageColor('#33d6a6'))
+        : applicationStatus === 'inactive'
+        ? (setApplicationMessage(
+            `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
+          ),
+          setMessageColor('#33d6a6'))
         : (setApplicationMessage(
             `${returnLocalizedMessage(router.locale, 'PROCESSING')}`
           ),
@@ -69,7 +67,9 @@ export default function ApplicationOnboarding({
       applicationsRecord.fields['Submitted'] === null
     ) {
       if (applicationsRecord.fields['All Complete (incl Leaders)'] === 1) {
-        setApplicationMessage(returnLocalizedMessage(router.locale, "IS_INCOMPLETE"))
+        setApplicationMessage(
+          returnLocalizedMessage(router.locale, 'IS_INCOMPLETE')
+        )
         router.push(`/${params.application}/${params.leader}/review`)
       }
     } else if (
@@ -299,7 +299,7 @@ export default function ApplicationOnboarding({
           glyph="door-leave"
           style={{
             color: 'placeholder',
-            opacity: 0.9,
+            opacity: 0.9
           }}
         />
         <Text

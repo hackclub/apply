@@ -196,6 +196,15 @@ export default function TimelineCard({
                         >
                           <Icon
                             glyph={item.icon}
+                            className={
+                              applicationStatus === 'rejected' ||
+                              applicationStatus === 'onboarded' ||
+                              router.asPath.split('/')[3] === item.slug
+                                ? ''
+                                : item.slug === 'status' && applicationStatus
+                                ? 'flashing'
+                                : ''
+                            }
                             style={{
                               color: [
                                 item.progress === '100%' ||
@@ -211,6 +220,15 @@ export default function TimelineCard({
                           />
                         </Box>
                         <Text
+                          className={
+                            applicationStatus === 'rejected' ||
+                            applicationStatus === 'onboarded' ||
+                            router.asPath.split('/')[3] === item.slug
+                              ? ''
+                              : item.slug === 'status' && applicationStatus
+                              ? 'bg-flashing'
+                              : ''
+                          }
                           sx={{
                             transition: '0.4s ease-in-out',
                             backgroundColor: [

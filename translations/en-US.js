@@ -72,7 +72,7 @@ export const messageObject =  {
   "REJECTED": "has not been accepted.",
   "ACCEPTED": "has been accepted.",
   "PROCESSING": "status is processing...",
-  "EYE_ON_EMAIL": "Keep an eye on your email! We’ll reach out in 24-48 hours (Mon-Fri).",
+  "EYE_ON_EMAIL": "Keep an eye on your email! We’ll reach out in 24 hours (Mon-Fri) to let you know.",
   "WHILE_YOU_WAIT": "Here are a few things you can check out while you wait!",
   "ZEPHYR": "The Hacker Zephyr",
   "ZEPHYR_DETAILS": "was an epic, cross-country train trip taken by 42 teen hackers in the summer of 2021. Over 10 days, the journey began on a farm in Vermont and ended on the factory floor of SpaceX in California, where Hack Clubbers demoed their projects.",
