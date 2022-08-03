@@ -8,6 +8,7 @@ import ForceTheme from '../components/force-theme'
 import Flag from '../components/flag'
 import LocaleSwitcher from '../components/locale-switcher'
 import NProgress from '../components/nprogress'
+import Plausible from '../components/plausible'
 import Fullstory from '../components/fullstory'
 import Meta from '@hackclub/meta'
 import Head from 'next/head'
@@ -25,6 +26,7 @@ export default class App extends NextApp {
           image="https://apply.hackclub.com/card_1.png" // large summary card image URL
           color="#ec3750" // theme color
         />
+        <Plausible />
         <Fullstory />
         <Flag />
         <LocaleSwitcher />
