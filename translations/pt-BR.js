@@ -93,4 +93,11 @@ export const messageObject = {
   "PHONE_NUMBER": "Número de telefone",
   "IS_INCOMPLETE": "está incompleto. Redirecionando...",
   "CODE_OF_CONDUCT": "Código de Conduta",
+  "OVER_150": "Mais de 150 Hack Clubbers reunidos em",
+  "ASSEMBLE": " Assemble ",
+  "FOR_THE_FIRST": "para o primeiro hackathon presencial em SF desde a pandemia. Na Montagem, ",
+  "AT_ASSEMBLE": " três vantagens principais para hackathons presenciais foram lançadas.",
+  "GET_500": "Receba uma doação de US $ 500 assim que tiver um local para seu hackathon, fornecido pelo Hack Club Bank em parceria com o FIRST.",
+  "BANK_FREE": "Este semestre, faça seu hackathon no Hack Club Bank gratuitamente. Todo o dinheiro que você arrecadar vai diretamente para o seu hackathon. Ao ingressar no Hack Club Bank, você terá acesso a um conjunto de ferramentas gratuitas, incluindo cartões de débito, nome de domínio, Google Workspace, adesivos e muito mais.",
+  "HACKATHON_LISTED": "Em parceria com a FIRST, faça com que seu hackathon seja listado na primeira página do Google e enviado por e-mail para hackers do ensino médio em sua área."
 }
