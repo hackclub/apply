@@ -49,9 +49,9 @@ export default function ApplicationOnboarding({
           setMessageColor('#33d6a6'))
         : applicationStatus === 'inactive'
         ? (setApplicationMessage(
-            `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
+            `${returnLocalizedMessage(router.locale, 'INACTIVE')}`
           ),
-          setMessageColor('#33d6a6'))
+          setMessageColor('#ff8c37'))
         : (setApplicationMessage(
             `${returnLocalizedMessage(router.locale, 'PROCESSING')}`
           ),
@@ -91,7 +91,9 @@ export default function ApplicationOnboarding({
         overflowX: 'hidden'
       }}
     >
-      {applicationStatus != 'rejected' && applicationStatus != null ? (
+      {applicationStatus != 'rejected' &&
+      applicationStatus !== 'inactive' &&
+      applicationStatus != null ? (
         <ConfettiOnSuccess applicationStatus={applicationStatus} />
       ) : null}
 
@@ -119,7 +121,7 @@ export default function ApplicationOnboarding({
 
         {applicationStatus === 'applied' ? (
           <>
-            <Box sx={{ fontSize: [1, 2], mb: '30px', pt: '1rem'  }}>
+            <Box sx={{ fontSize: [1, 2], mb: '30px', pt: '1rem' }}>
               <Text>
                 {returnLocalizedMessage(router.locale, 'EYE_ON_EMAIL')}
               </Text>
@@ -135,7 +137,7 @@ export default function ApplicationOnboarding({
               }}
             >
               <Text>
-                {returnLocalizedMessage(router.locale, "OVER_150")}{' '}
+                {returnLocalizedMessage(router.locale, 'OVER_150')}{' '}
                 <a
                   style={{ textDecoration: 'none', color: 'black' }}
                   href="https://assemble.hackclub.com"
@@ -151,11 +153,12 @@ export default function ApplicationOnboarding({
                     }}
                     as="b"
                   >
-                    {returnLocalizedMessage(router.locale, "ASSEMBLE")}
+                    {returnLocalizedMessage(router.locale, 'ASSEMBLE')}
                   </Text>
                 </a>{' '}
-                {returnLocalizedMessage(router.locale, "FOR_THE_FIRST")}
-                <b><Text
+                {returnLocalizedMessage(router.locale, 'FOR_THE_FIRST')}
+                <b>
+                  <Text
                     sx={{
                       color: 'black',
                       cursor: 'pointer',
@@ -166,12 +169,15 @@ export default function ApplicationOnboarding({
                     }}
                     as="b"
                   >
-                    {returnLocalizedMessage(router.locale, "AT_ASSEMBLE")}
-                  </Text></b>
+                    {returnLocalizedMessage(router.locale, 'AT_ASSEMBLE')}
+                  </Text>
+                </b>
                 <ol>
-                  <li>{returnLocalizedMessage(router.locale, "GET_500")}</li>
-                  <li>{returnLocalizedMessage(router.locale, "BANK_FREE")}</li>
-                  <li>{returnLocalizedMessage(router.locale, "HACKATHON_LISTED")}</li>
+                  <li>{returnLocalizedMessage(router.locale, 'GET_500')}</li>
+                  <li>{returnLocalizedMessage(router.locale, 'BANK_FREE')}</li>
+                  <li>
+                    {returnLocalizedMessage(router.locale, 'HACKATHON_LISTED')}
+                  </li>
                 </ol>
               </Text>
               <Box
@@ -179,12 +185,15 @@ export default function ApplicationOnboarding({
                   marginTop: ['0.5rem', '1rem']
                 }}
               >
-                <a href="https://hackclub.com/slack" target="_blank">
-                  <img src="https://cloud-mijvi3vs1-hack-club-bot.vercel.app/0image.png" width="80%" />
+                <a href="https://assemble.hackclub.com" target="_blank">
+                  <img
+                    src="https://cloud-aibuyxog8-hack-club-bot.vercel.app/0image.png"
+                    width="80%"
+                  />
                 </a>
               </Box>
             </Box>
-           
+
             <Box
               sx={{
                 marginTop: '1rem'
@@ -276,6 +285,61 @@ export default function ApplicationOnboarding({
                   router.locale,
                   'PLEASE_REACH_OUT_REJECTION'
                 )}
+              </Text>
+              <b>
+                <Text
+                  as="a"
+                  href={`mailto:${returnLocalizedMessage(
+                    router.locale,
+                    'CONTACT_EMAIL'
+                  )}`}
+                  sx={{
+                    color: 'black',
+                    textDecoration: 'none',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                      textDecorationStyle: 'wavy'
+                    }
+                  }}
+                >
+                  {returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}
+                </Text>
+              </b>
+              <Text>
+                {returnLocalizedMessage(router.locale, 'FOR_MORE_INFO')}
+              </Text>
+            </Heading>
+          </>
+        ) : applicationStatus === 'inactive' ? (
+          <>
+            <Heading sx={{ fontSize: [1, 2], fontWeight: '400' }} as="p">
+              <Text>
+                {returnLocalizedMessage(
+                  router.locale,
+                  'PLEASE_REACH_OUT_REJECTION'
+                )}
+              </Text>
+              <b>
+                <Text
+                  as="a"
+                  href={`mailto:${returnLocalizedMessage(
+                    router.locale,
+                    'CONTACT_EMAIL'
+                  )}`}
+                  sx={{
+                    color: 'black',
+                    textDecoration: 'none',
+                    '&:hover': {
+                      textDecoration: 'underline',
+                      textDecorationStyle: 'wavy'
+                    }
+                  }}
+                >
+                  {returnLocalizedMessage(router.locale, 'CONTACT_EMAIL')}
+                </Text>
+              </b>
+              <Text>
+                {returnLocalizedMessage(router.locale, 'FOR_MORE_INFO')}
               </Text>
             </Heading>
           </>

@@ -104,7 +104,7 @@ export async function getServerSideProps(ctx) {
           tokenRecord.fields['Locale with a slash']
             ? tokenRecord.fields['Locale with a slash']
             : ''
-        }${tokenRecord.fields['Path']}/status`
+        }${tokenRecord.fields['Path']}`
       )
     } catch {
       nookies.destroy(ctx, 'authToken')
