@@ -15,7 +15,10 @@ export default async function handler(req, res) {
       })
       res.json({ success: true, id: loginRecord.id })
     } else {
-      const applicationsRecord = await applicationsAirtable.create({})
+      let today = new Date().toLocaleDateString()
+      const applicationsRecord = await applicationsAirtable.create({
+        'Application Date': today,
+      })
       const prospectiveLeadersRecord = await prospectiveLeadersAirtable.create({
         Email: decodeURIComponent(req.query.email),
         Application: [applicationsRecord.id]
