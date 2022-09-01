@@ -469,7 +469,6 @@ export default {
           options: [
             'Male',
             'Female',
-            'Transgender',
             'Non-binary/non-conforming',
             'Prefer not to respond'
           ],
