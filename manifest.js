@@ -478,7 +478,6 @@ export default {
               options: [
                 'Macho',
                 'Fêmea',
-                'Transgênero',
                 'Não binário/não conforme',
                 'Prefiro não responder'
               ]
