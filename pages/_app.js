@@ -9,6 +9,7 @@ import Flag from '../components/flag'
 import LocaleSwitcher from '../components/locale-switcher'
 import NProgress from '../components/nprogress'
 import Fullstory from '../components/fullstory'
+import Plausible from '../components/plausible'
 import Meta from '@hackclub/meta'
 import Head from 'next/head'
 
@@ -26,6 +27,7 @@ export default class App extends NextApp {
           color="#ec3750" // theme color
         />
         <Fullstory />
+        <Plausible />
         <Flag />
         <LocaleSwitcher />
         <NProgress color={'#ec3750'} />
