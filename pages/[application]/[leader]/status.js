@@ -180,17 +180,16 @@ export default function ApplicationOnboarding({
                   </li>
                 </ol>
               </Text>
-              <Box
-                sx={{
-                  marginTop: ['0.5rem', '1rem']
-                }}
-              >
-                <a href="https://assemble.hackclub.com" target="_blank">
-                  <img
-                    src="https://cloud-aibuyxog8-hack-club-bot.vercel.app/0image.png"
-                    width="80%"
-                  />
-                </a>
+              <Box sx={{ my: '1rem' }}>
+                <iframe
+                  width="80%"
+                  height="315"
+                  src="https://www.youtube.com/embed/PnK4gzO6S3Q"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
               </Box>
             </Box>
 
