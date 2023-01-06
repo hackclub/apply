@@ -19,7 +19,8 @@ import { useRouter } from 'next/router'
 import {
   returnLocalizedMessage,
   returnLocalizedQuestionText,
-  handleChangeInDate
+  handleChangeInDate,
+  invalidBirthdate
 } from '../../../lib/helpers'
 import TimelineCard from '../../../components/Timeline'
 import { countryCodeData, flags } from '../../../lib/countrycodes'
@@ -36,7 +37,17 @@ export default function ApplicationClub({
   )
   const [lastData, setLastData] = useState({})
   const [saved, setSavedState] = useState(true)
-  const [showFYI, setShowFYI] = useState(false)
+  const [disabled, setDisabled] = useState(
+    invalidBirthdate(
+      leaderRecord.fields['Birthday'],
+      applicationsRecord.fields['Leader Birthdays']
+    )
+  )
+
+  // When application loads, check if birthday of leader is valid (or empty) or invalid. If invalid, then check if co-leaders have a valid birthday to determine if user can fill out form.
+  useEffect(() => {
+    console.log(disabled)
+  }, [disabled])
 
   const savingStateRef = useRef(saved)
   const setSaved = data => {
@@ -140,7 +151,16 @@ export default function ApplicationClub({
               applicationsRecord.fields['Leaders Emails'].length ===
                 1 ? null : (
                 <>
-                  <Box sx={{ textAlign: 'left', mt: `${params.type === 'club' && sectionItem.header === 'Venue' ? '-1rem' : '0'}` }}>
+                  <Box
+                    sx={{
+                      textAlign: 'left',
+                      mt: `${
+                        params.type === 'club' && sectionItem.header === 'Venue'
+                          ? '-1rem'
+                          : '0'
+                      }`
+                    }}
+                  >
                     <Text
                       sx={{ color: 'red', fontSize: '27px', fontWeight: 800 }}
                     >
@@ -198,7 +218,7 @@ export default function ApplicationClub({
                                 disabled={
                                   applicationsRecord.fields['Submitted']
                                     ? true
-                                    : false
+                                    : disabled
                                 }
                                 as={Select}
                                 onChange={e => {
@@ -266,6 +286,8 @@ export default function ApplicationClub({
                             disabled={
                               applicationsRecord.fields['Submitted']
                                 ? true
+                                : disabled && item.inputType !== 'date'
+                                ? true
                                 : false
                             }
                             onChange={e => {
@@ -312,7 +334,10 @@ export default function ApplicationClub({
                                 ? e => {
                                     handleChangeInDate(
                                       e.target.value,
-                                      setShowFYI
+                                      applicationsRecord.fields[
+                                        'Leader Birthdays'
+                                      ],
+                                      setDisabled
                                     )
                                   }
                                 : null
@@ -370,12 +395,12 @@ export default function ApplicationClub({
                         {item.inputType === 'date' ? (
                           <Text
                             sx={{
-                              color: 'orange',
+                              color: 'red',
                               marginTop: [2]
                             }}
                             as="p"
                           >
-                            {showFYI ? (
+                            {disabled ? (
                               <Text>
                                 {returnLocalizedMessage(
                                   router.locale,
@@ -388,7 +413,7 @@ export default function ApplicationClub({
                                     'CONTACT_EMAIL'
                                   )}`}
                                   sx={{
-                                    color: 'orange',
+                                    color: 'red',
                                     textDecoration: 'none',
                                     '&:hover': {
                                       textDecoration: 'underline',
@@ -494,7 +519,7 @@ export default function ApplicationClub({
           glyph="door-leave"
           style={{
             color: 'placeholder',
-            opacity: 0.9,
+            opacity: 0.9
           }}
         />
         <Text

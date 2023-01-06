@@ -9,10 +9,10 @@ const NProgressContainer = ({
   spinner = false
 }) => {
   const router = useRouter()
-  NProgress.configure({color, showAfterMs, spinner})
+  NProgress.configure({ color, showAfterMs, spinner })
 
   useEffect(() => {
-    const handleStart = (url) => {
+    const handleStart = url => {
       console.log(`Loading ${url}`)
       NProgress.start()
     }
@@ -71,7 +71,7 @@ const NProgressContainer = ({
         border-top-color: ${color};
         border-left-color: ${color};
         border-radius: 50%;
-        -webkit-animation: nprogresss-spinner 400ms linear infinite;
+        -webkit-animation: nprogress-spinner 400ms linear infinite;
         animation: nprogress-spinner 400ms linear infinite;
       }
       .nprogress-custom-parent {
