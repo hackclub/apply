@@ -427,7 +427,7 @@ export default function ApplicationHome({
           glyph="door-leave"
           style={{
             color: 'placeholder',
-            opacity: 0.9,
+            opacity: 0.9
           }}
         />
         <Text

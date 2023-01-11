@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --ignore-path ./.gitignore --write ."
   },
   "dependencies": {
     "@hackclub/icons": "^0.0.9",
