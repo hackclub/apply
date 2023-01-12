@@ -5,8 +5,8 @@ const LocaleSwitcher = props => {
   const router = useRouter()
 
   const languages = {
-    "en-US": "English",
-    "pt-BR": "Português",
+    'en-US': 'English',
+    'pt-BR': 'Português'
   }
 
   return (
@@ -18,7 +18,7 @@ const LocaleSwitcher = props => {
         marginRight: '15px',
         display: 'inline-block',
         paddingTop: '10px',
-        height: '50px',
+        height: '50px'
       }}
     >
       <Select

@@ -14,7 +14,9 @@ export default async function handler(req, res) {
       return
     }
     console.log(req.query.leaderID)
-    const deleteCall = await prospectiveLeadersAirtable.delete(req.query.leaderID)
+    const deleteCall = await prospectiveLeadersAirtable.delete(
+      req.query.leaderID
+    )
     console.log(deleteCall)
     res.status(200).json({ success: true, res: deleteCall })
   } catch (error) {

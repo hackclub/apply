@@ -48,8 +48,8 @@ export default function TimelineCard({
       setStatus(75)
     } else if (applicationStatus === 'applied') {
       setStatus(50)
-    }  else if (applicationStatus === 'inactive') {
-        setStatus(100)
+    } else if (applicationStatus === 'inactive') {
+      setStatus(100)
     } else if (applicationStatus === 'onboarded') {
       setStatus(100)
     } else {
@@ -92,7 +92,13 @@ export default function TimelineCard({
     },
     {
       href: `/${params.application}/${params.leader}/status`,
-      color: `${applicationStatus === 'inactive' ? '#ff8c37' : applicationStatus != 'rejected' ? '#33d6a6' : '#ec3750'}`,
+      color: `${
+        applicationStatus === 'inactive'
+          ? '#ff8c37'
+          : applicationStatus != 'rejected'
+          ? '#33d6a6'
+          : '#ec3750'
+      }`,
       icon: 'emoji',
       progress: `${status}%`,
       value: returnLocalizedMessage(router.locale, 'STATUS'),
@@ -391,4 +397,3 @@ export default function TimelineCard({
     </Card>
   )
 }
-

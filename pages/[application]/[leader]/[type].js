@@ -46,7 +46,7 @@ export default function ApplicationClub({
 
   // When application loads, check if birthday of leader is valid (or empty) or invalid. If invalid, then check if co-leaders have a valid birthday to determine if user can fill out form.
   useEffect(() => {
-    console.log(disabled)
+    console.log('Disabled', disabled)
   }, [disabled])
 
   const savingStateRef = useRef(saved)

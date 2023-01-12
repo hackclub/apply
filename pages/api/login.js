@@ -1,4 +1,8 @@
-import {prospectiveLeadersAirtable, loginsAirtable, applicationsAirtable} from '../../lib/airtable'
+import {
+  prospectiveLeadersAirtable,
+  loginsAirtable,
+  applicationsAirtable
+} from '../../lib/airtable'
 
 export default async function handler(req, res) {
   try {
@@ -11,13 +15,13 @@ export default async function handler(req, res) {
       const prospectiveLeadersRecord = firstAirtableCall[0]
       const loginRecord = await loginsAirtable.create({
         'Relevant User': [prospectiveLeadersRecord.id],
-        "Locale": req.query.locale
+        Locale: req.query.locale
       })
       res.json({ success: true, id: loginRecord.id })
     } else {
       let today = new Date().toLocaleDateString()
       const applicationsRecord = await applicationsAirtable.create({
-        'Application Date': today,
+        'Application Date': today
       })
       const prospectiveLeadersRecord = await prospectiveLeadersAirtable.create({
         Email: decodeURIComponent(req.query.email),
@@ -25,7 +29,7 @@ export default async function handler(req, res) {
       })
       const loginRecord = await loginsAirtable.create({
         'Relevant User': [prospectiveLeadersRecord.id],
-        "Locale": req.query.locale
+        Locale: req.query.locale
       })
       res.json({ success: true, id: loginRecord.id })
     }
