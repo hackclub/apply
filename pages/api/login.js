@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       const loginRecord = await loginsAirtable.create({
         'Relevant User': [prospectiveLeadersRecord.id],
         Locale: req.query.locale,
-        Type: "Apply"
+        Type: ["Apply"]
       })
       res.json({ success: true, id: loginRecord.id })
     }
