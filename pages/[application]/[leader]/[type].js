@@ -87,6 +87,12 @@ export default function ApplicationClub({
   }
 
   useEffect(() => {
+    setDisabled(
+      isInvalidBirthdate(
+        data['Birthday'],
+        applicationsRecord.fields['Leader Birthdays']
+      )
+    )
     const timer = setTimeout(() => {
       if (lastData !== data) {
         poster()
