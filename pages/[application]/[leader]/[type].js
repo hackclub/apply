@@ -87,6 +87,7 @@ export default function ApplicationClub({
   }
 
   useEffect(() => {
+    console.log(data['Birthday'], applicationsRecord.fields['Leader Birthdays'])
     setDisabled(
       isInvalidBirthdate(
         data['Birthday'],
