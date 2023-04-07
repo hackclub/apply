@@ -285,20 +285,88 @@ export default {
             }
           },
           optional: false
-        },
+        }
+      ]
+    },
+    {
+      header: 'Mailing address',
+      label: 'The address where we can ship you stickers!',
+      translations: {
+        'pt-BR': {
+          header: 'Endereço de correspondência'
+        }
+      },
+      items: [
         {
-          key: 'Address',
-          label: 'Your full address (where we can ship you stickers)',
-          type: 'paragraph',
+          key: 'Address Line 1',
+          label: 'Street address',
+          type: 'string',
+          placeholder: '15 Falls Road',
           translations: {
             'pt-BR': {
-              label:
-                'Seu endereço completo (onde podemos te enviar figurinhas adesivas)',
-              sublabel: 'Por favor inclua cidade, estado, país e CEP.'
+              label: 'Endereço (linha 1)'
             }
           },
-          optional: false,
-          sublabel: 'City, State / Province, Postal Code, Country'
+          optional: false
+        },
+        {
+          key: 'Address Line 2',
+          label: 'Address (line 2)',
+          type: 'string',
+          placeholder: 'Apt #123',
+          translations: {
+            'pt-BR': {
+              label: 'Endereço (linha 2)'
+            }
+          },
+          optional: true
+        },
+        {
+          key: 'Address City',
+          label: 'City',
+          placeholder: 'Ithaca',
+          type: 'string',
+          translations: {
+            'pt-BR': {
+              label: 'Cidade'
+            }
+          },
+          optional: false
+        },
+        {
+          key: 'Address State',
+          label: 'State',
+          type: 'string',
+          placeholder: 'NY',
+          translations: {
+            'pt-BR': {
+              label: 'Estado'
+            }
+          },
+          optional: false
+        },
+        {
+          key: 'Address Zip',
+          label: 'Zip code',
+          type: 'string',
+          placeholder: '14850',
+          translations: {
+            'pt-BR': {
+              label: 'CEP'
+            }
+          },
+          optional: false
+        },
+        {
+          key: 'Address Country',
+          label: 'Country',
+          placeholder: 'United States',
+          type: 'countrySelect',
+          translations: {
+            'pt-BR': {
+              label: 'País'
+            }
+          }
         }
       ]
     },

@@ -408,6 +408,34 @@ export default function ApplicationClub({
                                 }`,
                                 maxWidth: '100%'
                               }}
+                              // custom country select field
+                              {...(item.type == 'countrySelect'
+                                ? {
+                                    children: (
+                                      <>
+                                        <option value="" disabled>
+                                          {returnLocalizedMessage(
+                                            router.locale,
+                                            'SELECT_ONE'
+                                          )}
+                                        </option>
+                                        {countryCodeData.map(
+                                          (country, index) => {
+                                            return (
+                                              <option
+                                                key={country.country}
+                                                value={country.country}
+                                              >
+                                                {country.country}{' '}
+                                                {flags[`${country.iso}`]?.emoji}
+                                              </option>
+                                            )
+                                          }
+                                        )}
+                                      </>
+                                    )
+                                  }
+                                : null)}
                               {...(item.type == 'select'
                                 ? item.options
                                   ? {
