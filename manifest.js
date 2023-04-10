@@ -366,7 +366,8 @@ export default {
             'pt-BR': {
               label: 'País'
             }
-          }
+          },
+          optional: false
         }
       ]
     },
