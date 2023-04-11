@@ -1,5 +1,6 @@
 import { applicationsAirtable, loginsAirtable } from '../../lib/airtable'
 import nookies from 'nookies'
+import { isInvalidBirthdate } from '../../lib/helpers'
 
 export default async function handler(req, res) {
   const cookies = nookies.get({ req })
@@ -9,6 +10,15 @@ export default async function handler(req, res) {
       res.redirect('/')
       return
     }
+    // Make sure birthday is valid
+    const application = await applicationsAirtable.find('rec' + req.query.id)
+    if (
+      isInvalidBirthdate(
+        application.fields['Leader Birthdays'][0],
+        application.fields['Leader Birthdays']
+      )
+    )
+      throw new Error('Invalid birthdates')
     const updateCall = await applicationsAirtable.update('rec' + req.query.id, {
       Submitted: true
     })
