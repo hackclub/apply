@@ -50,7 +50,7 @@ export const messageObject = {
   ARE_YOU_SURE_YOU_WANT_TO_SAVE:
     'Would you like to save? Click Cancel to skip saving.',
   FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS:
-    "FYI: we don't accept Hack Club applications from universities or from teachers. Email",
+    "We don't accept Hack Club applications for university clubs or from teachers. Email",
   FOR_MORE_DETAILS: 'for more details.',
   LEARN_MORE_ABOUT_YOU:
     "We want to learn more about you and what your hopes and dreams are for your club so that we can support you! Starting a Hack Club is open to all high school students — here's what you need to do.",
