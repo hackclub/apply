@@ -500,12 +500,22 @@ export default function ApplicationReview({
             applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
             acceptCOC === false ||
             applicationsRecord.fields['Submitted']
-              ? console.log(`You're not done hacker.`)
-              : submitApplication()
+              ? console.log(applicationsRecord)
+              : submitApplication(applicationsRecord.fields)
           }
         >
           {submitButton}
         </Button>
+        <Text sx={{mt: 8}}>
+  {
+    acceptCOC === false ?
+      "You must agree to the Hacker Code of Conduct to Submit Your Application" :
+    applicationsRecord.fields['All Complete (incl Leaders)'] !== 1 ?
+      "Your Hack Club application is not complete. Please ensure you have completed your personal profile, your club profile, and that all of your co-leaders have submitted their application if they were added to the club application." :
+    ""
+  }
+</Text>
+
       </Card>
       <Box
         sx={{
