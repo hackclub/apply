@@ -14,7 +14,7 @@ export const messageObject = {
   LEADERS: 'Leaders',
   GUIDE_FOR_SELECTING_TEAM: 'You can read our guide for selecting your team',
   HERE: 'here',
-  TEACHER_SPONSOR: 'Your teacher sponsor does not need to fill out a profile.',
+  TEACHER_SPONSOR: 'Your teacher sponsor should not to fill out a profile.',
   NEW_CO_LEADER_EMAIL: 'Add a new co-leader via email (optional)',
   SEND_INVITE: 'Send Invite',
   SUBMIT_YOUR_APPLICATION: 'Submit your application',
@@ -94,7 +94,7 @@ export const messageObject = {
   EXCITED_TO_HAVE_YOU: "We're excited to have you in the Hack Club community!",
   SCHEDULED_ONBOARDING: "We've scheduled your onboarding with",
   CHECK_YOUR_EMAIL_ONBOARDING:
-    'Check your email for more information. Please come prepared to talk about your club and your goals for the following year!',
+    'Check your email for more information. Look forward to meeting you!',
   COMPLETE_MESSAGE:
     "Congratulations on completing your club onboarding! Now, the club is what you make of it. You'll have a check-in call in one month from your onboarding; please check your email for more information. We're excited to get your club up and running!",
   PROUDLY_OPEN_SOURCE: 'Proudly Open Source',

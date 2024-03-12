@@ -164,9 +164,9 @@ export default {
       items: [
         {
           key: 'Status',
-          label: 'What steps have you taken to start your club?',
+          label: 'What steps if any have you taken to start your club?',
           sublabel:
-            '(have you registered with your school, taken interest surveys, identified a sponsor, etc.)',
+            '(have you registered with your school, taken interest surveys, identified a sponsor, etc. This is just to know where you are. If you have not done anything yet, that's okay.)',
           type: 'paragraph',
           translations: {
             'pt-BR': {
@@ -205,7 +205,7 @@ export default {
         {
           key: 'Hear About HC',
           label:
-            'How did you hear about Hack Club? (i.e. from a friend, an event, a teacher, a website or twitter)',
+            'How did you hear about Hack Club? (i.e. from a friend, an event, a teacher, a website or Twitter)',
           type: 'paragraph',
           translations: {
             'pt-BR': {
@@ -446,7 +446,7 @@ export default {
       items: [
         {
           key: 'Achievement',
-          label: `Tell us about something you made which was personally meaningful to you?`,
+          label: `Tell us about something you made which was personally meaningful to you.`,
           type: 'paragraph',
           translations: {
             'pt-BR': {
