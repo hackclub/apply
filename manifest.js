@@ -65,7 +65,6 @@ export default {
           placeholder: 'Happy Hack High School',
           options: [
             'High School',
-            'College/University',
             'Makerspace',
             'Something Else'
           ],
