@@ -28,7 +28,7 @@ export const messageObject = {
   REMOVED: 'Member removed!',
   WELCOME_TITLE: 'Welcome',
   WELCOME_SUBTITLE:
-    'We can’t wait to see your application to start a Hack Club. Let’s get you signed in! If you run into any issues, email thomas@hackclub.com for support (we are always happy to help)',
+    'We can’t wait to see your application to start a Hack Club. Let’s get you signed in! If you run into any issues, email sahiti@hackclub.com for support (we are always happy to help)',
   ENTER_YOUR_EMAIL_LABEL: 'Enter your email:',
   WE_JUST_SENT_A_LOGIN_URL: 'We just sent a login URL to your email.',
   SENDING: 'Sending email!',
