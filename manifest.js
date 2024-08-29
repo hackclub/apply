@@ -165,7 +165,7 @@ export default {
           key: 'Status',
           label: 'What steps if any have you taken to start your club?',
           sublabel:
-            '(have you registered with your school, taken interest surveys, identified a sponsor, etc. This is just to know where you are. If you have not done anything yet, that's okay.)',
+            "(have you registered with your school, taken interest surveys, identified a sponsor, etc. This is just to know where you are. If you have not done anything yet, that's okay.)",
           type: 'paragraph',
           translations: {
             'pt-BR': {
