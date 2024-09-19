@@ -14,7 +14,7 @@ export const messageObject = {
   LEADERS: 'Leaders',
   GUIDE_FOR_SELECTING_TEAM: 'You can read our guide for selecting your team',
   HERE: 'here',
-  TEACHER_SPONSOR: 'Your teacher sponsor should not to fill out a profile.',
+  TEACHER_SPONSOR: 'Your teacher sponsor should not fill out a profile.',
   NEW_CO_LEADER_EMAIL: 'Add a new co-leader via email (optional)',
   SEND_INVITE: 'Send Invite',
   SUBMIT_YOUR_APPLICATION: 'Submit your application',
