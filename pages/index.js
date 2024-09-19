@@ -62,7 +62,7 @@ export default function IndexHome() {
         <Input
           className="bg"
           placeholder={returnLocalizedMessage(router.locale, 'EMAIL')}
-          onChange={e => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value.toLowerCase())}
           sx={{
             color: 'rgb(56, 64, 70)',
             display:
