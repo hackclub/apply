@@ -137,26 +137,7 @@ export default function ApplicationOnboarding({
               }}
             >
               <Text>
-                {returnLocalizedMessage(router.locale, 'OVER_150')}{' '}
-                <a
-                  style={{ textDecoration: 'none', color: 'black' }}
-                  href="https://assemble.hackclub.com"
-                  target="_blank"
-                >
-                  <Text
-                    sx={{
-                      color: 'black',
-                      '&:hover': {
-                        textDecoration: 'underline',
-                        textDecorationStyle: 'wavy'
-                      }
-                    }}
-                    as="b"
-                  >
-                    {returnLocalizedMessage(router.locale, 'ASSEMBLE')}
-                  </Text>
-                </a>{' '}
-                {returnLocalizedMessage(router.locale, 'FOR_THE_FIRST')}
+                {returnLocalizedMessage(router.locale, 'AS_A_LEADER')}{' '}
                 <b>
                   <Text
                     sx={{
@@ -169,14 +150,14 @@ export default function ApplicationOnboarding({
                     }}
                     as="b"
                   >
-                    {returnLocalizedMessage(router.locale, 'AT_ASSEMBLE')}
+                    {returnLocalizedMessage(router.locale, 'THREE_KEY_RESOURCES')}
                   </Text>
                 </b>
                 <ol>
-                  <li>{returnLocalizedMessage(router.locale, 'GET_500')}</li>
-                  <li>{returnLocalizedMessage(router.locale, 'BANK_FREE')}</li>
+                  <li>{returnLocalizedMessage(router.locale, 'YSWS')}</li>
+                  <li>{returnLocalizedMessage(router.locale, 'PIZZA')}</li>
                   <li>
-                    {returnLocalizedMessage(router.locale, 'HACKATHON_LISTED')}
+                    {returnLocalizedMessage(router.locale, 'HCB')}
                   </li>
                 </ol>
               </Text>
@@ -184,7 +165,7 @@ export default function ApplicationOnboarding({
                 <iframe
                   width="80%"
                   height="315"
-                  src="https://www.youtube.com/embed/PnK4gzO6S3Q"
+                  src="https://www.youtube.com/embed/H5RPsCMl3uM"
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -244,9 +225,10 @@ export default function ApplicationOnboarding({
               }}
             >
               <Text>
+                <Box>
                 <a
                   style={{ textDecoration: 'none' }}
-                  href="https://www.youtube.com/embed/2BID8_pGuqA"
+                  href="https://www.youtube.com/watch?v=hiG3fYq3xUU"
                   target="_blank"
                 >
                   <Text
@@ -258,16 +240,19 @@ export default function ApplicationOnboarding({
                       }
                     }}
                   >
-                    <b>{returnLocalizedMessage(router.locale, 'ZEPHYR')}</b>
+                    <b>{returnLocalizedMessage(router.locale, 'BOREAL')}</b>
                   </Text>
                 </a>{' '}
-                {returnLocalizedMessage(router.locale, 'ZEPHYR_DETAILS')}
+                    {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_1')}
+                </Box>
+                <Box sx={{marginTop: '0.5em'}}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_2')} </Box>
+                <Box sx={{marginTop: '0.5em'}}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_3')} </Box>
               </Text>
               <Box sx={{ my: '1rem' }}>
                 <iframe
                   width="80%"
                   height="315"
-                  src="https://www.youtube.com/embed/2BID8_pGuqA"
+                  src="https://www.youtube.com/embed/hiG3fYq3xUU"
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
