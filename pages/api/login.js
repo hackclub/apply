@@ -19,7 +19,7 @@ export default async function handler(req, res) {
       })
       res.json({ success: true, id: loginRecord.id })
     } else {
-      let today = new Date().toLocaleDateString()
+      let today = new Date().toLocaleDateString('en-US')
       const applicationsRecord = await applicationsAirtable.create({
         'Application Date': today
       })

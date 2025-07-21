@@ -46,6 +46,21 @@ export default {
       },
       items: [
         {
+          key: 'Club Name',
+          label: "What do you want to call your Hack Club?",
+          translations: {
+            'pt-BR': {
+              label: 'Como você quer chamar seu Hack Club?',
+              sublabel: '(Exemplo: "Hack Club da Escola Feliz" ou "Hackers Unidos")',
+              placeholder: 'Hack Club da Escola Feliz'
+            }
+          },
+          sublabel: 'This will be the official name of your club (e.g., "Happy High Hack Club" or "The Code Crusaders")',
+          placeholder: 'Happy High Hack Club',
+          type: 'string',
+          optional: false
+        },
+        {
           key: 'Venue Type',
           label: 'What type of venue will your Hack Club take place in?',
           translations: {
@@ -213,6 +228,41 @@ export default {
             }
           },
           optional: false
+        },
+        {
+          key: 'Referral Code',
+          label: 'Referral Code',
+          type: 'string',
+          sublabel: (
+            <>
+              Get this from your friends in other clubs who might've ran /referclub in{' '}
+              <a
+                href="https://hackclub.slack.com/archives/C02PA5G01ND"
+                style={{ color: '#338eda' }}
+                target="_blank"
+              >
+                #leaders
+              </a>
+            </>
+          ),
+          translations: {
+            'pt-BR': {
+              label: 'Código de Referência',
+              sublabel: (
+                <>
+                  Obtenha isso de seus amigos em outros clubes que podem ter executado /referclub em{' '}
+                  <a
+                    href="https://hackclub.slack.com/archives/C02PA5G01ND"
+                    style={{ color: '#338eda' }}
+                    target="_blank"
+                  >
+                    #leaders
+                  </a>
+                </>
+              )
+            }
+          },
+          optional: true
         }
       ]
     }
@@ -284,6 +334,19 @@ export default {
             }
           },
           optional: false
+        },
+        {
+          key: 'Slack ID',
+          label: 'What is your Slack ID?',
+          type: 'string',
+          sublabel: 'You can get this from #what-is-my-slack-id on Slack, if you are a member of the Hack Club Slack.',
+          translations: {
+            'pt-BR': {
+              label: 'Qual é o seu ID do Slack?',
+              sublabel: 'Você pode obter isso no canal #what-is-my-slack-id no Slack, se você for um membro do Hack Club Slack.'
+            }
+          },
+          optional: true
         }
       ]
     },
@@ -476,41 +539,13 @@ export default {
         },
         {
           key: 'Hacker Story',
-          label: (
-            <>
-              Please tell us about the time you most successfully hacked some
-              (non-computer) system to your advantage.{' '}
-              <a
-                href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
-                style={{ color: '#338eda' }}
-                target="_blank"
-              >
-                Here are examples of what we&#39;re looking for
-              </a>
-              .
-            </>
-          ),
+          label: "If you had unlimited time, money, and resources, what's the most ridiculous/awesome thing you'd build? Go wild with your imagination!",
           translations: {
             'pt-BR': {
-              label: (
-                <>
-                  Por favor nos conte alguma vez que você hackeou com sucesso
-                  algum sistema (não computacional) para obter alguma vantagem.
-                  <a
-                    href="https://www.quora.com/When-have-you-most-successfully-hacked-a-non-computer-system-to-your-advantage"
-                    style={{ color: '#338eda' }}
-                    target="_blank"
-                  >
-                    {' '}
-                    Aqui estão alguns exemplos do que estamos buscando
-                  </a>
-                  .
-                </>
-              )
+              label: "Se você tivesse tempo, dinheiro e recursos ilimitados, qual seria a coisa mais ridícula/incrível que você construiria? Solte a imaginação!"
             }
           },
-          plainText:
-            'Please tell us about the time you most successfully hacked some (non-computer) system to your advantage.',
+          plainText: "If you had unlimited time, money, and resources, what's the most ridiculous/awesome thing you'd build? Go wild with your imagination!",
           type: 'paragraph',
           optional: false,
           characters: [450, 1200]
