@@ -55,7 +55,7 @@ export default {
               placeholder: 'Hack Club da Escola Feliz'
             }
           },
-          sublabel: 'This will be the official name of your club (e.g., "Happy High Hack Club" or "The Code Crusaders")',
+          sublabel: 'This will be the official name of your club (e.g., "Happy High Hack Club" or "The Code Crusaders") and will be what\'s used on the Hack Club map',
           placeholder: 'Happy High Hack Club',
           type: 'string',
           optional: false
