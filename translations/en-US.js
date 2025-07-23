@@ -82,9 +82,11 @@ export const messageObject = {
   EYE_ON_EMAIL:
     'Keep an eye on your email! We’ll reach out in 24 hours (Mon-Fri) to let you know.',
   WHILE_YOU_WAIT: 'Here are a few things you can check out while you wait!',
-  ZEPHYR: 'The Hacker Zephyr',
-  ZEPHYR_DETAILS:
-    'was an epic, cross-country train trip taken by 42 teen hackers in the summer of 2021. Over 10 days, the journey began on a farm in Vermont and ended on the factory floor of SpaceX in California, where Hack Clubbers demoed their projects.',
+  BOREAL: 'The Boreal Express',
+  BOREAL_DETAILS_1:
+    'was  a transcontinental hackathon bound journey across Canada, all throughout Jasper, Winnipeg, and Toronto.',
+  BOREAL_DETAILS_2: 'During the summer of 2024, a train full of hack clubbers embarked on an 8-day challenge to build projects centered around helping the environment, but were abruptly stopped at the very first destination, due to raging forest fires engulfing Canada.',
+  BOREAL_DETAILS_3: 'While spirits were low, no one was sure whether this meant the cancellation of the event, or a shortened trip, but one thing was clear: These teenagers saw the real-world effects of climate change right before their eyes.',
   SLACK_DETAILS_FRONT: 'Check out our',
   SLACK_DETAILS_MIDDLE: 'Hack Club Slack',
   SLACK_DETAILS_END:
@@ -111,15 +113,9 @@ export const messageObject = {
   ONE_MOMENT: 'One moment please.',
   PHONE_NUMBER: 'Phone Number',
   IS_INCOMPLETE: 'is incomplete. Redirecting...',
-  OVER_150: 'Over 150 Hack Clubbers assembled at',
-  ASSEMBLE: ' Assemble ',
-  FOR_THE_FIRST:
-    'for the first in-person hackathon in SF since the pandemic. At Assemble, ',
-  AT_ASSEMBLE: ' three key perks for in-person hackathons were released.',
-  GET_500:
-    'Get a $500 grant once you have a venue for your hackathon, provided by Hack Club Bank in partnership with FIRST.',
-  BANK_FREE:
-    "This semester, run your hackathon on Hack Club Bank for free. All the money you raise goes directly towards your hackathon. When you join Hack Club Bank, you'll have access to a suite of free tools including debit cards, a domain name, Google Workspace, stickers, and more.",
-  HACKATHON_LISTED:
-    'In partnership with FIRST, get your hackathon listed on the front page of Google and emailed to high school hackers in your area.'
+  AS_A_LEADER: 'As a leader your task will be to build your coding community and facilitate a space for teens to learn and build projects. Here are',
+  THREE_KEY_RESOURCES: 'three key resources we provide to help you.',
+  YSWS: 'Part of Hack Club’s philosophy is to learn while building. We do this by providing You Ship We Ship (YSWS) projects to encourage teens to do this as well! Plus, they come with their own prizes unique to each.',
+  PIZZA: 'Celebrate success! Have a pizza party when your club completes projects, every time. We will send $5 per member every time your club ships a project to us!',
+  HCB: 'This semester, run your club or hackathon on HCB, Hack Club\'s fiscal sponsorship platform! Collect donations and send invoices for your hackathon. When you join HCB, you\'ll have access to a suite of tools including debit cards, a free domain name, stickers, 1Password licenses, event insurance, and more!',
 }
