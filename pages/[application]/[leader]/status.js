@@ -29,33 +29,33 @@ export default function ApplicationOnboarding({
     {
       applicationStatus === 'applied'
         ? (setApplicationMessage(
-            `${returnLocalizedMessage(router.locale, 'IS_BEING_REVIEWED')}`
-          ),
+          `${returnLocalizedMessage(router.locale, 'IS_BEING_REVIEWED')}`
+        ),
           setMessageColor('#000000'))
         : applicationStatus === 'rejected'
-        ? (setApplicationMessage(
+          ? (setApplicationMessage(
             `${returnLocalizedMessage(router.locale, 'REJECTED')}`
           ),
-          setMessageColor('#ec3750'))
-        : applicationStatus === 'awaiting onboarding'
-        ? (setApplicationMessage(
-            `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
-          ),
-          setMessageColor('#33d6a6'))
-        : applicationStatus === 'onboarded'
-        ? (setApplicationMessage(
-            `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
-          ),
-          setMessageColor('#33d6a6'))
-        : applicationStatus === 'inactive'
-        ? (setApplicationMessage(
-            `${returnLocalizedMessage(router.locale, 'INACTIVE')}`
-          ),
-          setMessageColor('#ff8c37'))
-        : (setApplicationMessage(
-            `${returnLocalizedMessage(router.locale, 'PROCESSING')}`
-          ),
-          setMessageColor('#000000'))
+            setMessageColor('#ec3750'))
+          : applicationStatus === 'awaiting onboarding'
+            ? (setApplicationMessage(
+              `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
+            ),
+              setMessageColor('#33d6a6'))
+            : applicationStatus === 'onboarded'
+              ? (setApplicationMessage(
+                `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
+              ),
+                setMessageColor('#33d6a6'))
+              : applicationStatus === 'inactive'
+                ? (setApplicationMessage(
+                  `${returnLocalizedMessage(router.locale, 'INACTIVE')}`
+                ),
+                  setMessageColor('#ff8c37'))
+                : (setApplicationMessage(
+                  `${returnLocalizedMessage(router.locale, 'PROCESSING')}`
+                ),
+                  setMessageColor('#000000'))
     }
   }, [])
 
@@ -92,8 +92,8 @@ export default function ApplicationOnboarding({
       }}
     >
       {applicationStatus != 'rejected' &&
-      applicationStatus !== 'inactive' &&
-      applicationStatus != null ? (
+        applicationStatus !== 'inactive' &&
+        applicationStatus != null ? (
         <ConfettiOnSuccess applicationStatus={applicationStatus} />
       ) : null}
 
@@ -226,27 +226,27 @@ export default function ApplicationOnboarding({
             >
               <Text>
                 <Box>
-                <a
-                  style={{ textDecoration: 'none' }}
-                  href="https://www.youtube.com/watch?v=hiG3fYq3xUU"
-                  target="_blank"
-                >
-                  <Text
-                    sx={{
-                      color: 'black',
-                      '&:hover': {
-                        textDecoration: 'underline',
-                        textDecorationStyle: 'wavy'
-                      }
-                    }}
+                  <a
+                    style={{ textDecoration: 'none' }}
+                    href="https://www.youtube.com/watch?v=hiG3fYq3xUU"
+                    target="_blank"
                   >
-                    <b>{returnLocalizedMessage(router.locale, 'BOREAL')}</b>
-                  </Text>
-                </a>{' '}
-                    {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_1')}
+                    <Text
+                      sx={{
+                        color: 'black',
+                        '&:hover': {
+                          textDecoration: 'underline',
+                          textDecorationStyle: 'wavy'
+                        }
+                      }}
+                    >
+                      <b>{returnLocalizedMessage(router.locale, 'BOREAL')}</b>
+                    </Text>
+                  </a>{' '}
+                  {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_1')}
                 </Box>
-                <Box sx={{marginTop: '0.5em'}}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_2')} </Box>
-                <Box sx={{marginTop: '0.5em'}}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_3')} </Box>
+                <Box sx={{ marginTop: '0.5em' }}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_2')} </Box>
+                <Box sx={{ marginTop: '0.5em' }}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_3')} </Box>
               </Text>
               <Box sx={{ my: '1rem' }}>
                 <iframe
@@ -341,8 +341,8 @@ export default function ApplicationOnboarding({
                   {trackerRecord[0].fields['Ambassador'] === 'HQ'
                     ? 'Holly from HQ.'
                     : trackerRecord[0].fields['Ambassador'] === 'APAC'
-                    ? 'Anna and Harsh from Hack Club APAC.'
-                    : 'Hack Club HQ.'}
+                      ? 'Anna and Harsh from Hack Club APAC.'
+                      : 'Hack Club HQ.'}
                 </b>{' '}
                 {returnLocalizedMessage(
                   router.locale,
@@ -495,19 +495,28 @@ export async function getServerSideProps({ res, req, params }) {
           props: { params, applicationsRecord, leaderRecord, trackerRecord }
         }
       } else {
-        res.statusCode = 302
-        res.setHeader('Location', `/`)
-        return
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false
+          }
+        }
       }
     } catch (e) {
-      res.statusCode = 302
-      res.setHeader('Location', `/`)
-      return
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false
+        }
+      }
     }
   } else {
-    res.statusCode = 302
-    res.setHeader('Location', `/`)
-    return
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
   }
 }
 

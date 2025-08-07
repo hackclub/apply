@@ -185,18 +185,17 @@ export default function ApplicationClub({
             (sectionItem, sectionIndex) => (
               <Box key={sectionIndex}>
                 {sectionItem.header === 'Leaders' &&
-                applicationsRecord.fields['Leaders Emails'].length ===
+                  applicationsRecord.fields['Leaders Emails'].length ===
                   1 ? null : (
                   <>
                     <Box
                       sx={{
                         textAlign: 'left',
-                        mt: `${
-                          params.type === 'club' &&
+                        mt: `${params.type === 'club' &&
                           sectionItem.header === 'Venue'
-                            ? '-1rem'
-                            : '0'
-                        }`
+                          ? '-1rem'
+                          : '0'
+                          }`
                       }}
                     >
                       <Text
@@ -229,345 +228,341 @@ export default function ApplicationClub({
                     >
                       {(item.key === 'Leaders Relationship' ||
                         item.key === 'President') &&
-                      applicationsRecord.fields['Prospective Leaders']
-                        .length === 1 ? null : item.key === 'Code' ? null : (
-                        <>
-                          {item.key === 'Phone' ? (
-                            <Text sx={{ fontSize: '20px' }}>
-                              {returnLocalizedMessage(
-                                router.locale,
-                                'PHONE_NUMBER'
-                              )}
-                            </Text>
-                          ) : null}
+                        applicationsRecord.fields['Prospective Leaders']
+                          .length === 1 ? null : item.key === 'Code' ? null : (
+                            <>
+                              {item.key === 'Phone' ? (
+                                <Text sx={{ fontSize: '20px' }}>
+                                  {returnLocalizedMessage(
+                                    router.locale,
+                                    'PHONE_NUMBER'
+                                  )}
+                                </Text>
+                              ) : null}
 
-                          <Box
-                            sx={{
-                              display: `${
-                                item.key === 'Phone' ? 'flex' : 'grid'
-                              }`,
-                              flexDirection: ['column', 'row'],
-                              gap: '15px'
-                            }}
-                          >
-                            {item.key === 'Phone' ? (
-                              <>
+                              <Box
+                                sx={{
+                                  display: `${item.key === 'Phone' ? 'flex' : 'grid'
+                                    }`,
+                                  flexDirection: ['column', 'row'],
+                                  gap: '15px'
+                                }}
+                              >
+                                {item.key === 'Phone' ? (
+                                  <>
+                                    <Field
+                                      disabled={
+                                        applicationsRecord.fields['Submitted']
+                                          ? true
+                                          : disabled
+                                      }
+                                      as={Select}
+                                      onChange={e => {
+                                        let newData = {}
+                                        newData['Code'] = e.target.value
+                                        setData({ ...data, ...newData })
+                                        setSaved(false)
+                                      }}
+                                      type={'select'}
+                                      name="code"
+                                      value={
+                                        data['Code'] !== undefined
+                                          ? data['Code']
+                                          : ''
+                                      }
+                                      sx={{
+                                        border: '1px solid',
+                                        borderColor: 'rgb(221, 225, 228)',
+                                        resize: 'vertical',
+                                        display: 'grid'
+                                      }}
+                                      children={
+                                        <>
+                                          <option value="" disabled>
+                                            {returnLocalizedMessage(
+                                              router.locale,
+                                              'SELECT_ONE'
+                                            )}
+                                          </option>
+                                          {countryCodeData.map((country, index) => {
+                                            return (
+                                              <option key={index}>
+                                                {country.iso}{' '}
+                                                {flags[`${country.iso}`]?.emoji} +
+                                                {country.code}
+                                              </option>
+                                            )
+                                          })}
+                                        </>
+                                      }
+                                    />
+                                  </>
+                                ) : null}
                                 <Field
+                                  label={
+                                    <Text>
+                                      {returnLocalizedQuestionText(
+                                        router.locale,
+                                        item,
+                                        'label'
+                                      )}{' '}
+                                      <Text
+                                        sx={{
+                                          color: 'muted',
+                                          display: item.optional ? 'inline' : 'none'
+                                        }}
+                                      >
+                                        (
+                                        {returnLocalizedMessage(
+                                          router.locale,
+                                          'OPTIONAL'
+                                        )}
+                                        )
+                                      </Text>
+                                    </Text>
+                                  }
                                   disabled={
                                     applicationsRecord.fields['Submitted']
                                       ? true
-                                      : disabled
+                                      : disabled && item.inputType !== 'date'
+                                        ? true
+                                        : false
                                   }
-                                  as={Select}
                                   onChange={e => {
                                     let newData = {}
-                                    newData['Code'] = e.target.value
+                                    newData['President'] = `${applicationsRecord.fields['Leaders Emails']
+                                      .length > 1
+                                      ? data['President']
+                                      : applicationsRecord.fields[
+                                      'Leaders Emails'
+                                      ][0]
+                                      }`
+                                    newData[item.key] = `${item.key === 'President'
+                                      ? newData['President']
+                                      : e.target.value
+                                      }`
                                     setData({ ...data, ...newData })
                                     setSaved(false)
                                   }}
-                                  type={'select'}
-                                  name="code"
+                                  placeholder={returnLocalizedQuestionText(
+                                    router.locale,
+                                    item,
+                                    'placeholder'
+                                  )}
+                                  as={
+                                    item.type == 'string'
+                                      ? Input
+                                      : item.type == 'paragraph'
+                                        ? Textarea
+                                        : Select
+                                  }
+                                  type={item.inputType}
+                                  name="email"
                                   value={
-                                    data['Code'] !== undefined
-                                      ? data['Code']
-                                      : ''
+                                    item.key === 'President'
+                                      ? applicationsRecord.fields[
+                                      'Leaders Emails'
+                                      ][0]
+                                      : data[item.key] !== undefined
+                                        ? data[item.key]
+                                        : ''
+                                  }
+                                  onBlur={
+                                    item.inputType === 'date'
+                                      ? e => {
+                                        if (
+                                          isInvalidBirthdate(
+                                            e.target.value,
+                                            applicationsRecord.fields[
+                                            'Leader Birthdays'
+                                            ]
+                                          )
+                                        )
+                                          setShowPopup(true)
+                                      }
+                                      : null
+                                  }
+                                  onInput={
+                                    item.inputType === 'date'
+                                      ? e => {
+                                        handleChangeInDate(
+                                          e.target.value,
+                                          applicationsRecord.fields[
+                                          'Leader Birthdays'
+                                          ],
+                                          setDisabled
+                                        )
+                                      }
+                                      : null
                                   }
                                   sx={{
                                     border: '1px solid',
                                     borderColor: 'rgb(221, 225, 228)',
                                     resize: 'vertical',
-                                    display: 'grid'
+                                    width: `${item.key === 'Phone' ? '40rem' : '100%'
+                                      }`,
+                                    maxWidth: '100%'
                                   }}
-                                  children={
-                                    <>
-                                      <option value="" disabled>
+                                  // custom country select field
+                                  {...(item.type == 'countrySelect'
+                                    ? {
+                                      children: (
+                                        <>
+                                          <option value="" disabled>
+                                            {returnLocalizedMessage(
+                                              router.locale,
+                                              'SELECT_ONE'
+                                            )}
+                                          </option>
+                                          {countryCodeData.map(
+                                            (country, index) => {
+                                              return (
+                                                <option
+                                                  key={country.country}
+                                                  value={country.country}
+                                                >
+                                                  {country.country}{' '}
+                                                  {flags[`${country.iso}`]?.emoji}
+                                                </option>
+                                              )
+                                            }
+                                          )}
+                                        </>
+                                      )
+                                    }
+                                    : null)}
+                                  {...(item.type == 'select'
+                                    ? item.options
+                                      ? {
+                                        children: (
+                                          <>
+                                            <option value="" disabled>
+                                              {returnLocalizedMessage(
+                                                router.locale,
+                                                'SELECT_ONE'
+                                              )}
+                                            </option>
+                                            {returnLocalizedQuestionText(
+                                              router.locale,
+                                              item,
+                                              'options'
+                                            ).map(option => (
+                                              <option key={option}>
+                                                {option}
+                                              </option>
+                                            ))}
+                                          </>
+                                        )
+                                      }
+                                      : {
+                                        children: (
+                                          <>
+                                            <option value="" disabled>
+                                              {returnLocalizedMessage(
+                                                router.locale,
+                                                'SELECT_ONE'
+                                              )}
+                                            </option>
+                                            {applicationsRecord.fields[
+                                              item.optionsKey
+                                            ].map(option => (
+                                              <option key={option}>
+                                                {option}
+                                              </option>
+                                            ))}
+                                          </>
+                                        )
+                                      }
+                                    : {})}
+                                />
+                              </Box>
+                              {item.inputType === 'date' ? (
+                                <Text
+                                  sx={{
+                                    color: 'red',
+                                    marginTop: [2]
+                                  }}
+                                  as="p"
+                                >
+                                  {disabled ? (
+                                    <Text>
+                                      {returnLocalizedMessage(
+                                        router.locale,
+                                        'FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS'
+                                      )}{' '}
+                                      <Text
+                                        as="b"
+                                        href={`mailto:${returnLocalizedMessage(
+                                          router.locale,
+                                          'CONTACT_EMAIL'
+                                        )}`}
+                                        sx={{
+                                          color: 'red',
+                                          textDecoration: 'none',
+                                          '&:hover': {
+                                            textDecoration: 'underline',
+                                            textDecorationStyle: 'wavy'
+                                          }
+                                        }}
+                                      >
                                         {returnLocalizedMessage(
                                           router.locale,
-                                          'SELECT_ONE'
+                                          'CONTACT_EMAIL'
                                         )}
-                                      </option>
-                                      {countryCodeData.map((country, index) => {
-                                        return (
-                                          <option key={index}>
-                                            {country.iso}{' '}
-                                            {flags[`${country.iso}`]?.emoji} +
-                                            {country.code}
-                                          </option>
-                                        )
-                                      })}
-                                    </>
-                                  }
-                                />
-                              </>
-                            ) : null}
-                            <Field
-                              label={
-                                <Text>
+                                      </Text>{' '}
+                                      {returnLocalizedMessage(
+                                        router.locale,
+                                        'FOR_MORE_DETAILS'
+                                      )}{' '}
+                                    </Text>
+                                  ) : null}
+                                </Text>
+                              ) : null}
+
+                              {item.words && (
+                                <Text
+                                  sx={{ fontSize: '18px', color: 'muted', mt: 1 }}
+                                  as="p"
+                                >
+                                  (
+                                  {returnLocalizedMessage(
+                                    router.locale,
+                                    'AIM_FOR_BETWEEN'
+                                  )}{' '}
+                                  {item.words}{' '}
+                                  {returnLocalizedMessage(router.locale, 'WORDS')}
+                                  {data[item.key] &&
+                                    ', ' +
+                                    data[item.key].split(' ').length +
+                                    ' ' +
+                                    returnLocalizedMessage(
+                                      router.locale,
+                                      data[item.key].split(' ').length == 1
+                                        ? 'WORD'
+                                        : 'WORDS'
+                                    ) +
+                                    ' ' +
+                                    returnLocalizedMessage(
+                                      router.locale,
+                                      'SO_FAR'
+                                    )}
+                                  )
+                                </Text>
+                              )}
+                              {item.sublabel && (
+                                <Text
+                                  sx={{ fontSize: '16px', color: 'muted' }}
+                                  as="p"
+                                >
                                   {returnLocalizedQuestionText(
                                     router.locale,
                                     item,
-                                    'label'
-                                  )}{' '}
-                                  <Text
-                                    sx={{
-                                      color: 'muted',
-                                      display: item.optional ? 'inline' : 'none'
-                                    }}
-                                  >
-                                    (
-                                    {returnLocalizedMessage(
-                                      router.locale,
-                                      'OPTIONAL'
-                                    )}
-                                    )
-                                  </Text>
-                                </Text>
-                              }
-                              disabled={
-                                applicationsRecord.fields['Submitted']
-                                  ? true
-                                  : disabled && item.inputType !== 'date'
-                                  ? true
-                                  : false
-                              }
-                              onChange={e => {
-                                let newData = {}
-                                newData['President'] = `${
-                                  applicationsRecord.fields['Leaders Emails']
-                                    .length > 1
-                                    ? data['President']
-                                    : applicationsRecord.fields[
-                                        'Leaders Emails'
-                                      ][0]
-                                }`
-                                newData[item.key] = `${
-                                  item.key === 'President'
-                                    ? newData['President']
-                                    : e.target.value
-                                }`
-                                setData({ ...data, ...newData })
-                                setSaved(false)
-                              }}
-                              placeholder={returnLocalizedQuestionText(
-                                router.locale,
-                                item,
-                                'placeholder'
-                              )}
-                              as={
-                                item.type == 'string'
-                                  ? Input
-                                  : item.type == 'paragraph'
-                                  ? Textarea
-                                  : Select
-                              }
-                              type={item.inputType}
-                              name="email"
-                              value={
-                                item.key === 'President'
-                                  ? applicationsRecord.fields[
-                                      'Leaders Emails'
-                                    ][0]
-                                  : data[item.key] !== undefined
-                                  ? data[item.key]
-                                  : ''
-                              }
-                              onBlur={
-                                item.inputType === 'date'
-                                  ? e => {
-                                      if (
-                                        isInvalidBirthdate(
-                                          e.target.value,
-                                          applicationsRecord.fields[
-                                            'Leader Birthdays'
-                                          ]
-                                        )
-                                      )
-                                        setShowPopup(true)
-                                    }
-                                  : null
-                              }
-                              onInput={
-                                item.inputType === 'date'
-                                  ? e => {
-                                      handleChangeInDate(
-                                        e.target.value,
-                                        applicationsRecord.fields[
-                                          'Leader Birthdays'
-                                        ],
-                                        setDisabled
-                                      )
-                                    }
-                                  : null
-                              }
-                              sx={{
-                                border: '1px solid',
-                                borderColor: 'rgb(221, 225, 228)',
-                                resize: 'vertical',
-                                width: `${
-                                  item.key === 'Phone' ? '40rem' : '100%'
-                                }`,
-                                maxWidth: '100%'
-                              }}
-                              // custom country select field
-                              {...(item.type == 'countrySelect'
-                                ? {
-                                    children: (
-                                      <>
-                                        <option value="" disabled>
-                                          {returnLocalizedMessage(
-                                            router.locale,
-                                            'SELECT_ONE'
-                                          )}
-                                        </option>
-                                        {countryCodeData.map(
-                                          (country, index) => {
-                                            return (
-                                              <option
-                                                key={country.country}
-                                                value={country.country}
-                                              >
-                                                {country.country}{' '}
-                                                {flags[`${country.iso}`]?.emoji}
-                                              </option>
-                                            )
-                                          }
-                                        )}
-                                      </>
-                                    )
-                                  }
-                                : null)}
-                              {...(item.type == 'select'
-                                ? item.options
-                                  ? {
-                                      children: (
-                                        <>
-                                          <option value="" disabled>
-                                            {returnLocalizedMessage(
-                                              router.locale,
-                                              'SELECT_ONE'
-                                            )}
-                                          </option>
-                                          {returnLocalizedQuestionText(
-                                            router.locale,
-                                            item,
-                                            'options'
-                                          ).map(option => (
-                                            <option key={option}>
-                                              {option}
-                                            </option>
-                                          ))}
-                                        </>
-                                      )
-                                    }
-                                  : {
-                                      children: (
-                                        <>
-                                          <option value="" disabled>
-                                            {returnLocalizedMessage(
-                                              router.locale,
-                                              'SELECT_ONE'
-                                            )}
-                                          </option>
-                                          {applicationsRecord.fields[
-                                            item.optionsKey
-                                          ].map(option => (
-                                            <option key={option}>
-                                              {option}
-                                            </option>
-                                          ))}
-                                        </>
-                                      )
-                                    }
-                                : {})}
-                            />
-                          </Box>
-                          {item.inputType === 'date' ? (
-                            <Text
-                              sx={{
-                                color: 'red',
-                                marginTop: [2]
-                              }}
-                              as="p"
-                            >
-                              {disabled ? (
-                                <Text>
-                                  {returnLocalizedMessage(
-                                    router.locale,
-                                    'FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS'
-                                  )}{' '}
-                                  <Text
-                                    as="b"
-                                    href={`mailto:${returnLocalizedMessage(
-                                      router.locale,
-                                      'CONTACT_EMAIL'
-                                    )}`}
-                                    sx={{
-                                      color: 'red',
-                                      textDecoration: 'none',
-                                      '&:hover': {
-                                        textDecoration: 'underline',
-                                        textDecorationStyle: 'wavy'
-                                      }
-                                    }}
-                                  >
-                                    {returnLocalizedMessage(
-                                      router.locale,
-                                      'CONTACT_EMAIL'
-                                    )}
-                                  </Text>{' '}
-                                  {returnLocalizedMessage(
-                                    router.locale,
-                                    'FOR_MORE_DETAILS'
-                                  )}{' '}
-                                </Text>
-                              ) : null}
-                            </Text>
-                          ) : null}
-
-                          {item.words && (
-                            <Text
-                              sx={{ fontSize: '18px', color: 'muted', mt: 1 }}
-                              as="p"
-                            >
-                              (
-                              {returnLocalizedMessage(
-                                router.locale,
-                                'AIM_FOR_BETWEEN'
-                              )}{' '}
-                              {item.words}{' '}
-                              {returnLocalizedMessage(router.locale, 'WORDS')}
-                              {data[item.key] &&
-                                ', ' +
-                                  data[item.key].split(' ').length +
-                                  ' ' +
-                                  returnLocalizedMessage(
-                                    router.locale,
-                                    data[item.key].split(' ').length == 1
-                                      ? 'WORD'
-                                      : 'WORDS'
-                                  ) +
-                                  ' ' +
-                                  returnLocalizedMessage(
-                                    router.locale,
-                                    'SO_FAR'
+                                    'sublabel'
                                   )}
-                              )
-                            </Text>
-                          )}
-                          {item.sublabel && (
-                            <Text
-                              sx={{ fontSize: '16px', color: 'muted' }}
-                              as="p"
-                            >
-                              {returnLocalizedQuestionText(
-                                router.locale,
-                                item,
-                                'sublabel'
+                                </Text>
                               )}
-                            </Text>
+                            </>
                           )}
-                        </>
-                      )}
                     </Box>
                   ))}
                 </Box>
@@ -696,18 +691,27 @@ export async function getServerSideProps({ res, req, params }) {
           props: { params, applicationsRecord, leaderRecord, trackerRecord }
         }
       } else {
-        res.statusCode = 302
-        res.setHeader('Location', `/`)
-        return
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false
+          }
+        }
       }
     } catch (e) {
-      res.statusCode = 302
-      res.setHeader('Location', `/`)
-      return
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false
+        }
+      }
     }
   } else {
-    res.statusCode = 302
-    res.setHeader('Location', `/`)
-    return
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
   }
 }

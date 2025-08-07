@@ -53,11 +53,11 @@ export default function IndexHome() {
           {status == 'awaiting'
             ? returnLocalizedMessage(router.locale, 'ENTER_YOUR_EMAIL_LABEL')
             : status == 'sent'
-            ? '📬 ' +
+              ? '📬 ' +
               returnLocalizedMessage(router.locale, 'WE_JUST_SENT_A_LOGIN_URL')
-            : status == 'loading'
-            ? '✉️ ' + returnLocalizedMessage(router.locale, 'SENDING')
-            : '⚠️ ' + returnLocalizedMessage(router.locale, 'ERROR')}
+              : status == 'loading'
+                ? '✉️ ' + returnLocalizedMessage(router.locale, 'SENDING')
+                : '⚠️ ' + returnLocalizedMessage(router.locale, 'ERROR')}
         </Text>
         <Input
           className="bg"
@@ -96,16 +96,15 @@ export async function getServerSideProps(ctx) {
   if (cookies.authToken) {
     try {
       const tokenRecord = await loginsAirtable.find('rec' + cookies.authToken)
-      let res = ctx.res
-      res.statusCode = 302
-      res.setHeader(
-        'Location',
-        `/${
-          tokenRecord.fields['Locale with a slash']
-            ? tokenRecord.fields['Locale with a slash']
-            : ''
-        }${tokenRecord.fields['Path']}`
-      )
+      return {
+        redirect: {
+          destination: `/${tokenRecord.fields['Locale with a slash']
+              ? tokenRecord.fields['Locale with a slash']
+              : ''
+            }${tokenRecord.fields['Path']}`,
+          permanent: false
+        }
+      }
     } catch {
       nookies.destroy(ctx, 'authToken')
     }
