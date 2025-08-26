@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         Locale: req.query.locale,
         Type: 'Apply'
       })
-      res.json({ success: true, id: loginRecord.id })
+      res.json({ success: true })
     }
   } catch (error) {
     console.log(error)
