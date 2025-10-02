@@ -421,7 +421,7 @@ export default function ApplicationReview({
             alignItems: 'center',
             cursor: 'pointer',
             mt: '20px',
-            '> svg': { display: ['none', 'inline'] }
+            '> svg': { display: 'inline' }
           }}
         >
           {acceptCOC || applicationsRecord.fields['Submitted'] ? (
@@ -575,7 +575,7 @@ const ContactCard = ({ router }) => (
       color: 'blue',
       display: 'flex',
       alignItems: 'center',
-      '> svg': { display: ['none', 'inline'] }
+        '> svg': { display: 'inline' }
     }}
   >
     <Icon glyph="message" />
