@@ -39,13 +39,14 @@ export default function ApplicationReview({
   async function sendInvite() {
     if (validateEmail(emailToInvite)) {
       const loginAPICall = await fetch(
-        `/api/invite?email=${encodeURIComponent(emailToInvite)}&id=${params.application
+        `/api/invite?email=${encodeURIComponent(emailToInvite)}&id=${
+          params.application
         }&locale=${router.locale}`
       ).then(r => r.json())
       if (loginAPICall.success) {
         setInviteMessage([
           applicationsRecord.fields['Prospective Leaders'][
-          applicationsRecord.fields['Prospective Leaders'].length + 1
+            applicationsRecord.fields['Prospective Leaders'].length + 1
           ],
           `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`
         ])
@@ -56,7 +57,7 @@ export default function ApplicationReview({
         console.error(loginAPICall)
         setInviteMessage([
           applicationsRecord.fields['Prospective Leaders'][
-          applicationsRecord.fields['Prospective Leaders'].length + 1
+            applicationsRecord.fields['Prospective Leaders'].length + 1
           ],
           `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`
         ])
@@ -204,7 +205,7 @@ export default function ApplicationReview({
                     onClick={() =>
                       deleteLeader(
                         applicationsRecord.fields['Prospective Leaders'][
-                        leaderIndex
+                          leaderIndex
                         ]
                       )
                     }
@@ -231,18 +232,19 @@ export default function ApplicationReview({
                   ],
                   transform: 'translateY(-0.2px)',
                   mr: '5px',
-                  mb: `${warning &&
+                  mb: `${
+                    warning &&
                     applicationsRecord.fields['Prospective Leaders'][
-                    leaderIndex
+                      leaderIndex
                     ] === inviteMessage[0]
-                    ? '-8px'
-                    : '0px'
-                    }`
+                      ? '-8px'
+                      : '0px'
+                  }`
                 }}
                 onClick={() => (
                   setInviteMessage([
                     applicationsRecord.fields['Prospective Leaders'][
-                    leaderIndex
+                      leaderIndex
                     ],
                     returnLocalizedMessage(router.locale, 'ARE_YOU_SURE')
                   ]),
@@ -252,9 +254,9 @@ export default function ApplicationReview({
                 <Icon
                   glyph={
                     warning &&
-                      applicationsRecord.fields['Prospective Leaders'][
+                    applicationsRecord.fields['Prospective Leaders'][
                       leaderIndex
-                      ] === inviteMessage[0]
+                    ] === inviteMessage[0]
                       ? 'menu'
                       : 'member-remove'
                   }
@@ -276,7 +278,7 @@ export default function ApplicationReview({
                 onClick={() =>
                   deleteLeader(
                     applicationsRecord.fields['Prospective Leaders'][
-                    leaderIndex
+                      leaderIndex
                     ]
                   )
                 }
@@ -313,10 +315,11 @@ export default function ApplicationReview({
               height: '40px',
               minWidth: '150px',
               fontWeight: 'bold',
-              cursor: `${applicationsRecord.fields['Submitted']
-                ? 'not-allowed'
-                : 'pointer'
-                }`
+              cursor: `${
+                applicationsRecord.fields['Submitted']
+                  ? 'not-allowed'
+                  : 'pointer'
+              }`
             }}
             onClick={() => sendInvite()}
           >
@@ -480,23 +483,23 @@ export default function ApplicationReview({
             width: '100%',
             textTransform: 'uppercase',
             ...(applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
-              acceptCOC === false ||
-              applicationsRecord.fields['Submitted']
+            acceptCOC === false ||
+            applicationsRecord.fields['Submitted']
               ? {
-                opacity: 0.3,
-                ':hover,:focus': {
-                  transform: 'none',
-                  boxShadow: 'none',
-                  cursor: 'not-allowed'
+                  opacity: 0.3,
+                  ':hover,:focus': {
+                    transform: 'none',
+                    boxShadow: 'none',
+                    cursor: 'not-allowed'
+                  }
                 }
-              }
               : {})
           }}
           variant="ctaLg"
           onClick={() =>
             applicationsRecord.fields['All Complete (incl Leaders)'] != 1 ||
-              acceptCOC === false ||
-              applicationsRecord.fields['Submitted']
+            acceptCOC === false ||
+            applicationsRecord.fields['Submitted']
               ? console.log(applicationsRecord)
               : submitApplication(applicationsRecord.fields)
           }
@@ -504,15 +507,12 @@ export default function ApplicationReview({
           {submitButton}
         </Button>
         <Text sx={{ mt: 8 }}>
-          {
-            acceptCOC === false ?
-              "You must agree to the Hacker Code of Conduct to Submit Your Application" :
-              applicationsRecord.fields['All Complete (incl Leaders)'] !== 1 ?
-                "Your Hack Club application is not complete. Please ensure you have completed your personal profile, your club profile, and that all of your co-leaders have submitted their application if they were added to the club application." :
-                ""
-          }
+          {acceptCOC === false
+            ? 'You must agree to the Hacker Code of Conduct to Submit Your Application'
+            : applicationsRecord.fields['All Complete (incl Leaders)'] !== 1
+            ? 'Your Hack Club application is not complete. Please ensure you have completed your personal profile, your club profile, and that all of your co-leaders have submitted their application if they were added to the club application.'
+            : ''}
         </Text>
-
       </Card>
       <Box
         sx={{
@@ -575,7 +575,7 @@ const ContactCard = ({ router }) => (
       color: 'blue',
       display: 'flex',
       alignItems: 'center',
-        '> svg': { display: 'inline' }
+      '> svg': { display: 'inline' }
     }}
   >
     <Icon glyph="message" />
@@ -620,10 +620,7 @@ const OpenSourceCard = ({ router }) => {
         borderRadius: '15px'
       }}
       onClick={async () => {
-        await destroyCookie(null, 'authToken', {
-          path: '/'
-        })
-        router.push('/', '/', { scroll: false })
+        window.open('https://github.com/hackclub/apply', '_blank')
       }}
     >
       <Text
