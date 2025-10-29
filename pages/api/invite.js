@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       'New Invite': true,
       Locale: req.query.locale
     })
-    res.json({ success: true, id: loginRecord.id })
+    res.json({ success: true })
   } catch (error) {
     console.log(error)
     res.status(504).json({ success: false, error })

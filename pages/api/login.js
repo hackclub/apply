@@ -6,9 +6,11 @@ import {
 
 export default async function handler(req, res) {
   try {
+    // Sanitize email to prevent Airtable formula injection
+    const email = decodeURIComponent(req.query.email).replace(/"/g, '\\"')
     const firstAirtableCall = await prospectiveLeadersAirtable.read({
       maxRecords: 1,
-      filterByFormula: `Email = "${decodeURIComponent(req.query.email)}"`
+      filterByFormula: `Email = "${email}"`
     })
 
     if (firstAirtableCall.length > 0) {
@@ -17,7 +19,7 @@ export default async function handler(req, res) {
         'Relevant User': [prospectiveLeadersRecord.id],
         Locale: req.query.locale
       })
-      res.json({ success: true, id: loginRecord.id })
+      res.json({ success: true })
     } else {
       let today = new Date().toLocaleDateString('en-US')
       const applicationsRecord = await applicationsAirtable.create({

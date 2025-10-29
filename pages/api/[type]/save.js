@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         : prospectiveLeadersAirtable
     const updateCall = await table.update('rec' + req.query.id, newData)
 
-    res.status(200).json({ success: true, id: updateCall.id, newData })
+    res.status(200).json({ success: true, newData })
   } catch (error) {
     console.log(error)
     res.status(504).json({ success: false, error })
