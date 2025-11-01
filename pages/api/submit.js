@@ -1,4 +1,4 @@
-import { applicationsAirtable, loginsAirtable, trackerAirtable } from '../../lib/airtable'
+  import { applicationsAirtable, loginsAirtable, trackerAirtable } from '../../lib/airtable'
 import nookies from 'nookies'
 import { isInvalidBirthdate } from '../../lib/helpers'
 
@@ -59,8 +59,13 @@ export default async function handler(req, res) {
 
     if (!existingTracker || existingTracker.length === 0) {
       // Try multiple create payload shapes to handle different Tracker table schemas.
+      // Add several plausible field name variants to increase resilience.
       const createCandidates = [
         { Application: [recId], Status: 'applied' },
+        { Applications: [recId], Status: 'applied' },
+        { 'Application(s)': [recId], Status: 'applied' },
+        { 'Application ID': recId, Status: 'applied' },
+        { 'Application ID': [recId], Status: 'applied' },
         { 'App ID': recId, Status: 'applied' },
         { 'App ID': [recId], Status: 'applied' }
       ]
@@ -79,6 +84,18 @@ export default async function handler(req, res) {
       if (!created) {
         // If all attempts fail, log the situation so we can investigate (don't throw).
         console.error('Tracker creation failed for all payloads; tracker record missing for', recId)
+        // Try to fetch a single record from the tracker table and log its field keys
+        // so we can see the actual Airtable schema and update the payload candidates.
+        try {
+          const sample = await trackerAirtable.read({ maxRecords: 1 })
+          if (sample && sample[0] && sample[0].fields) {
+            console.error('Tracker table sample field names:', Object.keys(sample[0].fields))
+          } else {
+            console.error('Tracker table appears empty or contains no fields to inspect')
+          }
+        } catch (inspectError) {
+          console.error('Failed to read sample from Tracker table for inspection:', inspectError.message)
+        }
       }
     }
     

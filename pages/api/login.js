@@ -39,6 +39,17 @@ export default async function handler(req, res) {
               await trackerAirtable.create({ Application: [recId], Status: 'applied' })
             } catch (createError) {
               console.warn('login: tracker creation failed for', recId, createError.message)
+              // If creation fails, attempt to read a sample tracker record to see actual field names
+              try {
+                const sample = await trackerAirtable.read({ maxRecords: 1 })
+                if (sample && sample[0] && sample[0].fields) {
+                  console.warn('login: tracker table sample field names:', Object.keys(sample[0].fields))
+                } else {
+                  console.warn('login: tracker table appears empty or contains no fields to inspect')
+                }
+              } catch (inspectError) {
+                console.warn('login: failed to read sample from Tracker table for inspection:', inspectError.message)
+              }
             }
           }
         }
@@ -59,6 +70,10 @@ export default async function handler(req, res) {
           : `rec${applicationsRecord.id}`
         const createCandidates = [
           { Application: [recId], Status: 'applied' },
+          { Applications: [recId], Status: 'applied' },
+          { 'Application(s)': [recId], Status: 'applied' },
+          { 'Application ID': recId, Status: 'applied' },
+          { 'Application ID': [recId], Status: 'applied' },
           { 'App ID': recId, Status: 'applied' },
           { 'App ID': [recId], Status: 'applied' }
         ]
