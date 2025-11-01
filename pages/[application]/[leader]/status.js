@@ -21,6 +21,7 @@ export default function ApplicationOnboarding({
   )
   const [messageColor, setMessageColor] = useState('#000000')
   const [reloadCount, setReloadCount] = useState(0)
+  const [localTracker, setLocalTracker] = useState(trackerRecord || [])
   const applicationStatus = trackerRecord[0]?.fields.Status
   if (notFound) {
     return <Error statusCode="404" />
@@ -74,14 +75,15 @@ export default function ApplicationOnboarding({
         router.push(`/${params.application}/${params.leader}/review`)
       }
     } else if (
-      trackerRecord[0]?.fields.Status === undefined &&
+      localTracker[0]?.fields?.Status === undefined &&
       applicationsRecord.fields['Submitted'] &&
       reloadCount < 20
     ) {
-      // Poll for tracker status - Airtable automation takes time
+      // Poll for tracker status via a small API endpoint instead of replacing the
+      // page (which triggers a _next/data fetch and can cause 404s / redirect issues).
       let attempts = 0
       const maxAttempts = 20
-      const pollInterval = setInterval(() => {
+      const pollInterval = setInterval(async () => {
         attempts++
         if (attempts >= maxAttempts) {
           clearInterval(pollInterval)
@@ -90,11 +92,23 @@ export default function ApplicationOnboarding({
           )
           return
         }
-        
-        // Soft refresh to check if tracker is ready
-        router.replace(router.asPath, undefined, { scroll: false })
+
+        try {
+          const resp = await fetch(
+            `/api/tracker?application=${params.application}`,
+            { credentials: 'same-origin' }
+          )
+          if (!resp.ok) return
+          const json = await resp.json()
+          if (json.success && json.trackerRecord && json.trackerRecord.length > 0) {
+            setLocalTracker(json.trackerRecord)
+            clearInterval(pollInterval)
+          }
+        } catch (e) {
+          console.warn('Tracker poll failed', e)
+        }
       }, 3000)
-      
+
       return () => clearInterval(pollInterval)
     }
   }, [applicationStatus, reloadCount])
