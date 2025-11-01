@@ -22,11 +22,14 @@ export default async function handler(req, res) {
       )
     )
       throw new Error('Invalid birthdates')
-    const updateCall = await applicationsAirtable.update('rec' + req.query.id, {
+    
+    // Mark as submitted
+    await applicationsAirtable.update('rec' + req.query.id, {
       Submitted: true
     })
     
-    // Check if tracker record exists, if not create it
+    // Create tracker record if it doesn't exist
+    // App ID is a linked record field, so we pass an array with the record ID
     const existingTracker = await trackerAirtable.read({
       filterByFormula: `{App ID} = "rec${req.query.id}"`,
       maxRecords: 1
@@ -34,7 +37,7 @@ export default async function handler(req, res) {
     
     if (existingTracker.length === 0) {
       await trackerAirtable.create({
-        'App ID': 'rec' + req.query.id,
+        'App ID': ['rec' + req.query.id],
         'Status': 'applied'
       })
     }
