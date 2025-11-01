@@ -34,23 +34,51 @@ export default async function handler(req, res) {
       Submitted: true
     })
     
-    // Create tracker record if it doesn't exist
-    // Try different field names - "App ID" might be a formula field
-    const existingTracker = await trackerAirtable.read({
-      filterByFormula: `{App ID} = "rec${req.query.id}"`,
+    // Create tracker record if it doesn't exist.
+    // Try multiple filter formulas to detect existing tracker records (some tracker tables
+    // may use "App ID" or a linked "Application" field).
+    const recId = `rec${req.query.id}`
+    let existingTracker = await trackerAirtable.read({
+      filterByFormula: `{App ID} = "${recId}"`,
       maxRecords: 1
     })
-    
-    if (existingTracker.length === 0) {
+
+    if (!existingTracker || existingTracker.length === 0) {
+      // Try an alternate formula that looks for the linked record id inside a linked field
       try {
-        // Try "Application" as the linked record field name
-        await trackerAirtable.create({
-          'Application': ['rec' + req.query.id],
-          'Status': 'applied'
+        existingTracker = await trackerAirtable.read({
+          filterByFormula: `FIND("${recId}", {Application})`,
+          maxRecords: 1
         })
-      } catch (createError) {
-        // If that fails, just log and continue - Airtable automation might handle it
-        console.error('Tracker creation failed:', createError.message)
+      } catch (e) {
+        // If the second read fails, just continue — we'll still attempt to create below
+        console.warn('Tracker alternate read failed, continuing to create:', e.message)
+        existingTracker = []
+      }
+    }
+
+    if (!existingTracker || existingTracker.length === 0) {
+      // Try multiple create payload shapes to handle different Tracker table schemas.
+      const createCandidates = [
+        { Application: [recId], Status: 'applied' },
+        { 'App ID': recId, Status: 'applied' },
+        { 'App ID': [recId], Status: 'applied' }
+      ]
+
+      let created = false
+      for (const payload of createCandidates) {
+        try {
+          await trackerAirtable.create(payload)
+          created = true
+          break
+        } catch (createError) {
+          console.warn('Tracker creation attempt failed for payload', payload, createError.message)
+        }
+      }
+
+      if (!created) {
+        // If all attempts fail, log the situation so we can investigate (don't throw).
+        console.error('Tracker creation failed for all payloads; tracker record missing for', recId)
       }
     }
     
