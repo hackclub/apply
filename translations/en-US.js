@@ -28,7 +28,7 @@ export const messageObject = {
   REMOVED: 'Member removed!',
   WELCOME_TITLE: 'Welcome',
   WELCOME_SUBTITLE:
-    'We can’t wait to see your application to start a Hack Club. Let’s get you signed in! If you run into any issues, email jared@hackclub.com for support (we are always happy to help)',
+    'We can’t wait to see your application to start a Hack Club. Let’s get you signed in! If you run into any issues, email clubs@hackclub.com for support (we are always happy to help)',
   ENTER_YOUR_EMAIL_LABEL: 'Enter your email:',
   WE_JUST_SENT_A_LOGIN_URL: 'We just sent a login URL to your email.',
   SENDING: 'Sending email!',
@@ -90,7 +90,7 @@ export const messageObject = {
   SLACK_DETAILS_FRONT: 'Check out our',
   SLACK_DETAILS_MIDDLE: 'Hack Club Slack',
   SLACK_DETAILS_END:
-    'with 16,000+ members worldwide! This is going to be your personal Hack Club HQ.',
+    'with 50,000+ members worldwide! This is going to be your personal Hack Club HQ.',
   PLEASE_REACH_OUT_REJECTION: 'Please reach out to ',
   FOR_MORE_INFO: ' for more information concerning your application status.',
   EXCITED_TO_HAVE_YOU: "We're excited to have you in the Hack Club community!",
