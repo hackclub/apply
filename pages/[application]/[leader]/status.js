@@ -20,12 +20,10 @@ export default function ApplicationOnboarding({
     returnLocalizedMessage(router.locale, 'PROCESSING')
   )
   const [messageColor, setMessageColor] = useState('#000000')
-  const [reloadCount, setReloadCount] = useState(0)
-  const applicationStatus = trackerRecord[0]?.fields.Status
+  const applicationStatus = trackerRecord?.[0]?.fields?.Status ?? null
   if (notFound) {
     return <Error statusCode="404" />
   }
-  console.log(applicationStatus)
   useEffect(() => {
     {
       applicationStatus === 'applied'
@@ -60,8 +58,6 @@ export default function ApplicationOnboarding({
     }
   }, [])
 
-  console.log(trackerRecord[0]?.fields['Status'])
-
   useEffect(() => {
     if (
       applicationsRecord.fields['Submitted'] === undefined ||
@@ -74,16 +70,33 @@ export default function ApplicationOnboarding({
         router.push(`/${params.application}/${params.leader}/review`)
       }
     } else if (
-      trackerRecord[0]?.fields.Status === undefined &&
-      applicationsRecord.fields['Submitted'] &&
-      reloadCount < 20
+      !applicationStatus &&
+      applicationsRecord.fields['Submitted']
     ) {
-      setTimeout(() => {
-        setReloadCount(reloadCount + 1)
-        router.reload()
-      }, 2000)
+      // Poll for tracker status without full page reload
+      let attempts = 0
+      const pollInterval = setInterval(async () => {
+        attempts++
+        if (attempts > 15) {
+          clearInterval(pollInterval)
+          setApplicationMessage(
+            returnLocalizedMessage(router.locale, 'PROCESSING') + ' (please refresh if this persists)'
+          )
+          return
+        }
+        
+        try {
+          // Soft refresh to check if tracker is ready
+          router.replace(router.asPath, undefined, { scroll: false })
+          clearInterval(pollInterval)
+        } catch (e) {
+          console.error('Poll error:', e)
+        }
+      }, 3000)
+      
+      return () => clearInterval(pollInterval)
     }
-  }, [applicationStatus, reloadCount])
+  }, [applicationStatus])
 
   return (
     <Container
@@ -341,9 +354,9 @@ export default function ApplicationOnboarding({
               <Text>
                 {returnLocalizedMessage(router.locale, 'SCHEDULED_ONBOARDING')}{' '}
                 <b>
-                  {trackerRecord[0].fields['Ambassador'] === 'HQ'
+                  {trackerRecord?.[0]?.fields?.['Ambassador'] === 'HQ'
                     ? 'Holly from HQ.'
-                    : trackerRecord[0].fields['Ambassador'] === 'APAC'
+                    : trackerRecord?.[0]?.fields?.['Ambassador'] === 'APAC'
                       ? 'Anna and Harsh from Hack Club APAC.'
                       : 'Hack Club HQ.'}
                 </b>{' '}
