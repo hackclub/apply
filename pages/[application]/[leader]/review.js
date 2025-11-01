@@ -83,7 +83,8 @@ export default function ApplicationReview({
   }
   async function submitApplication() {
     const submissionAPICall = await fetch(
-      `/api/submit?id=${params.application}`
+      `/api/submit?id=${params.application}`,
+      { method: 'POST' }
     ).then(r => r.json())
     if (submissionAPICall.success) {
       setSubmitButton(

@@ -3,12 +3,15 @@ import nookies from 'nookies'
 import { isInvalidBirthdate } from '../../lib/helpers'
 
 export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ success: false, error: 'Method not allowed' })
+  }
+  
   const cookies = nookies.get({ req })
   try {
     const tokenRecord = await loginsAirtable.find('rec' + cookies.authToken)
     if (!tokenRecord.fields['Path'][0].includes(req.query.id)) {
-      res.redirect('/')
-      return
+      return res.status(401).json({ success: false, error: 'Unauthorized' })
     }
     // Make sure birthday is valid
     const application = await applicationsAirtable.find('rec' + req.query.id)
