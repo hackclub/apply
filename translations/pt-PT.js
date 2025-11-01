@@ -21,14 +21,14 @@ export const messageObject = {
   LOGOUT: 'logout',
   INVITED: 'Convidado!',
   ERROR: 'Erro! Por favor tenta outra vez!',
-  INVALID_EMAIL_ADDRESS: 'E-mail invalido',
+  INVALID_EMAIL_ADDRESS: 'E-mail inválido',
   ARE_YOU_SURE_REMOVE_AS_A_TEAM_MEMBER:
     'Tens a certeza que queres remover este membro como um membro da tua equipa?',
   SUBMITTED: 'submetido!',
   REMOVED: 'Membro removido!',
   WELCOME_TITLE: 'Boas-vindas',
   WELCOME_SUBTITLE:
-    'Estamos anciosos para receber a tua inscrição para começar um Hack Club! Vamos iniciar-te sessão! Se encontrares algum problema, manda-nos um email a clubs@hackclub.com (temos todo o prazer em ajudar)',
+    'Estamos ansiosos para receber a tua inscrição para começar um Hack Club! Vamos iniciar-te sessão! Se encontrares algum problema, manda-nos um email a clubs@hackclub.com (temos todo o prazer em ajudar)',
   ENTER_YOUR_EMAIL_LABEL: 'Introduz o teu e-mail:',
   WE_JUST_SENT_A_LOGIN_URL: 'Acabamos de enviar um e-mail de login.',
   SENDING: 'A enviar!',
@@ -37,8 +37,8 @@ export const messageObject = {
   APPLY: 'Inscrição',
   LEADER: 'Líder',
   CLUB: 'Clube',
-  SAVED: 'Mudanças salvas!',
-  SAVE: 'Salvar mudanças',
+  SAVED: 'Alterações guardadas!',
+  SAVE: 'Guardar alterações',
   CONTINUE: 'Continuar',
   OPTIONAL: 'opcional',
   SELECT_ONE: 'Seleciona um',
@@ -48,7 +48,7 @@ export const messageObject = {
   WORD: 'palavra',
   SO_FAR: 'até agora',
   ARE_YOU_SURE_YOU_WANT_TO_SAVE:
-    'Tens a certeza que queres salvar? Carrega em cancelar para não salvar.',
+    'Tens a certeza que queres guardar? Carrega em cancelar para não guardar.',
   FYI_WE_DONT_ACCEPT_FROM_UNI_AND_TEACHERS:
     "Nós não aceitamos inscrições para clubes em universidades ou de professores. Envia um email a",
   FOR_MORE_DETAILS: 'para mais detalhes.',
@@ -65,10 +65,10 @@ export const messageObject = {
   '30_MINUTE_CHAT': 'conversa de 30 minutos',
   PLAN_OUT_NEXT_YEAR: ' para sabermos mais sobre ti!',
   FIRST_MEETING:
-    'Tem a primeira reunião do teu clube com a tua escola, cheia de autocolantes e recomepensas hacker!',
+    'Tem a primeira reunião do teu clube com a tua escola, cheia de autocolantes e recompensas hacker!',
   LETS_GET_TO_KNOW_YOU: "Vamos saber mais sobre ti",
-  CONTACT_MESSAGE_FRONT: "Estamos aqui para ajudar! Manda-nos um email em",
-  CONTACT_MESSAGE_BACK: "para ajudarmos-te e iremos responder o mais rápido possível (segunda a sexta)!",
+  CONTACT_MESSAGE_FRONT: "Estamos aqui para ajudar! Manda-nos um email para",
+  CONTACT_MESSAGE_BACK: "para ajudar-te e iremos responder o mais rápido possível (segunda a sexta)!",
   HOME: 'Início',
   LEADER_PROFILE: 'Perfil de líder',
   YOUR_CLUB: 'O teu clube',
@@ -93,10 +93,10 @@ export const messageObject = {
     'com mais de 60 mil membros! Este será o teu Hack Club HQ pessoal.',
   PLEASE_REACH_OUT_REJECTION: 'Contacta ',
   FOR_MORE_INFO: ' para mais informações sobre o estado da tua inscrição.',
-  EXCITED_TO_HAVE_YOU: "Nós estamos anciosos para ter-te na comunidade do Hack Club!",
+  EXCITED_TO_HAVE_YOU: "Nós estamos ansiosos para ter-te na comunidade do Hack Club!",
   SCHEDULED_ONBOARDING: "Nós marcamos a tua chamada de onboarding com",
   CHECK_YOUR_EMAIL_ONBOARDING:
-    'Verifica o teu e-mail para mais informações. Estamos anciosos para te conhecer!',
+    'Verifica o teu e-mail para mais informações. Estamos ansiosos para te conhecer!',
   COMPLETE_MESSAGE:
     "Parabéns pela conclusão do processo de onboarding! Agora, o clube é aquilo que fizeres dele. Receberás uma chamada de check-in daqui a um mês do teu onboarding; verifica o teu e-mail para saberes mais. Estamos felizes de ter o teu clube a funcionar!",
   PROUDLY_OPEN_SOURCE: 'Open Source com orgulho',
