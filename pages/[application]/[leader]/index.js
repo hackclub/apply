@@ -34,13 +34,14 @@ export default function ApplicationHome({
   async function sendInvite() {
     if (validateEmail(emailToInvite)) {
       const loginAPICall = await fetch(
-        `/api/invite?email=${encodeURIComponent(emailToInvite)}&id=${params.application
+        `/api/invite?email=${encodeURIComponent(emailToInvite)}&id=${
+          params.application
         }&locale=${router.locale}`
       ).then(r => r.json())
       if (loginAPICall.success) {
         setInviteMessage([
           applicationsRecord.fields['Prospective Leaders'][
-          applicationsRecord.fields['Prospective Leaders'].length + 1
+            applicationsRecord.fields['Prospective Leaders'].length + 1
           ],
           `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`
         ])
@@ -51,7 +52,7 @@ export default function ApplicationHome({
         console.error(loginAPICall)
         setInviteMessage([
           applicationsRecord.fields['Prospective Leaders'][
-          applicationsRecord.fields['Prospective Leaders'].length + 1
+            applicationsRecord.fields['Prospective Leaders'].length + 1
           ],
           `✅ ${returnLocalizedMessage(router.locale, 'INVITED')}`
         ])
@@ -203,7 +204,7 @@ export default function ApplicationHome({
                     onClick={() =>
                       deleteLeader(
                         applicationsRecord.fields['Prospective Leaders'][
-                        leaderIndex
+                          leaderIndex
                         ]
                       )
                     }
@@ -230,18 +231,19 @@ export default function ApplicationHome({
                   ],
                   transform: 'translateY(-0.2px)',
                   mr: '5px',
-                  mb: `${warning &&
+                  mb: `${
+                    warning &&
                     applicationsRecord.fields['Prospective Leaders'][
-                    leaderIndex
+                      leaderIndex
                     ] === inviteMessage[0]
-                    ? '-8px'
-                    : '0px'
-                    }`
+                      ? '-8px'
+                      : '0px'
+                  }`
                 }}
                 onClick={() => (
                   setInviteMessage([
                     applicationsRecord.fields['Prospective Leaders'][
-                    leaderIndex
+                      leaderIndex
                     ],
                     returnLocalizedMessage(router.locale, 'ARE_YOU_SURE')
                   ]),
@@ -251,9 +253,9 @@ export default function ApplicationHome({
                 <Icon
                   glyph={
                     warning &&
-                      applicationsRecord.fields['Prospective Leaders'][
+                    applicationsRecord.fields['Prospective Leaders'][
                       leaderIndex
-                      ] === inviteMessage[0]
+                    ] === inviteMessage[0]
                       ? 'menu'
                       : 'member-remove'
                   }
@@ -275,7 +277,7 @@ export default function ApplicationHome({
                 onClick={() =>
                   deleteLeader(
                     applicationsRecord.fields['Prospective Leaders'][
-                    leaderIndex
+                      leaderIndex
                     ]
                   )
                 }
@@ -556,10 +558,7 @@ const OpenSourceCard = ({ router }) => {
         borderRadius: '15px'
       }}
       onClick={async () => {
-        await destroyCookie(null, 'authToken', {
-          path: '/'
-        })
-        router.push('/', '/', { scroll: false })
+        window.open('https://github.com/hackclub/apply', '_blank')
       }}
     >
       <Text
