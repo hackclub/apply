@@ -20,6 +20,7 @@ export default function ApplicationOnboarding({
     returnLocalizedMessage(router.locale, 'PROCESSING')
   )
   const [messageColor, setMessageColor] = useState('#000000')
+  const [reloadCount, setReloadCount] = useState(0)
   const applicationStatus = trackerRecord[0]?.fields.Status
   if (notFound) {
     return <Error statusCode="404" />
@@ -74,13 +75,15 @@ export default function ApplicationOnboarding({
       }
     } else if (
       trackerRecord[0]?.fields.Status === undefined &&
-      applicationsRecord.fields['Submitted']
+      applicationsRecord.fields['Submitted'] &&
+      reloadCount < 20
     ) {
       setTimeout(() => {
+        setReloadCount(reloadCount + 1)
         router.reload()
-      }, 500)
+      }, 2000)
     }
-  }, [applicationStatus])
+  }, [applicationStatus, reloadCount])
 
   return (
     <Container
