@@ -1,4 +1,4 @@
-import { applicationsAirtable, loginsAirtable } from '../../lib/airtable'
+import { applicationsAirtable, loginsAirtable, trackerAirtable } from '../../lib/airtable'
 import nookies from 'nookies'
 import { isInvalidBirthdate } from '../../lib/helpers'
 
@@ -25,6 +25,20 @@ export default async function handler(req, res) {
     const updateCall = await applicationsAirtable.update('rec' + req.query.id, {
       Submitted: true
     })
+    
+    // Check if tracker record exists, if not create it
+    const existingTracker = await trackerAirtable.read({
+      filterByFormula: `{App ID} = "rec${req.query.id}"`,
+      maxRecords: 1
+    })
+    
+    if (existingTracker.length === 0) {
+      await trackerAirtable.create({
+        'App ID': 'rec' + req.query.id,
+        'Status': 'applied'
+      })
+    }
+    
     res.status(200).json({ success: true })
   } catch (error) {
     console.log(error)
