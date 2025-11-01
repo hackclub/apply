@@ -90,7 +90,7 @@ export const messageObject = {
   SLACK_DETAILS_FRONT: 'Check out our',
   SLACK_DETAILS_MIDDLE: 'Hack Club Slack',
   SLACK_DETAILS_END:
-    'with 16,000+ members worldwide! This is going to be your personal Hack Club HQ.',
+    'with 50,000+ members worldwide! This is going to be your personal Hack Club HQ.',
   PLEASE_REACH_OUT_REJECTION: 'Please reach out to ',
   FOR_MORE_INFO: ' for more information concerning your application status.',
   EXCITED_TO_HAVE_YOU: "We're excited to have you in the Hack Club community!",
