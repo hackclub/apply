@@ -6,7 +6,7 @@ const LocaleSwitcher = props => {
 
   const languages = {
     'en-US': 'English',
-    'pt-BR': 'Português'
+    'pt-PT': 'Português'
   }
 
   return (
