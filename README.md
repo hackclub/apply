@@ -1,6 +1,6 @@
 # Hack Club Applications
 
-Apply to [Hack Club](https://hackclub.com/), built with [React](https://reactjs.org/) and [Next.js](https://nextjs.org).
+Apply to start a [Hack Club](https://hackclub.com/), built with [React](https://reactjs.org/) and [Next.js](https://nextjs.org).
 
 ## Setup
 
