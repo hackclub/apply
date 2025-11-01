@@ -73,25 +73,21 @@ export default function ApplicationOnboarding({
       !applicationStatus &&
       applicationsRecord.fields['Submitted']
     ) {
-      // Poll for tracker status without full page reload
+      // Poll for tracker status - Airtable automation takes time
       let attempts = 0
-      const pollInterval = setInterval(async () => {
+      const maxAttempts = 20
+      const pollInterval = setInterval(() => {
         attempts++
-        if (attempts > 15) {
+        if (attempts >= maxAttempts) {
           clearInterval(pollInterval)
           setApplicationMessage(
-            returnLocalizedMessage(router.locale, 'PROCESSING') + ' (please refresh if this persists)'
+            returnLocalizedMessage(router.locale, 'PROCESSING') + ' - Still processing, please refresh in a moment'
           )
           return
         }
         
-        try {
-          // Soft refresh to check if tracker is ready
-          router.replace(router.asPath, undefined, { scroll: false })
-          clearInterval(pollInterval)
-        } catch (e) {
-          console.error('Poll error:', e)
-        }
+        // Soft refresh to check if tracker is ready
+        router.replace(router.asPath, undefined, { scroll: false })
       }, 3000)
       
       return () => clearInterval(pollInterval)
