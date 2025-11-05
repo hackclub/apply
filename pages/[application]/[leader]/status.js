@@ -31,33 +31,33 @@ export default function ApplicationOnboarding({
     {
       applicationStatus === 'applied'
         ? (setApplicationMessage(
-          `${returnLocalizedMessage(router.locale, 'IS_BEING_REVIEWED')}`
-        ),
+            `${returnLocalizedMessage(router.locale, 'IS_BEING_REVIEWED')}`
+          ),
           setMessageColor('#000000'))
         : applicationStatus === 'rejected'
-          ? (setApplicationMessage(
+        ? (setApplicationMessage(
             `${returnLocalizedMessage(router.locale, 'REJECTED')}`
           ),
-            setMessageColor('#ec3750'))
-          : applicationStatus === 'awaiting onboarding'
-            ? (setApplicationMessage(
-              `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
-            ),
-              setMessageColor('#33d6a6'))
-            : applicationStatus === 'onboarded'
-              ? (setApplicationMessage(
-                `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
-              ),
-                setMessageColor('#33d6a6'))
-              : applicationStatus === 'inactive'
-                ? (setApplicationMessage(
-                  `${returnLocalizedMessage(router.locale, 'INACTIVE')}`
-                ),
-                  setMessageColor('#ff8c37'))
-                : (setApplicationMessage(
-                  `${returnLocalizedMessage(router.locale, 'PROCESSING')}`
-                ),
-                  setMessageColor('#000000'))
+          setMessageColor('#ec3750'))
+        : applicationStatus === 'awaiting onboarding'
+        ? (setApplicationMessage(
+            `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
+          ),
+          setMessageColor('#33d6a6'))
+        : applicationStatus === 'onboarded'
+        ? (setApplicationMessage(
+            `${returnLocalizedMessage(router.locale, 'ACCEPTED')}`
+          ),
+          setMessageColor('#33d6a6'))
+        : applicationStatus === 'inactive'
+        ? (setApplicationMessage(
+            `${returnLocalizedMessage(router.locale, 'INACTIVE')}`
+          ),
+          setMessageColor('#ff8c37'))
+        : (setApplicationMessage(
+            `${returnLocalizedMessage(router.locale, 'PROCESSING')}`
+          ),
+          setMessageColor('#000000'))
     }
   }, [])
 
@@ -123,8 +123,8 @@ export default function ApplicationOnboarding({
       }}
     >
       {applicationStatus != 'rejected' &&
-        applicationStatus !== 'inactive' &&
-        applicationStatus != null ? (
+      applicationStatus !== 'inactive' &&
+      applicationStatus != null ? (
         <ConfettiOnSuccess applicationStatus={applicationStatus} />
       ) : null}
 
@@ -181,15 +181,16 @@ export default function ApplicationOnboarding({
                     }}
                     as="b"
                   >
-                    {returnLocalizedMessage(router.locale, 'THREE_KEY_RESOURCES')}
+                    {returnLocalizedMessage(
+                      router.locale,
+                      'THREE_KEY_RESOURCES'
+                    )}
                   </Text>
                 </b>
                 <ol>
                   <li>{returnLocalizedMessage(router.locale, 'YSWS')}</li>
                   <li>{returnLocalizedMessage(router.locale, 'PIZZA')}</li>
-                  <li>
-                    {returnLocalizedMessage(router.locale, 'HCB')}
-                  </li>
+                  <li>{returnLocalizedMessage(router.locale, 'HCB')}</li>
                 </ol>
               </Text>
               <Box sx={{ my: '1rem' }}>
@@ -276,8 +277,20 @@ export default function ApplicationOnboarding({
                   </a>{' '}
                   {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_1')}
                 </Box>
-                <Box sx={{ marginTop: '0.5em' }}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_2')} </Box>
-                <Box sx={{ marginTop: '0.5em' }}> {returnLocalizedMessage(router.locale, 'BOREAL_DETAILS_3')} </Box>
+                <Box sx={{ marginTop: '0.5em' }}>
+                  {' '}
+                  {returnLocalizedMessage(
+                    router.locale,
+                    'BOREAL_DETAILS_2'
+                  )}{' '}
+                </Box>
+                <Box sx={{ marginTop: '0.5em' }}>
+                  {' '}
+                  {returnLocalizedMessage(
+                    router.locale,
+                    'BOREAL_DETAILS_3'
+                  )}{' '}
+                </Box>
               </Text>
               <Box sx={{ my: '1rem' }}>
                 <iframe
@@ -372,8 +385,8 @@ export default function ApplicationOnboarding({
                   {trackerRecord[0].fields['Ambassador'] === 'HQ'
                     ? 'Holly from HQ.'
                     : trackerRecord[0].fields['Ambassador'] === 'APAC'
-                      ? 'Anna and Harsh from Hack Club APAC.'
-                      : 'Hack Club HQ.'}
+                    ? 'Anna and Harsh from Hack Club APAC.'
+                    : 'Hack Club HQ.'}
                 </b>{' '}
                 {returnLocalizedMessage(
                   router.locale,
@@ -566,10 +579,7 @@ const OpenSourceCard = ({ router }) => {
         borderRadius: '15px'
       }}
       onClick={async () => {
-        await destroyCookie(null, 'authToken', {
-          path: '/'
-        })
-        router.push('/', '/', { scroll: false })
+        window.open('https://github.com/hackclub/apply', '_blank')
       }}
     >
       <Text
